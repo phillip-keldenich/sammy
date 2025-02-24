@@ -1,0 +1,13 @@
+[requires]
+nlohmann_json/[>=3.11]
+boost/[>=1.80]
+doctest/[>=2.4.9]
+gurobi/[>=10.0]@ibralg/develop
+# ortools/[>=9.7]@ibralg/develop
+
+[layout]
+cmake_layout
+
+[generators]
+CMakeToolchain
+CMakeDeps
