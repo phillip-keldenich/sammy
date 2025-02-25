@@ -61,5 +61,10 @@ add_subdirectory("external")
 
 target_link_libraries(sammy INTERFACE cryptominisat5_binding cryptominisat5 
                                       kissat_binding kissat
-                                      cadical_binding cadical)
+                                      cadical_binding cadical
+                                      lingeling_binding lingeling)
+
+add_subdirectory("src")
+enable_testing()
+add_subdirectory("test")
 
