@@ -5,11 +5,17 @@
 using namespace sammy;
 
 TEST_CASE("[bounded_variable_elimination] Pure variable elimination case 1") {
-    ClauseDB formula{9, std::vector<ExternalClause>{
-        {1, 2, 3}, {-1, 2, 3}, {3, 4, 5, -6}, {6, 7, 8},
-        {4, 5, 8}, {2, 5, 9}, {2, 3, -4}, {4, 6, -8},
-        {2, 4, 5, -8}, {2, 5, 8, -9}, {-3, 9}
-    }};
+    ClauseDB formula{9, std::vector<ExternalClause>{{1, 2, 3},
+                                                    {-1, 2, 3},
+                                                    {3, 4, 5, -6},
+                                                    {6, 7, 8},
+                                                    {4, 5, 8},
+                                                    {2, 5, 9},
+                                                    {2, 3, -4},
+                                                    {4, 6, -8},
+                                                    {2, 4, 5, -8},
+                                                    {2, 5, 8, -9},
+                                                    {-3, 9}}};
     SimplifyDatastructure simplifier{formula, 2};
     CHECK(bounded_variable_elimination(simplifier, 0));
     // 1, 2 are concrete
@@ -31,23 +37,22 @@ TEST_CASE("[bounded_variable_elimination] Pure variable elimination case 1") {
     CHECK(simplifier.is_eliminated(2));
     CHECK(simplifier.is_eliminated(5));
     // check that everything was done as pure literal elimination
-    for(const SCVec& c : simplifier.get_reconstruction_stack()) {
+    for (const SCVec& c : simplifier.get_reconstruction_stack()) {
         CHECK(c.size() == 1);
     }
 }
 
-TEST_CASE("[bounded_variable_elimination] Bounded variable elimination case 1") {
-    ClauseDB formula{4, std::vector<ExternalClause>{
-        { 1,  2,  3,  4},
-        { 1, -2, -3, -4},
-        {-1,  2, -3, -4},
-        {-1, -2, -3, -4},
-        {-1, -2,  3, -4},
-        { 1,  2,  3, -4},
-        { 1, -2, 3 },
-        { 1,  2, -3 },
-        { 1, -2, -3 }
-    }};
+TEST_CASE(
+    "[bounded_variable_elimination] Bounded variable elimination case 1") {
+    ClauseDB formula{4, std::vector<ExternalClause>{{1, 2, 3, 4},
+                                                    {1, -2, -3, -4},
+                                                    {-1, 2, -3, -4},
+                                                    {-1, -2, -3, -4},
+                                                    {-1, -2, 3, -4},
+                                                    {1, 2, 3, -4},
+                                                    {1, -2, 3},
+                                                    {1, 2, -3},
+                                                    {1, -2, -3}}};
     SimplifyDatastructure simplifier{formula, 1};
     CHECK(bounded_variable_elimination(simplifier, 0));
     CHECK(simplifier.is_eliminated(3));
@@ -72,7 +77,8 @@ TEST_CASE("[bounded_variable_elimination] Bounded variable elimination case 1") 
     CHECK(simp1.new_to_old[0] == 0);
     CHECK(!verify_solution(simp1.formula, std::vector<bool>(1, false)));
     CHECK(verify_solution(simp1.formula, std::vector<bool>(1, true)));
-    std::vector<bool> reconstructed = simplifier.reconstruct_solution(simp1, std::vector<bool>(1, true));
+    std::vector<bool> reconstructed =
+        simplifier.reconstruct_solution(simp1, std::vector<bool>(1, true));
     CHECK(verify_solution(formula, reconstructed));
     CHECK(detect_failed_and_equal_literals(simplifier));
     CHECK(simplifier.is_eliminated(0));

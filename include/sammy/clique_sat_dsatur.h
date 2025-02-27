@@ -1236,7 +1236,7 @@ class CliqueSatDSaturSolver {
      * @return false on abortion, true otherwise.
      */
     bool p_expensive_cut_rounds() {
-        // TODO: implement and evaluate expensive cuts?
+        // TODO: implement expensive cuts (might not be very successful)
         return true;
     }
 

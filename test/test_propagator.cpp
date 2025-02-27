@@ -6,16 +6,20 @@ using namespace sammy;
 TEST_CASE("[SharedDBPropagator] Simple propagator test") {
     std::vector<std::vector<int>> clauses_sat;
     std::vector<std::vector<int>> clauses_unsat;
-    for(int diff = 1; diff <= 3; ++diff) {
-        for(int start = 1; start + 2 * diff <= 8; ++start) {
-            clauses_sat.emplace_back(std::initializer_list<int>{start, start + diff, start + 2*diff});
-            clauses_sat.emplace_back(std::initializer_list<int>{-start, -start-diff, -start-2*diff});
+    for (int diff = 1; diff <= 3; ++diff) {
+        for (int start = 1; start + 2 * diff <= 8; ++start) {
+            clauses_sat.emplace_back(std::initializer_list<int>{
+                start, start + diff, start + 2 * diff});
+            clauses_sat.emplace_back(std::initializer_list<int>{
+                -start, -start - diff, -start - 2 * diff});
         }
     }
-    for(int diff = 1; diff <= 4; ++diff) {
-        for(int start = 1; start + 2 * diff <= 9; ++start) {
-            clauses_unsat.emplace_back(std::initializer_list<int>{start, start + diff, start + 2*diff});
-            clauses_unsat.emplace_back(std::initializer_list<int>{-start, -start-diff, -start - 2*diff});
+    for (int diff = 1; diff <= 4; ++diff) {
+        for (int start = 1; start + 2 * diff <= 9; ++start) {
+            clauses_unsat.emplace_back(std::initializer_list<int>{
+                start, start + diff, start + 2 * diff});
+            clauses_unsat.emplace_back(std::initializer_list<int>{
+                -start, -start - diff, -start - 2 * diff});
         }
     }
 
@@ -38,7 +42,8 @@ TEST_CASE("[SharedDBPropagator] Simple propagator test") {
         auto r3lits = r3.lits(db_sat);
         std::vector<Lit> r3lits_expected{
             lit::internalize(-3), lit::internalize(-2), lit::internalize(-1)};
-        CHECK(std::equal(r3lits.begin(), r3lits.end(), r3lits_expected.begin()));
+        CHECK(
+            std::equal(r3lits.begin(), r3lits.end(), r3lits_expected.begin()));
         auto supporting = propagator.decisions_leading_to(lit::internalize(-3));
         CHECK(supporting.size() == 2);
         CHECK(supporting[0].second != supporting[1].second);
@@ -67,12 +72,15 @@ TEST_CASE("[SharedDBPropagator] Simple propagator test") {
         CHECK(propagator.get_trail().size() == 8);
         supporting = propagator.decisions_leading_to(lit::internalize(-7));
         CHECK(supporting.size() == 3);
-        std::vector<Lit> decisions{supporting[0].second, supporting[1].second, supporting[2].second};
-        std::vector<std::int32_t> levels{supporting[0].first, supporting[1].first, supporting[2].first};
+        std::vector<Lit> decisions{supporting[0].second, supporting[1].second,
+                                   supporting[2].second};
+        std::vector<std::int32_t> levels{
+            supporting[0].first, supporting[1].first, supporting[2].first};
         std::sort(decisions.begin(), decisions.end());
         std::sort(levels.begin(), levels.end());
-        CHECK(decisions == std::vector<Lit>{lit::internalize(2), 
-                                            lit::internalize(-4), lit::internalize(5)});
+        CHECK(decisions == std::vector<Lit>{lit::internalize(2),
+                                            lit::internalize(-4),
+                                            lit::internalize(5)});
         CHECK(levels == std::vector<std::int32_t>{2, 3, 4});
     }
 
@@ -80,14 +88,14 @@ TEST_CASE("[SharedDBPropagator] Simple propagator test") {
         SharedDBPropagator prop{&db_unsat};
         bool have_result = false;
         bool is_unsat = false;
-        while(!have_result) {
+        while (!have_result) {
             bool all_set = true;
-            for(Var i = 1; i <= 9; ++i) {
+            for (Var i = 1; i <= 9; ++i) {
                 Lit x = lit::internalize(i);
-                if(prop.is_open(x)) {
+                if (prop.is_open(x)) {
                     all_set = false;
-                    if(!prop.push_level(x)) {
-                        if(!prop.resolve_conflicts()) {
+                    if (!prop.push_level(x)) {
+                        if (!prop.resolve_conflicts()) {
                             is_unsat = true;
                             have_result = true;
                         }
@@ -95,7 +103,8 @@ TEST_CASE("[SharedDBPropagator] Simple propagator test") {
                     break;
                 }
             }
-            if(all_set) have_result = true; 
+            if (all_set)
+                have_result = true;
         }
         CHECK(is_unsat);
     }

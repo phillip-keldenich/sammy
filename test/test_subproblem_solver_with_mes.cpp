@@ -1,18 +1,17 @@
+#include "test_instances.h"
+#include <doctest/doctest.h>
 #include <sammy/barrage.h>
-#include <sammy/subproblem_solver_with_mes.h>
+#include <sammy/fast_clique.h>
 #include <sammy/initial_coloring_heuristic.h>
 #include <sammy/learn_infeasibilities.h>
+#include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
-#include <sammy/fast_clique.h>
-#include <doctest/doctest.h>
-#include "test_instances.h"
-
 
 using namespace sammy;
 
 void check_mes(SharedDBPropagator& prop, const std::vector<Vertex>& v) {
-    for(std::size_t i = 0, n = v.size(); i < n; ++i) {
-        for(std::size_t j = i + 1; j < n; ++j) {
+    for (std::size_t i = 0, n = v.size(); i < n; ++i) {
+        for (std::size_t j = i + 1; j < n; ++j) {
             prop.reset_to_zero();
             CHECK(push_vertex(prop, v[i]) >= 0);
             CHECK(push_vertex(prop, v[j]) < 0);
@@ -44,18 +43,24 @@ TEST_CASE("[SubproblemSolverWithMES] MES solver soletta_17_03_09") {
     CHECK(solver.get_best_mes_size() == 33);
     std::vector<Index> indices{0, 2, 3, 5, 6, 9, 11, 44};
     auto removed = solution.remove_assignments(indices);
-    CHECK(removed.size() == 8); 
+    CHECK(removed.size() == 8);
     LNSSubproblem subproblem;
-    solution.iterate_all_uncovered([&] (Lit lmin, Lit lmax) {
+    solution.iterate_all_uncovered([&](Lit lmin, Lit lmax) {
         subproblem.uncovered_universe.emplace_back(lmin, lmax);
     });
     FastCliqueBuilder clique_builder{SharedDBPropagator(&clauses)};
-    subproblem.mutually_exclusive_set = clique_builder.random_multistart_best_clique(10, subproblem.uncovered_universe);
+    subproblem.mutually_exclusive_set =
+        clique_builder.random_multistart_best_clique(
+            10, subproblem.uncovered_universe);
     check_mes(prop, subproblem.mutually_exclusive_set);
     subproblem.removed_configurations = std::move(removed);
     subproblem.num_concrete = initial_result.inf_map.get_n_concrete();
-    SubproblemMESSolver mes_solver{&solver, std::move(subproblem), 
-                                   SharedDBPropagator(&clauses), &recorder, 42, 1000};
+    SubproblemMESSolver mes_solver{&solver,
+                                   std::move(subproblem),
+                                   SharedDBPropagator(&clauses),
+                                   &recorder,
+                                   42,
+                                   1000};
     auto result = mes_solver.solve();
     CHECK(result);
     CHECK(*result);
@@ -83,21 +88,27 @@ TEST_CASE("[SubproblemSolverWithMES] MES solver soletta_17_03_09 larger") {
     auto solution = solver.get_best_solution();
     CHECK(solution.size() == 53);
     CHECK(solver.get_best_mes_size() == 33);
-    std::vector<Index> indices{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 
-                               11, 12, 13, 14, 15, 16, 17, 18,
-                               31, 32, 33, 35, 44};
+    std::vector<Index> indices{0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
+                               12, 13, 14, 15, 16, 17, 18, 31, 32, 33, 35, 44};
     auto removed = solution.remove_assignments(indices);
-    CHECK(removed.size() == 24); 
+    CHECK(removed.size() == 24);
     LNSSubproblem subproblem;
-    solution.iterate_all_uncovered([&] (Lit lmin, Lit lmax) {
+    solution.iterate_all_uncovered([&](Lit lmin, Lit lmax) {
         subproblem.uncovered_universe.emplace_back(lmin, lmax);
     });
     FastCliqueBuilder clique_builder{SharedDBPropagator(&clauses)};
-    subproblem.mutually_exclusive_set = clique_builder.random_multistart_best_clique(10, subproblem.uncovered_universe);
+    subproblem.mutually_exclusive_set =
+        clique_builder.random_multistart_best_clique(
+            10, subproblem.uncovered_universe);
     check_mes(prop, subproblem.mutually_exclusive_set);
     subproblem.removed_configurations = std::move(removed);
     subproblem.num_concrete = initial_result.inf_map.get_n_concrete();
-    SubproblemMESSolver mes_solver{&solver, std::move(subproblem), SharedDBPropagator(&clauses), &recorder, 42, 1000};
+    SubproblemMESSolver mes_solver{&solver,
+                                   std::move(subproblem),
+                                   SharedDBPropagator(&clauses),
+                                   &recorder,
+                                   42,
+                                   1000};
     auto result = mes_solver.solve();
     CHECK(result);
     CHECK(*result);

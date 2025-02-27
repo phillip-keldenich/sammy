@@ -1,5 +1,5 @@
-#include <sammy/initial_coloring_heuristic.h>
 #include <doctest/doctest.h>
+#include <sammy/initial_coloring_heuristic.h>
 
 using namespace sammy;
 
@@ -9,7 +9,8 @@ TEST_CASE("[Initial Coloring Heuristic] Simple coloring with known universe") {
     ClauseDB clauses{n_all, simple_formula};
     PairInfeasibilityMap infeasibility_map{n_concrete};
     ThreadGroup<void> thread_pool;
-    ColoringHeuristicSolver solver{&clauses, n_concrete, &thread_pool, &infeasibility_map};
+    ColoringHeuristicSolver solver{&clauses, n_concrete, &thread_pool,
+                                   &infeasibility_map};
     solver.set_quiet(true);
     solver.initialize_feasibilities();
     solver.color_lazy();
