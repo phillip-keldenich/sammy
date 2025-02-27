@@ -96,7 +96,7 @@ template <typename IncrementalSATSolver> class CliqueSatDSaturSolver {
         IMPROVED_SOLUTION, //< We found a new, optimal solution.
         ABORTED,           //< We were aborted (timeout, ...) before completion.
         SOLUTION_WAS_OPTIMAL //< We completed but the initial solution was
-                             //optimal.
+                             // optimal.
     };
 
     /**
