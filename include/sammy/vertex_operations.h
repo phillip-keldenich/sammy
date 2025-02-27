@@ -16,8 +16,7 @@ namespace sammy {
  * @param vertex
  */
 inline void reset_and_push_noresolve(SharedDBPropagator& propagator,
-                                     Vertex vertex) 
-{
+                                     Vertex vertex) {
     propagator.reset_or_throw();
     Lit lmin = vertex.first;
     Lit lmax = vertex.second;
@@ -37,8 +36,9 @@ inline void reset_and_push_noresolve(SharedDBPropagator& propagator,
 }
 
 /**
- * @brief Tests whether the given vertex can be pushed onto the given propagator.
- * Does not learn from conflicts; returns the propagator into the previous state.
+ * @brief Tests whether the given vertex can be pushed onto the given
+ * propagator. Does not learn from conflicts; returns the propagator into the
+ * previous state.
  */
 inline bool can_push(SharedDBPropagator& propagator, Vertex vertex) {
     Lit lmin = vertex.first;
@@ -83,10 +83,11 @@ inline int push_vertex(SharedDBPropagator& propagator, Vertex vertex) {
         }
         pushed = 1;
     }
-    if(propagator.is_open(lmax)) {
-        if(!propagator.push_level(lmax)) {
+    if (propagator.is_open(lmax)) {
+        if (!propagator.push_level(lmax)) {
             propagator.pop_level();
-            if(pushed) propagator.pop_level();
+            if (pushed)
+                propagator.pop_level();
             return -1;
         }
         ++pushed;
@@ -94,16 +95,19 @@ inline int push_vertex(SharedDBPropagator& propagator, Vertex vertex) {
     return pushed;
 }
 
-inline bool push_vertex_pair(SharedDBPropagator& propagator, Vertex v1, Vertex v2) {
+inline bool push_vertex_pair(SharedDBPropagator& propagator, Vertex v1,
+                             Vertex v2) {
     int pc1 = push_vertex(propagator, v1);
-    if(pc1 < 0) return false;
-    if(push_vertex(propagator, v2) < 0) {
-        for(int i = 0; i < pc1; ++i) propagator.pop_level();
+    if (pc1 < 0)
+        return false;
+    if (push_vertex(propagator, v2) < 0) {
+        for (int i = 0; i < pc1; ++i)
+            propagator.pop_level();
         return false;
     }
     return true;
 }
 
-}
+} // namespace sammy
 
 #endif

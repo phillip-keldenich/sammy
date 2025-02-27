@@ -1,22 +1,21 @@
 #ifndef SAMMY_BARRAGE_H_INCLUDED_
 #define SAMMY_BARRAGE_H_INCLUDED_
 
-#include "experiment_flags.h"
-#include "pair_infeasibility_map.h"
-#include "initial_coloring_heuristic.h"
-#include "simplification.h"
-#include "output.h"
-#include "thread_clauses.h"
-#include "clique_storage.h"
-#include "implied_vertices.h"
-#include "initial_phase_result.h"
 #include "barrage_lns_subproblem.h"
-#include <optional>
-#include <utility>
+#include "clique_storage.h"
+#include "experiment_flags.h"
+#include "implied_vertices.h"
+#include "initial_coloring_heuristic.h"
+#include "initial_phase_result.h"
+#include "output.h"
+#include "pair_infeasibility_map.h"
+#include "simplification.h"
+#include "thread_clauses.h"
 #include <any>
-#include <queue>
 #include <filesystem>
-
+#include <optional>
+#include <queue>
+#include <utility>
 
 namespace sammy {
 
@@ -70,24 +69,30 @@ struct LNSTimeAndSuccessInfo {
     }
 
     std::size_t select_goal_num_removed() {
-        if(removed_classes_info.empty()) {
+        if (removed_classes_info.empty()) {
             return p_empty_select_num_removed();
         }
         auto last_usable = removed_classes_info.end();
-        for(auto it = removed_classes_info.begin(), e = removed_classes_info.end(); it != e; ++it) {
+        for (auto it = removed_classes_info.begin(),
+                  e = removed_classes_info.end();
+             it != e; ++it)
+        {
             const auto& info = it->second;
-            if(info.complete_tries_since_last_success >= num_failure_threshold) {
+            if (info.complete_tries_since_last_success >= num_failure_threshold)
+            {
                 continue;
             }
-            if(info.complete_tries_total < min_num_tries_for_time) {
+            if (info.complete_tries_total < min_num_tries_for_time) {
                 last_usable = it;
                 continue;
             }
-            if(info.complete_tries_total_time / info.complete_tries_total >= current_goal_time) {
+            if (info.complete_tries_total_time / info.complete_tries_total >=
+                current_goal_time)
+            {
                 last_usable = it;
             }
         }
-        if(last_usable == removed_classes_info.end()) {
+        if (last_usable == removed_classes_info.end()) {
             return p_enlarge_num_removed();
         }
         return last_usable->first;
@@ -99,27 +104,27 @@ struct LNSTimeAndSuccessInfo {
     }
 
     std::size_t p_empty_select_num_removed() {
-        if(universe_size < 100'000) return 9;
-        if(universe_size < 500'000) return 7;
-        if(universe_size < 1'000'000) return 5;
-        if(universe_size < 5'000'000) return 4;
+        if (universe_size < 100'000)
+            return 9;
+        if (universe_size < 500'000)
+            return 7;
+        if (universe_size < 1'000'000)
+            return 5;
+        if (universe_size < 5'000'000)
+            return 4;
         return 3;
     }
 };
 
 class PortfolioElement {
   public:
-    explicit PortfolioElement(PortfolioSolver* solver) :
-        solver(solver)
-    {}
+    explicit PortfolioElement(PortfolioSolver* solver) : solver(solver) {}
 
     /**
      * Destroy the portfolio element.
      * Joins if the worker has not yet been joined on.
      */
-    virtual ~PortfolioElement() {
-        join();
-    }
+    virtual ~PortfolioElement() { join(); }
 
     /**
      * Wait for the worker thread to end.
@@ -127,7 +132,7 @@ class PortfolioElement {
      * so the worker must be notified beforehand.
      */
     void join() {
-        if(m_worker.joinable()) {
+        if (m_worker.joinable()) {
             m_worker.join();
         }
     }
@@ -140,7 +145,7 @@ class PortfolioElement {
     /**
      * Get the infeasibility map.
      */
-    inline PairInfeasibilityMap &get_infeasibility_map() noexcept;
+    inline PairInfeasibilityMap& get_infeasibility_map() noexcept;
 
     /*
      * Routine that is called by the event
@@ -149,7 +154,8 @@ class PortfolioElement {
      * and interrupt it if necessary.
      * Called with the mutex held.
      */
-    virtual void interrupt_if_necessary(const InterruptionCheckInfo& /*info*/) {}
+    virtual void interrupt_if_necessary(const InterruptionCheckInfo& /*info*/) {
+    }
 
     /**
      * Get an event recorder (if this element has any).
@@ -175,12 +181,14 @@ class PortfolioElement {
      * Called by the coordinator to
      * deliver new events to this worker.
      */
-    inline void deliver_events(EventMask new_events, const InterruptionCheckInfo& info);
+    inline void deliver_events(EventMask new_events,
+                               const InterruptionCheckInfo& info);
 
     /**
      * Called by the coordinator to deliver alarm events.
      */
-    inline void deliver_alarm(std::size_t alarm_id, const InterruptionCheckInfo& info);
+    inline void deliver_alarm(std::size_t alarm_id,
+                              const InterruptionCheckInfo& info);
 
     /**
      * Set an alarm (this causes the coordinator to notify us,
@@ -209,8 +217,9 @@ class PortfolioElement {
      * Called to start the worker thread.
      */
     void start() {
-        if(m_worker.joinable()) throw std::logic_error("Trying to start running worker!");
-        m_worker = std::thread{[&] () {this->main();}};
+        if (m_worker.joinable())
+            throw std::logic_error("Trying to start running worker!");
+        m_worker = std::thread{[&]() { this->main(); }};
     }
 
   protected:
@@ -228,7 +237,7 @@ class PortfolioElement {
     std::mutex mutex;
 
     /**
-     * Condition variable that can be 
+     * Condition variable that can be
      * waited on for events.
      */
     std::condition_variable condition;
@@ -260,43 +269,40 @@ class PortfolioElement {
 class PortfolioSolver {
   public:
     PortfolioSolver(ClausesTicket clauses, EventRecorder* global_recorder,
-                    InitialPhaseResult&& initial_phase) :
-        m_inf_map(std::move(initial_phase.inf_map)),
-        m_implied_cache(&m_inf_map, initial_phase.universe_size),
-        m_best_spawners(std::move(initial_phase.best_spawners)),
-        m_all_spawners(std::move(initial_phase.all_spawners)),
-        m_coloring_order(std::move(initial_phase.coloring_order)),
-        m_universe_size(initial_phase.universe_size),
-        m_ticket(clauses),
-        m_global_recorder(global_recorder),
-        m_best_mes(std::move(initial_phase.best_mutually_exclusive)),
-        m_best_lb_vertex_set(m_best_mes),
-        m_lower_bound(m_best_mes.size()),
-        m_best_solution(
-            local_clauses(clauses).num_vars(),
-            &m_inf_map,
-            initial_phase.best_solution.begin(),
-            initial_phase.best_solution.end()),
-        m_lns_info(this)
-    {}
+                    InitialPhaseResult&& initial_phase)
+        : m_inf_map(std::move(initial_phase.inf_map)),
+          m_implied_cache(&m_inf_map, initial_phase.universe_size),
+          m_best_spawners(std::move(initial_phase.best_spawners)),
+          m_all_spawners(std::move(initial_phase.all_spawners)),
+          m_coloring_order(std::move(initial_phase.coloring_order)),
+          m_universe_size(initial_phase.universe_size), m_ticket(clauses),
+          m_global_recorder(global_recorder),
+          m_best_mes(std::move(initial_phase.best_mutually_exclusive)),
+          m_best_lb_vertex_set(m_best_mes), m_lower_bound(m_best_mes.size()),
+          m_best_solution(local_clauses(clauses).num_vars(), &m_inf_map,
+                          initial_phase.best_solution.begin(),
+                          initial_phase.best_solution.end()),
+          m_lns_info(this) {}
 
     void limited_reduce_universe(double time_limit) {
-        if(!m_implied_cache.have_reduced_universe()) {
-            m_global_recorder->store_event("BEGIN_LIMITED_IMPLIED_VERTEX_ELIMINATION");
-            m_implied_cache.limited_reduce_universe(local_clauses(m_ticket), time_limit);
+        if (!m_implied_cache.have_reduced_universe()) {
+            m_global_recorder->store_event(
+                "BEGIN_LIMITED_IMPLIED_VERTEX_ELIMINATION");
+            m_implied_cache.limited_reduce_universe(local_clauses(m_ticket),
+                                                    time_limit);
             p_post_reduce_universe();
         }
     }
 
     void reduce_universe() {
-        if(!m_implied_cache.have_reduced_universe()) {
+        if (!m_implied_cache.have_reduced_universe()) {
             m_global_recorder->store_event("BEGIN_IMPLIED_VERTEX_ELIMINATION");
             m_implied_cache.reduce_universe(local_clauses(m_ticket));
             p_post_reduce_universe();
         }
     }
 
-    const ImpliedVertexCache &implied_cache() const noexcept {
+    const ImpliedVertexCache& implied_cache() const noexcept {
         return m_implied_cache;
     }
 
@@ -318,26 +324,22 @@ class PortfolioSolver {
         return m_coloring_order;
     }
 
-    std::size_t get_universe_size() const noexcept {
-        return m_universe_size;
-    }
+    std::size_t get_universe_size() const noexcept { return m_universe_size; }
 
-    void set_alarm(PortfolioElement* element, double in_seconds, std::size_t alarm_id) {
+    void set_alarm(PortfolioElement* element, double in_seconds,
+                   std::size_t alarm_id) {
         std::unique_lock l{m_mutex};
-        AlarmTime time = Clock::now() + std::chrono::duration<double>(in_seconds);
+        AlarmTime time =
+            Clock::now() + std::chrono::duration<double>(in_seconds);
         m_alarm_requests.emplace_back(AlarmRequest{time, alarm_id, element});
-        if(m_alarm_requests.size() == 1) {
+        if (m_alarm_requests.size() == 1) {
             m_condition.notify_one();
         }
     }
 
-    ClauseDB& get_clauses() const {
-        return local_clauses(m_ticket);
-    }
+    ClauseDB& get_clauses() const { return local_clauses(m_ticket); }
 
-    PairInfeasibilityMap& get_infeasibility_map() noexcept {
-        return m_inf_map;
-    }
+    PairInfeasibilityMap& get_infeasibility_map() noexcept { return m_inf_map; }
 
     void run(double time_limit = 1000.0 * 365.0 * 24.0 * 60.0 * 60.0) {
         set_alarm(nullptr, time_limit, 0);
@@ -346,11 +348,12 @@ class PortfolioSolver {
 
     void merge_events() {
         std::size_t worker_id = 0;
-        for(const auto& e : m_elements) {
+        for (const auto& e : m_elements) {
             const auto* events = e->get_recorder();
-            if(events) {
+            if (events) {
                 std::string description = e->get_description();
-                if(description.empty()) description = std::to_string(worker_id);
+                if (description.empty())
+                    description = std::to_string(worker_id);
                 m_global_recorder->merge_events(*events, description);
             }
             ++worker_id;
@@ -360,15 +363,15 @@ class PortfolioSolver {
     void add_element(std::unique_ptr<PortfolioElement> element) {
         std::unique_lock l{m_mutex};
         m_waiting_elements.emplace_back(std::move(element));
-        if(m_waiting_elements.size() == 1) {
+        if (m_waiting_elements.size() == 1) {
             m_condition.notify_one();
         }
     }
 
-    template<typename ConcreteType, typename... Args>
-    ConcreteType& emplace_element(Args&&... args)
-    {
-        auto element = std::make_unique<ConcreteType>(std::forward<Args>(args)...);
+    template <typename ConcreteType, typename... Args>
+    ConcreteType& emplace_element(Args&&... args) {
+        auto element =
+            std::make_unique<ConcreteType>(std::forward<Args>(args)...);
         ConcreteType& ref = *element;
         add_element(std::move(element));
         return ref;
@@ -377,12 +380,11 @@ class PortfolioSolver {
     /**
      * @brief Record a new event in the global event recorder.
      */
-    template<typename Tag, typename... EventArgs>
-    void report_global(Tag&& tag, OutputObject o, EventArgs&&... p)
-    {
+    template <typename Tag, typename... EventArgs>
+    void report_global(Tag&& tag, OutputObject o, EventArgs&&... p) {
         std::unique_lock l{m_mutex};
-        m_global_recorder->store_event(
-            std::forward<Tag>(tag), std::move(o), std::forward<EventArgs>(p)...);
+        m_global_recorder->store_event(std::forward<Tag>(tag), std::move(o),
+                                       std::forward<EventArgs>(p)...);
     }
 
     /**
@@ -397,28 +399,36 @@ class PortfolioSolver {
      */
     void report_mes(const std::vector<Vertex>& vertices, const char* source) {
         std::unique_lock l{m_mutex};
-        if(m_best_mes.size() >= vertices.size()) return;
+        if (m_best_mes.size() >= vertices.size())
+            return;
         m_best_mes = vertices;
-        if(m_implied_cache.have_reduced_universe()) {
+        if (m_implied_cache.have_reduced_universe()) {
             m_implied_cache.replace_implied(m_best_mes);
             std::size_t old_size = m_best_mes.size();
             std::sort(m_best_mes.begin(), m_best_mes.end());
             m_best_mes.erase(std::unique(m_best_mes.begin(), m_best_mes.end()),
                              m_best_mes.end());
-            if(m_best_mes.size() != old_size) {
-                throw std::logic_error("MES size changed during implied vertex elimination!");
+            if (m_best_mes.size() != old_size) {
+                throw std::logic_error(
+                    "MES size changed during implied vertex elimination!");
             }
         }
         EventMask event = static_cast<EventMask>(PortfolioEvent::BETTER_MES);
-        m_global_recorder->store_event("IMPROVED_MES", 
-            {{"size", m_best_mes.size()}, {"vertices", m_best_mes}, {"source", source}}, "size", "source");
-        if(m_best_mes.size() > m_lower_bound) {
+        m_global_recorder->store_event("IMPROVED_MES",
+                                       {{"size", m_best_mes.size()},
+                                        {"vertices", m_best_mes},
+                                        {"source", source}},
+                                       "size", "source");
+        if (m_best_mes.size() > m_lower_bound) {
             m_lower_bound = m_best_mes.size();
             m_best_lb_vertex_set = m_best_mes;
-            m_global_recorder->store_event("IMPROVED_LB", 
-                {{"lb", m_best_mes.size()}, {"vertices", m_best_mes}, {"source", source}}, "lb", "source");
+            m_global_recorder->store_event("IMPROVED_LB",
+                                           {{"lb", m_best_mes.size()},
+                                            {"vertices", m_best_mes},
+                                            {"source", source}},
+                                           "lb", "source");
             event |= static_cast<EventMask>(PortfolioEvent::BETTER_LOWER_BOUND);
-            if(m_lower_bound >= m_best_solution.size()) {
+            if (m_lower_bound >= m_best_solution.size()) {
                 m_global_recorder->store_event("OPTIMALITY_REACHED");
                 event |= static_cast<EventMask>(PortfolioEvent::OPTIMALITY);
             }
@@ -433,13 +443,17 @@ class PortfolioSolver {
      */
     bool report_solution(const PartialSolution& solution, const char* source) {
         std::unique_lock l{m_mutex};
-        if(m_best_solution.size() <= solution.size()) return false;
+        if (m_best_solution.size() <= solution.size())
+            return false;
         m_best_solution = solution;
-        m_global_recorder->store_event("IMPROVED_SOLUTION", {{"size", m_best_solution.size()},
-                                                             {"source", source},
-                                                             {"lb", m_lower_bound}}, "size", "lb", "source");
-        EventMask events = static_cast<EventMask>(PortfolioEvent::BETTER_UPPER_BOUND);
-        if(m_best_solution.size() <= m_lower_bound) {
+        m_global_recorder->store_event("IMPROVED_SOLUTION",
+                                       {{"size", m_best_solution.size()},
+                                        {"source", source},
+                                        {"lb", m_lower_bound}},
+                                       "size", "lb", "source");
+        EventMask events =
+            static_cast<EventMask>(PortfolioEvent::BETTER_UPPER_BOUND);
+        if (m_best_solution.size() <= m_lower_bound) {
             m_global_recorder->store_event("OPTIMALITY_REACHED");
             events |= static_cast<EventMask>(PortfolioEvent::OPTIMALITY);
         }
@@ -450,17 +464,23 @@ class PortfolioSolver {
     /**
      * @brief Called by workers to report new lower bounds.
      */
-    void report_lower_bound(std::size_t lower_bound, const std::vector<Vertex>& subgraph, const char* source) {
+    void report_lower_bound(std::size_t lower_bound,
+                            const std::vector<Vertex>& subgraph,
+                            const char* source) {
         std::unique_lock l{m_mutex};
-        if(lower_bound <= m_lower_bound) return;
+        if (lower_bound <= m_lower_bound)
+            return;
         m_best_lb_vertex_set = subgraph;
         m_lower_bound = lower_bound;
         m_global_recorder->store_event("IMPROVED_LB",
-                                       {{"lb", m_lower_bound}, {"source", source}, 
+                                       {{"lb", m_lower_bound},
+                                        {"source", source},
                                         {"vertices", m_best_lb_vertex_set},
-                                        {"ub", m_best_solution.size()}}, "lb", "source", "ub");
-        EventMask events = static_cast<EventMask>(PortfolioEvent::BETTER_LOWER_BOUND);
-        if(m_best_solution.size() <= m_lower_bound) {
+                                        {"ub", m_best_solution.size()}},
+                                       "lb", "source", "ub");
+        EventMask events =
+            static_cast<EventMask>(PortfolioEvent::BETTER_LOWER_BOUND);
+        if (m_best_solution.size() <= m_lower_bound) {
             m_global_recorder->store_event("OPTIMALITY_REACHED");
             events |= static_cast<EventMask>(PortfolioEvent::OPTIMALITY);
         }
@@ -477,25 +497,22 @@ class PortfolioSolver {
     /**
      * Add a clique to the cache.
      */
-    template<typename Iterator>
-    void add_clique(Iterator begin, Iterator end) {
+    template <typename Iterator> void add_clique(Iterator begin, Iterator end) {
         m_clique_cache.push_clique(begin, end);
     }
 
     /**
      * Mark a clique as used.
      */
-    void clique_was_used(CliqueStorage::StorageView& view, 
-                         CliqueStorage::StorageView::Iterator iter) 
-    {
+    void clique_was_used(CliqueStorage::StorageView& view,
+                         CliqueStorage::StorageView::Iterator iter) {
         m_clique_cache.used_clique(view, iter);
     }
 
     /**
      * Mark a clique as used.
      */
-    void clique_was_used(CliqueStorage::StorageView& view, Index index) 
-    {
+    void clique_was_used(CliqueStorage::StorageView& view, Index index) {
         m_clique_cache.used_clique(view, index);
     }
 
@@ -553,10 +570,10 @@ class PortfolioSolver {
     }
 
     void enable_subproblem_reporting(const std::filesystem::path& out_dir) {
-        if(m_subproblem_dir) {
+        if (m_subproblem_dir) {
             throw std::logic_error("Subproblem reporting already enabled!");
         }
-        if(!exists(out_dir)) {
+        if (!exists(out_dir)) {
             create_directory(out_dir);
         }
         m_subproblem_dir = out_dir;
@@ -565,11 +582,15 @@ class PortfolioSolver {
         auto universe = lit::externalize(m_implied_cache.get_universe());
         const auto& clauses = local_clauses(m_ticket);
         universe_and_clauses["infeasibility_map"] = m_inf_map.export_bits();
-        universe_and_clauses["best_solution"] = m_best_solution.assignments_as<std::vector<bool>>();
-        universe_and_clauses["best_spawners"] = lit::externalize(m_best_spawners);
-        universe_and_clauses["best_mutually_exclusive"] = lit::externalize(m_best_mes);
+        universe_and_clauses["best_solution"] =
+            m_best_solution.assignments_as<std::vector<bool>>();
+        universe_and_clauses["best_spawners"] =
+            lit::externalize(m_best_spawners);
+        universe_and_clauses["best_mutually_exclusive"] =
+            lit::externalize(m_best_mes);
         universe_and_clauses["all_spawners"] = lit::externalize(m_all_spawners);
-        universe_and_clauses["coloring_order"] = lit::externalize(m_coloring_order);
+        universe_and_clauses["coloring_order"] =
+            lit::externalize(m_coloring_order);
         universe_and_clauses["universe_size"] = m_universe_size;
         universe_and_clauses["universe"] = std::move(universe);
         universe_and_clauses["clauses"] = clauses.export_all_clauses();
@@ -577,7 +598,8 @@ class PortfolioSolver {
         universe_and_clauses["num_concrete"] = m_inf_map.get_n_concrete();
         std::ofstream outfile;
         outfile.exceptions(std::ios::badbit | std::ios::failbit);
-        outfile.open(universe_and_clauses_file, std::ios::out | std::ios::trunc);
+        outfile.open(universe_and_clauses_file,
+                     std::ios::out | std::ios::trunc);
         outfile << universe_and_clauses;
     }
 
@@ -593,16 +615,16 @@ class PortfolioSolver {
                            const PartialSolution& remaining_configs,
                            std::size_t global_best_mes_size,
                            std::size_t global_best_lower_bound,
-                           const char* subproblem_type_)
-    {
-        if(!subproblem_reporting_enabled()) return;
+                           const char* subproblem_type_) {
+        if (!subproblem_reporting_enabled())
+            return;
         auto id = new_subproblem_id();
         std::ostringstream name_fmt;
         std::string subproblem_type(subproblem_type_);
-        auto name_filter = [] (const std::string& str) {
+        auto name_filter = [](const std::string& str) {
             std::string result;
-            for(char c : str) {
-                if(std::isalnum(c)) {
+            for (char c : str) {
+                if (std::isalnum(c)) {
                     result.push_back(c);
                 } else {
                     result.push_back('_');
@@ -617,15 +639,19 @@ class PortfolioSolver {
         output["id"] = id;
         output["subproblem_type"] = subproblem_type;
         output["uncovered"] = lit::externalize(subproblem.uncovered_universe);
-        output["initial_uncovered_mes"] = lit::externalize(subproblem.mutually_exclusive_set);
+        output["initial_uncovered_mes"] =
+            lit::externalize(subproblem.mutually_exclusive_set);
         output["num_nonremoved_configs"] = remaining_configs.size();
-        output["num_removed_configs"] = subproblem.removed_configurations.size();
+        output["num_removed_configs"] =
+            subproblem.removed_configurations.size();
         output["lns_info"] = p_lns_info_to_json();
-        output["removed_configs"] = bitsets_to_json(subproblem.removed_configurations);
+        output["removed_configs"] =
+            bitsets_to_json(subproblem.removed_configurations);
         output["global_best_mes_size"] = global_best_mes_size;
         output["global_best_lower_bound"] = global_best_lower_bound;
-        if(!remaining_configs.empty()) {
-            output["remaining_config"] = std::vector<bool>(remaining_configs.get_assignment(0));
+        if (!remaining_configs.empty()) {
+            output["remaining_config"] =
+                std::vector<bool>(remaining_configs.get_assignment(0));
         } else {
             output["remaining_config"] = nlohmann::json{};
         }
@@ -641,27 +667,29 @@ class PortfolioSolver {
                            const std::vector<DynamicBitset>& removed_configs,
                            std::size_t global_best_mes_size,
                            std::size_t global_best_lower_bound,
-                           const char* subproblem_type)
-    {
-        if(!subproblem_reporting_enabled()) return;
+                           const char* subproblem_type) {
+        if (!subproblem_reporting_enabled())
+            return;
         auto id = new_subproblem_id();
         std::ostringstream name_fmt;
-        name_fmt << "subproblem-" << subproblem_type << "-" 
-                 << std::setw(5) << std::setfill('0') << id << ".json";
+        name_fmt << "subproblem-" << subproblem_type << "-" << std::setw(5)
+                 << std::setfill('0') << id << ".json";
         auto subproblem_file = *m_subproblem_dir / name_fmt.str();
         nlohmann::json subproblem;
         subproblem["id"] = id;
         subproblem["subproblem_type"] = subproblem_type;
         subproblem["uncovered"] = lit::externalize(uncovered);
-        subproblem["initial_uncovered_mes"] = lit::externalize(initial_uncovered_mes);
+        subproblem["initial_uncovered_mes"] =
+            lit::externalize(initial_uncovered_mes);
         subproblem["num_nonremoved_configs"] = remaining_configs.size();
         subproblem["num_removed_configs"] = removed_configs.size();
         subproblem["lns_info"] = p_lns_info_to_json();
         subproblem["removed_configs"] = bitsets_to_json(removed_configs);
         subproblem["global_best_mes_size"] = global_best_mes_size;
         subproblem["global_best_lower_bound"] = global_best_lower_bound;
-        if(!remaining_configs.empty()) {
-            subproblem["remaining_config"] = std::vector<bool>(remaining_configs.get_assignment(0));
+        if (!remaining_configs.empty()) {
+            subproblem["remaining_config"] =
+                std::vector<bool>(remaining_configs.get_assignment(0));
         } else {
             subproblem["remaining_config"] = nlohmann::json{};
         }
@@ -674,12 +702,14 @@ class PortfolioSolver {
   private:
     void p_raise_events(EventMask events) {
         EventMask prev = m_raised;
-        if((prev | events) == prev) return;
+        if ((prev | events) == prev)
+            return;
         m_raised |= events;
         m_condition.notify_one();
     }
 
-    using AlarmTime = decltype(Clock::now() + std::chrono::duration<double>(1.0));
+    using AlarmTime =
+        decltype(Clock::now() + std::chrono::duration<double>(1.0));
     struct AlarmRequest {
         AlarmTime time;
         std::size_t id;
@@ -691,10 +721,11 @@ class PortfolioSolver {
     };
 
     void p_post_reduce_universe() {
-        m_global_recorder->store_event("DONE_IMPLIED_VERTEX_ELIMINATION",
-                                       {{"original_size", m_implied_cache.original_universe_size()},
-                                        {"reduced_size", m_implied_cache.reduced_universe_size()}},
-                                       "original_size", "reduced_size");
+        m_global_recorder->store_event(
+            "DONE_IMPLIED_VERTEX_ELIMINATION",
+            {{"original_size", m_implied_cache.original_universe_size()},
+             {"reduced_size", m_implied_cache.reduced_universe_size()}},
+            "original_size", "reduced_size");
         m_implied_cache.replace_implied(m_best_spawners);
         sort_unique(m_best_spawners);
         m_implied_cache.replace_implied(m_all_spawners);
@@ -704,35 +735,35 @@ class PortfolioSolver {
         m_implied_cache.replace_implied(m_best_mes);
         std::size_t old_mes_size = m_best_mes.size();
         sort_unique(m_best_mes);
-        if(old_mes_size != m_best_mes.size()) {
-            throw std::logic_error("MES size changed during implied vertex elimination!");
+        if (old_mes_size != m_best_mes.size()) {
+            throw std::logic_error(
+                "MES size changed during implied vertex elimination!");
         }
     }
 
     void p_update_alarms() {
-        for(const auto& r : m_alarm_requests) {
+        for (const auto& r : m_alarm_requests) {
             m_alarm_queue.push(r);
         }
         m_alarm_requests.clear();
     }
 
     bool p_should_wake() const {
-        return !m_alarm_requests.empty() || 
-               !m_waiting_elements.empty() ||
+        return !m_alarm_requests.empty() || !m_waiting_elements.empty() ||
                m_raised != 0;
     }
 
     void p_extract_due_alarms() {
         auto now = Clock::now();
-        while(!m_alarm_queue.empty() && m_alarm_queue.top().time <= now) {
+        while (!m_alarm_queue.empty() && m_alarm_queue.top().time <= now) {
             m_due_alarms.push_back(m_alarm_queue.top());
             m_alarm_queue.pop();
         }
     }
 
     bool p_handle_due_alarms(const InterruptionCheckInfo& info) {
-        for(const AlarmRequest& a : m_due_alarms) {
-            if(!a.element) {
+        for (const AlarmRequest& a : m_due_alarms) {
+            if (!a.element) {
                 p_raise_timeout();
                 return true;
             } else {
@@ -755,14 +786,14 @@ class PortfolioSolver {
     }
 
     void p_deliver_events(EventMask events, const InterruptionCheckInfo& info) {
-        for(auto &e : m_elements) {
+        for (auto& e : m_elements) {
             e->deliver_events(events, info);
         }
     }
 
     void p_update_elements() {
-        if(!m_shutting_down) {
-            for(auto& e : m_waiting_elements) {
+        if (!m_shutting_down) {
+            for (auto& e : m_waiting_elements) {
                 e->start();
                 m_elements.emplace_back(std::move(e));
             }
@@ -774,10 +805,11 @@ class PortfolioSolver {
         std::unique_lock l{m_mutex};
         p_update_elements();
         p_update_alarms();
-        if(m_alarm_queue.empty()) {
-            m_condition.wait(l, [&] () { return p_should_wake(); });
+        if (m_alarm_queue.empty()) {
+            m_condition.wait(l, [&]() { return p_should_wake(); });
         } else {
-            m_condition.wait_until(l, m_alarm_queue.top().time, [&] () { return p_should_wake(); });
+            m_condition.wait_until(l, m_alarm_queue.top().time,
+                                   [&]() { return p_should_wake(); });
         }
         new_events = m_raised;
         m_raised = 0;
@@ -792,30 +824,32 @@ class PortfolioSolver {
             {"current_goal_time", m_lns_info.current_goal_time},
             {"num_failure_threshold", m_lns_info.num_failure_threshold},
             {"min_num_tries_for_time", m_lns_info.min_num_tries_for_time},
-            {"removed_classes_info", nlohmann::json{}}
-        };
+            {"removed_classes_info", nlohmann::json{}}};
         auto& removed_classes_info = result["removed_classes_info"];
-        for(const auto& [num_removed, info] : m_lns_info.removed_classes_info) {
+        for (const auto& [num_removed, info] : m_lns_info.removed_classes_info)
+        {
             nlohmann::json info_json{
                 {"num_removed", num_removed},
                 {"complete_try_successes", info.complete_try_successes},
-                {"complete_tries_since_last_success", info.complete_tries_since_last_success},
+                {"complete_tries_since_last_success",
+                 info.complete_tries_since_last_success},
                 {"complete_tries_total", info.complete_tries_total},
-                {"complete_tries_total_time", info.complete_tries_total_time}
-            };
+                {"complete_tries_total_time", info.complete_tries_total_time}};
             removed_classes_info.push_back(std::move(info_json));
         }
         return result;
     }
 
-    bool p_main_unlocked(const InterruptionCheckInfo& info, EventMask new_events) {
+    bool p_main_unlocked(const InterruptionCheckInfo& info,
+                         EventMask new_events) {
         p_extract_due_alarms();
-        if(p_handle_due_alarms(info)) {
+        if (p_handle_due_alarms(info)) {
             return true;
         }
-        if(new_events) {
+        if (new_events) {
             p_deliver_events(new_events, info);
-            if(new_events & static_cast<EventMask>(PortfolioEvent::OPTIMALITY)) {
+            if (new_events & static_cast<EventMask>(PortfolioEvent::OPTIMALITY))
+            {
                 std::unique_lock l{m_mutex};
                 m_shutting_down = true;
                 return true;
@@ -825,16 +859,16 @@ class PortfolioSolver {
     }
 
     void p_await_completion() {
-        for(auto& e : m_elements) {
+        for (auto& e : m_elements) {
             e->join();
         }
     }
 
     void p_main_loop() {
-        for(;;) {
+        for (;;) {
             EventMask new_events = 0;
             auto info = p_main_locked(new_events);
-            if(p_main_unlocked(info, new_events)) {
+            if (p_main_unlocked(info, new_events)) {
                 break;
             }
         }
@@ -842,7 +876,8 @@ class PortfolioSolver {
     }
 
     InterruptionCheckInfo p_get_info() const {
-        return InterruptionCheckInfo{m_best_mes.size(), m_lower_bound, m_best_solution.size()};
+        return InterruptionCheckInfo{m_best_mes.size(), m_lower_bound,
+                                     m_best_solution.size()};
     }
 
     // --- read-only elements ---
@@ -956,8 +991,8 @@ class PortfolioSolver {
     std::vector<Vertex> m_best_mes;
 
     /**
-     * Vertex set of best LB (these vertices require at least m_lower_bound configurations).
-     * Need not be equal to m_best_mes.
+     * Vertex set of best LB (these vertices require at least m_lower_bound
+     * configurations). Need not be equal to m_best_mes.
      */
     std::vector<Vertex> m_best_lb_vertex_set;
 
@@ -988,7 +1023,7 @@ void PortfolioElement::set_alarm(double in_seconds) {
     std::size_t alarm_id;
     {
         std::unique_lock l{mutex};
-        if(m_alarm) {
+        if (m_alarm) {
             m_alarm.reset();
         }
         events &= ~static_cast<EventMask>(PortfolioEvent::ALARM);
@@ -1000,41 +1035,43 @@ void PortfolioElement::set_alarm(double in_seconds) {
 
 void PortfolioElement::discard_alarm() {
     std::unique_lock l{mutex};
-    if(m_alarm) {
+    if (m_alarm) {
         m_alarm.reset();
     }
     events &= ~static_cast<EventMask>(PortfolioEvent::ALARM);
 }
 
-void PortfolioElement::deliver_alarm(std::size_t alarm_id, const InterruptionCheckInfo& info) {
+void PortfolioElement::deliver_alarm(std::size_t alarm_id,
+                                     const InterruptionCheckInfo& info) {
     std::unique_lock l{mutex};
-    if(!m_alarm || alarm_id != *m_alarm) {
+    if (!m_alarm || alarm_id != *m_alarm) {
         return;
     }
     bool was_empty = (events == 0);
     events |= static_cast<EventMask>(PortfolioEvent::ALARM);
     interrupt_if_necessary(info);
-    if(was_empty) {
+    if (was_empty) {
         condition.notify_one();
     }
 }
 
-void PortfolioElement::deliver_events(EventMask new_events, const InterruptionCheckInfo& info) {
+void PortfolioElement::deliver_events(EventMask new_events,
+                                      const InterruptionCheckInfo& info) {
     std::unique_lock l{mutex};
     bool was_empty = (events == 0);
     events |= new_events;
-    if(new_events & (static_cast<EventMask>(PortfolioEvent::TIMEOUT) | 
-                     static_cast<EventMask>(PortfolioEvent::OPTIMALITY))) 
+    if (new_events & (static_cast<EventMask>(PortfolioEvent::TIMEOUT) |
+                      static_cast<EventMask>(PortfolioEvent::OPTIMALITY)))
     {
         should_terminate.store(true);
     }
     interrupt_if_necessary(info);
-    if(was_empty) {
+    if (was_empty) {
         condition.notify_one();
     }
 }
 
-PairInfeasibilityMap &PortfolioElement::get_infeasibility_map() noexcept {
+PairInfeasibilityMap& PortfolioElement::get_infeasibility_map() noexcept {
     return solver->get_infeasibility_map();
 }
 
@@ -1042,10 +1079,9 @@ ClauseDB& PortfolioElement::get_clauses() const {
     return solver->get_clauses();
 }
 
-LNSTimeAndSuccessInfo::LNSTimeAndSuccessInfo(PortfolioSolver* solver) noexcept :
-    universe_size(solver->get_universe_size())
-{}
+LNSTimeAndSuccessInfo::LNSTimeAndSuccessInfo(PortfolioSolver* solver) noexcept
+    : universe_size(solver->get_universe_size()) {}
 
-}
+} // namespace sammy
 
 #endif

@@ -1,27 +1,26 @@
 #ifndef SAMMY_CLIQUE_STORAGE_H_INCLUDED_
 #define SAMMY_CLIQUE_STORAGE_H_INCLUDED_
 
+#include "algorithm_ex.h"
 #include "literals.h"
 #include "range.h"
-#include "algorithm_ex.h"
-#include <mutex>
-#include <memory>
 #include <boost/iterator/iterator_facade.hpp>
+#include <memory>
+#include <mutex>
 
 namespace sammy {
-    
+
 class CliqueStorage {
   public:
     /**
      * Create a clique storage that can take
      * cliques with a combined number of up to vertex_limit vertices.
      */
-    explicit CliqueStorage(std::size_t vertex_limit = 10'000'000) :
-        m_vertex_list(new Vertex[p_make_limit(vertex_limit)]),
-        m_index_list(new std::size_t[vertex_limit / 2 + 1]),
-        m_last_used(new std::size_t[vertex_limit / 2]),
-        m_vertex_limit(vertex_limit)
-    {
+    explicit CliqueStorage(std::size_t vertex_limit = 10'000'000)
+        : m_vertex_list(new Vertex[p_make_limit(vertex_limit)]),
+          m_index_list(new std::size_t[vertex_limit / 2 + 1]),
+          m_last_used(new std::size_t[vertex_limit / 2]),
+          m_vertex_limit(vertex_limit) {
         m_index_list[0] = 0;
     }
 
@@ -44,13 +43,9 @@ class CliqueStorage {
 
         StorageView(std::shared_ptr<Vertex[]> v,
                     std::shared_ptr<std::size_t[]> i,
-                    std::shared_ptr<std::size_t[]> u,
-                    std::size_t cc) noexcept :
-            vertex_list(std::move(v)),
-            clique_index_list(std::move(i)),
-            last_used(std::move(u)),
-            clique_count(cc)
-        {}
+                    std::shared_ptr<std::size_t[]> u, std::size_t cc) noexcept
+            : vertex_list(std::move(v)), clique_index_list(std::move(i)),
+              last_used(std::move(u)), clique_count(cc) {}
 
       public:
         using CliqueView = IteratorRange<const Vertex*>;
@@ -58,24 +53,25 @@ class CliqueStorage {
         CliqueView operator[](std::size_t index) const noexcept {
             assert(index < clique_count);
             std::size_t ibeg = clique_index_list[index];
-            std::size_t iend = clique_index_list[index+1];
-            return CliqueView{vertex_list.get()+ibeg, vertex_list.get()+iend};
+            std::size_t iend = clique_index_list[index + 1];
+            return CliqueView{vertex_list.get() + ibeg,
+                              vertex_list.get() + iend};
         }
 
         bool empty() const noexcept { return clique_count == 0; }
 
         std::size_t size() const noexcept { return clique_count; }
 
-        class Iterator : 
-            public boost::iterator_facade<Iterator, CliqueView,
-                                          std::random_access_iterator_tag, CliqueView, std::ptrdiff_t> 
-        {
+        class Iterator
+            : public boost::iterator_facade<Iterator, CliqueView,
+                                            std::random_access_iterator_tag,
+                                            CliqueView, std::ptrdiff_t> {
           public:
             Iterator() = default;
-            
-            explicit Iterator(const Vertex* vbase, const std::size_t* index_ptr) noexcept :
-                vbase(vbase), index_ptr(index_ptr)
-            {}
+
+            explicit Iterator(const Vertex* vbase,
+                              const std::size_t* index_ptr) noexcept
+                : vbase(vbase), index_ptr(index_ptr) {}
 
           private:
             friend boost::iterator_core_access;
@@ -92,12 +88,10 @@ class CliqueStorage {
             }
 
             void increment() noexcept { ++index_ptr; }
-            
+
             void decrement() noexcept { --index_ptr; }
-            
-            void advance(std::ptrdiff_t diff) noexcept {
-                index_ptr += diff;
-            }
+
+            void advance(std::ptrdiff_t diff) noexcept { index_ptr += diff; }
 
             std::ptrdiff_t distance_to(const Iterator& other) const noexcept {
                 return other.index_ptr - index_ptr;
@@ -112,13 +106,14 @@ class CliqueStorage {
         }
 
         Iterator end() const noexcept {
-            return Iterator{vertex_list.get(), clique_index_list.get() + clique_count};
+            return Iterator{vertex_list.get(),
+                            clique_index_list.get() + clique_count};
         }
     };
 
     /**
      * Add a new clique to the CliqueStorage.
-     * Two things can happen: 
+     * Two things can happen:
      *  * The CliqueStorage has space for the new clique.
      *    In that case, the clique is simply added.
      *  * The CliqueStorage is full.
@@ -127,26 +122,26 @@ class CliqueStorage {
      *    until there is space for the new clique,
      *    using a LRU pattern to decide which cliques are purged.
      */
-    template<typename Iterator>
-    void push_clique(Iterator begin, Iterator end)
-    {
+    template <typename Iterator>
+    void push_clique(Iterator begin, Iterator end) {
         std::size_t cs = std::distance(begin, end);
-        if(cs <= 1) return;
+        if (cs <= 1)
+            return;
 
         std::unique_lock l{m_lock};
         std::size_t* il = m_index_list.get();
         Vertex* vl = m_vertex_list.get();
         std::size_t current_size = il[m_clique_count];
         std::size_t new_end = current_size + cs;
-        if(new_end >= m_vertex_limit) {
-            if(2 * cs > m_vertex_limit) {
+        if (new_end >= m_vertex_limit) {
+            if (2 * cs > m_vertex_limit) {
                 m_vertex_limit = 2 * cs;
             }
             p_make_space(cs);
         }
         il[++m_clique_count] = new_end;
         std::copy(begin, end, &vl[current_size]);
-        m_last_used[m_clique_count-1] = m_timestamp++;
+        m_last_used[m_clique_count - 1] = m_timestamp++;
     }
 
     /**
@@ -161,7 +156,8 @@ class CliqueStorage {
      * Notify the CliqueStorage that a certain clique was used.
      */
     void used_clique(StorageView& view, StorageView::Iterator iterator) {
-        auto index = std::size_t(iterator.index_ptr - view.clique_index_list.get());
+        auto index =
+            std::size_t(iterator.index_ptr - view.clique_index_list.get());
         used_clique(view, index);
     }
 
@@ -173,13 +169,16 @@ class CliqueStorage {
      */
     StorageView obtain_view() const {
         std::unique_lock l{m_lock};
-        return StorageView{m_vertex_list, m_index_list, m_last_used, m_clique_count};
+        return StorageView{m_vertex_list, m_index_list, m_last_used,
+                           m_clique_count};
     }
 
   private:
     static std::size_t& p_make_limit(std::size_t& x) noexcept {
-        if(x % 2) x += 1;
-        if(x < 1000) x = 1000;
+        if (x % 2)
+            x += 1;
+        if (x < 1000)
+            x = 1000;
         return x;
     }
 
@@ -188,33 +187,41 @@ class CliqueStorage {
     }
 
     void p_make_space(std::size_t required_space) {
-        auto compare_lru = [&] (std::size_t i1, std::size_t i2) { 
+        auto compare_lru = [&](std::size_t i1, std::size_t i2) {
             return m_last_used[i1] < m_last_used[i2];
         };
         std::vector<std::size_t> indices = vector(range(m_clique_count));
-        std::size_t remove_cliques = (std::min)(1 + m_clique_count / 4, m_clique_count-1);
+        std::size_t remove_cliques =
+            (std::min)(1 + m_clique_count / 4, m_clique_count - 1);
         auto removed_end = indices.begin() + remove_cliques;
-        for(;;) {
-            std::nth_element(indices.begin(), removed_end, 
-                             indices.end(), compare_lru);
-            std::size_t new_free_space = m_vertex_limit - m_index_list[m_clique_count];
-            std::for_each(indices.begin(), removed_end, 
-                [&] (std::size_t i) {new_free_space += p_clique_size(i);});
-            if(new_free_space >= required_space) break;
-            remove_cliques = (std::min)(2 * remove_cliques, m_clique_count-1);
+        for (;;) {
+            std::nth_element(indices.begin(), removed_end, indices.end(),
+                             compare_lru);
+            std::size_t new_free_space =
+                m_vertex_limit - m_index_list[m_clique_count];
+            std::for_each(indices.begin(), removed_end, [&](std::size_t i) {
+                new_free_space += p_clique_size(i);
+            });
+            if (new_free_space >= required_space)
+                break;
+            remove_cliques = (std::min)(2 * remove_cliques, m_clique_count - 1);
             removed_end = indices.begin() + remove_cliques;
         }
         std::shared_ptr<Vertex[]> new_vertex_list(new Vertex[m_vertex_limit]);
-        std::shared_ptr<std::size_t[]> new_index_list(new std::size_t[m_vertex_limit/2+1]);
-        std::shared_ptr<std::size_t[]> new_last_used(new std::size_t[m_vertex_limit/2]);
+        std::shared_ptr<std::size_t[]> new_index_list(
+            new std::size_t[m_vertex_limit / 2 + 1]);
+        std::shared_ptr<std::size_t[]> new_last_used(
+            new std::size_t[m_vertex_limit / 2]);
         Vertex* new_out = new_vertex_list.get();
         std::size_t out_i = 0;
         new_index_list[0] = 0;
-        auto copy_clique = [&] (std::size_t old_index) {
+        auto copy_clique = [&](std::size_t old_index) {
             std::size_t old_begin = m_index_list[old_index];
             std::size_t old_end = m_index_list[old_index + 1];
-            new_out = std::copy(&m_vertex_list[old_begin], &m_vertex_list[old_end], new_out);
-            new_index_list[out_i + 1] = std::size_t(new_out - new_vertex_list.get());
+            new_out = std::copy(&m_vertex_list[old_begin],
+                                &m_vertex_list[old_end], new_out);
+            new_index_list[out_i + 1] =
+                std::size_t(new_out - new_vertex_list.get());
             new_last_used[out_i] = m_last_used[old_index];
             ++out_i;
         };
@@ -234,6 +241,6 @@ class CliqueStorage {
     std::size_t m_timestamp = 0;
 };
 
-}
+} // namespace sammy
 
 #endif

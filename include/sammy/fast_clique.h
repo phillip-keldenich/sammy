@@ -3,8 +3,8 @@
 
 #include "literals.h"
 #include "rng.h"
-#include "thread_group.h"
 #include "shared_db_propagator.h"
+#include "thread_group.h"
 
 namespace sammy {
 
@@ -22,8 +22,7 @@ class FastCliqueBuilder {
         : m_prop(std::move(prop)) {}
 
     std::vector<Vertex> compute_clique(Vertex start_vertex,
-                                       const std::vector<Vertex>& subgraph) 
-    {
+                                       const std::vector<Vertex>& subgraph) {
         p_check_prop();
         m_subg = subgraph;
         if (!p_can_push(start_vertex))
@@ -34,20 +33,22 @@ class FastCliqueBuilder {
 
     /**
      * @brief Compute a clique starting from a set of vertices. All vertices
-     *        (starting vertices and subgraph) are assumed to be feasible interactions.
+     *        (starting vertices and subgraph) are assumed to be feasible
+     * interactions.
      */
-    template<typename StartVerticesIterator> std::vector<Vertex> 
-        compute_clique_known_valid(StartVerticesIterator begin, StartVerticesIterator end,
-                                   const std::vector<Vertex>& subgraph)
-    {
+    template <typename StartVerticesIterator>
+    std::vector<Vertex>
+    compute_clique_known_valid(StartVerticesIterator begin,
+                               StartVerticesIterator end,
+                               const std::vector<Vertex>& subgraph) {
         std::vector<Vertex> result;
         p_check_prop();
         m_subg = subgraph;
-        for(auto v : IteratorRange{begin, end}) {
+        for (auto v : IteratorRange{begin, end}) {
             result.push_back(v);
             p_filter_nonneighbors(v);
         }
-        while(!m_subg.empty()) {
+        while (!m_subg.empty()) {
             Vertex v = p_select_next_vertex();
             result.push_back(v);
             p_filter_nonneighbors(v);
@@ -57,8 +58,7 @@ class FastCliqueBuilder {
 
     std::vector<Vertex>
     random_multistart_best_clique(std::size_t iterations,
-                                  const std::vector<Vertex>& subgraph) 
-    {
+                                  const std::vector<Vertex>& subgraph) {
         p_check_prop();
         std::vector<Vertex> result;
         m_subg = subgraph;
@@ -74,17 +74,15 @@ class FastCliqueBuilder {
         return result;
     }
 
-    std::vector<Vertex>
-    random_multistart_best_clique_known_valid(std::size_t iterations,
-                                              const std::vector<Vertex>& subgraph)
-    {
+    std::vector<Vertex> random_multistart_best_clique_known_valid(
+        std::size_t iterations, const std::vector<Vertex>& subgraph) {
         p_check_prop();
         std::vector<Vertex> result;
-        for(std::size_t i = 0; i < iterations; ++i) {
+        for (std::size_t i = 0; i < iterations; ++i) {
             m_subg = subgraph;
             Vertex vbegin = p_select_next_vertex();
             std::vector<Vertex> current = p_compute_clique(vbegin);
-            if(current.size() > result.size())
+            if (current.size() > result.size())
                 result = current;
         }
         return result;
@@ -93,8 +91,7 @@ class FastCliqueBuilder {
     // compute degree sequence (deg(vertices[i]) == result[i]);
     // much slower than random_multistart_best_clique!
     std::vector<std::size_t>
-    subgraph_degrees(const std::vector<Vertex>& vertices) 
-    {
+    subgraph_degrees(const std::vector<Vertex>& vertices) {
         p_check_prop();
         std::vector<std::size_t> result;
         for (auto i = vertices.begin(), e = vertices.end(); i != e; ++i) {
@@ -116,8 +113,7 @@ class FastCliqueBuilder {
 
     std::vector<double>
     subgraph_degree_estimates(const std::vector<Vertex>& vertices,
-                              std::size_t num_edge_samples) 
-    {
+                              std::size_t num_edge_samples) {
         p_check_prop();
         if (vertices.empty())
             return {};
@@ -245,30 +241,27 @@ class FastCliqueBuilder {
 
 class ParallelFastCliqueBuilder {
   public:
-    explicit ParallelFastCliqueBuilder(SharedDBPropagator base_prop, ThreadGroup<void>* thread_pool) :
-        m_base_prop(std::move(base_prop)),
-        m_thread_pool(thread_pool)
-    {}
+    explicit ParallelFastCliqueBuilder(SharedDBPropagator base_prop,
+                                       ThreadGroup<void>* thread_pool)
+        : m_base_prop(std::move(base_prop)), m_thread_pool(thread_pool) {}
 
-    std::vector<Vertex> 
-        random_multistart_best_clique(std::size_t iterations_per_thread,
-                                      const std::vector<Vertex>& subgraph)
-    {
+    std::vector<Vertex>
+    random_multistart_best_clique(std::size_t iterations_per_thread,
+                                  const std::vector<Vertex>& subgraph) {
         m_base_prop.incorporate_or_throw();
         std::mutex m_out_lock;
         std::vector<Vertex> result;
-        m_thread_pool->run_n_copies(m_thread_pool->num_threads() + 1,
-            [&] () {
-                FastCliqueBuilder builder{m_base_prop};
-                auto rclique = builder.random_multistart_best_clique(iterations_per_thread, subgraph);
-                {
-                    std::unique_lock<std::mutex> l{m_out_lock};
-                    if(rclique.size() > result.size()) {
-                        result = std::move(rclique);
-                    }
+        m_thread_pool->run_n_copies(m_thread_pool->num_threads() + 1, [&]() {
+            FastCliqueBuilder builder{m_base_prop};
+            auto rclique = builder.random_multistart_best_clique(
+                iterations_per_thread, subgraph);
+            {
+                std::unique_lock<std::mutex> l{m_out_lock};
+                if (rclique.size() > result.size()) {
+                    result = std::move(rclique);
                 }
             }
-        );
+        });
         return result;
     }
 

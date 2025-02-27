@@ -6,47 +6,42 @@
 
 namespace sammy {
 
-template<typename CoreType>
+template <typename CoreType>
 class PortfolioElementWithCore : public PortfolioElement {
   public:
-    using CoreFactoryType = std::function<std::unique_ptr<CoreType>(PortfolioSolver*, PortfolioElementWithCore*)>;
+    using CoreFactoryType = std::function<std::unique_ptr<CoreType>(
+        PortfolioSolver*, PortfolioElementWithCore*)>;
 
     PortfolioElementWithCore(PortfolioSolver* solver,
                              CoreFactoryType core_factory,
-                             const std::string& description) :
-        PortfolioElement(solver),
-        m_core_factory(std::move(core_factory)),
-        m_description(description)
-    {}
+                             const std::string& description)
+        : PortfolioElement(solver), m_core_factory(std::move(core_factory)),
+          m_description(description) {}
 
-    EventRecorder* get_mutable_recorder() {
-        return &m_recorder;
-    }
+    EventRecorder* get_mutable_recorder() { return &m_recorder; }
 
-    std::mutex &get_mutex() noexcept {
-        return mutex;
-    }
+    std::mutex& get_mutex() noexcept { return mutex; }
 
   protected:
     void main() override {
-        if(should_terminate.load()) {
+        if (should_terminate.load()) {
             return;
         }
         set_interrupt_flag_ptr(&should_terminate);
         try {
             p_construct_core();
-        } catch(const InterruptError&) {
+        } catch (const InterruptError&) {
             return;
         }
-        if(should_terminate.load()) {
+        if (should_terminate.load()) {
             return;
         }
         m_core->main();
     }
 
     void interrupt_if_necessary(const InterruptionCheckInfo& info) override {
-        if(m_core) {
-            if(should_terminate.load()) {
+        if (m_core) {
+            if (should_terminate.load()) {
                 m_core->termination_flag_set();
             } else {
                 m_core->interrupt_if_necessary(info);
@@ -58,9 +53,7 @@ class PortfolioElementWithCore : public PortfolioElement {
         events = 0;
     }
 
-    const EventRecorder* get_recorder() const override {
-        return &m_recorder;
-    }
+    const EventRecorder* get_recorder() const override { return &m_recorder; }
 
     /**
      * If this element has any, synchronize the event recorder.
@@ -79,7 +72,9 @@ class PortfolioElementWithCore : public PortfolioElement {
     /**
      * Get a description of this element (it it has any).
      */
-    virtual std::string get_description() const override { return m_description; }
+    virtual std::string get_description() const override {
+        return m_description;
+    }
 
     std::unique_ptr<CoreType> m_core;
     CoreFactoryType m_core_factory;
@@ -96,6 +91,6 @@ class PortfolioElementWithCore : public PortfolioElement {
     }
 };
 
-}
+} // namespace sammy
 
 #endif

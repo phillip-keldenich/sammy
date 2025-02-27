@@ -5,8 +5,8 @@
 
 #include <cstddef>
 #include <iostream>
-#include <unordered_map>
 #include <string>
+#include <unordered_map>
 
 namespace sammy {
 
@@ -51,26 +51,33 @@ struct SimplificationStats {
         n_concrete_after = n_concrete;
         n_clause_after = simplified.num_clauses();
         n_binary_after = simplified.num_binaries();
-        n_long_after = n_clause_after - n_binary_after - simplified.num_unaries();
-        total_clause_size_after = 2 * n_binary_after + simplified.num_unaries() +
+        n_long_after =
+            n_clause_after - n_binary_after - simplified.num_unaries();
+        total_clause_size_after = 2 * n_binary_after +
+                                  simplified.num_unaries() +
                                   simplified.literal_db_size() - n_long_after;
     }
 };
 
-template<typename JSONType>
-inline void add_simplification_stats(JSONType& output, const SimplificationStats& stats)
-{
+template <typename JSONType>
+inline void add_simplification_stats(JSONType& output,
+                                     const SimplificationStats& stats) {
     std::unordered_map<std::string, std::size_t> stat_section;
-    stat_section["variables_eliminated_by_equality"] = stats.variables_eliminated_by_equality;
+    stat_section["variables_eliminated_by_equality"] =
+        stats.variables_eliminated_by_equality;
     stat_section["variables_fixed"] = stats.variables_fixed;
     stat_section["failed_literals"] = stats.failed_literals;
-    stat_section["variables_eliminated_by_resolution"] = stats.variables_eliminated_by_resolution;
+    stat_section["variables_eliminated_by_resolution"] =
+        stats.variables_eliminated_by_resolution;
     stat_section["pure_literals_eliminated"] = stats.pure_literals_eliminated;
-    stat_section["clauses_strengthened_by_binary_resolution"] = stats.clauses_strengthened_by_binary_resolution;
-    stat_section["clauses_strengthened_by_vivification"] = stats.clauses_strengthened_by_vivification;
+    stat_section["clauses_strengthened_by_binary_resolution"] =
+        stats.clauses_strengthened_by_binary_resolution;
+    stat_section["clauses_strengthened_by_vivification"] =
+        stats.clauses_strengthened_by_vivification;
     stat_section["clauses_subsumed"] = stats.clauses_subsumed;
     stat_section["conflict_clauses_learned"] = stats.conflict_clauses_learned;
-    stat_section["binary_contrapositivities_learned"] = stats.binary_contrapositivities_learned;
+    stat_section["binary_contrapositivities_learned"] =
+        stats.binary_contrapositivities_learned;
     stat_section["simplification_rounds"] = stats.simplification_rounds;
     stat_section["variables_before"] = stats.n_all_before;
     stat_section["variables_after"] = stats.n_all_after;
@@ -85,9 +92,10 @@ inline void add_simplification_stats(JSONType& output, const SimplificationStats
     stat_section["formula_length_before"] = stats.total_clause_size_before;
     stat_section["formula_length_after"] = stats.total_clause_size_after;
     output["simplification_stats"] = stat_section;
-    output["simplification_stats"]["simplification_time"] = stats.simplification_time;
+    output["simplification_stats"]["simplification_time"] =
+        stats.simplification_time;
 }
 
-}
+} // namespace sammy
 
 #endif

@@ -107,6 +107,7 @@ int main(int argc, char** argv) {
     bool all_concrete = false;
     bool print_portfolio_events = false;
     bool old_lns = false;
+    bool print_global_stats = false;
     std::string subproblem_report_dir;
     std::string dump_initial_phase_file;
     std::size_t max_lns_workers = std::thread::hardware_concurrency();
@@ -132,7 +133,9 @@ int main(int argc, char** argv) {
         "old-lns", bool_switch(old_lns),
         "use the old LNS worker (CliqueSatDSatur)")(
         "max-lns-workers", value_with_default(max_lns_workers),
-        "Maximum number of LNS workers to run.");
+        "Maximum number of LNS workers to run.")(
+        "print-global-stats", bool_switch(print_global_stats),
+        "Print global statistics after solving.");
     get_config_or_exit(argc, argv, config, extra_options, true, false);
 
     config.initial_heuristic_config.max_time =
@@ -249,5 +252,8 @@ int main(int argc, char** argv) {
     export_events(output, recorder.events());
     if (!config.output_file.empty())
         output_data(output, config.output_file);
+    if (print_global_stats) {
+        std::cout << get_global_stats() << std::endl;
+    }
     return 0;
 }

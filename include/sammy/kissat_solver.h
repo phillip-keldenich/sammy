@@ -2,30 +2,25 @@
 #define SAMMY_KISSAT_SOLVER_H_INCLUDED_
 
 #include <algorithm>
-#include <vector>
+#include <cfloat>
+#include <climits>
+#include <cmath>
+#include <future>
+#include <limits>
 #include <optional>
 #include <thread>
-#include <limits>
-#include <future>
-#include <cmath>
-#include <climits>
-#include <cfloat>
+#include <vector>
 
 namespace sammy {
 
 /*
 BaseSolver:
     BaseSolver()
-    type Lit (supports operator-, operator==/!=; may be a primitive type such as int)
-    Lit new_var()
-    void add_short_clause(Lit...)
-    void add_clause(LitIterator, LitIterator)
-    void add_literals(Lit...)
-    void add_literal(Lit)
-    void finish_clause()
-    std::optional<bool> solve(time_limit) // must only be called once!
-    SomeMapType(Lit->bool) get_model()
-    void terminate()
+    type Lit (supports operator-, operator==/!=; may be a primitive type such as
+int) Lit new_var() void add_short_clause(Lit...) void add_clause(LitIterator,
+LitIterator) void add_literals(Lit...) void add_literal(Lit) void
+finish_clause() std::optional<bool> solve(time_limit) // must only be called
+once! SomeMapType(Lit->bool) get_model() void terminate()
 */
 
 /**
@@ -44,20 +39,15 @@ class KissatSolver {
             return l < 0 ? !r : r;
         }
 
-        const std::vector<bool>& raw() const {
-            return model;
-        }
-        
-        std::vector<bool>& raw() {
-            return model;
-        }
+        const std::vector<bool>& raw() const { return model; }
+
+        std::vector<bool>& raw() { return model; }
 
       private:
         std::vector<bool> model;
 
-        explicit ModelMap(std::vector<bool> model) noexcept :
-            model(std::move(model))
-        {}
+        explicit ModelMap(std::vector<bool> model) noexcept
+            : model(std::move(model)) {}
 
         friend class KissatSolver;
     };
@@ -85,14 +75,17 @@ class KissatSolver {
      * {false} if unsat.
      */
     std::optional<bool> solve(double time_limit) {
-        if(time_limit <= 0) return std::nullopt;
-        if(!std::isfinite(time_limit)) return solve();
+        if (time_limit <= 0)
+            return std::nullopt;
+        if (!std::isfinite(time_limit))
+            return solve();
         std::promise<std::optional<bool>> res_promise;
         std::future<std::optional<bool>> result = res_promise.get_future();
-        auto smain = [&] () { res_promise.set_value(solve()); };
+        auto smain = [&]() { res_promise.set_value(solve()); };
         std::thread t{smain};
-        auto status = result.wait_for(std::chrono::duration<double>(time_limit));
-        if(status == std::future_status::timeout) {
+        auto status =
+            result.wait_for(std::chrono::duration<double>(time_limit));
+        if (status == std::future_status::timeout) {
             this->terminate(); // abort solution process on timeout
         }
         std::optional<bool> r = result.get();
@@ -103,19 +96,17 @@ class KissatSolver {
     /**
      * Add a clause from a sequence of literals.
      */
-    template<typename InputIterator,
-             std::enable_if_t<!std::is_integral_v<InputIterator>,int> = 0>
-    void add_clause(InputIterator begin, InputIterator end)
-    {
-        std::for_each(begin, end, [&] (Lit l) {add_literal(l);});
+    template <typename InputIterator,
+              std::enable_if_t<!std::is_integral_v<InputIterator>, int> = 0>
+    void add_clause(InputIterator begin, InputIterator end) {
+        std::for_each(begin, end, [&](Lit l) { add_literal(l); });
         finish_clause();
     }
 
     /**
      * Add a small clause from a given variadic number of literals.
      */
-    template<typename... Args>
-    void add_short_clause(Lit l1, Args&&... lits) {
+    template <typename... Args> void add_short_clause(Lit l1, Args&&... lits) {
         add_literal(l1);
         add_short_clause(std::forward<Args>(lits)...);
     }
@@ -123,15 +114,12 @@ class KissatSolver {
     /**
      * Add a small clause from a given variadic number of literals.
      */
-    void add_short_clause() {
-        finish_clause();
-    }
+    void add_short_clause() { finish_clause(); }
 
     /**
      * Add a variadic number of literals to the current clause.
      */
-    template<typename... Args>
-    void add_literals(Lit l1, Args&&... args) {
+    template <typename... Args> void add_literals(Lit l1, Args&&... args) {
         add_literal(l1);
         add_literals(std::forward<Args>(args)...);
     }
@@ -146,20 +134,16 @@ class KissatSolver {
      * Finish the current clause.
      */
     void finish_clause();
-    
+
     /**
      * Create a new variable.
      */
-    Lit new_var() noexcept {
-        return ++m_num_vars;
-    }
+    Lit new_var() noexcept { return ++m_num_vars; }
 
     /**
      * Get the number of variables.
      */
-    Lit num_vars() const noexcept {
-        return m_num_vars;
-    }
+    Lit num_vars() const noexcept { return m_num_vars; }
 
     /**
      * Set limits on the number of conflicts/decisions.
@@ -180,19 +164,17 @@ class KissatSolver {
      */
     ModelMap get_model() const;
 
-    static const char* name() noexcept {
-        return "kissat";
-    }
+    static const char* name() noexcept { return "kissat"; }
 
   private:
     // solver handle (made opaque as void pointer)
-    void *solver;
+    void* solver;
     // number of variables
     Lit m_num_vars;
     // take note if this is already solved
     bool already_solved = false;
 };
 
-}
+} // namespace sammy
 
 #endif

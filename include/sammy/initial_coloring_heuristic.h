@@ -1,18 +1,17 @@
 #ifndef SAMMY_INITIAL_COLORING_HEURISTIC_H_INCLUDED_
 #define SAMMY_INITIAL_COLORING_HEURISTIC_H_INCLUDED_
 
-#include "literals.h"
+#include "algorithm_ex.h"
+#include "class_completer.h"
+#include "cuda_iteration.h"
 #include "error.h"
+#include "greedysat.h"
+#include "literals.h"
 #include "pair_infeasibility_map.h"
 #include "parallel_bit_filter.h"
-#include "greedysat.h"
-#include "class_completer.h"
-#include "algorithm_ex.h"
 #include "partial_solution.h"
-#include "cuda_iteration.h"
 #include <boost/iterator/transform_iterator.hpp>
 #include <unordered_set>
-
 
 namespace sammy {
 
@@ -20,41 +19,46 @@ namespace sammy {
 namespace detail {
 
 class CUDABitFilter {
-public:
+  public:
     CUDABitFilter(const std::vector<DynamicBitset>& literals_in_class,
                   const std::vector<std::vector<Index>>& classes_with_literal,
-                  const PairInfeasibilityMap* inf_map) :
-        m_inf_map(inf_map),
-		m_u32_per_bitset((*inf_map)[0].blocks().size() * sizeof(DynamicBitset::Block) / sizeof(std::uint32_t)),
-        m_device_bit_data((p_fill_prepare_buffer(literals_in_class), m_host_prepare_buffer)),
-        m_device_classes_with_literal((p_fill_offset_buffer(classes_with_literal), m_host_prepare_buffer)),
-        m_device_classes_with_literal_offsets(m_host_prepare_offsets),
-        m_device_output_buffer(GOAL_ROWS_PER_CALL() * m_u32_per_bitset)
-    {}
+                  const PairInfeasibilityMap* inf_map)
+        : m_inf_map(inf_map), m_u32_per_bitset((*inf_map)[0].blocks().size() *
+                                               sizeof(DynamicBitset::Block) /
+                                               sizeof(std::uint32_t)),
+          m_device_bit_data((p_fill_prepare_buffer(literals_in_class),
+                             m_host_prepare_buffer)),
+          m_device_classes_with_literal(
+              (p_fill_offset_buffer(classes_with_literal),
+               m_host_prepare_buffer)),
+          m_device_classes_with_literal_offsets(m_host_prepare_offsets),
+          m_device_output_buffer(GOAL_ROWS_PER_CALL() * m_u32_per_bitset) {}
 
-    template<typename Callable/*(Lit lmin, Lit lmax)*/>
+    template <typename Callable /*(Lit lmin, Lit lmax)*/>
     void iterate_all_uncovered(Callable&& callable) {
         Lit n_concrete = m_inf_map->get_n_concrete();
         Lit nclit = 2 * n_concrete;
         Lit lmin = 0;
         std::vector<std::uint32_t> host_output_buffer;
         DynamicBitset row_buffer(nclit, true);
-        while(lmin < nclit - 2) {
+        while (lmin < nclit - 2) {
             Lit num_rows = nclit - lmin - 2;
-            if(num_rows > GOAL_ROWS_PER_CALL()) {
+            if (num_rows > GOAL_ROWS_PER_CALL()) {
                 num_rows = GOAL_ROWS_PER_CALL();
             }
-            cuda_call_bit_filter_kernel(m_device_bit_data.get(), m_u32_per_bitset,
-                                        m_device_classes_with_literal.get(), nclit,
-                                        m_device_classes_with_literal_offsets.get(),
-                                        m_device_output_buffer.get(), lmin, num_rows);
+            cuda_call_bit_filter_kernel(
+                m_device_bit_data.get(), m_u32_per_bitset,
+                m_device_classes_with_literal.get(), nclit,
+                m_device_classes_with_literal_offsets.get(),
+                m_device_output_buffer.get(), lmin, num_rows);
             m_device_output_buffer.copy_to_host(host_output_buffer);
-            for(Lit l = 0; l < num_rows; ++l) {
+            for (Lit l = 0; l < num_rows; ++l) {
                 Lit lm = lmin + l;
                 row_buffer.set();
                 row_buffer ^= (*m_inf_map)[lm];
-                row_buffer.binary_subtract(&host_output_buffer[l * m_u32_per_bitset]);
-                for(Lit lmax : row_buffer.ones_from(lm + 1)) {
+                row_buffer.binary_subtract(
+                    &host_output_buffer[l * m_u32_per_bitset]);
+                for (Lit lmax : row_buffer.ones_from(lm + 1)) {
                     callable(lm, lmax);
                 }
             }
@@ -69,47 +73,53 @@ public:
         std::vector<std::uint32_t> host_output_buffer;
         DynamicBitset row_buffer(nclit, true);
         std::size_t result = 0;
-        while(lmin < nclit - 2) {
+        while (lmin < nclit - 2) {
             Lit num_rows = nclit - lmin - 2;
-            if(num_rows > GOAL_ROWS_PER_CALL()) {
+            if (num_rows > GOAL_ROWS_PER_CALL()) {
                 num_rows = GOAL_ROWS_PER_CALL();
             }
-            cuda_call_bit_filter_kernel(m_device_bit_data.get(), m_u32_per_bitset,
-                                        m_device_classes_with_literal.get(), nclit,
-                                        m_device_classes_with_literal_offsets.get(),
-                                        m_device_output_buffer.get(), lmin, num_rows);
+            cuda_call_bit_filter_kernel(
+                m_device_bit_data.get(), m_u32_per_bitset,
+                m_device_classes_with_literal.get(), nclit,
+                m_device_classes_with_literal_offsets.get(),
+                m_device_output_buffer.get(), lmin, num_rows);
             m_device_output_buffer.copy_to_host(host_output_buffer);
-            for(Lit l = 0; l < num_rows; ++l) {
+            for (Lit l = 0; l < num_rows; ++l) {
                 Lit lm = lmin + l;
                 row_buffer.set();
                 row_buffer ^= (*m_inf_map)[lm];
-                row_buffer.binary_subtract(&host_output_buffer[l * m_u32_per_bitset]);
+                row_buffer.binary_subtract(
+                    &host_output_buffer[l * m_u32_per_bitset]);
                 result += row_buffer.count_from(lm + 1);
             }
             lmin += num_rows;
         }
-		return result;
+        return result;
     }
 
-private:
-    void p_fill_prepare_buffer(const std::vector<DynamicBitset>& literals_in_class) {
-        if(literals_in_class.empty()) {
+  private:
+    void
+    p_fill_prepare_buffer(const std::vector<DynamicBitset>& literals_in_class) {
+        if (literals_in_class.empty()) {
             throw std::invalid_argument("literals_in_class must not be empty");
         }
-        m_host_prepare_buffer.reserve(literals_in_class.size() * m_u32_per_bitset);
-        for(const DynamicBitset& bs : literals_in_class) {
-            for(DynamicBitset::Block b : bs.blocks()) {
+        m_host_prepare_buffer.reserve(literals_in_class.size() *
+                                      m_u32_per_bitset);
+        for (const DynamicBitset& bs : literals_in_class) {
+            for (DynamicBitset::Block b : bs.blocks()) {
                 to_prepare_buffer(b, m_host_prepare_buffer);
             }
         }
     }
 
-    void p_fill_offset_buffer(const std::vector<std::vector<Index>>& classes_with_literal) {
+    void p_fill_offset_buffer(
+        const std::vector<std::vector<Index>>& classes_with_literal) {
         m_host_prepare_buffer.clear();
         m_host_prepare_offsets.reserve(classes_with_literal.size() + 1);
         m_host_prepare_offsets.push_back(0);
-        for(const std::vector<Index>& cls : classes_with_literal) {
-            std::copy(cls.begin(), cls.end(), std::back_inserter(m_host_prepare_buffer));
+        for (const std::vector<Index>& cls : classes_with_literal) {
+            std::copy(cls.begin(), cls.end(),
+                      std::back_inserter(m_host_prepare_buffer));
             m_host_prepare_offsets.push_back(m_host_prepare_buffer.size());
         }
     }
@@ -123,59 +133,62 @@ private:
     std::vector<std::uint32_t> m_host_prepare_buffer;
     // host buffer for the offsets in classes with literal
     std::vector<std::uint32_t> m_host_prepare_offsets;
-    
+
     // pointer to array of concatenated bitsets
     CUDADevicePointer<const std::uint32_t> m_device_bit_data;
     // pointer to array of classes with literal
     CUDADevicePointer<const std::uint32_t> m_device_classes_with_literal;
-    // pointer to offsets within m_device_classes_with_literal to the start of each literal
-    CUDADevicePointer<const std::uint32_t> m_device_classes_with_literal_offsets;
+    // pointer to offsets within m_device_classes_with_literal to the start of
+    // each literal
+    CUDADevicePointer<const std::uint32_t>
+        m_device_classes_with_literal_offsets;
     // pointer to output matrix rows
     CUDADevicePointer<std::uint32_t> m_device_output_buffer;
 };
 
-}
+} // namespace detail
 
-template<typename Callable>
-static inline void cuda_iterate_all_uncovered(const std::vector<DynamicBitset>& literals_in_class,
-                                              const std::vector<std::vector<Index>>& classes_with_literal,
-                                              const PairInfeasibilityMap* inf_map,
-                                              Callable&& callable)
-{
-    if(literals_in_class.empty()) {
-		Lit nclit = 2 * inf_map->get_n_concrete();
-		DynamicBitset row_buffer(nclit, true);
-		for(Lit lmin = 0; lmin < nclit - 2; ++lmin) {
-			row_buffer.set();
-			row_buffer ^= (*inf_map)[lmin];
-			for(Lit lmax : row_buffer.ones_from(lmin + 1)) {
-				std::forward<Callable>(callable)(lmin,lmax);
-			}
-		}
-		return;
+template <typename Callable>
+static inline void cuda_iterate_all_uncovered(
+    const std::vector<DynamicBitset>& literals_in_class,
+    const std::vector<std::vector<Index>>& classes_with_literal,
+    const PairInfeasibilityMap* inf_map, Callable&& callable) {
+    if (literals_in_class.empty()) {
+        Lit nclit = 2 * inf_map->get_n_concrete();
+        DynamicBitset row_buffer(nclit, true);
+        for (Lit lmin = 0; lmin < nclit - 2; ++lmin) {
+            row_buffer.set();
+            row_buffer ^= (*inf_map)[lmin];
+            for (Lit lmax : row_buffer.ones_from(lmin + 1)) {
+                std::forward<Callable>(callable)(lmin, lmax);
+            }
+        }
+        return;
     }
 
-    detail::CUDABitFilter bit_filter(literals_in_class, classes_with_literal, inf_map);
+    detail::CUDABitFilter bit_filter(literals_in_class, classes_with_literal,
+                                     inf_map);
     bit_filter.iterate_all_uncovered(std::forward<Callable>(callable));
 }
 
-static inline std::size_t cuda_count_uncovered(const std::vector<DynamicBitset>& literals_in_class,
-                                               const std::vector<std::vector<Index>>& classes_with_literal,
-                                               const PairInfeasibilityMap* inf_map)
-{
-    if(literals_in_class.empty()) {
-		Lit nclit = 2 * inf_map->get_n_concrete();
-		DynamicBitset row_buffer(nclit, true);
-		std::size_t result = 0;
-		for(Lit lmin = 0; lmin < nclit - 2; ++lmin) {
-			row_buffer.set();
-			row_buffer ^= (*inf_map)[lmin];
-			result += row_buffer.count_from(lmin + 1);
-		}
-		return result;
+static inline std::size_t cuda_count_uncovered(
+    const std::vector<DynamicBitset>& literals_in_class,
+    const std::vector<std::vector<Index>>& classes_with_literal,
+    const PairInfeasibilityMap* inf_map) {
+    if (literals_in_class.empty()) {
+        Lit nclit = 2 * inf_map->get_n_concrete();
+        DynamicBitset row_buffer(nclit, true);
+        std::size_t result = 0;
+        for (Lit lmin = 0; lmin < nclit - 2; ++lmin) {
+            row_buffer.set();
+            row_buffer ^= (*inf_map)[lmin];
+            result += row_buffer.count_from(lmin + 1);
+        }
+        return result;
     }
 
-    detail::CUDABitFilter bit_filter(literals_in_class, classes_with_literal, inf_map);
+    detail::CUDABitFilter bit_filter(literals_in_class, classes_with_literal,
+                                     inf_map);
     return bit_filter.count_uncovered();
 }
 #endif
@@ -330,7 +343,8 @@ template <typename EventListener> class ColorClasses {
             if (propagator.is_open(l)) {
                 // if that yields a conflict, resolve and return false.
                 if (!propagator.push_level(l)) {
-                    if (!propagator.resolve_conflicts()) throw UNSATError();
+                    if (!propagator.resolve_conflicts())
+                        throw UNSATError();
                     return false;
                 }
             }
@@ -416,34 +430,40 @@ template <typename EventListener> class ColorClasses {
     };
 
   public:
-    std::vector<SharedDBPropagator> remove_classes(const std::vector<std::size_t>& sorted_classes) {
-        if(sorted_classes.empty()) return {};
+    std::vector<SharedDBPropagator>
+    remove_classes(const std::vector<std::size_t>& sorted_classes) {
+        if (sorted_classes.empty())
+            return {};
         std::vector<SharedDBPropagator> result;
         result.reserve(sorted_classes.size());
-        for(std::size_t idx : sorted_classes) {
+        for (std::size_t idx : sorted_classes) {
             result.emplace_back(std::move(color_classes[idx]));
         }
-        class_spawners.erase(remove_indices(class_spawners.begin(), class_spawners.end(),
-                                            sorted_classes.begin(), sorted_classes.end()), 
-                             class_spawners.end());
+        class_spawners.erase(
+            remove_indices(class_spawners.begin(), class_spawners.end(),
+                           sorted_classes.begin(), sorted_classes.end()),
+            class_spawners.end());
         const auto n = color_classes.size();
         std::vector<Index> old_to_new(n, std::numeric_limits<Index>::max());
         auto iter = sorted_classes.begin();
         Index new_out = 0;
-        for(Index i = 0; i < n; ++i) {
-            if(iter != sorted_classes.end() && *iter == i) {
+        for (Index i = 0; i < n; ++i) {
+            if (iter != sorted_classes.end() && *iter == i) {
                 ++iter;
             } else {
                 old_to_new[i] = new_out++;
             }
         }
-        color_classes.erase(remove_indices(color_classes.begin(), color_classes.end(),
-                                           sorted_classes.begin(), sorted_classes.end()), 
-                            color_classes.end());
-        for(auto& cwl : classes_with_literal) {
-            std::transform(cwl.begin(), cwl.end(), cwl.begin(), 
-                           [&] (Index c) { return old_to_new[c]; });
-            cwl.erase(std::remove(cwl.begin(), cwl.end(), std::numeric_limits<Index>::max()), cwl.end());
+        color_classes.erase(
+            remove_indices(color_classes.begin(), color_classes.end(),
+                           sorted_classes.begin(), sorted_classes.end()),
+            color_classes.end());
+        for (auto& cwl : classes_with_literal) {
+            std::transform(cwl.begin(), cwl.end(), cwl.begin(),
+                           [&](Index c) { return old_to_new[c]; });
+            cwl.erase(std::remove(cwl.begin(), cwl.end(),
+                                  std::numeric_limits<Index>::max()),
+                      cwl.end());
         }
         return result;
     }
@@ -470,7 +490,8 @@ template <typename EventListener> class ColorClasses {
         }
     }
 
-    const std::vector<std::vector<Index>>& get_classes_with_literal() const noexcept {
+    const std::vector<std::vector<Index>>&
+    get_classes_with_literal() const noexcept {
         return classes_with_literal;
     }
 
@@ -511,7 +532,8 @@ template <typename EventListener> class ColorClasses {
         if (!min_true) {
             if (!prop.push_level(lmin)) {
                 ConflictResolutionHandler handler{this, cindex};
-                if (!prop.resolve_conflicts(handler)) throw UNSATError();
+                if (!prop.resolve_conflicts(handler))
+                    throw UNSATError();
                 return false;
             }
             if (prop.is_false(lmax)) {
@@ -528,7 +550,8 @@ template <typename EventListener> class ColorClasses {
                     prop.pop_level();
                 } else {
                     ConflictResolutionHandler handler{this, cindex};
-                    if (!prop.resolve_conflicts(handler)) throw UNSATError();
+                    if (!prop.resolve_conflicts(handler))
+                        throw UNSATError();
                 }
                 return false;
             }
@@ -755,10 +778,10 @@ template <typename EventListener> class ColorClasses {
         class_spawners.clear();
     }
 
-    template<typename FullAssignment>
-    void incorporate_colors(const std::vector<FullAssignment>& colors, const std::vector<Vertex>& spawners)
-    {
-        for(std::size_t i = 0, s = colors.size(); i < s; ++i) {
+    template <typename FullAssignment>
+    void incorporate_colors(const std::vector<FullAssignment>& colors,
+                            const std::vector<Vertex>& spawners) {
+        for (std::size_t i = 0, s = colors.size(); i < s; ++i) {
             SharedDBPropagator propagator{empty_class};
             propagator.incorporate_assignment(colors[i]);
             p_add_class(std::move(propagator), spawners[i]);
@@ -1069,7 +1092,8 @@ class MatrixIndexMap {
 
 class ColoringHeuristicSolver {
   public:
-    ColoringHeuristicSolver(ClauseDB* all_clauses, Lit n_concrete, ThreadGroup<void>* thread_pool)
+    ColoringHeuristicSolver(ClauseDB* all_clauses, Lit n_concrete,
+                            ThreadGroup<void>* thread_pool)
         : all_clauses(all_clauses), n_concrete(n_concrete),
           color_classes(this, all_clauses),
           internal_inf_map(std::in_place, n_concrete),
@@ -1080,8 +1104,7 @@ class ColoringHeuristicSolver {
           m_old_true(2 * all_clauses->num_vars(), false),
           m_new_true(2 * all_clauses->num_vars(), false),
           m_buffer(2 * all_clauses->num_vars(), false),
-          m_bitset_buffer(thread_pool)
-    {}
+          m_bitset_buffer(thread_pool) {}
 
     ColoringHeuristicSolver(ClauseDB* all_clauses, Lit n_concrete,
                             ThreadGroup<void>* thread_pool,
@@ -1094,8 +1117,7 @@ class ColoringHeuristicSolver {
           m_old_true(2 * all_clauses->num_vars(), false),
           m_new_true(2 * all_clauses->num_vars(), false),
           m_buffer(2 * all_clauses->num_vars(), false),
-          m_bitset_buffer(thread_pool)
-    {}
+          m_bitset_buffer(thread_pool) {}
 
     void initialize_feasibilities() {
         color_classes.initialize_feasibilities();
@@ -1117,17 +1139,22 @@ class ColoringHeuristicSolver {
     }
 
     void extract_feasibilities() {
-        if(extracted_feasibilities) return;
+        if (extracted_feasibilities)
+            return;
 
 #ifdef SAMMY_CUDA_SUPPORTED
-        if(n_concrete > 2048 && color_classes.all().size() > 512 && should_use_cuda()) {
-            inf_map->cuda_incorporate_complete_classes(literals_in_class, m_bitset_buffer.thread_group());
+        if (n_concrete > 2048 && color_classes.all().size() > 512 &&
+            should_use_cuda())
+        {
+            inf_map->cuda_incorporate_complete_classes(
+                literals_in_class, m_bitset_buffer.thread_group());
             extracted_feasibilities = true;
             return;
         }
 #endif
 
-        inf_map->incorporate_complete_classes(literals_in_class, m_bitset_buffer.thread_group());
+        inf_map->incorporate_complete_classes(literals_in_class,
+                                              m_bitset_buffer.thread_group());
         extracted_feasibilities = true;
     }
 
@@ -1209,12 +1236,17 @@ class ColoringHeuristicSolver {
         Lit nclit = 2 * n_concrete;
 
 #ifdef SAMMY_CUDA_SUPPORTED
-        if(nclit > 2048 && color_classes.all().size() > 512 && should_use_cuda()) {
+        if (nclit > 2048 && color_classes.all().size() > 512 &&
+            should_use_cuda())
+        {
             try {
-                cuda_iterate_all_uncovered(literals_in_class, color_classes.get_classes_with_literal(), inf_map, callable);
+                cuda_iterate_all_uncovered(
+                    literals_in_class, color_classes.get_classes_with_literal(),
+                    inf_map, callable);
                 return;
-            } catch(const CUDAError& err) {
-                std::cerr << "Not using CUDA because of an error: " << err.what() << "\n";
+            } catch (const CUDAError& err) {
+                std::cerr << "Not using CUDA because of an error: "
+                          << err.what() << "\n";
                 had_cuda_error(err);
             }
         }
@@ -1225,9 +1257,10 @@ class ColoringHeuristicSolver {
             row_uncolored.set();
             row_uncolored ^= (*inf_map)[lmin];
             const auto& with_lit = color_classes.with_literal(lmin);
-            sammy::bitwise_filter(m_bitset_buffer, row_uncolored,
-                                  p_make_bitset_transform_iterator(with_lit.begin()),
-                                  p_make_bitset_transform_iterator(with_lit.end()));
+            sammy::bitwise_filter(
+                m_bitset_buffer, row_uncolored,
+                p_make_bitset_transform_iterator(with_lit.begin()),
+                p_make_bitset_transform_iterator(with_lit.end()));
             for (Lit lmax : row_uncolored.ones_from(lmin + 1)) {
                 (std::forward<Callable>(callable))(lmin, lmax);
             }
@@ -1260,15 +1293,16 @@ class ColoringHeuristicSolver {
         }
     }
 
-    template<typename FullAssignment>
-    void replace_colors(const std::vector<FullAssignment>& colors, const std::vector<Vertex>& spawners)
-    {
+    template <typename FullAssignment>
+    void replace_colors(const std::vector<FullAssignment>& colors,
+                        const std::vector<Vertex>& spawners) {
         reset_coloring();
         color_classes.incorporate_colors(colors, spawners);
     }
 
     PartialSolution get_partial_solution() const {
-        return PartialSolution{all_clauses->num_vars(), inf_map, all_classes().begin(), all_classes().end()};
+        return PartialSolution{all_clauses->num_vars(), inf_map,
+                               all_classes().begin(), all_classes().end()};
     }
 
     LiteralPairMatrix<std::uint16_t> saturated_coverage_count_matrix() const {
@@ -1604,9 +1638,8 @@ class ColoringHeuristicSolver {
         vertex_queue.push(lmin, lmax, count, std::move(bset));
     }
 
-    template<typename Iterator>
-    void add_vertices_to_queue(Iterator begin, Iterator end) 
-    {
+    template <typename Iterator>
+    void add_vertices_to_queue(Iterator begin, Iterator end) {
         p_bulk_add_vertices(begin, end);
     }
 
@@ -1649,12 +1682,17 @@ class ColoringHeuristicSolver {
         Lit nclit = 2 * n_concrete;
 
 #ifdef SAMMY_CUDA_SUPPORTED
-        if(nclit > 2048 && color_classes.all().size() > 512 && should_use_cuda()) {
+        if (nclit > 2048 && color_classes.all().size() > 512 &&
+            should_use_cuda())
+        {
             try {
-                auto result = cuda_count_uncovered(literals_in_class, color_classes.get_classes_with_literal(), inf_map);
-				return result;
-            } catch(const CUDAError& err) {
-                std::cerr << "Not using CUDA because of an error: " << err.what() << "\n";
+                auto result = cuda_count_uncovered(
+                    literals_in_class, color_classes.get_classes_with_literal(),
+                    inf_map);
+                return result;
+            } catch (const CUDAError& err) {
+                std::cerr << "Not using CUDA because of an error: "
+                          << err.what() << "\n";
                 had_cuda_error(err);
             }
         }
@@ -1668,9 +1706,10 @@ class ColoringHeuristicSolver {
             row_uncolored = prv_rows;
             row_uncolored -= (*inf_map)[lmin];
             const auto& with_lit = color_classes.with_literal(lmin);
-            sammy::bitwise_filter(m_bitset_buffer, row_uncolored,
-                                  p_make_bitset_transform_iterator(with_lit.begin()),
-                                  p_make_bitset_transform_iterator(with_lit.end()));
+            sammy::bitwise_filter(
+                m_bitset_buffer, row_uncolored,
+                p_make_bitset_transform_iterator(with_lit.begin()),
+                p_make_bitset_transform_iterator(with_lit.end()));
             nu += row_uncolored.count();
         }
         return nu;
@@ -1708,20 +1747,22 @@ class ColoringHeuristicSolver {
      * Deletes the coloring order information.
      * Returns the color classes that were removed.
      */
-    std::vector<SharedDBPropagator> remove_color_classes(std::vector<std::size_t> classes) {
-        if(!vertex_queue.empty()) {
-            throw std::logic_error("remove_color_classes called with non-empty vertex queue!");
+    std::vector<SharedDBPropagator>
+    remove_color_classes(std::vector<std::size_t> classes) {
+        if (!vertex_queue.empty()) {
+            throw std::logic_error(
+                "remove_color_classes called with non-empty vertex queue!");
         }
         std::for_each(explicit_partners_of.begin(), explicit_partners_of.end(),
-                      [] (CVec& v) {v.clear();});
+                      [](CVec& v) { v.clear(); });
         std::sort(classes.begin(), classes.end());
         candidates.clear();
         coloring_order.clear();
         auto result = color_classes.remove_classes(classes);
-        literals_in_class.erase(
-            remove_indices(literals_in_class.begin(), literals_in_class.end(),
-                           classes.begin(), classes.end()), 
-            literals_in_class.end());
+        literals_in_class.erase(remove_indices(literals_in_class.begin(),
+                                               literals_in_class.end(),
+                                               classes.begin(), classes.end()),
+                                literals_in_class.end());
         return result;
     }
 
@@ -1810,7 +1851,8 @@ class ColoringHeuristicSolver {
 
     std::size_t p_lazy_color_next(std::size_t already_colored) const {
         if (already_colored < 1'000'000) {
-            if(already_colored < 256) return 256;
+            if (already_colored < 256)
+                return 256;
             return already_colored;
         }
         return 1'000'000;

@@ -1,14 +1,14 @@
 #ifndef SAMMY_UNIVERSE_SUBGRAPH_H_INCLUDED_
 #define SAMMY_UNIVERSE_SUBGRAPH_H_INCLUDED_
 
-#include "vertex_operations.h"
-#include "shared_db_propagator.h"
-#include "dynamic_bitset.h"
-#include "thread_group.h"
-#include "parallel_bit_filter.h"
 #include "clique_or_indset_builder.h"
+#include "dynamic_bitset.h"
 #include "pair_infeasibility_map.h"
+#include "parallel_bit_filter.h"
+#include "shared_db_propagator.h"
+#include "thread_group.h"
 #include "thread_interrupt.h"
+#include "vertex_operations.h"
 
 namespace sammy {
 
@@ -19,18 +19,14 @@ namespace sammy {
  */
 class UniverseSubgraph {
   public:
-    UniverseSubgraph(const UniverseSubgraph& o) :
-        propagator(o.propagator),
-        infeasibility_map(o.infeasibility_map),
-        vertices(o.vertices),
-        matrix(o.matrix),
-        vertices_with_literal(o.vertices_with_literal),
-        vertex_index_map(o.vertex_index_map),
-        degree(o.degree),
-        parallel_bits(&o.parallel_bits.thread_group())
-    {}
+    UniverseSubgraph(const UniverseSubgraph& o)
+        : propagator(o.propagator), infeasibility_map(o.infeasibility_map),
+          vertices(o.vertices), matrix(o.matrix),
+          vertices_with_literal(o.vertices_with_literal),
+          vertex_index_map(o.vertex_index_map), degree(o.degree),
+          parallel_bits(&o.parallel_bits.thread_group()) {}
 
-    UniverseSubgraph &operator=(const UniverseSubgraph& o) {
+    UniverseSubgraph& operator=(const UniverseSubgraph& o) {
         propagator = o.propagator;
         infeasibility_map = o.infeasibility_map;
         vertices = o.vertices;
@@ -41,18 +37,16 @@ class UniverseSubgraph {
         return *this;
     }
 
-    UniverseSubgraph(UniverseSubgraph&& o) noexcept :
-        propagator(std::move(o.propagator)),
-        infeasibility_map(o.infeasibility_map),
-        vertices(std::move(o.vertices)),
-        matrix(std::move(o.matrix)),
-        vertices_with_literal(std::move(o.vertices_with_literal)),
-        vertex_index_map(std::move(o.vertex_index_map)),
-        degree(std::move(o.degree)),
-        parallel_bits(&o.parallel_bits.thread_group())
-    {}
+    UniverseSubgraph(UniverseSubgraph&& o) noexcept
+        : propagator(std::move(o.propagator)),
+          infeasibility_map(o.infeasibility_map),
+          vertices(std::move(o.vertices)), matrix(std::move(o.matrix)),
+          vertices_with_literal(std::move(o.vertices_with_literal)),
+          vertex_index_map(std::move(o.vertex_index_map)),
+          degree(std::move(o.degree)),
+          parallel_bits(&o.parallel_bits.thread_group()) {}
 
-    UniverseSubgraph &operator=(UniverseSubgraph&& o) noexcept {
+    UniverseSubgraph& operator=(UniverseSubgraph&& o) noexcept {
         std::swap(propagator, o.propagator);
         std::swap(infeasibility_map, o.infeasibility_map);
         std::swap(vertices, o.vertices);
@@ -64,8 +58,7 @@ class UniverseSubgraph {
     }
 
     bool operator==(const UniverseSubgraph& o) const noexcept {
-        return vertices == o.vertices &&
-               matrix == o.matrix;
+        return vertices == o.vertices && matrix == o.matrix;
     }
 
     bool operator!=(const UniverseSubgraph& o) const noexcept {
@@ -81,8 +74,7 @@ class UniverseSubgraph {
                  DynamicBitset(this->vertices.size(), false)),
           vertices_with_literal(2 * all_clauses->num_vars(),
                                 DynamicBitset(this->vertices.size(), false)),
-          parallel_bits(thread_pool)
-    {
+          parallel_bits(thread_pool) {
         p_build_vertex_index_map();
         p_build_vertices_with_literal();
         p_build_matrix();
@@ -119,7 +111,8 @@ class UniverseSubgraph {
     std::size_t vertex_index(Vertex v) const { return vertex_index_map.at(v); }
 
     using CliqueBuilder = sammy::CliqueBuilder<UniverseSubgraph>;
-    using IndependentSetBuilder = sammy::IndependentSetBuilder<UniverseSubgraph>;
+    using IndependentSetBuilder =
+        sammy::IndependentSetBuilder<UniverseSubgraph>;
 
     CliqueBuilder clique_builder() {
         return CliqueBuilder{this, &parallel_bits};
@@ -163,7 +156,8 @@ class UniverseSubgraph {
                         new_vertices_with_literal);
         return UniverseSubgraph(propagator, infeasibility_map,
                                 std::move(new_vertices), std::move(new_matrix),
-                                std::move(new_vertices_with_literal), parallel_bits.thread_group());
+                                std::move(new_vertices_with_literal),
+                                parallel_bits.thread_group());
     }
 
     /**
@@ -190,7 +184,7 @@ class UniverseSubgraph {
         }
         vertices.insert(vertices.end(), new_vertices.begin(),
                         new_vertices.end());
-        for(std::size_t i = old_n; i < new_n; ++i) {
+        for (std::size_t i = old_n; i < new_n; ++i) {
             vertex_index_map.try_emplace(vertices[i], i);
         }
         degree.resize(vertices.size(), 0);
@@ -213,21 +207,22 @@ class UniverseSubgraph {
         ++degree[index2];
     }
 
-    template<typename InputIterator>
-    void add_new_vertices(InputIterator begin, InputIterator end)
-    {
+    template <typename InputIterator>
+    void add_new_vertices(InputIterator begin, InputIterator end) {
         std::vector<Vertex> vnew;
         std::copy_if(begin, end, std::back_inserter(vnew),
-                     [&] (Vertex v) { return !has_vertex(v); });
+                     [&](Vertex v) { return !has_vertex(v); });
         add_vertices(vnew);
     }
 
-    template<typename VertexContainer>
-    std::vector<std::size_t> to_indices(const VertexContainer& vertices) const noexcept {
+    template <typename VertexContainer>
+    std::vector<std::size_t>
+    to_indices(const VertexContainer& vertices) const noexcept {
         std::vector<std::size_t> result;
         result.reserve(vertices.size());
-        std::transform(vertices.begin(), vertices.end(), std::back_inserter(result),
-                       [&] (Vertex v) {return vertex_index(v);});
+        std::transform(vertices.begin(), vertices.end(),
+                       std::back_inserter(result),
+                       [&](Vertex v) { return vertex_index(v); });
         return result;
     }
 
@@ -240,7 +235,7 @@ class UniverseSubgraph {
      * @return The number of additional edges found.
      */
     std::size_t extend_matrix_by_propagation(bool interruptible = false) {
-        if(is_extended) {
+        if (is_extended) {
             return 0;
         }
         std::size_t count = 0, check_count = 0;
@@ -260,7 +255,7 @@ class UniverseSubgraph {
                     }
                 }
             }
-            if(interruptible && ++check_count % 1024 == 0) {
+            if (interruptible && ++check_count % 1024 == 0) {
                 throw_if_interrupted();
             }
         }
@@ -268,9 +263,7 @@ class UniverseSubgraph {
         return count;
     }
 
-    bool is_extended_by_propagation() const noexcept {
-        return is_extended;
-    }
+    bool is_extended_by_propagation() const noexcept { return is_extended; }
 
     ThreadGroup<void>& thread_group() noexcept {
         return parallel_bits.thread_group();
@@ -298,9 +291,7 @@ class UniverseSubgraph {
         : propagator(propagator), infeasibility_map(infeasibility_map),
           vertices(std::move(vertices)), matrix(std::move(matrix)),
           vertices_with_literal(std::move(vertices_with_literal)),
-          degree(this->vertices.size(), 0),
-          parallel_bits(&thread_pool)
-    {
+          degree(this->vertices.size(), 0), parallel_bits(&thread_pool) {
         this->propagator.reset_or_throw();
         p_build_vertex_index_map();
         for (std::size_t i = 0, n = this->n(); i < n; ++i) {
@@ -408,7 +399,8 @@ class UniverseSubgraph {
         }
     }
 
-    void p_build_matrix_row_range(std::size_t begin, std::size_t end, std::size_t old_n) {
+    void p_build_matrix_row_range(std::size_t begin, std::size_t end,
+                                  std::size_t old_n) {
         SharedDBPropagator local_prop = propagator;
         const std::size_t n = vertices.size();
         for (std::size_t vi = begin; vi != end; ++vi) {
@@ -419,23 +411,27 @@ class UniverseSubgraph {
                 Lit lneg = lit::negate(lpos);
                 row |= vertices_with_literal[lneg];
             }
-            if(is_extended) {
+            if (is_extended) {
                 // already checked this for old rows
                 // during extension of existing rows
-                for(std::size_t vj = 0; vj != old_n; ++vj) {
-                    if(!row[vj]) {
+                for (std::size_t vj = 0; vj != old_n; ++vj) {
+                    if (!row[vj]) {
                         row[vj] = matrix[vj][vi];
                     }
                 }
-                for(std::size_t vj = old_n; vj != vi; ++vj) {
-                    if(row[vj]) continue;
+                for (std::size_t vj = old_n; vj != vi; ++vj) {
+                    if (row[vj])
+                        continue;
                     Vertex w = vertices[vj];
-                    if(!can_push(local_prop, w)) row[vj] = true;
+                    if (!can_push(local_prop, w))
+                        row[vj] = true;
                 }
-                for(std::size_t vj = vi + 1; vj < n; ++vj) {
-                    if(row[vj]) continue;
+                for (std::size_t vj = vi + 1; vj < n; ++vj) {
+                    if (row[vj])
+                        continue;
                     Vertex w = vertices[vj];
-                    if(!can_push(local_prop, w)) row[vj] = true;
+                    if (!can_push(local_prop, w))
+                        row[vj] = true;
                 }
             }
             degree[vi] = row.count();
@@ -452,12 +448,15 @@ class UniverseSubgraph {
                 Lit lneg = lit::negate(lpos);
                 matrix[vi].binary_or(vertices_with_literal[lneg], start_from);
             }
-            if(is_extended) {
+            if (is_extended) {
                 auto& row = matrix[vi];
-                for(std::size_t vj = start_from, n = vertices.size(); vj != n; ++vj) {
-                    if(row[vj]) continue;
+                for (std::size_t vj = start_from, n = vertices.size(); vj != n;
+                     ++vj)
+                {
+                    if (row[vj])
+                        continue;
                     Vertex w = vertices[vj];
-                    if(!can_push(local_prop, w)) {
+                    if (!can_push(local_prop, w)) {
                         row[vj] = true;
                     }
                 }
@@ -473,16 +472,19 @@ class UniverseSubgraph {
         std::size_t num_vertices = row_end - row_begin;
         num_threads = (std::min)(num_threads, tp_threads);
         num_threads = (std::min)(num_threads, num_vertices);
-        if(num_threads == 1) {
+        if (num_threads == 1) {
             p_build_matrix_row_range(row_begin, row_end, row_begin);
             return;
         }
         std::unique_ptr<std::thread[]> builders =
             std::make_unique<std::thread[]>(num_threads);
         std::size_t vertices_per_thread = num_vertices / num_threads;
-        for(std::size_t i = 0, cur = row_begin; i < num_threads; ++i, cur += vertices_per_thread) {
+        for (std::size_t i = 0, cur = row_begin; i < num_threads;
+             ++i, cur += vertices_per_thread)
+        {
             std::size_t cend = cur + vertices_per_thread;
-            if(i == num_threads - 1) cend = row_end;
+            if (i == num_threads - 1)
+                cend = row_end;
             builders[i] = std::thread(
                 [this, &row_begin](std::size_t b, std::size_t e) {
                     p_build_matrix_row_range(b, e, row_begin);
@@ -502,12 +504,13 @@ class UniverseSubgraph {
         p_build_matrix(0, vertices.size());
     }
 
-    void p_extend_existing_rows(std::size_t existing_rows, std::size_t begin_new) {
+    void p_extend_existing_rows(std::size_t existing_rows,
+                                std::size_t begin_new) {
         std::size_t num_threads = std::thread::hardware_concurrency();
         std::size_t tp_threads = parallel_bits.thread_group().num_threads() + 1;
         num_threads = (std::min)(num_threads, tp_threads);
         num_threads = (std::min)(num_threads, existing_rows);
-        if(num_threads == 1) {
+        if (num_threads == 1) {
             p_extend_matrix_row_range(0, existing_rows, begin_new);
             return;
         }
@@ -518,13 +521,15 @@ class UniverseSubgraph {
              ++i, cur += vertices_per_thread)
         {
             std::size_t cend = cur + vertices_per_thread;
-            if(i == num_threads - 1) cend = existing_rows;
+            if (i == num_threads - 1)
+                cend = existing_rows;
             builders[i] = std::thread(
-                [&] (std::size_t b, std::size_t e) {
+                [&](std::size_t b, std::size_t e) {
                     p_extend_matrix_row_range(b, e, begin_new);
-                }, cur, cend);
+                },
+                cur, cend);
         }
-        for(std::size_t i = 0; i < num_threads; ++i) {
+        for (std::size_t i = 0; i < num_threads; ++i) {
             builders[i].join();
         }
     }
@@ -536,8 +541,7 @@ class UniverseSubgraph {
     }
 
     void p_extend_vertices_with_literal(std::size_t vindex_begin,
-                                        std::size_t vindex_end) 
-    {
+                                        std::size_t vindex_end) {
         for (std::size_t vi = vindex_begin; vi != vindex_end; ++vi) {
             Vertex v = vertices[vi];
             reset_and_push_noresolve(propagator, v);
@@ -562,6 +566,6 @@ class UniverseSubgraph {
     bool is_extended = false;
 };
 
-}
+} // namespace sammy
 
 #endif

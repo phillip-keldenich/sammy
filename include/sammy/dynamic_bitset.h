@@ -9,6 +9,7 @@
 #endif
 
 #include "range.h"
+#include <algorithm>
 #include <cassert>
 #include <climits>
 #include <cstddef>
@@ -16,7 +17,6 @@
 #include <iterator>
 #include <limits>
 #include <vector>
-#include <algorithm>
 
 namespace sammy {
 
@@ -47,7 +47,8 @@ static inline auto count_set_bits(std::uint32_t x) noexcept {
 // the template stuff is necessary because the call might be ambiguous
 // otherwise.
 template <typename T, std::enable_if_t<std::is_integral_v<T> &&
-                                       sizeof(T) == sizeof(std::uint64_t), int> = 0>
+                                           sizeof(T) == sizeof(std::uint64_t),
+                                       int> = 0>
 static inline auto count_set_bits(T x) noexcept {
 #if defined(__GNUC__) || defined(__clang__)
     return __builtin_popcountll(x);
@@ -70,7 +71,8 @@ static inline auto count_set_bits(T x) noexcept {
 }
 
 template <typename T, std::enable_if_t<std::is_integral_v<T> &&
-                                       sizeof(T) == sizeof(std::uint32_t), int> = 0>
+                                           sizeof(T) == sizeof(std::uint32_t),
+                                       int> = 0>
 static inline auto count_trailing_zeros(T x) noexcept {
 #if defined(__GNUC__) || defined(__clang__)
     return __builtin_ctz(x);
@@ -89,7 +91,8 @@ static inline auto count_trailing_zeros(T x) noexcept {
 }
 
 template <typename T, std::enable_if_t<std::is_integral_v<T> &&
-                                       sizeof(T) == sizeof(std::uint64_t), int> = 0>
+                                           sizeof(T) == sizeof(std::uint64_t),
+                                       int> = 0>
 static inline auto count_trailing_zeros(T x) {
 #if defined(__GNUC__) || defined(__clang__)
     return __builtin_ctzll(x);
@@ -144,16 +147,16 @@ class DynamicBitset {
 
     explicit DynamicBitset(const std::vector<bool>& vbool)
         : m_blocks(num_blocks_required(vbool.size()), broadcast(false)),
-          m_num_bits(vbool.size())
-    {
-        for(std::size_t i = 0, s = vbool.size(); i != s; ++i) {
-            if(vbool[i]) (*this)[i].set();
+          m_num_bits(vbool.size()) {
+        for (std::size_t i = 0, s = vbool.size(); i != s; ++i) {
+            if (vbool[i])
+                (*this)[i].set();
         }
     }
 
     bool operator==(const DynamicBitset& o) const noexcept {
         return size() == o.size() &&
-            std::equal(m_blocks.begin(), m_blocks.end(), o.m_blocks.begin());
+               std::equal(m_blocks.begin(), m_blocks.end(), o.m_blocks.begin());
     }
 
     bool operator!=(const DynamicBitset& o) const noexcept {
@@ -193,31 +196,34 @@ class DynamicBitset {
         ++bblock;
         std::transform(m_blocks.begin() + bblock, m_blocks.end(),
                        o.m_blocks.begin() + bblock, m_blocks.begin() + bblock,
-                       [] (Block b1, Block b2) { return b1 & ~b2; });
+                       [](Block b1, Block b2) { return b1 & ~b2; });
     }
 
     void binary_subtract(const std::uint32_t* bits_begin) {
-        constexpr std::size_t blocks_per_u32 = sizeof(Block) / sizeof(std::uint32_t);
+        constexpr std::size_t blocks_per_u32 =
+            sizeof(Block) / sizeof(std::uint32_t);
         const std::size_t nblocks = m_blocks.size();
-        for(std::size_t i = 0; i < nblocks; ++i) {
+        for (std::size_t i = 0; i < nblocks; ++i) {
             Block blk = p_read_block(bits_begin + i * blocks_per_u32);
             m_blocks[i] &= ~blk;
         }
     }
 
     void binary_or(const std::uint32_t* bits_begin) {
-        constexpr std::size_t blocks_per_u32 = sizeof(Block) / sizeof(std::uint32_t);
+        constexpr std::size_t blocks_per_u32 =
+            sizeof(Block) / sizeof(std::uint32_t);
         const std::size_t nblocks = m_blocks.size();
-        for(std::size_t i = 0; i < nblocks; ++i) {
+        for (std::size_t i = 0; i < nblocks; ++i) {
             Block blk = p_read_block(bits_begin + i * blocks_per_u32);
             m_blocks[i] |= blk;
         }
     }
 
     void binary_and(const std::uint32_t* bits_begin) {
-        constexpr std::size_t blocks_per_u32 = sizeof(Block) / sizeof(std::uint32_t);
+        constexpr std::size_t blocks_per_u32 =
+            sizeof(Block) / sizeof(std::uint32_t);
         const std::size_t nblocks = m_blocks.size();
-        for(std::size_t i = 0; i < nblocks; ++i) {
+        for (std::size_t i = 0; i < nblocks; ++i) {
             Block blk = p_read_block(bits_begin + i * blocks_per_u32);
             m_blocks[i] &= blk;
         }
@@ -375,7 +381,8 @@ class DynamicBitset {
     }
 
     void assign(size_type num_bits, bool value) {
-        if(num_bits != size()) resize(num_bits, value);
+        if (num_bits != size())
+            resize(num_bits, value);
         set(value);
     }
 
@@ -452,8 +459,8 @@ class DynamicBitset {
         Block partial = m_blocks[word_idx];
         partial &= ~Block((Block(1) << sub_idx) - 1);
         std::size_t initial = count_set_bits(partial);
-        return std::transform_reduce(m_blocks.begin() + word_idx + 1, m_blocks.end(),
-                                     initial, std::plus<>{},
+        return std::transform_reduce(m_blocks.begin() + word_idx + 1,
+                                     m_blocks.end(), initial, std::plus<>{},
                                      [](Block b) { return count_set_bits(b); });
     }
 
@@ -597,7 +604,7 @@ class DynamicBitset {
     explicit operator std::vector<bool>() const {
         const std::size_t n = size();
         std::vector<bool> result(n, false);
-        for(std::size_t i = 0; i < n; ++i) {
+        for (std::size_t i = 0; i < n; ++i) {
             result[i] = bool((*this)[i]);
         }
         return result;
@@ -606,13 +613,15 @@ class DynamicBitset {
     const std::vector<Block>& blocks() const noexcept { return m_blocks; }
 
   private:
-    template<typename T, std::enable_if_t<sizeof(T) == sizeof(Block), int> = 0>
+    template <typename T, std::enable_if_t<sizeof(T) == sizeof(Block), int> = 0>
     Block p_read_block(const T* from) {
         return Block(*from);
     }
 
-    template<typename T, std::enable_if_t<sizeof(T) * 2 == sizeof(Block) && 
-                                          sizeof(Block) == sizeof(std::uint64_t), int> = 0>
+    template <typename T,
+              std::enable_if_t<sizeof(T) * 2 == sizeof(Block) &&
+                                   sizeof(Block) == sizeof(std::uint64_t),
+                               int> = 0>
     Block p_read_block(const T* from) {
         Block b1(*from);
         Block b2(*(from + 1));
@@ -639,6 +648,6 @@ class DynamicBitset {
 
 using Bitset = DynamicBitset;
 
-}
+} // namespace sammy
 
 #endif

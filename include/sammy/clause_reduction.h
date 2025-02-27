@@ -112,6 +112,6 @@ reduce_external_clauses(const std::vector<ExternalClause>& clauses) {
     return reduced;
 }
 
-} // namespace hs
+} // namespace sammy
 
 #endif

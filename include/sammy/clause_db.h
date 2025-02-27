@@ -22,7 +22,7 @@ namespace sammy {
 using CRef = std::uint32_t;
 
 /**
- * A structure keeping a snapshot of 
+ * A structure keeping a snapshot of
  * the number of clauses in a clause database.
  */
 struct ClauseCounts {
@@ -94,20 +94,22 @@ class ClauseDB {
     void p_internalize_internal(const std::vector<std::vector<Lit>>& cs) {
         m_num_clauses = cs.size();
         std::vector<Lit> buffer;
-        for(const auto& c : cs) {
-            bool tautology = (std::find_if(c.begin(), c.end(), [&] (Lit l) {
-                return std::find(c.begin(), c.end(), lit::negate(l)) != c.end();
-            }) != c.end());
-            if(tautology) {
+        for (const auto& c : cs) {
+            bool tautology = (std::find_if(c.begin(), c.end(), [&](Lit l) {
+                                  return std::find(c.begin(), c.end(),
+                                                   lit::negate(l)) != c.end();
+                              }) != c.end());
+            if (tautology) {
                 --m_num_clauses;
                 continue;
             }
             buffer = c;
             std::sort(buffer.begin(), buffer.end());
-            buffer.erase(std::unique(buffer.begin(), buffer.end()), buffer.end());
-            if(c.size() == 1) {
+            buffer.erase(std::unique(buffer.begin(), buffer.end()),
+                         buffer.end());
+            if (c.size() == 1) {
                 m_unaries.push_back(buffer[0]);
-            } else if(c.size() == 2) {
+            } else if (c.size() == 2) {
                 std::uint32_t l1 = buffer[0];
                 std::uint32_t l2 = buffer[1];
                 m_binaries[l1].push_back(l2);
@@ -158,11 +160,9 @@ class ClauseDB {
         return import_from(input);
     }
 
-    explicit ClauseDB(std::uint32_t num_vars) :
-        m_binaries(2 * num_vars, std::vector<Lit>{}),
-        m_num_vars(num_vars),
-        m_num_clauses(0)
-    {}
+    explicit ClauseDB(std::uint32_t num_vars)
+        : m_binaries(2 * num_vars, std::vector<Lit>{}), m_num_vars(num_vars),
+          m_num_clauses(0) {}
 
     explicit ClauseDB(std::uint32_t num_vars,
                       const std::vector<ExternalClause>& clauses)
@@ -174,9 +174,8 @@ class ClauseDB {
 
     explicit ClauseDB(std::uint32_t num_vars,
                       const std::vector<std::vector<Lit>>& clauses)
-        : m_binaries(2 * num_vars, std::vector<Lit>{}),
-          m_num_vars(num_vars), m_num_clauses(0)
-    {
+        : m_binaries(2 * num_vars, std::vector<Lit>{}), m_num_vars(num_vars),
+          m_num_clauses(0) {
         p_internalize_internal(clauses);
     }
 
@@ -195,16 +194,12 @@ class ClauseDB {
     /**
      * Mark the clause database as frozen.
      */
-    void mark_frozen() noexcept {
-        m_frozen = true;
-    }
+    void mark_frozen() noexcept { m_frozen = true; }
 
     /**
      * Check if the clause database is marked as frozen.
      */
-    bool is_frozen() const noexcept {
-        return m_frozen;
-    }
+    bool is_frozen() const noexcept { return m_frozen; }
 
     void export_to(const std::filesystem::path& path) const {
         std::ofstream output(path, std::ios::out | std::ios::trunc);
@@ -215,8 +210,8 @@ class ClauseDB {
     void export_to_dimacs(std::ostream& output) const {
         output << "p cnf " << m_num_vars << ' ' << m_num_clauses << std::endl;
         auto all_clauses = export_all_clauses();
-        for(const auto& ec : all_clauses) {
-            for(auto l : ec) {
+        for (const auto& ec : all_clauses) {
+            for (auto l : ec) {
                 output << l << ' ';
             }
             output << '0' << '\n';
@@ -254,17 +249,15 @@ class ClauseDB {
         return result;
     }
 
-    template<typename Iterator>
-    CRef add_clause(Iterator ibeg, Iterator iend)
-    {
-        if(m_frozen) {
+    template <typename Iterator> CRef add_clause(Iterator ibeg, Iterator iend) {
+        if (m_frozen) {
             throw std::logic_error("Cannot add clauses to frozen ClauseDB!");
         }
         CRef res = NIL;
         auto length = std::distance(ibeg, iend);
-        if(length == 1) {
+        if (length == 1) {
             m_unaries.push_back(*ibeg);
-        } else if(length == 2) {
+        } else if (length == 2) {
             Lit l1 = ibeg[0];
             Lit l2 = ibeg[1];
             m_binaries[l1].push_back(l2);
@@ -450,22 +443,23 @@ class ClauseDBView {
 };
 
 /**
- * Turn the given ClauseDB into a list of clauses (internal representation, 
+ * Turn the given ClauseDB into a list of clauses (internal representation,
  * i.e., 0-based indexing and even/odd encoding of true/false literals).
  */
-template<typename ClauseType>
-inline std::vector<ClauseType> to_clause_list(const ClauseDB& clauses)
-{
+template <typename ClauseType>
+inline std::vector<ClauseType> to_clause_list(const ClauseDB& clauses) {
     std::vector<ClauseType> result;
-    for(Lit l : clauses.unary_literals()) {
+    for (Lit l : clauses.unary_literals()) {
         Lit a[1] = {l};
-        result.emplace_back(+a, a+1);
+        result.emplace_back(+a, a + 1);
     }
-    for(auto [l1,l2] : clauses.binary_clauses()) {
-        Lit a[2] = {l1,l2};
-        result.emplace_back(+a, a+2);
+    for (auto [l1, l2] : clauses.binary_clauses()) {
+        Lit a[2] = {l1, l2};
+        result.emplace_back(+a, a + 2);
     }
-    for(CRef c = 1, ndb = clauses.literal_db_size(); c < ndb; c = clauses.next_clause(c)) {
+    for (CRef c = 1, ndb = clauses.literal_db_size(); c < ndb;
+         c = clauses.next_clause(c))
+    {
         auto lits = clauses.lits_of(c);
         result.emplace_back(lits.begin(), lits.end());
     }

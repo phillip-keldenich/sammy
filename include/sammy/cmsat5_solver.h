@@ -1,16 +1,16 @@
 #ifndef SAMMY_CMSAT5_SOLVER_H_INCLUDED_
 #define SAMMY_CMSAT5_SOLVER_H_INCLUDED_
 
-#include <vector>
-#include <optional>
-#include <limits>
-#include <atomic>
 #include <algorithm>
-#include <cmath>
-#include <climits>
-#include <cfloat>
+#include <atomic>
 #include <cassert>
+#include <cfloat>
+#include <climits>
+#include <cmath>
 #include <cstdint>
+#include <limits>
+#include <optional>
+#include <vector>
 
 /**
  * Like all the other solvers, compiler-firewall the
@@ -31,12 +31,20 @@ class CMSAT5Solver {
       public:
         Lit() noexcept = default;
         Lit operator-() const noexcept;
-        bool operator==(Lit other) const noexcept { return m_lit == other.m_lit; }
-        bool operator!=(Lit other) const noexcept { return m_lit != other.m_lit; }
-        bool operator< (Lit other) const noexcept { return m_lit < other.m_lit; }
-        bool operator> (Lit other) const noexcept { return m_lit > other.m_lit; }
-        bool operator<=(Lit other) const noexcept { return m_lit <= other.m_lit; }
-        bool operator>=(Lit other) const noexcept { return m_lit >= other.m_lit; }
+        bool operator==(Lit other) const noexcept {
+            return m_lit == other.m_lit;
+        }
+        bool operator!=(Lit other) const noexcept {
+            return m_lit != other.m_lit;
+        }
+        bool operator<(Lit other) const noexcept { return m_lit < other.m_lit; }
+        bool operator>(Lit other) const noexcept { return m_lit > other.m_lit; }
+        bool operator<=(Lit other) const noexcept {
+            return m_lit <= other.m_lit;
+        }
+        bool operator>=(Lit other) const noexcept {
+            return m_lit >= other.m_lit;
+        }
 
       private:
         friend class CMSAT5Solver;
@@ -55,9 +63,8 @@ class CMSAT5Solver {
         friend class CMSAT5Solver;
         friend class CMSAT5Solver::Impl;
 
-        ModelMap(std::vector<bool> model) noexcept :
-            m_model(std::move(model))
-        {}
+        ModelMap(std::vector<bool> model) noexcept
+            : m_model(std::move(model)) {}
 
         std::vector<bool> m_model;
     };
@@ -70,13 +77,11 @@ class CMSAT5Solver {
     CMSAT5Solver& operator=(const CMSAT5Solver&) = delete;
 
     // nothrow movable
-    CMSAT5Solver(CMSAT5Solver&& o) noexcept :
-        m_impl(o.m_impl),
-        m_clause_buffer(std::move(o.m_clause_buffer))
-    {
+    CMSAT5Solver(CMSAT5Solver&& o) noexcept
+        : m_impl(o.m_impl), m_clause_buffer(std::move(o.m_clause_buffer)) {
         o.m_impl = nullptr;
     }
-    CMSAT5Solver &operator=(CMSAT5Solver&& o) noexcept {
+    CMSAT5Solver& operator=(CMSAT5Solver&& o) noexcept {
         std::swap(m_impl, o.m_impl);
         std::swap(m_clause_buffer, o.m_clause_buffer);
         return *this;
@@ -95,8 +100,7 @@ class CMSAT5Solver {
     /**
      * Add a short clause to the solver, consisting of the given literals.
      */
-    template<typename... Lits>
-    void add_short_clause(Lits&&... lits) {
+    template <typename... Lits> void add_short_clause(Lits&&... lits) {
         p_add_to_clause(std::forward<Lits>(lits)...);
         finish_clause();
     }
@@ -104,17 +108,14 @@ class CMSAT5Solver {
     /**
      * Add literals to the clause that is currently being built.
      */
-    template<typename... Lits>
-    void add_literals(Lits&&... lits) {
+    template <typename... Lits> void add_literals(Lits&&... lits) {
         p_add_to_clause(std::forward<Lits>(lits)...);
     }
 
     /**
      * Add a single literal to the clause that is currently being built.
      */
-    void add_literal(Lit l) {
-        m_clause_buffer.push_back(l);
-    }
+    void add_literal(Lit l) { m_clause_buffer.push_back(l); }
 
     /**
      * Add the clause that is currently being built to the solver.
@@ -124,7 +125,7 @@ class CMSAT5Solver {
     /**
      * Add a clause from a range of Lits.
      */
-    template<typename LitIterator>
+    template <typename LitIterator>
     void add_clause(LitIterator begin, LitIterator end) {
         std::copy(begin, end, std::back_inserter(m_clause_buffer));
         finish_clause();
@@ -133,8 +134,9 @@ class CMSAT5Solver {
     /**
      * Trigger the solver to run.
      */
-    std::optional<bool> solve(const std::vector<Lit>& assumptions = {},
-                              double time_limit = std::numeric_limits<double>::infinity());
+    std::optional<bool>
+    solve(const std::vector<Lit>& assumptions = {},
+          double time_limit = std::numeric_limits<double>::infinity());
 
     /**
      * Get the model; throws if the solver has not returned SAT (i.e., {true}).
@@ -169,13 +171,10 @@ class CMSAT5Solver {
     /**
      * Get the name of the solver.
      */
-    static const char* name() noexcept {
-        return "cryptominisat5";
-    }
+    static const char* name() noexcept { return "cryptominisat5"; }
 
   private:
-    template<typename... Lits>
-    void p_add_to_clause(Lits&&... lits) {
+    template <typename... Lits> void p_add_to_clause(Lits&&... lits) {
         (add_literal(std::forward<Lits>(lits)), ...);
     }
 
@@ -183,6 +182,6 @@ class CMSAT5Solver {
     std::vector<Lit> m_clause_buffer;
 };
 
-}
+} // namespace sammy
 
 #endif

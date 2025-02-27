@@ -5,26 +5,30 @@
 
 namespace sammy {
 
-template<typename StreamType, typename ContainerType>
-inline void print_clause_internal(StreamType& stream, const ContainerType& clause) {
+template <typename StreamType, typename ContainerType>
+inline void print_clause_internal(StreamType& stream,
+                                  const ContainerType& clause) {
     bool first = true;
-    for(Lit l : clause) {
-        if(!first) stream << ' ';
+    for (Lit l : clause) {
+        if (!first)
+            stream << ' ';
         stream << l;
         first = false;
     }
 }
 
-template<typename StreamType, typename ContainerType>
-inline void print_clause_external(StreamType& stream, const ContainerType& clause) {
+template <typename StreamType, typename ContainerType>
+inline void print_clause_external(StreamType& stream,
+                                  const ContainerType& clause) {
     bool first = true;
-    for(Lit l : clause) {
-        if(!first) stream << ' ';
+    for (Lit l : clause) {
+        if (!first)
+            stream << ' ';
         stream << lit::externalize(l);
         first = false;
     }
 }
 
-}
+} // namespace sammy
 
 #endif

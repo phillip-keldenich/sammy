@@ -1,12 +1,12 @@
 #ifndef SAMMY_CADICAL_BINDINGS_H_INCLUDED_
 #define SAMMY_CADICAL_BINDINGS_H_INCLUDED_
 
-#include <memory>
 #include <algorithm>
-#include <vector>
-#include <optional>
-#include <limits>
 #include <cmath>
+#include <limits>
+#include <memory>
+#include <optional>
+#include <vector>
 
 namespace CaDiCaL {
 
@@ -15,7 +15,7 @@ namespace CaDiCaL {
  */
 class Solver;
 
-}
+} // namespace CaDiCaL
 
 namespace sammy {
 
@@ -42,8 +42,7 @@ class CadicalSolver {
     /**
      * Add a short clause.
      */
-    template<typename... Lits>
-    void add_short_clause(Lits... lits) {
+    template <typename... Lits> void add_short_clause(Lits... lits) {
         add_literals(lits...);
         finish_clause();
     }
@@ -51,27 +50,22 @@ class CadicalSolver {
     /**
      * Add a variadic number of literals to the current clause.
      */
-    template<typename... Lits>
-    void add_literals(Lits... lits) {
+    template <typename... Lits> void add_literals(Lits... lits) {
         (add_literal(lits), ...);
     }
 
     /**
      * Finish the current clause.
      */
-    void finish_clause() {
-        add_literal(0);
-    }
+    void finish_clause() { add_literal(0); }
 
     /**
      * Add a clause from a sequence of literals.
      */
-    template<
-        typename LitIterator,
-        std::enable_if_t<!std::is_integral_v<LitIterator>, int> = 0
-    >
+    template <typename LitIterator,
+              std::enable_if_t<!std::is_integral_v<LitIterator>, int> = 0>
     void add_clause(LitIterator begin, LitIterator end) {
-        std::for_each(begin, end, [this] (Lit l) {add_literal(l);});
+        std::for_each(begin, end, [this](Lit l) { add_literal(l); });
         finish_clause();
     }
 
@@ -98,15 +92,13 @@ class CadicalSolver {
     /**
      * Fix a variable to a given value.
      */
-    void fix(Lit l) {
-        add_short_clause(l);
-    }
+    void fix(Lit l) { add_short_clause(l); }
 
     /**
      * Asynchronously terminate the solver.
      */
     void terminate();
-    
+
     /**
      * Reset the termination flag.
      */
@@ -115,8 +107,9 @@ class CadicalSolver {
     /**
      * Solve the current formula.
      */
-    std::optional<bool> solve(const std::vector<Lit>& assumptions = {}, 
-                              double time_limit = std::numeric_limits<double>::infinity());
+    std::optional<bool>
+    solve(const std::vector<Lit>& assumptions = {},
+          double time_limit = std::numeric_limits<double>::infinity());
 
     /**
      * Store a model returned by the solver;
@@ -127,7 +120,7 @@ class CadicalSolver {
         ModelMap() = default;
 
         bool operator[](Lit l) const noexcept {
-            if(l < 0) {
+            if (l < 0) {
                 return !model_map[-l];
             } else {
                 return model_map[l];
@@ -145,9 +138,7 @@ class CadicalSolver {
     /**
      * Get the solver name.
      */
-    static const char* name() noexcept {
-        return "CaDiCaL";
-    }
+    static const char* name() noexcept { return "CaDiCaL"; }
 
   private:
     struct Terminator;
@@ -156,6 +147,6 @@ class CadicalSolver {
     Lit m_num_vars = 0;
 };
 
-}
+} // namespace sammy
 
 #endif

@@ -2,8 +2,8 @@
 #define SAMMY_SHARED_DB_PROPAGATOR_H_INCLUDED_
 
 #include "clause_db.h"
-#include "literals.h"
 #include "error.h"
+#include "literals.h"
 #include <boost/circular_buffer.hpp>
 #include <cassert>
 #include <exception>
@@ -201,7 +201,7 @@ class SharedDBPropagator {
     // Whether we have a current conflict.
     bool conflicting{false};
     // Buffer for supporting decisions of a literal.
-    std::vector<std::pair<std::int32_t,Lit>> supporting_decision_buffer;
+    std::vector<std::pair<std::int32_t, Lit>> supporting_decision_buffer;
 
     /**
      * Assign the given literal to true at decision level 0.
@@ -510,17 +510,18 @@ class SharedDBPropagator {
 
     void p_bfs_reasons(std::uint32_t current_stamp) {
         std::size_t lbpos = 0;
-        while(lbpos < learn_buffer.size()) {
+        while (lbpos < learn_buffer.size()) {
             Lit next = learn_buffer[lbpos++];
             std::size_t tindex = get_trail_index(next);
-            if(trail_reasons[tindex].reason_length == 0) {
-                supporting_decision_buffer.emplace_back(get_decision_level(next), next);
+            if (trail_reasons[tindex].reason_length == 0) {
+                supporting_decision_buffer.emplace_back(
+                    get_decision_level(next), next);
             } else {
                 Reason reason = trail_reasons[tindex];
-                for(Lit lr : reason.lits(db())) {
-                    if(lr != next) {
+                for (Lit lr : reason.lits(db())) {
+                    if (lr != next) {
                         Var v = lit::var(lr);
-                        if(variables[v].get_stamp() != current_stamp) {
+                        if (variables[v].get_stamp() != current_stamp) {
                             variables[v].stamp_with(current_stamp);
                             learn_buffer.push_back(lit::negate(lr));
                         }
@@ -806,8 +807,6 @@ class SharedDBPropagator {
         }
     };
 
-
-
   public:
     /**
      * @brief Get the underlying database.
@@ -875,12 +874,11 @@ class SharedDBPropagator {
      * Incorporate a full assignment into this propagator.
      * Throws an exception if the assignment is infeasible.
      */
-    template<typename FullAssignment>
-    void incorporate_assignment(const FullAssignment& assignment)
-    {
-        for(Var v = 0, nv = db().num_vars(); v < nv; ++v) {
+    template <typename FullAssignment>
+    void incorporate_assignment(const FullAssignment& assignment) {
+        for (Var v = 0, nv = db().num_vars(); v < nv; ++v) {
             Lit l = assignment[v] ? lit::positive_lit(v) : lit::negative_lit(v);
-            if(is_false(l) || (is_open(l) && !push_level(l))) {
+            if (is_false(l) || (is_open(l) && !push_level(l))) {
                 throw std::logic_error("Assignment is infeasible!");
             }
         }
@@ -890,20 +888,25 @@ class SharedDBPropagator {
      * Compute a list of [Level, Literal] pairs of decisions
      * that ultimately led to including l in the trail.
      */
-    const std::vector<std::pair<std::int32_t,Lit>> &decisions_leading_to(Lit l) {
-        if(conflicting) throw std::logic_error("decisions_leading_to called on propagator with conflict!");
-        if(is_open(l)) throw std::logic_error("decisions_leading_to called with open literal!");
+    const std::vector<std::pair<std::int32_t, Lit>>&
+    decisions_leading_to(Lit l) {
+        if (conflicting)
+            throw std::logic_error(
+                "decisions_leading_to called on propagator with conflict!");
+        if (is_open(l))
+            throw std::logic_error(
+                "decisions_leading_to called with open literal!");
         supporting_decision_buffer.clear();
         std::size_t tindex = get_trail_index(l);
-        if(trail_reasons[tindex].reason_length == 0) {
+        if (trail_reasons[tindex].reason_length == 0) {
             supporting_decision_buffer.emplace_back(get_decision_level(l), l);
             return supporting_decision_buffer;
         }
 
         auto current = p_increase_stamp();
         Reason reason = trail_reasons[tindex];
-        for(Lit lr : reason.lits(db())) {
-            if(lr != l) {
+        for (Lit lr : reason.lits(db())) {
+            if (lr != l) {
                 variables[lit::var(lr)].stamp_with(current);
                 learn_buffer.push_back(lit::negate(lr));
             }
@@ -917,22 +920,24 @@ class SharedDBPropagator {
      * Compute a list of [Level, Literal] pairs of decisions
      * that ultimately led to the current conflict.
      */
-    const std::vector<std::pair<std::int32_t,Lit>>& decisions_leading_to_conflict() {
-        if(!conflicting) 
-            throw std::logic_error("decisions_leading_to_conflict called on non-conflicting propagator!");
-    
+    const std::vector<std::pair<std::int32_t, Lit>>&
+    decisions_leading_to_conflict() {
+        if (!conflicting)
+            throw std::logic_error("decisions_leading_to_conflict called on "
+                                   "non-conflicting propagator!");
+
         supporting_decision_buffer.clear();
         auto current = p_increase_stamp();
-        for(Lit lr : conflict_reason.lits(db())) {
-            if(lr != conflict_lit) {
+        for (Lit lr : conflict_reason.lits(db())) {
+            if (lr != conflict_lit) {
                 variables[lit::var(lr)].stamp_with(current);
                 learn_buffer.push_back(lit::negate(lr));
             }
         }
         variables[lit::var(conflict_lit)].stamp_with(current);
         Lit lc = lit::negate(conflict_lit);
-        for(Lit lr : get_reason(lc).lits(db()))  {
-            if(variables[lit::var(lr)].get_stamp() != current) {
+        for (Lit lr : get_reason(lc).lits(db())) {
+            if (variables[lit::var(lr)].get_stamp() != current) {
                 variables[lit::var(lr)].stamp_with(current);
                 learn_buffer.push_back(lit::negate(lr));
             }
@@ -1050,7 +1055,8 @@ class SharedDBPropagator {
         return trail_lits.begin() + levels.back().level_begin();
     }
 
-    std::vector<Reason>::const_iterator current_level_reasons_begin() const noexcept {
+    std::vector<Reason>::const_iterator
+    current_level_reasons_begin() const noexcept {
         return trail_reasons.begin() + levels.back().level_begin();
     }
 
@@ -1088,9 +1094,12 @@ class SharedDBPropagator {
     const std::vector<Lit>& get_trail() const noexcept { return trail_lits; }
 
     /**
-     * @brief Get the list of reasons for the literals that are currently assigned to true.
+     * @brief Get the list of reasons for the literals that are currently
+     * assigned to true.
      */
-    const std::vector<Reason>&  get_reasons() const noexcept { return trail_reasons; }
+    const std::vector<Reason>& get_reasons() const noexcept {
+        return trail_reasons;
+    }
 
     /**
      * @brief Get a list of all decision literals on the trail.
@@ -1223,11 +1232,13 @@ class SharedDBPropagator {
 
     /**
      * @brief Reset the propagator to level 0. Incorporates new clauses.
-     * @throws UNSATError if this results in a conflict at level 0 (the formula is UNSAT).
+     * @throws UNSATError if this results in a conflict at level 0 (the formula
+     * is UNSAT).
      */
     void reset_or_throw() {
-        if(is_conflicting()) resolve_or_throw();
-        while(get_current_level() > 0) {
+        if (is_conflicting())
+            resolve_or_throw();
+        while (get_current_level() > 0) {
             pop_level();
         }
         incorporate_or_throw();
@@ -1235,17 +1246,19 @@ class SharedDBPropagator {
 
     /**
      * @brief Resolve conflicts without handler.
-     * @throws UNSATError if the conflict cannot be resolved (the formula is UNSAT).
+     * @throws UNSATError if the conflict cannot be resolved (the formula is
+     * UNSAT).
      */
     void resolve_or_throw() {
-        if(!resolve_conflicts()) throw UNSATError();
+        if (!resolve_conflicts())
+            throw UNSATError();
     }
 
     /**
      * Reset propagator to level 0.
      */
     void reset_to_zero() noexcept {
-        while(get_current_level() > 0) {
+        while (get_current_level() > 0) {
             pop_level();
         }
     }
@@ -1274,7 +1287,8 @@ class SharedDBPropagator {
      * @throws UNSATError if the formula becomes UNSAT by the added clauses.
      */
     void incorporate_or_throw() {
-        if(!incorporate_new_clauses_at_level_0()) throw UNSATError();
+        if (!incorporate_new_clauses_at_level_0())
+            throw UNSATError();
     }
 
     /**
@@ -1283,12 +1297,12 @@ class SharedDBPropagator {
      */
     std::vector<bool> extract_assignment() const {
         const Var nv = db().num_vars();
-        if(get_trail().size() != nv) {
+        if (get_trail().size() != nv) {
             throw std::logic_error("Trail incomplete in extract_assignment!");
         }
         std::vector<bool> result(nv, false);
-        for(Lit l : get_trail()) {
-            if(!lit::negative(l)) {
+        for (Lit l : get_trail()) {
+            if (!lit::negative(l)) {
                 result[lit::var(l)] = true;
             }
         }
@@ -1304,6 +1318,6 @@ class SharedDBPropagator {
     }
 };
 
-} // namespace hs
+} // namespace sammy
 
 #endif

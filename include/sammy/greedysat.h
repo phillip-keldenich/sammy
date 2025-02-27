@@ -16,14 +16,13 @@ namespace sammy {
  * (of which there usually should be none) are greedily set to false
  * one after another, with propagation in between.
  */
-template <typename PreferredAssignmentFn>
-class GreedySAT {
+template <typename PreferredAssignmentFn> class GreedySAT {
   public:
-    GreedySAT(SharedDBPropagator* prop, Lit n_concrete, PreferredAssignmentFn&& assignment)
+    GreedySAT(SharedDBPropagator* prop, Lit n_concrete,
+              PreferredAssignmentFn&& assignment)
         : prop(prop),
           preferred_assignment(std::forward<PreferredAssignmentFn>(assignment)),
-          n_concrete(n_concrete) 
-    {}
+          n_concrete(n_concrete) {}
 
     bool solve() {
         while (prop->get_trail().size() < prop->db().num_vars()) {
@@ -38,7 +37,8 @@ class GreedySAT {
                     }
                 }
             }
-            if (changed) continue;
+            if (changed)
+                continue;
             Lit n_all = prop->db().num_vars();
             for (Lit v = n_concrete; v < n_all; ++v) {
                 Lit l = lit::negative_lit(v);
@@ -64,6 +64,6 @@ template <bool B> struct PreferValue {
 using PreferFalse = PreferValue<false>;
 using PreferTrue = PreferValue<true>;
 
-}
+} // namespace sammy
 
 #endif

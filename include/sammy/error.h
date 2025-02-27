@@ -1,17 +1,17 @@
 #ifndef SAMMY_ERROR_H_INCLUDED_
 #define SAMMY_ERROR_H_INCLUDED_
 
-#include <string>
-#include <stdexcept>
 #include <exception>
+#include <stdexcept>
+#include <string>
 
 namespace sammy {
 
 class UNSATError : public std::runtime_error {
-public:
+  public:
     UNSATError() : std::runtime_error("The given model is unsatisfiable") {}
 };
 
-}
+} // namespace sammy
 
 #endif

@@ -1,12 +1,12 @@
 #ifndef SAMMY_INCREMENTAL_GUROBI_G2_CLIQUE_SOLVER_H_INCLUDED_
 #define SAMMY_INCREMENTAL_GUROBI_G2_CLIQUE_SOLVER_H_INCLUDED_
 
-#include "lazy_g2_adjacency_matrix.h"
-#include "gurobi.h"
 #include "algorithm_ex.h"
+#include "best_k.h"
+#include "gurobi.h"
+#include "lazy_g2_adjacency_matrix.h"
 #include "literals.h"
 #include "thread_interrupt.h"
-#include "best_k.h"
 
 namespace sammy {
 
@@ -27,17 +27,18 @@ class IncrementalGurobiCliqueRelaxedSolution {
         }
     };
 
-    void update(GRBModel& model, const std::vector<GRBVar>& variables, 
-                const std::vector<GRBConstr>& constraints, bool primal_only) 
-    {
+    void update(GRBModel& model, const std::vector<GRBVar>& variables,
+                const std::vector<GRBConstr>& constraints, bool primal_only) {
         m_nonzeros.clear();
-        m_values.reset(model.get(GRB_DoubleAttr_X, variables.data(), static_cast<int>(variables.size())));
-        if(!primal_only) {
-            m_dual.reset(model.get(GRB_DoubleAttr_Pi, constraints.data(), static_cast<int>(constraints.size())));
+        m_values.reset(model.get(GRB_DoubleAttr_X, variables.data(),
+                                 static_cast<int>(variables.size())));
+        if (!primal_only) {
+            m_dual.reset(model.get(GRB_DoubleAttr_Pi, constraints.data(),
+                                   static_cast<int>(constraints.size())));
         }
-        for(CliqueModelIndex i = 0, s = variables.size(); i < s; ++i) {
+        for (CliqueModelIndex i = 0, s = variables.size(); i < s; ++i) {
             double value = m_values[i];
-            if(value > 1e-4) {
+            if (value > 1e-4) {
                 m_nonzeros.push_back({i, value});
             }
         }
@@ -52,9 +53,7 @@ class IncrementalGurobiCliqueRelaxedSolution {
         return m_values[index];
     }
 
-    const double* dual_values() const noexcept {
-        return m_dual.get();
-    }
+    const double* dual_values() const noexcept { return m_dual.get(); }
 
   private:
     std::unique_ptr<double[]> m_values;
@@ -70,7 +69,7 @@ class GurobiCallbackCheckAbort : public GRBCallback {
     GurobiCallbackCheckAbort() = default;
 
     void callback() override {
-        if(get_and_clear_interrupt_flag()) {
+        if (get_and_clear_interrupt_flag()) {
             this->abort();
         }
     }
@@ -78,15 +77,14 @@ class GurobiCallbackCheckAbort : public GRBCallback {
 
 class ExplicitIndependentSet {
   public:
-    ExplicitIndependentSet(const LazyG2AdjacencyMatrix* matrix, 
-                           const std::vector<std::size_t>& full_indices,
-                           const std::vector<std::size_t>& clique_model_vertices) :
-        matrix(matrix),
-        vertices(full_indices.begin(), full_indices.end()), 
-        clique_model_vertices(clique_model_vertices),
-        possible_extensions(matrix->n(), true)
-    {
-        for(std::size_t vi : vertices) {
+    ExplicitIndependentSet(
+        const LazyG2AdjacencyMatrix* matrix,
+        const std::vector<std::size_t>& full_indices,
+        const std::vector<std::size_t>& clique_model_vertices)
+        : matrix(matrix), vertices(full_indices.begin(), full_indices.end()),
+          clique_model_vertices(clique_model_vertices),
+          possible_extensions(matrix->n(), true) {
+        for (std::size_t vi : vertices) {
             possible_extensions -= matrix->row(vi);
             possible_extensions[vi].reset();
         }
@@ -112,8 +110,9 @@ class ExplicitIndependentSet {
         return possible_extensions[full_vertex_index];
     }
 
-    bool extend_if_possible(std::size_t full_vertex_index, std::size_t clique_model_index) noexcept {
-        if(!possible_extensions[full_vertex_index]) {
+    bool extend_if_possible(std::size_t full_vertex_index,
+                            std::size_t clique_model_index) noexcept {
+        if (!possible_extensions[full_vertex_index]) {
             return false;
         }
         vertices.insert(full_vertex_index);
@@ -123,8 +122,9 @@ class ExplicitIndependentSet {
         return true;
     }
 
-    bool extend_if_possible(std::size_t fv1, std::size_t ci1, std::size_t fv2, std::size_t ci2) noexcept {
-        if(!possible_extensions[fv1] || !possible_extensions[fv2]) {
+    bool extend_if_possible(std::size_t fv1, std::size_t ci1, std::size_t fv2,
+                            std::size_t ci2) noexcept {
+        if (!possible_extensions[fv1] || !possible_extensions[fv2]) {
             return false;
         }
         vertices.insert(fv1);
@@ -152,27 +152,26 @@ class ExplicitIndependentSet {
  */
 class IncrementalGurobiCliqueConstraint {
   public:
-    explicit IncrementalGurobiCliqueConstraint(const DynamicBitset& bitset) :
-        m_representation(bitset)
-    {}
+    explicit IncrementalGurobiCliqueConstraint(const DynamicBitset& bitset)
+        : m_representation(bitset) {}
 
-    explicit IncrementalGurobiCliqueConstraint(DynamicBitset&& bitset) noexcept :
-        m_representation(std::move(bitset))
-    {}
+    explicit IncrementalGurobiCliqueConstraint(DynamicBitset&& bitset) noexcept
+        : m_representation(std::move(bitset)) {}
 
-    explicit IncrementalGurobiCliqueConstraint(const SharedDBPropagator& propagator) :
-        m_representation(propagator)
-    {}
+    explicit IncrementalGurobiCliqueConstraint(
+        const SharedDBPropagator& propagator)
+        : m_representation(propagator) {}
 
-    explicit IncrementalGurobiCliqueConstraint(SharedDBPropagator&& propagator) noexcept :
-        m_representation(std::move(propagator))
-    {}
+    explicit IncrementalGurobiCliqueConstraint(
+        SharedDBPropagator&& propagator) noexcept
+        : m_representation(std::move(propagator)) {}
 
-    explicit IncrementalGurobiCliqueConstraint(const LazyG2AdjacencyMatrix* matrix,
-                                               const std::vector<std::size_t>& vertices,
-                                               const std::vector<std::size_t>& clique_model_vertices) :
-        m_representation(std::in_place_type<ExplicitIndependentSet>, matrix, vertices, clique_model_vertices)
-    {}
+    explicit IncrementalGurobiCliqueConstraint(
+        const LazyG2AdjacencyMatrix* matrix,
+        const std::vector<std::size_t>& vertices,
+        const std::vector<std::size_t>& clique_model_vertices)
+        : m_representation(std::in_place_type<ExplicitIndependentSet>, matrix,
+                           vertices, clique_model_vertices) {}
 
     bool is_complete() const noexcept {
         return std::holds_alternative<DynamicBitset>(m_representation);
@@ -187,17 +186,19 @@ class IncrementalGurobiCliqueConstraint {
     }
 
     bool contains(Vertex v) const {
-        return std::visit(overloaded{
-            [&] (const SharedDBPropagator& prop) -> bool {
-                return prop.is_true(v.first) && prop.is_true(v.second);
-            },
-            [&] (const DynamicBitset& bitset) -> bool {
-                return lit::is_true_in(v.first, bitset) && lit::is_true_in(v.second, bitset);
-            },
-            [&] (const ExplicitIndependentSet& set) -> bool {
-                return set.contains(v);
-            }
-        }, m_representation);
+        return std::visit(
+            overloaded{[&](const SharedDBPropagator& prop) -> bool {
+                           return prop.is_true(v.first) &&
+                                  prop.is_true(v.second);
+                       },
+                       [&](const DynamicBitset& bitset) -> bool {
+                           return lit::is_true_in(v.first, bitset) &&
+                                  lit::is_true_in(v.second, bitset);
+                       },
+                       [&](const ExplicitIndependentSet& set) -> bool {
+                           return set.contains(v);
+                       }},
+            m_representation);
     }
 
     SharedDBPropagator& partial() {
@@ -216,32 +217,26 @@ class IncrementalGurobiCliqueConstraint {
         return *std::get_if<ExplicitIndependentSet>(&m_representation);
     }
 
-    GRBConstr& constraint() noexcept {
-        return m_constraint;
-    }
+    GRBConstr& constraint() noexcept { return m_constraint; }
 
-    const GRBConstr& constraint() const noexcept {
-        return m_constraint;
-    }
+    const GRBConstr& constraint() const noexcept { return m_constraint; }
 
   private:
     GRBConstr m_constraint;
-    std::variant<SharedDBPropagator, DynamicBitset, ExplicitIndependentSet> m_representation;
+    std::variant<SharedDBPropagator, DynamicBitset, ExplicitIndependentSet>
+        m_representation;
 };
 
 class IncrementalCliqueGreedyRounder {
   public:
     using FullVertexIndex = std::size_t;
 
-    explicit IncrementalCliqueGreedyRounder(LazyG2AdjacencyMatrix* adj) :
-        m_adj(adj),
-        m_vertex_bitset_buffer(adj->n())
-    {}
+    explicit IncrementalCliqueGreedyRounder(LazyG2AdjacencyMatrix* adj)
+        : m_adj(adj), m_vertex_bitset_buffer(adj->n()) {}
 
     void round_single_iteration(
         const IncrementalGurobiCliqueRelaxedSolution& solution,
-        const std::vector<FullVertexIndex>& clique_model_vertices) 
-    {
+        const std::vector<FullVertexIndex>& clique_model_vertices) {
         p_reset();
         p_partial_clique_from_ordered_solution(solution, clique_model_vertices);
         p_randomly_extend_clique();
@@ -251,9 +246,10 @@ class IncrementalCliqueGreedyRounder {
         return m_vertex_set_buffer;
     }
 
-    void randomly_extend_given_clique(const std::vector<FullVertexIndex>& clique) {
+    void
+    randomly_extend_given_clique(const std::vector<FullVertexIndex>& clique) {
         p_reset();
-        for(FullVertexIndex full_index : clique) {
+        for (FullVertexIndex full_index : clique) {
             m_vertex_bitset_buffer &= m_adj->row(full_index);
             m_vertex_set_buffer.push_back(full_index);
         }
@@ -288,11 +284,11 @@ class IncrementalCliqueGreedyRounder {
 
     void p_partial_clique_from_ordered_solution(
         const IncrementalGurobiCliqueRelaxedSolution& solution,
-        const std::vector<FullVertexIndex>& clique_model_vertices) 
-    {
-        for(const auto& ordered_value : solution.nonzeros()) {
-            FullVertexIndex full_index = clique_model_vertices[ordered_value.clique_model_index];
-            if(!m_vertex_bitset_buffer[full_index]) {
+        const std::vector<FullVertexIndex>& clique_model_vertices) {
+        for (const auto& ordered_value : solution.nonzeros()) {
+            FullVertexIndex full_index =
+                clique_model_vertices[ordered_value.clique_model_index];
+            if (!m_vertex_bitset_buffer[full_index]) {
                 // not a possible extension of the clique
                 continue;
             }
@@ -310,9 +306,12 @@ class IncrementalCliqueGreedyRounder {
         auto& rng = sammy::rng();
         const std::size_t n = m_adj->n();
         std::uniform_int_distribution<std::size_t> indices(0, n - 1);
-        for(std::size_t trial_counter = 1; trial_counter <= num_unsuccessful; ++trial_counter) {
+        for (std::size_t trial_counter = 1; trial_counter <= num_unsuccessful;
+             ++trial_counter)
+        {
             std::size_t vi = indices(rng);
-            if(!m_vertex_bitset_buffer[vi]) continue;
+            if (!m_vertex_bitset_buffer[vi])
+                continue;
             m_vertex_bitset_buffer &= m_adj->row(vi);
             m_vertex_set_buffer.push_back(vi);
             trial_counter = 0;
@@ -321,13 +320,16 @@ class IncrementalCliqueGreedyRounder {
     }
 
     void p_randomly_extend_clique_with_list() {
-        for(FullVertexIndex vi : m_vertex_bitset_buffer.ones()) {
+        for (FullVertexIndex vi : m_vertex_bitset_buffer.ones()) {
             m_random_ext_buffer.push_back(vi);
         }
-        if(m_random_ext_buffer.empty()) return;
-        std::shuffle(m_random_ext_buffer.begin(), m_random_ext_buffer.end(), sammy::rng());
-        for(FullVertexIndex vi : m_random_ext_buffer) {
-            if(!m_vertex_bitset_buffer[vi]) continue;
+        if (m_random_ext_buffer.empty())
+            return;
+        std::shuffle(m_random_ext_buffer.begin(), m_random_ext_buffer.end(),
+                     sammy::rng());
+        for (FullVertexIndex vi : m_random_ext_buffer) {
+            if (!m_vertex_bitset_buffer[vi])
+                continue;
             m_vertex_set_buffer.push_back(vi);
             m_vertex_bitset_buffer &= m_adj->row(vi);
             assert(!m_vertex_bitset_buffer[vi]);
@@ -343,41 +345,61 @@ class IncrementalGurobiG2CliqueSolver {
     using OrderedValue = IncrementalGurobiCliqueRelaxedSolution::OrderedValue;
     using OrderedSolutionIter = std::vector<OrderedValue>::const_iterator;
 
-    IncrementalGurobiG2CliqueSolver(LazyG2AdjacencyMatrix* adjacency,
-                                    std::vector<FullVertexIndex> best_local_clique,
-                                    const std::vector<DynamicBitset>& best_covering_assignment,
-                                    bool gurobi_quiet = true,
-                                    const std::unordered_map<std::string, std::string>& params = {}) :
-        m_model(sammy::gurobi_environment(gurobi_quiet)),
-        m_adj(adjacency),
-        m_all_clique_vars(adjacency->n()),
-        m_best_clique(std::move(best_local_clique)),
-        m_is_present(adjacency->n(), false),
-        m_present_vertices_with_concrete_literal(2 * adjacency->num_concrete()),
-        m_lazy_nonedge_callback(this),
-        m_greedy_rounder(adjacency),
-        m_temp_propagator(adjacency->temp_propagator()),
-        m_greedy_cut_candidates(p_get_param<std::size_t>(params, "num_greedy_cut_candidates", 7))
-    {
-        m_pricing_ignore_possible = p_get_param<bool>(params, "pricing_ignore_possible", m_pricing_ignore_possible);
-        m_greedy_cut_extension_max_num_cuts = p_get_param<std::size_t>(params, "greedy_cut_extension_max_num_cuts", m_greedy_cut_extension_max_num_cuts);
-        m_greedy_cut_extension_undo_failed_extensions = p_get_param<bool>(params, "greedy_cut_extension_undo_failed_extensions", m_greedy_cut_extension_undo_failed_extensions);
-        m_greedy_cut_generation_num_candidates = p_get_param<std::size_t>(params, "num_greedy_cut_candidates", 7);
-        m_prohibit_vne_max_new_constraints = p_get_param<std::size_t>(params, "prohibit_vne_max_new_constraints", m_prohibit_vne_max_new_constraints);
-        m_max_cheap_cut_rounds = p_get_param<std::size_t>(params, "max_cheap_cut_rounds", m_max_cheap_cut_rounds);
-        m_pricing_goal_fraction_existing = p_get_param<double>(params, "pricing_goal_fraction_existing", m_pricing_goal_fraction_existing);
-        m_pricing_goal_min = p_get_param<std::size_t>(params, "pricing_goal_min", m_pricing_goal_min);
-        m_pricing_goal_max = p_get_param<std::size_t>(params, "pricing_goal_max", m_pricing_goal_max);
-        m_max_cheap_cut_required_improvement = p_get_param<double>(params, "max_cheap_cut_required_improvement", m_max_cheap_cut_required_improvement);
+    IncrementalGurobiG2CliqueSolver(
+        LazyG2AdjacencyMatrix* adjacency,
+        std::vector<FullVertexIndex> best_local_clique,
+        const std::vector<DynamicBitset>& best_covering_assignment,
+        bool gurobi_quiet = true,
+        const std::unordered_map<std::string, std::string>& params = {})
+        : m_model(sammy::gurobi_environment(gurobi_quiet)), m_adj(adjacency),
+          m_all_clique_vars(adjacency->n()),
+          m_best_clique(std::move(best_local_clique)),
+          m_is_present(adjacency->n(), false),
+          m_present_vertices_with_concrete_literal(2 *
+                                                   adjacency->num_concrete()),
+          m_lazy_nonedge_callback(this), m_greedy_rounder(adjacency),
+          m_temp_propagator(adjacency->temp_propagator()),
+          m_greedy_cut_candidates(p_get_param<std::size_t>(
+              params, "num_greedy_cut_candidates", 7)) {
+        m_pricing_ignore_possible = p_get_param<bool>(
+            params, "pricing_ignore_possible", m_pricing_ignore_possible);
+        m_greedy_cut_extension_max_num_cuts = p_get_param<std::size_t>(
+            params, "greedy_cut_extension_max_num_cuts",
+            m_greedy_cut_extension_max_num_cuts);
+        m_greedy_cut_extension_undo_failed_extensions = p_get_param<bool>(
+            params, "greedy_cut_extension_undo_failed_extensions",
+            m_greedy_cut_extension_undo_failed_extensions);
+        m_greedy_cut_generation_num_candidates =
+            p_get_param<std::size_t>(params, "num_greedy_cut_candidates", 7);
+        m_prohibit_vne_max_new_constraints =
+            p_get_param<std::size_t>(params, "prohibit_vne_max_new_constraints",
+                                     m_prohibit_vne_max_new_constraints);
+        m_max_cheap_cut_rounds = p_get_param<std::size_t>(
+            params, "max_cheap_cut_rounds", m_max_cheap_cut_rounds);
+        m_pricing_goal_fraction_existing =
+            p_get_param<double>(params, "pricing_goal_fraction_existing",
+                                m_pricing_goal_fraction_existing);
+        m_pricing_goal_min = p_get_param<std::size_t>(
+            params, "pricing_goal_min", m_pricing_goal_min);
+        m_pricing_goal_max = p_get_param<std::size_t>(
+            params, "pricing_goal_max", m_pricing_goal_max);
+        m_max_cheap_cut_required_improvement =
+            p_get_param<double>(params, "max_cheap_cut_required_improvement",
+                                m_max_cheap_cut_required_improvement);
         m_grb_method = p_get_param<int>(params, "grb_method", m_grb_method);
-        m_grb_presolve = p_get_param<int>(params, "grb_presolve", m_grb_presolve);
-        m_initial_random_local_cliques = p_get_param<std::size_t>(params, "initial_random_local_cliques", m_initial_random_local_cliques);
-        m_cheap_cut_rounds_per_gap_check = p_get_param<std::size_t>(params, "cheap_cut_rounds_per_gap_check", m_cheap_cut_rounds_per_gap_check);
+        m_grb_presolve =
+            p_get_param<int>(params, "grb_presolve", m_grb_presolve);
+        m_initial_random_local_cliques =
+            p_get_param<std::size_t>(params, "initial_random_local_cliques",
+                                     m_initial_random_local_cliques);
+        m_cheap_cut_rounds_per_gap_check =
+            p_get_param<std::size_t>(params, "cheap_cut_rounds_per_gap_check",
+                                     m_cheap_cut_rounds_per_gap_check);
         m_temp_propagator.reset_to_zero();
         p_init_model_params();
         p_init_extend_local_clique();
         p_initial_random_local_cliques();
-        for(const DynamicBitset& assignment : best_covering_assignment) {
+        for (const DynamicBitset& assignment : best_covering_assignment) {
             add_complete_assignment(assignment);
         }
     }
@@ -388,7 +410,8 @@ class IncrementalGurobiG2CliqueSolver {
      */
     void add_vertex(FullVertexIndex index) {
         assert(index < m_is_present.size());
-        if(m_is_present[index]) return;
+        if (m_is_present[index])
+            return;
         p_add_new_vertex(index);
         m_is_present[index].set();
     }
@@ -397,9 +420,8 @@ class IncrementalGurobiG2CliqueSolver {
      * Add a range of vertices from the full graph to
      * the clique model, if they are not already present.
      */
-    template<typename R>
-    void add_vertices(const R& indices) {
-        for(FullVertexIndex i : indices) {
+    template <typename R> void add_vertices(const R& indices) {
+        for (FullVertexIndex i : indices) {
             add_vertex(i);
         }
     }
@@ -425,7 +447,7 @@ class IncrementalGurobiG2CliqueSolver {
      * targeting the addition of goal_num_vertices
      * to the clique model.
      */
-    template<typename Range>
+    template <typename Range>
     bool price_vertex_range(Range&& range, std::size_t goal_num_vertices);
 
     /**
@@ -433,8 +455,9 @@ class IncrementalGurobiG2CliqueSolver {
      * targeting the addition of goal_num_vertices
      * to the clique model.
      */
-    template<typename Iterator>
-    bool price_vertex_range(Iterator begin, Iterator end, std::size_t goal_num_vertices) {
+    template <typename Iterator>
+    bool price_vertex_range(Iterator begin, Iterator end,
+                            std::size_t goal_num_vertices) {
         return price_vertex_range(IteratorRange{begin, end}, goal_num_vertices);
     }
 
@@ -452,7 +475,8 @@ class IncrementalGurobiG2CliqueSolver {
      * vertices.
      * Returns true if the best clique was improved and false otherwise.
      */
-    bool run_iterations(std::size_t num_iterations, const std::vector<FullVertexIndex>& vertices);
+    bool run_iterations(std::size_t num_iterations,
+                        const std::vector<FullVertexIndex>& vertices);
 
     /**
      * Get the best clique.
@@ -464,14 +488,12 @@ class IncrementalGurobiG2CliqueSolver {
     /**
      * Turn the problem into a MIP with lazy non-edge constraints and solve it.
      * Returns true if the best clique was improved and false otherwise.
-     * @throws InterruptError if the computation was interrupted, but not before updating
-     *                        the best clique, if a better one was found.
+     * @throws InterruptError if the computation was interrupted, but not before
+     * updating the best clique, if a better one was found.
      */
     bool run_as_mip();
 
-    LazyG2AdjacencyMatrix& adjacency_matrix() noexcept {
-        return *m_adj;
-    }
+    LazyG2AdjacencyMatrix& adjacency_matrix() noexcept { return *m_adj; }
 
     const LazyG2AdjacencyMatrix& adjacency_matrix() const noexcept {
         return *m_adj;
@@ -493,7 +515,7 @@ class IncrementalGurobiG2CliqueSolver {
     /**
      * Array of all (potential) clique vertex variables.
      * Index i corresponds to index i in m_all_vertices.
-     * The variable is present if and only if the 
+     * The variable is present if and only if the
      * corresponding bit in m_present_in_clique_model is set.
      */
     std::vector<GRBVar> m_all_clique_vars;
@@ -523,10 +545,11 @@ class IncrementalGurobiG2CliqueSolver {
 
     /**
      * For each concrete literal, the list of vertex indices
-     * into m_existing_clique_vars containing that literal 
+     * into m_existing_clique_vars containing that literal
      * (that are present in the clique).
      */
-    std::vector<std::vector<CliqueModelIndex>> m_present_vertices_with_concrete_literal;
+    std::vector<std::vector<CliqueModelIndex>>
+        m_present_vertices_with_concrete_literal;
 
     /**
      * The list of constraints.
@@ -542,8 +565,9 @@ class IncrementalGurobiG2CliqueSolver {
      * Entry for pricing vertices.
      */
     struct PricingEntry {
-        double dual_weight; // the LHS of the dual >= 1 constraint.
-                            // the lower, the more violated is the dual constraint.
+        double
+            dual_weight; // the LHS of the dual >= 1 constraint.
+                         // the lower, the more violated is the dual constraint.
         FullVertexIndex full_index;
 
         bool operator<(const PricingEntry& other) const noexcept {
@@ -619,7 +643,8 @@ class IncrementalGurobiG2CliqueSolver {
      * objective of the last solution.
      * Used as UB on clique size.
      */
-    std::size_t m_last_rounded_objective = std::numeric_limits<std::size_t>::max();
+    std::size_t m_last_rounded_objective =
+        std::numeric_limits<std::size_t>::max();
 
     /**
      * Abortion callback for the Gurobi model.
@@ -628,20 +653,25 @@ class IncrementalGurobiG2CliqueSolver {
 
     class GurobiCallbackMIPLazyNonEdge : public GRBCallback {
       public:
-        explicit GurobiCallbackMIPLazyNonEdge(IncrementalGurobiG2CliqueSolver* that) noexcept : that(that) {}
+        explicit GurobiCallbackMIPLazyNonEdge(
+            IncrementalGurobiG2CliqueSolver* that) noexcept
+            : that(that) {}
 
         void callback() override {
-            if(get_and_clear_interrupt_flag()) {
+            if (get_and_clear_interrupt_flag()) {
                 this->abort();
                 return;
             }
-            if(where != GRB_CB_MIPSOL) {
+            if (where != GRB_CB_MIPSOL) {
                 return;
             }
-            std::unique_ptr<double[]> sol_values{this->getSolution(
-                that->m_existing_clique_vars.data(), int(that->m_existing_clique_vars.size()))};
+            std::unique_ptr<double[]> sol_values{
+                this->getSolution(that->m_existing_clique_vars.data(),
+                                  int(that->m_existing_clique_vars.size()))};
             m_sol_vertices.clear();
-            for (std::size_t i = 0, n = that->m_existing_clique_vars.size(); i < n; ++i) {
+            for (std::size_t i = 0, n = that->m_existing_clique_vars.size();
+                 i < n; ++i)
+            {
                 if (sol_values[i] > 0.5)
                     m_sol_vertices.push_back(i);
             }
@@ -650,19 +680,23 @@ class IncrementalGurobiG2CliqueSolver {
 
       private:
         void p_add_constraints() {
-            for(auto i = m_sol_vertices.begin(), e = m_sol_vertices.end(); i != e; ++i) {
+            for (auto i = m_sol_vertices.begin(), e = m_sol_vertices.end();
+                 i != e; ++i)
+            {
                 FullVertexIndex fi = that->m_full_vertex_indices[*i];
-                for(auto j = std::next(i); j != e; ++j) {
+                for (auto j = std::next(i); j != e; ++j) {
                     FullVertexIndex fj = that->m_full_vertex_indices[*j];
-                    if(that->m_adj->is_definitive_nonedge(fi, fj)) {
-                        this->addLazy(that->m_existing_clique_vars[*i] + that->m_existing_clique_vars[*j] <= 1);
+                    if (that->m_adj->is_definitive_nonedge(fi, fj)) {
+                        this->addLazy(that->m_existing_clique_vars[*i] +
+                                          that->m_existing_clique_vars[*j] <=
+                                      1);
                     }
                 }
             }
         }
 
         IncrementalGurobiG2CliqueSolver* that;
-        std::vector<CliqueModelIndex> m_sol_vertices;        
+        std::vector<CliqueModelIndex> m_sol_vertices;
     };
 
     /**
@@ -678,10 +712,12 @@ class IncrementalGurobiG2CliqueSolver {
     /**
      * Collection buffer for violated non-edges.
      */
-    std::vector<std::pair<OrderedSolutionIter, OrderedSolutionIter>> m_violated_nonedges;
+    std::vector<std::pair<OrderedSolutionIter, OrderedSolutionIter>>
+        m_violated_nonedges;
 
     /**
-     * Buffer for tracking the set of violated non-edges that we already covered.
+     * Buffer for tracking the set of violated non-edges that we already
+     * covered.
      */
     DynamicBitset m_covered_violated_nonedges;
 
@@ -697,14 +733,10 @@ class IncrementalGurobiG2CliqueSolver {
         std::vector<FullVertexIndex> inducing_vertices;
         double value;
 
-        GreedyCutCandidate(double score_only) :
-            value(score_only)
-        {}
+        GreedyCutCandidate(double score_only) : value(score_only) {}
 
-        GreedyCutCandidate(double score, std::vector<FullVertexIndex> vertices) :
-            inducing_vertices(std::move(vertices)),
-            value(score)
-        {}
+        GreedyCutCandidate(double score, std::vector<FullVertexIndex> vertices)
+            : inducing_vertices(std::move(vertices)), value(score) {}
 
         bool operator<(const GreedyCutCandidate& other) const noexcept {
             return value > other.value;
@@ -785,7 +817,7 @@ class IncrementalGurobiG2CliqueSolver {
 
     /**
      * PARAMETER:
-     * After how many rounds the gap is checked for 
+     * After how many rounds the gap is checked for
      * a sufficient improvement to continue cheap cut rounds.
      */
     std::size_t m_cheap_cut_rounds_per_gap_check = 10;
@@ -794,14 +826,14 @@ class IncrementalGurobiG2CliqueSolver {
      * Buffer for the constraint index and extension score,
      * used during constraint extension for prohibiting violated non-edges.
      */
-    std::vector<std::pair<std::size_t, int>> m_constraint_index_and_score_buffer;
+    std::vector<std::pair<std::size_t, int>>
+        m_constraint_index_and_score_buffer;
 
     struct SwitchBack {
-        explicit SwitchBack(IncrementalGurobiG2CliqueSolver* that) noexcept : that(that) {}
-        
-        ~SwitchBack() {
-            that->p_switch_to_lp();
-        }
+        explicit SwitchBack(IncrementalGurobiG2CliqueSolver* that) noexcept
+            : that(that) {}
+
+        ~SwitchBack() { that->p_switch_to_lp(); }
 
         IncrementalGurobiG2CliqueSolver* that;
     };
@@ -857,21 +889,24 @@ class IncrementalGurobiG2CliqueSolver {
      * search for partial constraints that can be extended
      * to cover the indicated violated non-edge.
      */
-    bool p_prohibit_extend_existing(OrderedSolutionIter vit, OrderedSolutionIter wit);
+    bool p_prohibit_extend_existing(OrderedSolutionIter vit,
+                                    OrderedSolutionIter wit);
 
     /**
      * Subrouting of p_prohibit_violated_nonedges:
      * search for explicit independent set constraints that
      * can be extended to cover the indicated violated non-edge.
      */
-    bool p_prohibit_extend_explicit(OrderedSolutionIter vit, OrderedSolutionIter wit);
+    bool p_prohibit_extend_explicit(OrderedSolutionIter vit,
+                                    OrderedSolutionIter wit);
 
     /**
      * Called to update datastructure and constraints
      * after extending the partial constraint indexed by constraint_index
      * from its given old trail size.
      */
-    void p_extended_partial(std::size_t constraint_index, std::size_t old_trail_size);
+    void p_extended_partial(std::size_t constraint_index,
+                            std::size_t old_trail_size);
 
     /**
      * Extend the partial assignment in m_temp_propagator
@@ -883,7 +918,7 @@ class IncrementalGurobiG2CliqueSolver {
     /**
      * Collect good and possible vertices by pricing.
      */
-    template<typename Range>
+    template <typename Range>
     bool p_price_range_collect_good_and_possible(Range&& range);
 
     /**
@@ -910,12 +945,13 @@ class IncrementalGurobiG2CliqueSolver {
 
     /**
      * Run cheap cut rounds until either no more cuts
-     * are found (returning false) or until some termination 
+     * are found (returning false) or until some termination
      * criterion is met (returning true).
      * The termination criteria are:
      *  - the best clique is optimal for the current subgraph,
-     *  - the gap between the best clique and our bound did not improve by m_cheap_cut_required_improvement
-     *    in the last m_cheap_cut_rounds_per_gap_check rounds.
+     *  - the gap between the best clique and our bound did not improve by
+     * m_cheap_cut_required_improvement in the last
+     * m_cheap_cut_rounds_per_gap_check rounds.
      *  - a total of m_max_cheap_cut_rounds rounds was performed.
      * Raise an InterruptError if the computation was interrupted or timed out.
      */
@@ -950,7 +986,8 @@ class IncrementalGurobiG2CliqueSolver {
      * by pushing the vertices in subrange from [begin, end)
      * if possible.
      */
-    double p_greedy_extend_cut(OrderedSolutionIter begin, OrderedSolutionIter end);
+    double p_greedy_extend_cut(OrderedSolutionIter begin,
+                               OrderedSolutionIter end);
 
     /**
      * Greedily attempt to generate a new cutting plane.
@@ -993,10 +1030,11 @@ class IncrementalGurobiG2CliqueSolver {
     /**
      * Get a parameter from params, or a given default.
      */
-    template<typename T, typename ParamMap>
-    T p_get_param(const ParamMap& params, const std::string& name, T default_value) const {
+    template <typename T, typename ParamMap>
+    T p_get_param(const ParamMap& params, const std::string& name,
+                  T default_value) const {
         auto found = params.find(name);
-        if(found == params.end()) {
+        if (found == params.end()) {
             return default_value;
         }
         std::istringstream data(found->second);
@@ -1015,27 +1053,34 @@ void IncrementalGurobiG2CliqueSolver::p_add_new_vertex(FullVertexIndex index) {
     m_full_vertex_indices.push_back(index);
     m_existing_clique_vars.push_back(var);
     m_all_clique_vars[index] = var;
-    m_present_vertices_with_concrete_literal[vertex.first].push_back(clique_model_index);
-    m_present_vertices_with_concrete_literal[vertex.second].push_back(clique_model_index);
+    m_present_vertices_with_concrete_literal[vertex.first].push_back(
+        clique_model_index);
+    m_present_vertices_with_concrete_literal[vertex.second].push_back(
+        clique_model_index);
 }
 
 void IncrementalGurobiG2CliqueSolver::p_add_vertex_make_column(Vertex vertex) {
     m_column_buffer.clear();
-    for(const IncrementalGurobiCliqueConstraint& constraint : m_constraints) {
-        if(!constraint.is_explicit() && constraint.contains(vertex)) {
+    for (const IncrementalGurobiCliqueConstraint& constraint : m_constraints) {
+        if (!constraint.is_explicit() && constraint.contains(vertex)) {
             m_column_buffer.addTerm(1.0, constraint.constraint());
         }
     }
 }
 
-void IncrementalGurobiG2CliqueSolver::add_complete_assignment(const DynamicBitset& bitset) {
+void IncrementalGurobiG2CliqueSolver::add_complete_assignment(
+    const DynamicBitset& bitset) {
     m_expr_buffer.clear();
     m_constraints.emplace_back(bitset);
     IncrementalGurobiCliqueConstraint& constraint = m_constraints.back();
-    for(CliqueModelIndex clique_index = 0, n = m_existing_clique_vars.size(); clique_index < n; ++clique_index) {
+    for (CliqueModelIndex clique_index = 0, n = m_existing_clique_vars.size();
+         clique_index < n; ++clique_index)
+    {
         FullVertexIndex full_index = m_full_vertex_indices[clique_index];
         Vertex vertex = m_adj->vertex(full_index);
-        if(lit::is_true_in(vertex.first, bitset) && lit::is_true_in(vertex.second, bitset)) {
+        if (lit::is_true_in(vertex.first, bitset) &&
+            lit::is_true_in(vertex.second, bitset))
+        {
             m_expr_buffer += m_existing_clique_vars[clique_index];
         }
     }
@@ -1043,15 +1088,18 @@ void IncrementalGurobiG2CliqueSolver::add_complete_assignment(const DynamicBitse
     m_raw_constraints.push_back(constraint.constraint());
 }
 
-void IncrementalGurobiG2CliqueSolver::add_partial_assignment(SharedDBPropagator propagator_) {
+void IncrementalGurobiG2CliqueSolver::add_partial_assignment(
+    SharedDBPropagator propagator_) {
     m_expr_buffer.clear();
     m_constraints.emplace_back(std::move(propagator_));
     IncrementalGurobiCliqueConstraint& constraint = m_constraints.back();
-    const SharedDBPropagator &prop = constraint.partial();
-    for(CliqueModelIndex clique_index = 0, n = m_existing_clique_vars.size(); clique_index < n; ++clique_index) {
+    const SharedDBPropagator& prop = constraint.partial();
+    for (CliqueModelIndex clique_index = 0, n = m_existing_clique_vars.size();
+         clique_index < n; ++clique_index)
+    {
         FullVertexIndex full_index = m_full_vertex_indices[clique_index];
         Vertex vertex = m_adj->vertex(full_index);
-        if(prop.is_true(vertex.first) && prop.is_true(vertex.second)) {
+        if (prop.is_true(vertex.first) && prop.is_true(vertex.second)) {
             m_expr_buffer += m_existing_clique_vars[clique_index];
         }
     }
@@ -1059,10 +1107,13 @@ void IncrementalGurobiG2CliqueSolver::add_partial_assignment(SharedDBPropagator 
     m_raw_constraints.push_back(constraint.constraint());
 }
 
-void IncrementalGurobiG2CliqueSolver::p_update_relaxed_solution(bool primal_only) {
-    m_relaxed_solution.update(m_model, m_existing_clique_vars, m_raw_constraints, primal_only);
+void IncrementalGurobiG2CliqueSolver::p_update_relaxed_solution(
+    bool primal_only) {
+    m_relaxed_solution.update(m_model, m_existing_clique_vars,
+                              m_raw_constraints, primal_only);
     m_last_objective = m_model.get(GRB_DoubleAttr_ObjVal);
-    m_last_rounded_objective = static_cast<std::size_t>(std::floor(m_last_objective + 0.001));
+    m_last_rounded_objective =
+        static_cast<std::size_t>(std::floor(m_last_objective + 0.001));
 }
 
 void IncrementalGurobiG2CliqueSolver::p_setup_model_params() {
@@ -1075,37 +1126,40 @@ void IncrementalGurobiG2CliqueSolver::p_setup_model_params() {
 
 void IncrementalGurobiG2CliqueSolver::p_solve_relaxation() {
     bool repeat = true;
-    while(repeat) {
+    while (repeat) {
         throw_if_interrupted();
         repeat = false;
         m_model.optimize();
         int status = m_model.get(GRB_IntAttr_Status);
-        if(status == GRB_INTERRUPTED || status == GRB_TIME_LIMIT ||
-           status == GRB_MEM_LIMIT || status == GRB_NODE_LIMIT ||
-           status == GRB_NODE_LIMIT || status == GRB_ITERATION_LIMIT) 
+        if (status == GRB_INTERRUPTED || status == GRB_TIME_LIMIT ||
+            status == GRB_MEM_LIMIT || status == GRB_NODE_LIMIT ||
+            status == GRB_NODE_LIMIT || status == GRB_ITERATION_LIMIT)
         {
             throw InterruptError();
         }
-        if(status != GRB_OPTIMAL) {
-            throw std::logic_error("Unexpected status after solving relaxation!");
+        if (status != GRB_OPTIMAL) {
+            throw std::logic_error(
+                "Unexpected status after solving relaxation!");
         }
         p_update_relaxed_solution();
-        if(p_round_greedy()) {
+        if (p_round_greedy()) {
             repeat = true;
         }
     }
 }
 
 bool IncrementalGurobiG2CliqueSolver::p_round_greedy() {
-    m_greedy_rounder.round_single_iteration(m_relaxed_solution, m_full_vertex_indices);
+    m_greedy_rounder.round_single_iteration(m_relaxed_solution,
+                                            m_full_vertex_indices);
     const auto& clique = m_greedy_rounder.clique();
-    if(clique.size() <= m_best_clique.size()) {
+    if (clique.size() <= m_best_clique.size()) {
         return false;
     }
     m_best_clique = clique;
     bool result = false;
-    for(FullVertexIndex vi : clique) {
-        if(m_is_present[vi]) continue;
+    for (FullVertexIndex vi : clique) {
+        if (m_is_present[vi])
+            continue;
         result = true;
         add_vertex(vi);
     }
@@ -1113,10 +1167,12 @@ bool IncrementalGurobiG2CliqueSolver::p_round_greedy() {
 }
 
 void IncrementalGurobiG2CliqueSolver::solve_full_relaxation() {
-    for(;;) {
+    for (;;) {
         p_solve_relaxation();
-        if(m_last_rounded_objective <= m_best_clique.size()) return;
-        if(!p_identify_violated_nonedges()) return;
+        if (m_last_rounded_objective <= m_best_clique.size())
+            return;
+        if (!p_identify_violated_nonedges())
+            return;
         p_prohibit_violated_nonedges();
     }
 }
@@ -1124,17 +1180,21 @@ void IncrementalGurobiG2CliqueSolver::solve_full_relaxation() {
 bool IncrementalGurobiG2CliqueSolver::p_identify_violated_nonedges() {
     m_violated_nonedges.clear();
     const auto& ordered_values = m_relaxed_solution.nonzeros();
-    for(auto i = ordered_values.begin(), e = ordered_values.end(); i != e; ++i) {
+    for (auto i = ordered_values.begin(), e = ordered_values.end(); i != e; ++i)
+    {
         double weight = i->value;
         double thresh = 1.01 - weight;
-        if(weight < thresh) break;
+        if (weight < thresh)
+            break;
         CliqueModelIndex clique_index = i->clique_model_index;
         FullVertexIndex vertex_index = m_full_vertex_indices[clique_index];
-        for(OrderedSolutionIter j = std::next(i); j != e; ++j) {
+        for (OrderedSolutionIter j = std::next(i); j != e; ++j) {
             double w_j = j->value;
-            if(w_j < thresh) break;
-            FullVertexIndex vertex_index2 = m_full_vertex_indices[j->clique_model_index];
-            if(m_adj->is_definitive_nonedge(vertex_index, vertex_index2)) {
+            if (w_j < thresh)
+                break;
+            FullVertexIndex vertex_index2 =
+                m_full_vertex_indices[j->clique_model_index];
+            if (m_adj->is_definitive_nonedge(vertex_index, vertex_index2)) {
                 m_violated_nonedges.emplace_back(i, j);
             }
         }
@@ -1146,42 +1206,49 @@ void IncrementalGurobiG2CliqueSolver::p_prohibit_violated_nonedges() {
     m_covered_violated_nonedges.assign(m_violated_nonedges.size(), false);
     auto last_first = m_relaxed_solution.nonzeros().cend();
     std::size_t num_new_constraints = 0;
-    for(std::size_t i = 0, k = m_violated_nonedges.size(); i < k; ++i) {
+    for (std::size_t i = 0, k = m_violated_nonedges.size(); i < k; ++i) {
         auto [vit, wit] = m_violated_nonedges[i];
-        if(vit == last_first || m_covered_violated_nonedges[i]) {
+        if (vit == last_first || m_covered_violated_nonedges[i]) {
             // do not generate or strengthen constraints if this non-edge
             continue;
         }
-        if(p_prohibit_extend_existing(vit, wit) || p_prohibit_extend_explicit(vit, wit)) {
-            // we have found a constraint we could strengthen to include this non-edge
+        if (p_prohibit_extend_existing(vit, wit) ||
+            p_prohibit_extend_explicit(vit, wit))
+        {
+            // we have found a constraint we could strengthen to include this
+            // non-edge
             m_covered_violated_nonedges[i].set();
             continue;
         }
         last_first = vit;
-        if(++num_new_constraints > m_prohibit_vne_max_new_constraints) {
-            // only generate constraints up to a certain number of new constraints
+        if (++num_new_constraints > m_prohibit_vne_max_new_constraints) {
+            // only generate constraints up to a certain number of new
+            // constraints
             continue;
         }
         FullVertexIndex vind = m_full_vertex_indices[vit->clique_model_index];
         FullVertexIndex wind = m_full_vertex_indices[wit->clique_model_index];
-        if(!push_vertex_pair(m_temp_propagator, m_adj->vertex(vind), m_adj->vertex(wind))) {
+        if (!push_vertex_pair(m_temp_propagator, m_adj->vertex(vind),
+                              m_adj->vertex(wind)))
+        {
             // this can rarely happen if we have new clauses in our clause DB
             // from conflict resolution; update the adjacency matrix.
-            // as we have reached this point, we do not yet have a broken constraint
-            // regarding this non-edge in our system.
+            // as we have reached this point, we do not yet have a broken
+            // constraint regarding this non-edge in our system.
             m_adj->nonedge_to_edge(vind, wind);
             m_covered_violated_nonedges[i].set();
             continue;
         }
         m_covered_violated_nonedges[i].set();
-        p_extend_nonedge_cover_greedy(i+1, k);
+        p_extend_nonedge_cover_greedy(i + 1, k);
         p_extend_nonedge_cover_greedy(0, i);
         add_partial_assignment(m_temp_propagator);
         m_temp_propagator.reset_to_zero();
     }
 }
 
-bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_existing(OrderedSolutionIter vit, OrderedSolutionIter wit) {
+bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_existing(
+    OrderedSolutionIter vit, OrderedSolutionIter wit) {
     CliqueModelIndex ci1 = vit->clique_model_index;
     CliqueModelIndex ci2 = wit->clique_model_index;
     FullVertexIndex fi1 = m_full_vertex_indices[ci1];
@@ -1189,21 +1256,23 @@ bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_existing(OrderedSolution
     Vertex v1 = m_adj->vertex(fi1);
     Vertex v2 = m_adj->vertex(fi2);
     m_constraint_index_and_score_buffer.clear();
-    for(std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
-        if(!m_constraints[i].is_partial()) continue;
+    for (std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
+        if (!m_constraints[i].is_partial())
+            continue;
         auto& prop = m_constraints[i].partial();
-        if(prop.is_false(v1.first) || prop.is_false(v1.second) ||
-           prop.is_false(v2.first) || prop.is_false(v2.second)) continue;
+        if (prop.is_false(v1.first) || prop.is_false(v1.second) ||
+            prop.is_false(v2.first) || prop.is_false(v2.second))
+            continue;
         int score = int(prop.is_open(v1.first)) + prop.is_open(v1.second);
-        if(v2.first != v1.first && v2.first != v1.second) {
+        if (v2.first != v1.first && v2.first != v1.second) {
             score += prop.is_open(v2.first);
         }
-        if(v2.second != v1.first && v2.second != v1.second) {
+        if (v2.second != v1.first && v2.second != v1.second) {
             score += prop.is_open(v2.second);
         }
-        if(score == 1) {
+        if (score == 1) {
             std::size_t trail_length = prop.get_trail().size();
-            if(push_vertex_pair(prop, v1, v2)) {
+            if (push_vertex_pair(prop, v1, v2)) {
                 p_extended_partial(i, trail_length);
                 return true;
             } else {
@@ -1212,12 +1281,13 @@ bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_existing(OrderedSolution
         }
         m_constraint_index_and_score_buffer.emplace_back(i, score);
     }
-    for(int goal_score = 2; goal_score < 5; ++goal_score) {
-        for(auto entry : m_constraint_index_and_score_buffer) {
-            if(entry.second != goal_score) continue;
+    for (int goal_score = 2; goal_score < 5; ++goal_score) {
+        for (auto entry : m_constraint_index_and_score_buffer) {
+            if (entry.second != goal_score)
+                continue;
             auto& prop = m_constraints[entry.first].partial();
             std::size_t trail_length = prop.get_trail().size();
-            if(push_vertex_pair(prop, v1, v2)) {
+            if (push_vertex_pair(prop, v1, v2)) {
                 p_extended_partial(entry.first, trail_length);
                 return true;
             }
@@ -1226,54 +1296,70 @@ bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_existing(OrderedSolution
     return false;
 }
 
-void IncrementalGurobiG2CliqueSolver::p_extended_partial(std::size_t constraint_index, std::size_t old_trail_size) {
+void IncrementalGurobiG2CliqueSolver::p_extended_partial(
+    std::size_t constraint_index, std::size_t old_trail_size) {
     assert(m_constraints.size() > constraint_index);
     assert(m_constraints[constraint_index].is_partial());
-    assert(m_constraints[constraint_index].partial().get_trail().size() >= old_trail_size);
+    assert(m_constraints[constraint_index].partial().get_trail().size() >=
+           old_trail_size);
     const SharedDBPropagator& prop = m_constraints[constraint_index].partial();
     const auto& trail = prop.get_trail();
     GRBConstr constr = m_constraints[constraint_index].constraint();
     const Lit nclit = 2 * m_adj->num_concrete();
-    for(Lit lnew : IteratorRange{trail.begin() + old_trail_size, trail.end()}) {
-        if(lnew >= nclit) continue;
-        for(CliqueModelIndex clique_model_index : m_present_vertices_with_concrete_literal[lnew]) {
-            FullVertexIndex full_index = m_full_vertex_indices[clique_model_index];
+    for (Lit lnew : IteratorRange{trail.begin() + old_trail_size, trail.end()})
+    {
+        if (lnew >= nclit)
+            continue;
+        for (CliqueModelIndex clique_model_index :
+             m_present_vertices_with_concrete_literal[lnew])
+        {
+            FullVertexIndex full_index =
+                m_full_vertex_indices[clique_model_index];
             Vertex v = m_adj->vertex(full_index);
-            if(v.first == lnew) {
-                if(prop.is_true(v.second)) {
-                    m_model.chgCoeff(constr, m_existing_clique_vars[clique_model_index], 1.0);
+            if (v.first == lnew) {
+                if (prop.is_true(v.second)) {
+                    m_model.chgCoeff(constr,
+                                     m_existing_clique_vars[clique_model_index],
+                                     1.0);
                 }
             } else {
-                if(prop.is_true(v.first)) {
-                    m_model.chgCoeff(constr, m_existing_clique_vars[clique_model_index], 1.0);
+                if (prop.is_true(v.first)) {
+                    m_model.chgCoeff(constr,
+                                     m_existing_clique_vars[clique_model_index],
+                                     1.0);
                 }
             }
         }
     }
 }
 
-void IncrementalGurobiG2CliqueSolver::p_extend_nonedge_cover_greedy(std::size_t ibegin, std::size_t iend) {
-    for(std::size_t j = ibegin; j < iend; ++j) {
-        if(m_covered_violated_nonedges[j]) continue;
+void IncrementalGurobiG2CliqueSolver::p_extend_nonedge_cover_greedy(
+    std::size_t ibegin, std::size_t iend) {
+    for (std::size_t j = ibegin; j < iend; ++j) {
+        if (m_covered_violated_nonedges[j])
+            continue;
         auto [vit, wit] = m_violated_nonedges[j];
         CliqueModelIndex ci1 = vit->clique_model_index;
         CliqueModelIndex ci2 = wit->clique_model_index;
         Vertex v1 = m_adj->vertex(m_full_vertex_indices[ci1]);
         Vertex v2 = m_adj->vertex(m_full_vertex_indices[ci2]);
-        if(m_temp_propagator.is_false(v1.first) || m_temp_propagator.is_false(v1.second) ||
-           m_temp_propagator.is_false(v2.first) || m_temp_propagator.is_false(v2.second))
+        if (m_temp_propagator.is_false(v1.first) ||
+            m_temp_propagator.is_false(v1.second) ||
+            m_temp_propagator.is_false(v2.first) ||
+            m_temp_propagator.is_false(v2.second))
         {
             continue;
         }
-        if(push_vertex_pair(m_temp_propagator, v1, v2)) {
+        if (push_vertex_pair(m_temp_propagator, v1, v2)) {
             m_covered_violated_nonedges[j].set();
         }
     }
 }
 
-template<typename Range>
-bool IncrementalGurobiG2CliqueSolver::price_vertex_range(Range&& range, std::size_t goal) {
-    if(!p_price_range_collect_good_and_possible(std::forward<Range>(range))) {
+template <typename Range>
+bool IncrementalGurobiG2CliqueSolver::price_vertex_range(Range&& range,
+                                                         std::size_t goal) {
+    if (!p_price_range_collect_good_and_possible(std::forward<Range>(range))) {
         return false;
     }
     p_select_priced_vertices(goal);
@@ -1282,20 +1368,22 @@ bool IncrementalGurobiG2CliqueSolver::price_vertex_range(Range&& range, std::siz
     return true;
 }
 
-template<typename Range>
-bool IncrementalGurobiG2CliqueSolver::p_price_range_collect_good_and_possible(Range&& range) {
+template <typename Range>
+bool IncrementalGurobiG2CliqueSolver::p_price_range_collect_good_and_possible(
+    Range&& range) {
     m_pricing_good.clear();
     m_pricing_possible.clear();
     std::size_t abort_check = 0;
-    for(FullVertexIndex fi : range) {
-        if(m_is_present[fi]) continue;
+    for (FullVertexIndex fi : range) {
+        if (m_is_present[fi])
+            continue;
         double dual_weight = p_dual_lhs(m_adj->vertex(fi));
-        if(dual_weight <= 0.99) {
+        if (dual_weight <= 0.99) {
             m_pricing_good.push_back({dual_weight, fi});
-        } else if(!m_pricing_ignore_possible && dual_weight <= 1.01) {
+        } else if (!m_pricing_ignore_possible && dual_weight <= 1.01) {
             m_pricing_possible.push_back({dual_weight, fi});
         }
-        if(++abort_check == 16384) {
+        if (++abort_check == 16384) {
             abort_check = 0;
             throw_if_interrupted();
         }
@@ -1307,30 +1395,35 @@ double IncrementalGurobiG2CliqueSolver::p_dual_lhs(Vertex v) {
     double value = 0.0;
     const std::size_t ncons = m_constraints.size();
     const double* dual_values = m_relaxed_solution.dual_values();
-    for(std::size_t ci = 0; ci < ncons; ++ci) {
-        if(m_constraints[ci].contains(v)) {
+    for (std::size_t ci = 0; ci < ncons; ++ci) {
+        if (m_constraints[ci].contains(v)) {
             value += dual_values[ci];
         }
     }
     return value;
 }
 
-void IncrementalGurobiG2CliqueSolver::p_select_priced_vertices(std::size_t goal) {
+void IncrementalGurobiG2CliqueSolver::p_select_priced_vertices(
+    std::size_t goal) {
     m_pricing_selected.clear();
 
-    auto select_from = [&] (std::vector<PricingEntry>& entries) {
-        if(goal >= entries.size()) {
-            std::transform(entries.begin(), entries.end(), std::back_inserter(m_pricing_selected),
-                           [] (const PricingEntry& entry) { return entry.full_index; });
+    auto select_from = [&](std::vector<PricingEntry>& entries) {
+        if (goal >= entries.size()) {
+            std::transform(
+                entries.begin(), entries.end(),
+                std::back_inserter(m_pricing_selected),
+                [](const PricingEntry& entry) { return entry.full_index; });
         } else {
             auto relevant_end = entries.begin() + goal;
             std::nth_element(entries.begin(), relevant_end, entries.end());
-            std::transform(entries.begin(), relevant_end, std::back_inserter(m_pricing_selected),
-                           [] (const PricingEntry& entry) { return entry.full_index; });
+            std::transform(
+                entries.begin(), relevant_end,
+                std::back_inserter(m_pricing_selected),
+                [](const PricingEntry& entry) { return entry.full_index; });
         }
     };
 
-    if(!m_pricing_good.empty()) {
+    if (!m_pricing_good.empty()) {
         select_from(m_pricing_good);
     } else {
         select_from(m_pricing_possible);
@@ -1338,9 +1431,8 @@ void IncrementalGurobiG2CliqueSolver::p_select_priced_vertices(std::size_t goal)
 }
 
 bool IncrementalGurobiG2CliqueSolver::p_cheap_cut_round() {
-    if(p_greedy_cut_extend_explicit() ||
-       p_greedy_cut_extend_constraints() ||
-       p_greedy_generate_cuts()) 
+    if (p_greedy_cut_extend_explicit() || p_greedy_cut_extend_constraints() ||
+        p_greedy_generate_cuts())
     {
         solve_full_relaxation();
         return true;
@@ -1359,21 +1451,23 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_extend_explicit() {
     };
 
     std::vector<AchievableValue> achievable_values;
-    for(std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
-        if(!m_constraints[i].is_explicit()) continue;
+    for (std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
+        if (!m_constraints[i].is_explicit())
+            continue;
         auto& eset = m_constraints[i].explicit_set();
         double total_value = 0.0;
         double existing_value;
-        for(CliqueModelIndex i : eset.clique_model_indices()) {
+        for (CliqueModelIndex i : eset.clique_model_indices()) {
             total_value += m_relaxed_solution[i];
         }
         existing_value = total_value;
-        for(const auto& ov : m_relaxed_solution.nonzeros()) {
+        for (const auto& ov : m_relaxed_solution.nonzeros()) {
             std::size_t fi = m_full_vertex_indices[ov.clique_model_index];
-            if(!eset.extendable(fi)) continue;
+            if (!eset.extendable(fi))
+                continue;
             total_value += ov.value;
         }
-        if(total_value <= 1.01) {
+        if (total_value <= 1.01) {
             continue;
         }
         achievable_values.push_back({total_value, existing_value, i});
@@ -1382,36 +1476,39 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_extend_explicit() {
     std::sort(achievable_values.begin(), achievable_values.end());
     std::size_t num_cuts = 0;
     std::vector<std::pair<FullVertexIndex, CliqueModelIndex>> added_buffer;
-    auto is_independent = [&] (FullVertexIndex f) {
-        for(auto entry : added_buffer) {
-            if(!m_adj->is_definitive_nonedge(f, entry.first)) {
+    auto is_independent = [&](FullVertexIndex f) {
+        for (auto entry : added_buffer) {
+            if (!m_adj->is_definitive_nonedge(f, entry.first)) {
                 return false;
             }
         }
         return true;
     };
-    for(const AchievableValue& av : achievable_values) {
-        if(num_cuts >= m_greedy_cut_extension_max_num_cuts) {
+    for (const AchievableValue& av : achievable_values) {
+        if (num_cuts >= m_greedy_cut_extension_max_num_cuts) {
             break;
         }
         auto& constr = m_constraints[av.constraint_index];
         auto& eset = constr.explicit_set();
         added_buffer.clear();
         double value = av.existing_value;
-        for(const auto& ov : m_relaxed_solution.nonzeros()) {
+        for (const auto& ov : m_relaxed_solution.nonzeros()) {
             std::size_t fi = m_full_vertex_indices[ov.clique_model_index];
-            if(!eset.extendable(fi)) continue;
-            if(is_independent(fi)) {
+            if (!eset.extendable(fi))
+                continue;
+            if (is_independent(fi)) {
                 added_buffer.emplace_back(fi, ov.clique_model_index);
                 value += ov.value;
             }
         }
-        if(value >= 1.01) {
-            for(auto entry : added_buffer) {
-                if(!eset.extend_if_possible(entry.first, entry.second)) {
-                    throw std::logic_error("Could not extend explicit set even though it should be possible!");
+        if (value >= 1.01) {
+            for (auto entry : added_buffer) {
+                if (!eset.extend_if_possible(entry.first, entry.second)) {
+                    throw std::logic_error("Could not extend explicit set even "
+                                           "though it should be possible!");
                 }
-                m_model.chgCoeff(constr.constraint(), m_existing_clique_vars[entry.second], 1.0);
+                m_model.chgCoeff(constr.constraint(),
+                                 m_existing_clique_vars[entry.second], 1.0);
             }
             num_cuts += 1;
         }
@@ -1429,25 +1526,27 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_extend_constraints() {
     };
 
     std::vector<AchievableValue> achievable_values;
-    for(std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
-        if(!m_constraints[i].is_partial()) continue;
+    for (std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
+        if (!m_constraints[i].is_partial())
+            continue;
         auto& prop = m_constraints[i].partial();
         double total_value = 0.0;
-        for(const auto& ov : m_relaxed_solution.nonzeros()) {
+        for (const auto& ov : m_relaxed_solution.nonzeros()) {
             CliqueModelIndex ci = ov.clique_model_index;
             FullVertexIndex fi = m_full_vertex_indices[ci];
             Vertex v = m_adj->vertex(fi);
-            if(!can_push(prop, v)) continue;
+            if (!can_push(prop, v))
+                continue;
             total_value += ov.value;
         }
-        if(total_value >= 1.01) {
+        if (total_value >= 1.01) {
             achievable_values.push_back({total_value, i});
         }
     }
     std::sort(achievable_values.begin(), achievable_values.end());
     std::size_t num_cuts = 0;
-    for(const AchievableValue& av : achievable_values) {
-        if(num_cuts >= m_greedy_cut_extension_max_num_cuts) {
+    for (const AchievableValue& av : achievable_values) {
+        if (num_cuts >= m_greedy_cut_extension_max_num_cuts) {
             break;
         }
         num_cuts += p_greedy_cut_attempt_expansion(av.constraint_index);
@@ -1455,25 +1554,27 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_extend_constraints() {
     return num_cuts > 0;
 }
 
-bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_attempt_expansion(std::size_t constraint_index) {
+bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_attempt_expansion(
+    std::size_t constraint_index) {
     assert(constraint_index < m_constraints.size());
     assert(m_constraints[constraint_index].is_partial());
     SharedDBPropagator& prop = m_constraints[constraint_index].partial();
     double total_value = 0.0;
     std::size_t old_trail_length = prop.get_trail().size();
     auto old_level = prop.get_current_level();
-    for(const auto& ov : m_relaxed_solution.nonzeros()) {
+    for (const auto& ov : m_relaxed_solution.nonzeros()) {
         CliqueModelIndex ci = ov.clique_model_index;
         FullVertexIndex vi = m_full_vertex_indices[ci];
         Vertex v = m_adj->vertex(vi);
-        if(push_vertex(prop, v) >= 0) total_value += ov.value;
+        if (push_vertex(prop, v) >= 0)
+            total_value += ov.value;
     }
-    if(total_value >= 1.01) {
+    if (total_value >= 1.01) {
         p_extended_partial(constraint_index, old_trail_length);
         return true;
     }
-    if(m_greedy_cut_extension_undo_failed_extensions) {
-        while(prop.get_current_level() > old_level) {
+    if (m_greedy_cut_extension_undo_failed_extensions) {
+        while (prop.get_current_level() > old_level) {
             prop.pop_level();
         }
     } else {
@@ -1482,15 +1583,15 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_cut_attempt_expansion(std::size_t
     return false;
 }
 
-double IncrementalGurobiG2CliqueSolver::p_greedy_extend_cut(
-    OrderedSolutionIter begin, OrderedSolutionIter end) 
-{
+double
+IncrementalGurobiG2CliqueSolver::p_greedy_extend_cut(OrderedSolutionIter begin,
+                                                     OrderedSolutionIter end) {
     double total = 0.0;
-    for(OrderedSolutionIter i = begin; i != end; ++i) {
+    for (OrderedSolutionIter i = begin; i != end; ++i) {
         CliqueModelIndex ci = i->clique_model_index;
         FullVertexIndex fi = m_full_vertex_indices[ci];
         Vertex v = m_adj->vertex(fi);
-        if(push_vertex(m_temp_propagator, v) < 0) {
+        if (push_vertex(m_temp_propagator, v) < 0) {
             continue;
         }
         m_greedy_cut_buffer.push_back(fi);
@@ -1502,25 +1603,31 @@ double IncrementalGurobiG2CliqueSolver::p_greedy_extend_cut(
 bool IncrementalGurobiG2CliqueSolver::p_greedy_generate_cuts() {
     const auto& nonzeros = m_relaxed_solution.nonzeros();
     m_greedy_cut_candidates.clear();
-    for(OrderedSolutionIter b = nonzeros.begin(), i = b, e = nonzeros.end(); i != e; ++i)
+    for (OrderedSolutionIter b = nonzeros.begin(), i = b, e = nonzeros.end();
+         i != e; ++i)
     {
         assert(m_temp_propagator.get_current_level() == 0);
         m_greedy_cut_buffer.clear();
         double v = p_greedy_extend_cut(i, e);
         v += p_greedy_extend_cut(b, i);
-        if(v >= 1.01 && m_greedy_cut_candidates.would_push(GreedyCutCandidate{v})) {
+        if (v >= 1.01 &&
+            m_greedy_cut_candidates.would_push(GreedyCutCandidate{v}))
+        {
             m_greedy_cut_candidates.emplace(v, m_greedy_cut_buffer);
         }
         m_temp_propagator.reset_to_zero();
     }
-    if(m_greedy_cut_candidates.elements().empty()) {
+    if (m_greedy_cut_candidates.elements().empty()) {
         return false;
     }
-    for(const GreedyCutCandidate& candidate : m_greedy_cut_candidates.elements()) {
-        for(std::size_t vertex : candidate.inducing_vertices) {
+    for (const GreedyCutCandidate& candidate :
+         m_greedy_cut_candidates.elements())
+    {
+        for (std::size_t vertex : candidate.inducing_vertices) {
             Vertex v = m_adj->vertex(vertex);
-            if(push_vertex(m_temp_propagator, v) < 0) {
-                throw std::logic_error("Incorrect greedy cut candidate: produced conflict!");
+            if (push_vertex(m_temp_propagator, v) < 0) {
+                throw std::logic_error(
+                    "Incorrect greedy cut candidate: produced conflict!");
             }
         }
         add_partial_assignment(m_temp_propagator);
@@ -1530,41 +1637,46 @@ bool IncrementalGurobiG2CliqueSolver::p_greedy_generate_cuts() {
 }
 
 double IncrementalGurobiG2CliqueSolver::p_relative_gap() const {
-    if(optimal_on_current_vertices()) return 0.0;
+    if (optimal_on_current_vertices())
+        return 0.0;
     double best = static_cast<double>(m_best_clique.size());
     return (m_last_objective - best) / best;
 }
 
 bool IncrementalGurobiG2CliqueSolver::p_cheap_cut_rounds() {
-    if(optimal_on_current_vertices()) {
+    if (optimal_on_current_vertices()) {
         return false;
     }
     std::size_t last_checked_at = 0;
     double last_gap = p_relative_gap();
-    for(std::size_t num_rounds_total = 0; num_rounds_total < m_max_cheap_cut_rounds; ++num_rounds_total) {
-        if(num_rounds_total - last_checked_at == m_cheap_cut_rounds_per_gap_check) {
+    for (std::size_t num_rounds_total = 0;
+         num_rounds_total < m_max_cheap_cut_rounds; ++num_rounds_total)
+    {
+        if (num_rounds_total - last_checked_at ==
+            m_cheap_cut_rounds_per_gap_check)
+        {
             double gap = p_relative_gap();
-            if(gap > last_gap - m_max_cheap_cut_required_improvement) {
+            if (gap > last_gap - m_max_cheap_cut_required_improvement) {
                 break;
             }
             last_gap = gap;
             last_checked_at = num_rounds_total;
         }
-        if(!p_cheap_cut_round()) {
+        if (!p_cheap_cut_round()) {
             return false;
         }
-        if(optimal_on_current_vertices()) {
+        if (optimal_on_current_vertices()) {
             break;
         }
     }
     return true;
 }
 
-bool IncrementalGurobiG2CliqueSolver::run_iterations(std::size_t num_iterations, 
-                                                     const std::vector<FullVertexIndex>& vertices) 
-{
-    auto pricing_goal = [&] () -> std::size_t {
-        std::size_t fraction_of_existing = m_full_vertex_indices.size() * m_pricing_goal_fraction_existing;
+bool IncrementalGurobiG2CliqueSolver::run_iterations(
+    std::size_t num_iterations, const std::vector<FullVertexIndex>& vertices) {
+    auto pricing_goal = [&]() -> std::size_t {
+        std::size_t fraction_of_existing =
+            m_full_vertex_indices.size() * m_pricing_goal_fraction_existing;
         std::size_t hard_min = m_pricing_goal_min;
         std::size_t hard_max = m_pricing_goal_max;
         std::size_t value = (std::max)(fraction_of_existing, hard_min);
@@ -1574,22 +1686,23 @@ bool IncrementalGurobiG2CliqueSolver::run_iterations(std::size_t num_iterations,
     };
 
     std::size_t old_clique_size = m_best_clique.size();
-    if(m_relaxed_solution.nonzeros().empty()) {
+    if (m_relaxed_solution.nonzeros().empty()) {
         solve_full_relaxation();
     }
     bool cuts_are_stuck = false;
-    for(std::size_t i = 0; i < num_iterations; ++i) {
-        if(optimal_on_current_vertices() || cuts_are_stuck) {
-            if(optimal_on_current_vertices()) {
+    for (std::size_t i = 0; i < num_iterations; ++i) {
+        if (optimal_on_current_vertices() || cuts_are_stuck) {
+            if (optimal_on_current_vertices()) {
             }
-            if(!price_vertex_range(vertices, pricing_goal())) {
+            if (!price_vertex_range(vertices, pricing_goal())) {
                 break;
             }
-            cuts_are_stuck = !optimal_on_current_vertices() && !p_cheap_cut_rounds();
+            cuts_are_stuck =
+                !optimal_on_current_vertices() && !p_cheap_cut_rounds();
         } else {
             cuts_are_stuck = !p_cheap_cut_rounds();
-            if(!price_vertex_range(vertices, pricing_goal())) {
-                if(cuts_are_stuck) {
+            if (!price_vertex_range(vertices, pricing_goal())) {
+                if (cuts_are_stuck) {
                     break;
                 }
             } else {
@@ -1608,11 +1721,11 @@ void IncrementalGurobiG2CliqueSolver::p_init_extend_local_clique() {
 void IncrementalGurobiG2CliqueSolver::p_initial_random_local_cliques() {
     auto& rng = sammy::rng();
     std::uniform_int_distribution<std::size_t> dist(0, m_adj->n() - 1);
-    for(std::size_t i = 0; i < m_initial_random_local_cliques; ++i) {
+    for (std::size_t i = 0; i < m_initial_random_local_cliques; ++i) {
         m_greedy_rounder.randomly_extend_given_clique({dist(rng)});
         const auto& clique = m_greedy_rounder.clique();
         add_vertices(clique);
-        if(clique.size() > m_best_clique.size()) {
+        if (clique.size() > m_best_clique.size()) {
             m_best_clique = clique;
         }
     }
@@ -1631,30 +1744,31 @@ bool IncrementalGurobiG2CliqueSolver::run_as_mip() {
     m_model.optimize();
     int status = m_model.get(GRB_IntAttr_Status);
     bool result = false;
-    if(m_model.get(GRB_IntAttr_SolCount) != 0) {
+    if (m_model.get(GRB_IntAttr_SolCount) != 0) {
         p_update_relaxed_solution(/*primal_only=*/true);
-        if(p_round_greedy()) {
+        if (p_round_greedy()) {
             result = true;
         }
     }
-    if(status == GRB_INTERRUPTED || status == GRB_TIME_LIMIT ||
+    if (status == GRB_INTERRUPTED || status == GRB_TIME_LIMIT ||
         status == GRB_MEM_LIMIT || status == GRB_NODE_LIMIT ||
-        status == GRB_NODE_LIMIT || status == GRB_ITERATION_LIMIT) 
+        status == GRB_NODE_LIMIT || status == GRB_ITERATION_LIMIT)
     {
         throw InterruptError();
     }
-    if(status != GRB_OPTIMAL) {
+    if (status != GRB_OPTIMAL) {
         throw std::logic_error("Unexpected status after solving relaxation!");
     }
     return result;
 }
 
-IncrementalGurobiG2CliqueSolver::SwitchBack IncrementalGurobiG2CliqueSolver::p_switch_to_mip() {
-    for(GRBVar var : m_existing_clique_vars) {
+IncrementalGurobiG2CliqueSolver::SwitchBack
+IncrementalGurobiG2CliqueSolver::p_switch_to_mip() {
+    for (GRBVar var : m_existing_clique_vars) {
         var.set(GRB_CharAttr_VType, GRB_BINARY);
         var.set(GRB_DoubleAttr_Start, 0.0);
     }
-    for(FullVertexIndex fi : m_best_clique) {
+    for (FullVertexIndex fi : m_best_clique) {
         m_all_clique_vars[fi].set(GRB_DoubleAttr_Start, 1.0);
     }
     m_model.set(GRB_IntParam_LazyConstraints, 1);
@@ -1662,7 +1776,8 @@ IncrementalGurobiG2CliqueSolver::SwitchBack IncrementalGurobiG2CliqueSolver::p_s
     return SwitchBack(this);
 }
 
-bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_explicit(OrderedSolutionIter vit, OrderedSolutionIter wit) {
+bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_explicit(
+    OrderedSolutionIter vit, OrderedSolutionIter wit) {
     CliqueModelIndex ci1 = vit->clique_model_index;
     CliqueModelIndex ci2 = wit->clique_model_index;
     FullVertexIndex fi1 = m_full_vertex_indices[ci1];
@@ -1670,26 +1785,28 @@ bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_explicit(OrderedSolution
     GRBVar var1 = m_existing_clique_vars[ci1];
     GRBVar var2 = m_existing_clique_vars[ci2];
     m_constraint_index_and_score_buffer.clear();
-    for(std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
-        if(!m_constraints[i].is_explicit()) continue;
+    for (std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
+        if (!m_constraints[i].is_explicit())
+            continue;
         auto& expl = m_constraints[i].explicit_set();
-        if(expl.contains(fi1)) {
-            if(expl.extend_if_possible(fi2, ci2)) {
+        if (expl.contains(fi1)) {
+            if (expl.extend_if_possible(fi2, ci2)) {
                 m_model.chgCoeff(m_constraints[i].constraint(), var2, 1.0);
                 return true;
             }
         }
-        if(expl.contains(fi2)) {
-            if(expl.extend_if_possible(fi1, ci1)) {
+        if (expl.contains(fi2)) {
+            if (expl.extend_if_possible(fi1, ci1)) {
                 m_model.chgCoeff(m_constraints[i].constraint(), var1, 1.0);
                 return true;
             }
         }
     }
-    for(std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
-        if(!m_constraints[i].is_explicit()) continue;
+    for (std::size_t i = 0, ncons = m_constraints.size(); i < ncons; ++i) {
+        if (!m_constraints[i].is_explicit())
+            continue;
         auto& expl = m_constraints[i].explicit_set();
-        if(expl.extend_if_possible(fi1, ci1, fi2, ci2)) {
+        if (expl.extend_if_possible(fi1, ci1, fi2, ci2)) {
             m_model.chgCoeff(m_constraints[i].constraint(), var1, 1.0);
             m_model.chgCoeff(m_constraints[i].constraint(), var2, 1.0);
             return true;
@@ -1699,7 +1816,7 @@ bool IncrementalGurobiG2CliqueSolver::p_prohibit_extend_explicit(OrderedSolution
 }
 
 void IncrementalGurobiG2CliqueSolver::p_switch_to_lp() {
-    for(GRBVar var : m_existing_clique_vars) {
+    for (GRBVar var : m_existing_clique_vars) {
         var.set(GRB_CharAttr_VType, GRB_CONTINUOUS);
     }
     m_model.set(GRB_IntParam_LazyConstraints, 0);

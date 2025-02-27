@@ -1,25 +1,24 @@
 #ifndef SAMMY_CLIQUE_OR_INDSET_BUILDER_H_INCLUDED_
 #define SAMMY_CLIQUE_OR_INDSET_BUILDER_H_INCLUDED_
 
-#include "literals.h"
 #include "dynamic_bitset.h"
+#include "literals.h"
 #include "parallel_bit_filter.h"
 #include <boost/iterator/transform_iterator.hpp>
 
 namespace sammy {
 
-template <typename GraphType, bool BuildingClique> 
-class CliqueOrIndependentSetBuilder 
-{
+template <typename GraphType, bool BuildingClique>
+class CliqueOrIndependentSetBuilder {
   public:
-    explicit CliqueOrIndependentSetBuilder(GraphType* graph, BitsetOperationsBuffer* parallel_bits)
+    explicit CliqueOrIndependentSetBuilder(
+        GraphType* graph, BitsetOperationsBuffer* parallel_bits)
         : graph(graph), parallel_bits(parallel_bits),
-          possible_vertices(graph->n(), true) 
-    {}
+          possible_vertices(graph->n(), true) {}
 
     void reset_vertices() {
         auto g_n = graph->n();
-        if(possible_vertices.size() != g_n) {
+        if (possible_vertices.size() != g_n) {
             possible_vertices.resize(g_n);
         }
         possible_vertices.set();
@@ -31,7 +30,7 @@ class CliqueOrIndependentSetBuilder
         if (initial.empty()) {
             return;
         }
-        auto transform_to_index = [this] (Vertex v) {
+        auto transform_to_index = [this](Vertex v) {
             return graph->vertex_index(v);
         };
         std::transform(initial.begin(), initial.end(),
@@ -49,19 +48,20 @@ class CliqueOrIndependentSetBuilder
             boost::make_transform_iterator<decltype(index_to_bitset)>(
                 clique_vertices.end());
         if constexpr (BuildingClique) {
-            sammy::bitwise_and(*parallel_bits, possible_vertices, bitset_begin, bitset_end);
+            sammy::bitwise_and(*parallel_bits, possible_vertices, bitset_begin,
+                               bitset_end);
         } else {
-            sammy::bitwise_filter(*parallel_bits, possible_vertices, bitset_begin, bitset_end);
+            sammy::bitwise_filter(*parallel_bits, possible_vertices,
+                                  bitset_begin, bitset_end);
         }
     }
 
     template <typename RNG> void randomly_make_maximal(RNG& rng) {
         for (;;) {
             bool success = false;
-            std::uniform_int_distribution<std::size_t> indices(
-                0, graph->n() - 1);
-            for (std::size_t trial_count = 0; trial_count < 100;
-                    ++trial_count)
+            std::uniform_int_distribution<std::size_t> indices(0,
+                                                               graph->n() - 1);
+            for (std::size_t trial_count = 0; trial_count < 100; ++trial_count)
             {
                 auto index = indices(rng);
                 if (possible_vertices[index]) {
@@ -73,8 +73,8 @@ class CliqueOrIndependentSetBuilder
             if (!success) {
                 possible_buffer.clear();
                 std::copy(possible_vertices.ones_begin(),
-                            possible_vertices.ones_end(),
-                            std::back_inserter(possible_buffer));
+                          possible_vertices.ones_end(),
+                          std::back_inserter(possible_buffer));
                 while (!possible_buffer.empty()) {
                     std::uniform_int_distribution<std::size_t> iindex_dist(
                         0, possible_buffer.size() - 1);
@@ -83,10 +83,10 @@ class CliqueOrIndependentSetBuilder
                     add_vertex(vindex);
                     possible_buffer.erase(
                         std::remove_if(possible_buffer.begin(),
-                                        possible_buffer.end(),
-                                        [&](std::size_t v) {
-                                            return !possible_vertices[v];
-                                        }),
+                                       possible_buffer.end(),
+                                       [&](std::size_t v) {
+                                           return !possible_vertices[v];
+                                       }),
                         possible_buffer.end());
                 }
                 return;
@@ -116,8 +116,8 @@ class CliqueOrIndependentSetBuilder
         std::vector<Vertex> result;
         result.reserve(clique_vertices.size());
         std::transform(clique_vertices.begin(), clique_vertices.end(),
-                        std::back_inserter(result),
-                        [&](std::size_t i) { return graph->vertex(i); });
+                       std::back_inserter(result),
+                       [&](std::size_t i) { return graph->vertex(i); });
         return result;
     }
 
@@ -162,11 +162,11 @@ class CliqueOrIndependentSetBuilder
     std::vector<std::size_t> possible_buffer;
 };
 
-template<typename GraphType>
+template <typename GraphType>
 using CliqueBuilder = CliqueOrIndependentSetBuilder<GraphType, true>;
-template<typename GraphType>
+template <typename GraphType>
 using IndependentSetBuilder = CliqueOrIndependentSetBuilder<GraphType, false>;
 
-}
+} // namespace sammy
 
 #endif

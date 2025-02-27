@@ -18,10 +18,8 @@ template <typename EventHandler> class ClassCompleter {
   public:
     ClassCompleter(Lit n_concrete, Lit n_all, EventHandler* handler)
         : m_handler(handler), n_concrete(n_concrete), n_all(n_all),
-          m_phases(n_all, false),
-          m_given_literals_bits(2 * n_concrete, false),
-          m_failed_literals_bits(2 * n_concrete, false),
-          m_failed_qpos(0) {}
+          m_phases(n_all, false), m_given_literals_bits(2 * n_concrete, false),
+          m_failed_literals_bits(2 * n_concrete, false), m_failed_qpos(0) {}
 
     /**
      * Try to turn the partial assignment represented by
@@ -49,7 +47,8 @@ template <typename EventHandler> class ClassCompleter {
     }
 
     /**
-     * Compute the complete memory usage, in bytes, that this class completer uses.
+     * Compute the complete memory usage, in bytes, that this class completer
+     * uses.
      */
     std::size_t total_memory_usage() const noexcept {
         return m_phases.bytes_used() + m_given_literals_bits.bytes_used() +
@@ -142,6 +141,6 @@ template <typename EventHandler> class ClassCompleter {
     std::size_t m_failed_qpos;
 };
 
-}
+} // namespace sammy
 
 #endif

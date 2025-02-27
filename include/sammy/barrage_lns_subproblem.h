@@ -1,8 +1,8 @@
 #ifndef SAMMY_BARRAGE_LNS_SUBPROBLEM_H_INCLUDED_
 #define SAMMY_BARRAGE_LNS_SUBPROBLEM_H_INCLUDED_
 
-#include "literals.h"
 #include "dynamic_bitset.h"
+#include "literals.h"
 #include <memory>
 
 namespace sammy {
@@ -18,6 +18,6 @@ struct LNSSubproblem {
     Lit num_concrete;
 };
 
-}
+} // namespace sammy
 
 #endif

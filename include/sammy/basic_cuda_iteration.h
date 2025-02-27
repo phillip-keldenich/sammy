@@ -26,7 +26,6 @@ using cudaError_t = int;
 #endif
 #include <atomic>
 
-
 namespace sammy {
 
 /**
@@ -76,7 +75,6 @@ static constexpr int CUDA_USAGE_DISABLED = 2;
  */
 static constexpr int CUDA_USAGE_HAD_ERROR = 3;
 
-
 #ifdef SAMMY_CUDA_SUPPORTED
 
 /**
@@ -88,22 +86,22 @@ inline std::atomic<int>& cuda_usage_info() {
 }
 
 inline bool should_use_cuda() {
-    switch(cuda_usage_info()) {
-        default:
-        case CUDA_USAGE_IF_AVAILABLE:
-        case CUDA_USAGE_FORCED:
-            return true;
+    switch (cuda_usage_info()) {
+    default:
+    case CUDA_USAGE_IF_AVAILABLE:
+    case CUDA_USAGE_FORCED:
+        return true;
 
-        case CUDA_USAGE_HAD_ERROR:
-        case CUDA_USAGE_DISABLED:
-            return false;
+    case CUDA_USAGE_HAD_ERROR:
+    case CUDA_USAGE_DISABLED:
+        return false;
     }
 }
 
 inline void had_cuda_error_(const CUDAError& error) {
     auto& info = cuda_usage_info();
     int loaded = info.load();
-    if(loaded == CUDA_USAGE_FORCED) {
+    if (loaded == CUDA_USAGE_FORCED) {
         throw error;
     }
     info.store(CUDA_USAGE_HAD_ERROR);
@@ -113,9 +111,7 @@ inline void had_cuda_error(const CUDAError& error) noexcept {
     had_cuda_error_(error);
 }
 
-inline void set_cuda_mode(int mode) {
-    cuda_usage_info().store(mode);
-}
+inline void set_cuda_mode(int mode) { cuda_usage_info().store(mode); }
 
 #else
 
@@ -124,8 +120,9 @@ inline constexpr bool should_use_cuda() { return false; }
 inline void had_cuda_error(const CUDAError& error) noexcept {}
 
 inline void set_cuda_mode(int mode) {
-    if(mode == CUDA_USAGE_FORCED) {
-        throw std::runtime_error("Requested CUDA mode 'force' without CUDA support compiled in!");
+    if (mode == CUDA_USAGE_FORCED) {
+        throw std::runtime_error(
+            "Requested CUDA mode 'force' without CUDA support compiled in!");
     }
 }
 
@@ -146,21 +143,27 @@ void cuda_free(void* ptr);
  */
 constexpr static SAMMY_HD std::size_t BLOCK_SIZE() { return 256; }
 constexpr static SAMMY_HD std::size_t THREADS_PER_ROW() { return 16; }
-constexpr static SAMMY_HD std::size_t ROWS_PER_BLOCK() { return BLOCK_SIZE() / THREADS_PER_ROW(); }
-constexpr static SAMMY_HD std::size_t GOAL_ROWS_PER_CALL() { return 256 * ROWS_PER_BLOCK(); }
-
-void cuda_call_bit_filter_kernel(const std::uint32_t* bit_data, std::size_t u32_per_bitset,
-                                 const std::uint32_t* classes_with_literal, std::size_t num_literals,
-                                 const std::uint32_t* classes_with_literal_offsets,
-                                 std::uint32_t* output_buffer, std::size_t begin_row, std::size_t num_rows);
-
-void call_cuda_extract_kernel(const std::uint32_t* device_bit_data, std::size_t u32_per_bitset,
-                              std::uint32_t* output_buffer, std::size_t num_literals,
-                              std::size_t begin_var, std::size_t num_vars, std::size_t num_classes);
-
+constexpr static SAMMY_HD std::size_t ROWS_PER_BLOCK() {
+    return BLOCK_SIZE() / THREADS_PER_ROW();
+}
+constexpr static SAMMY_HD std::size_t GOAL_ROWS_PER_CALL() {
+    return 256 * ROWS_PER_BLOCK();
 }
 
-}
+void cuda_call_bit_filter_kernel(
+    const std::uint32_t* bit_data, std::size_t u32_per_bitset,
+    const std::uint32_t* classes_with_literal, std::size_t num_literals,
+    const std::uint32_t* classes_with_literal_offsets,
+    std::uint32_t* output_buffer, std::size_t begin_row, std::size_t num_rows);
+
+void call_cuda_extract_kernel(const std::uint32_t* device_bit_data,
+                              std::size_t u32_per_bitset,
+                              std::uint32_t* output_buffer,
+                              std::size_t num_literals, std::size_t begin_var,
+                              std::size_t num_vars, std::size_t num_classes);
+
+} // namespace detail
+
+} // namespace sammy
 
 #endif
-

@@ -1,8 +1,8 @@
 #ifndef SAMMY_MODULAR_SAT_DSATUR_H_INCLUDED_
 #define SAMMY_MODULAR_SAT_DSATUR_H_INCLUDED_
 
-#include "incremental_gurobi_g2_clique_solver.h"
 #include "best_k.h"
+#include "incremental_gurobi_g2_clique_solver.h"
 
 namespace sammy {
 
@@ -20,16 +20,18 @@ class DSaturStylePartialConfigurations {
     };
 
     struct CompareVertexIndexByInfo {
-        explicit CompareVertexIndexByInfo(DSaturStylePartialConfigurations* that) noexcept : that(that) {}
+        explicit CompareVertexIndexByInfo(
+            DSaturStylePartialConfigurations* that) noexcept
+            : that(that) {}
 
         bool operator()(FullVertexIndex v1, FullVertexIndex v2) const noexcept {
             // return true if 'v1' has higher priority than 'v2'
             const auto& vi1 = that->m_all_vertex_infos[v1];
             const auto& vi2 = that->m_all_vertex_infos[v2];
-            if(vi1.in_some_class != vi2.in_some_class) {
+            if (vi1.in_some_class != vi2.in_some_class) {
                 return !vi1.in_some_class;
             }
-            if(vi1.num_open_classes != vi2.num_open_classes) {
+            if (vi1.num_open_classes != vi2.num_open_classes) {
                 return vi1.num_open_classes < vi2.num_open_classes;
             }
             return vi1.degree > vi2.degree;
@@ -42,11 +44,11 @@ class DSaturStylePartialConfigurations {
     std::vector<VertexInfo> m_all_vertex_infos;
     std::vector<SharedDBPropagator> m_partial_configurations;
     std::vector<FullVertexIndex> m_vertices_with_low_candidate_count[4];
-    BestK<FullVertexIndex, CompareVertexIndexByInfo> m_best_with_high_candidate_count;
+    BestK<FullVertexIndex, CompareVertexIndexByInfo>
+        m_best_with_high_candidate_count;
 };
 
-template<typename IncrementalSatSolver>
-class ModularCliqueSatDSatur {
+template <typename IncrementalSatSolver> class ModularCliqueSatDSatur {
   public:
     using SatModelIndex = std::size_t;
     using FullVertexIndex = std::size_t;
@@ -54,15 +56,15 @@ class ModularCliqueSatDSatur {
     using Lit = typename IncrementalSatSolver::Lit;
     using LitOrVal = std::variant<bool, Lit>;
 
-    explicit ModularCliqueSatDSatur(IncrementalGurobiG2CliqueSolver* clique_solver,
-                                    const std::vector<DynamicBitset>& best_covering_assignment) :
-        m_clique_solver(clique_solver),
-        m_adjacency_matrix(&clique_solver->adjacency_matrix()),
-        m_initial_lb(clique_solver->get_best_clique().size()),
-        m_initial_ub(best_covering_assignment.size()),
-        m_best_solution(best_covering_assignment),
-        m_current_lb(m_initial_lb)
-    {}
+    explicit ModularCliqueSatDSatur(
+        IncrementalGurobiG2CliqueSolver* clique_solver,
+        const std::vector<DynamicBitset>& best_covering_assignment)
+        : m_clique_solver(clique_solver),
+          m_adjacency_matrix(&clique_solver->adjacency_matrix()),
+          m_initial_lb(clique_solver->get_best_clique().size()),
+          m_initial_ub(best_covering_assignment.size()),
+          m_best_solution(best_covering_assignment),
+          m_current_lb(m_initial_lb) {}
 
   private:
     /**
@@ -144,6 +146,6 @@ class ModularCliqueSatDSatur {
     DynamicBitset m_is_sat_explicit;
 };
 
-}
+} // namespace sammy
 
 #endif

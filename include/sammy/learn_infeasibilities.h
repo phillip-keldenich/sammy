@@ -2,8 +2,8 @@
 #define SAMMY_LEARN_INFEASIBILITIES_H_INCLUDED_
 
 #include "literals.h"
-#include "shared_db_propagator.h"
 #include "pair_infeasibility_map.h"
+#include "shared_db_propagator.h"
 
 namespace sammy {
 
@@ -11,8 +11,7 @@ namespace detail {
 
 static inline void
 learn_unary_infeasibilities(SharedDBPropagator& propagator,
-                            const PairInfeasibilityMap* infeasibilities) 
-{
+                            const PairInfeasibilityMap* infeasibilities) {
     const auto& inf = *infeasibilities;
     const Lit nclit = 2 * inf.get_n_concrete();
     for (Lit l = 0; l < nclit; ++l) {
@@ -26,7 +25,7 @@ learn_unary_infeasibilities(SharedDBPropagator& propagator,
     }
 }
 
-}
+} // namespace detail
 
 /**
  * @brief Learn clauses so that all infeasible pairs
@@ -91,6 +90,6 @@ inline void learn_infeasibilities(ClauseDB& clauses,
     }
 }
 
-}
+} // namespace sammy
 
 #endif

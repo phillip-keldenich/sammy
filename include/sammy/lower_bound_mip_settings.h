@@ -29,6 +29,6 @@ struct SATColoringConfig {
     double initial_sat_coloring_timeout = 10.0;
 };
 
-}
+} // namespace sammy
 
 #endif

@@ -1,22 +1,21 @@
 #ifndef SAMMY_LITERALS_H_INCLUDED_
 #define SAMMY_LITERALS_H_INCLUDED_
 
-#include <cstdint>
-#include <cstddef>
-#include <climits>
-#include <limits>
-#include <vector>
-#include <cmath>
-#include <cstdlib>
+#include "time.h"
 #include <algorithm>
 #include <boost/container/small_vector.hpp>
 #include <boost/unordered/unordered_flat_map.hpp>
 #include <boost/unordered/unordered_flat_set.hpp>
+#include <climits>
+#include <cmath>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <functional>
+#include <limits>
 #include <unordered_map>
 #include <unordered_set>
-#include <functional>
-#include "time.h"
-
+#include <vector>
 
 namespace sammy {
 
@@ -30,7 +29,7 @@ using ExternalLit = std::int32_t;
 
 /**
  * An external clause, represented as vector of literals.
-*/
+ */
 using ExternalClause = std::vector<ExternalLit>;
 
 /**
@@ -94,11 +93,12 @@ static inline constexpr Vertex internalize(ExternalVertex v) noexcept {
     return {internalize(v.first), internalize(v.second)};
 }
 
-static inline std::vector<Vertex> internalize(const std::vector<ExternalVertex>& vertices) {
+static inline std::vector<Vertex>
+internalize(const std::vector<ExternalVertex>& vertices) {
     std::vector<Vertex> result;
     result.reserve(vertices.size());
     std::transform(vertices.begin(), vertices.end(), std::back_inserter(result),
-                   [] (ExternalVertex v) { return internalize(v); });
+                   [](ExternalVertex v) { return internalize(v); });
     return result;
 }
 
@@ -115,29 +115,29 @@ static inline constexpr ExternalLit externalize(Lit l) noexcept {
     return result;
 }
 
-static inline
-std::vector<std::pair<ExternalLit, ExternalLit>>
-externalize(const std::vector<Vertex>& vertices) 
-{
+static inline std::vector<std::pair<ExternalLit, ExternalLit>>
+externalize(const std::vector<Vertex>& vertices) {
     std::vector<std::pair<ExternalLit, ExternalLit>> result;
     result.reserve(vertices.size());
     std::transform(vertices.begin(), vertices.end(), std::back_inserter(result),
-                   [] (const auto& v) { return std::pair<ExternalLit,ExternalLit>{
-                       externalize(v.first), externalize(v.second)
-                   }; });
+                   [](const auto& v) {
+                       return std::pair<ExternalLit, ExternalLit>{
+                           externalize(v.first), externalize(v.second)};
+                   });
     return result;
 }
 
 /**
  * @brief Internal to external literal conversion.
  */
-template<typename ClauseContainer,
-         std::enable_if_t<std::is_integral_v<typename ClauseContainer::value_type>, int> = 0>
-static inline ExternalClause externalize(const ClauseContainer& clause)
-{
+template <
+    typename ClauseContainer,
+    std::enable_if_t<std::is_integral_v<typename ClauseContainer::value_type>,
+                     int> = 0>
+static inline ExternalClause externalize(const ClauseContainer& clause) {
     ExternalClause result;
     std::transform(clause.begin(), clause.end(), std::back_inserter(result),
-                   [] (Lit l) -> ExternalLit { return externalize(l); });
+                   [](Lit l) -> ExternalLit { return externalize(l); });
     return result;
 }
 
@@ -147,9 +147,7 @@ static inline ExternalClause externalize(const ClauseContainer& clause)
  * @param l
  * @return constexpr Lit
  */
-static inline constexpr Lit negate(Lit l) noexcept {
-    return l ^ Lit(1);
-}
+static inline constexpr Lit negate(Lit l) noexcept { return l ^ Lit(1); }
 
 /**
  * @brief Extract the variable from a literal.
@@ -157,16 +155,12 @@ static inline constexpr Lit negate(Lit l) noexcept {
  * @param l
  * @return constexpr Lit
  */
-static inline constexpr Var var(Lit l) noexcept {
-    return l >> 1;
-}
+static inline constexpr Var var(Lit l) noexcept { return l >> 1; }
 
 /**
  * @brief Turn a variable into its positive literal.
  */
-static inline constexpr Lit positive_lit(Var v) noexcept {
-    return v << 1;
-}
+static inline constexpr Lit positive_lit(Var v) noexcept { return v << 1; }
 
 /**
  * @brief Turn a variable into its negative literal.
@@ -182,40 +176,30 @@ static inline constexpr Lit negative_lit(Var v) noexcept {
  * @return true if the literal is negative.
  * @return false if the literal is positive.
  */
-static inline constexpr bool negative(Lit l) noexcept {
-    return l & Lit(1);
-}
+static inline constexpr bool negative(Lit l) noexcept { return l & Lit(1); }
 
-template<typename BitsetType>
-static inline bool is_true_in(Lit l, const BitsetType& assignment) noexcept
-{
+template <typename BitsetType>
+static inline bool is_true_in(Lit l, const BitsetType& assignment) noexcept {
     bool value(assignment[var(l)]);
     return negative(l) ? !value : value;
 }
 
-template<typename BitsetType>
-static inline bool is_false_in(Lit l, const BitsetType& assignment) noexcept
-{
+template <typename BitsetType>
+static inline bool is_false_in(Lit l, const BitsetType& assignment) noexcept {
     return !is_true_in(l, assignment);
 }
 
-}
+} // namespace lit
 
 namespace simplify {
 
-static constexpr Lit fixed_positive() noexcept {
-    return NIL - 1;
-}
+static constexpr Lit fixed_positive() noexcept { return NIL - 1; }
 
-static constexpr Lit fixed_negative() noexcept {
-    return NIL;
-}
+static constexpr Lit fixed_negative() noexcept { return NIL; }
 
-static constexpr Lit eliminated() noexcept {
-    return NIL - 2;
-}
+static constexpr Lit eliminated() noexcept { return NIL - 2; }
 
-}
+} // namespace simplify
 
 struct PairHash {
     std::size_t operator()(std::pair<int, int> v) const noexcept {
@@ -250,23 +234,21 @@ struct PairHash {
     using value = std::size_t;
 };
 
-template<typename Element>
-using HashSet = boost::unordered_flat_set<Element>;
+template <typename Element> using HashSet = boost::unordered_flat_set<Element>;
 
-template<typename Key, typename Value>
+template <typename Key, typename Value>
 using HashMap = boost::unordered_flat_map<Key, Value>;
 
-using EdgeSet = boost::unordered_flat_set<std::pair<Lit,Lit>>;
+using EdgeSet = boost::unordered_flat_set<std::pair<Lit, Lit>>;
 
-template<typename Value>
-using VertexMapTo = boost::unordered_flat_map<std::pair<Lit,Lit>,Value>;
+template <typename Value>
+using VertexMapTo = boost::unordered_flat_map<std::pair<Lit, Lit>, Value>;
 
-template<typename Key>
-using PairHashSet = boost::unordered_flat_set<Key>;
+template <typename Key> using PairHashSet = boost::unordered_flat_set<Key>;
 
-template<typename Key, typename Value>
-using PairMapTo = boost::unordered_flat_map<Key,Value>;
+template <typename Key, typename Value>
+using PairMapTo = boost::unordered_flat_map<Key, Value>;
 
-}
+} // namespace sammy
 
 #endif
