@@ -46,6 +46,7 @@ if(NOT SAMMY_NO_ORTOOLS)
   find_package(ortools CONFIG REQUIRED)
 endif()
 
+add_library(sammy INTERFACE)
 if(SAMMY_USE_CUDA)
     add_library(sammycuda STATIC "src/cuda_iteration.cu")
     target_compile_features(sammycuda PUBLIC cxx_std_17)
@@ -54,14 +55,13 @@ if(SAMMY_USE_CUDA)
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     target_link_libraries(sammycuda PUBLIC nlohmann_json::nlohmann_json Boost::boost
 	                        Boost::iostreams Boost::program_options)
-    target_include_directories(sammy INTERFACE "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}")
+    target_include_directories(sammycuda PUBLIC "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}")
     target_compile_definitions(sammycuda PUBLIC "-DSAMMY_CUDA_SUPPORTED=1")
     target_link_libraries(sammy INTERFACE sammycuda)
 endif()
 
 # setup interface library target (sammy)
 include(GNUInstallDirs)
-add_library(sammy INTERFACE)
 target_compile_features(sammy INTERFACE cxx_std_17)
 target_include_directories(sammy INTERFACE 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> # include the public header directory in the source tree when building the lib

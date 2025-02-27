@@ -21,13 +21,19 @@ inline void start_environment(GRBEnv& env, bool quiet) {
 }
 
 inline GRBEnv& gurobi_environment(bool quiet) {
-    thread_local bool initialized = false;
-    thread_local GRBEnv environment{true};
-    if(!initialized) {
-        detail::start_environment(environment, quiet);
-        initialized = true;
-    }
-    return environment;
+	try {
+		thread_local bool initialized = false;
+		thread_local GRBEnv environment{true};
+		if(!initialized) {
+			detail::start_environment(environment, quiet);
+			initialized = true;
+		}
+		return environment;
+	} catch(const GRBException& ex) {
+		std::stringstream out;
+		out << "Gurobi exception during initialization, likely license-related: " << ex.getMessage();
+		throw std::runtime_error(out.str());
+	}
 }
 
 }
