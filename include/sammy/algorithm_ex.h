@@ -2,6 +2,7 @@
 #define SAMMY_ALGORITHM_EX_H_INCLUDED_
 
 #include <boost/iterator/counting_iterator.hpp>
+#include "range.h"
 
 namespace sammy {
 
