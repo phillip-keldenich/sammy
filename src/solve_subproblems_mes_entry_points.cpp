@@ -157,7 +157,6 @@ int main(int argc, char** argv) {
         };
 
         auto run_solver_type = [&] (const char* name, auto solver_nullptr) {
-            std::cerr << "Running " << name << " (mes size: " << mes.size() << ")" << std::endl;
             using SolverType = std::remove_pointer_t<decltype(solver_nullptr)>;
             EventRecorder recorder;
             auto subproblem_and_result = make_and_run_common_interface_solver<SolverType>(
@@ -172,7 +171,6 @@ int main(int argc, char** argv) {
         };
 
         auto run_cnpsatdsatur = [&] (const char* name, auto solver_nullptr) {
-            std::cerr << "Running " << name << " mes size: " << mes.size() << std::endl;
             using SatSolverType = std::remove_pointer_t<decltype(solver_nullptr)>;
             using SolverType = CliqueSatDSaturSolver<SatSolverType>;
             auto before_make = std::chrono::steady_clock::now();
@@ -203,7 +201,6 @@ int main(int argc, char** argv) {
                 seconds_between(before_make, after_make),
                 seconds_between(after_make, after_solve)
             };
-            std::cerr << "\t - " << solve_result.outcome << std::endl;
             add_solver_outcome(name, std::move(solve_result), recorder);
         };
         
