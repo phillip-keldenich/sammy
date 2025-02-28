@@ -13,9 +13,11 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <nlohmann/json.hpp>
+#include <optional>
 #include <numeric>
 #include <stdexcept>
+
+#include <nlohmann/json.hpp>
 
 #include <boost/iostreams/copy.hpp>
 #include <boost/iostreams/filter/gzip.hpp>

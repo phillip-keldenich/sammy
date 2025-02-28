@@ -1,4 +1,6 @@
 **/CMakeUserPresets.json
 **/cmake-build*
 build/
+**/.vscode
+**/.ipynb_checkpoints
 
