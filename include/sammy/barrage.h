@@ -51,7 +51,7 @@ struct LNSTimeAndSuccessInfo {
     double current_goal_time = 30.0;
     double num_failure_threshold = 20.0;
     std::size_t universe_size;
-    std::size_t min_num_tries_for_time = 10;
+    std::size_t min_num_tries_for_time = 5;
 
     void report_success(std::size_t removed_classes, double time) {
         auto& info = removed_classes_info[removed_classes];
@@ -69,13 +69,19 @@ struct LNSTimeAndSuccessInfo {
     }
 
     std::size_t select_goal_num_removed() {
+        std::size_t r = p_select_goal_num_removed();
+        return r;
+    }
+
+  private:
+    std::size_t p_select_goal_num_removed() {
         if (removed_classes_info.empty()) {
             return p_empty_select_num_removed();
         }
         auto last_usable = removed_classes_info.end();
         for (auto it = removed_classes_info.begin(),
-                  e = removed_classes_info.end();
-             it != e; ++it)
+                e = removed_classes_info.end();
+            it != e; ++it)
         {
             const auto& info = it->second;
             if (info.complete_tries_since_last_success >= num_failure_threshold)
@@ -86,9 +92,9 @@ struct LNSTimeAndSuccessInfo {
                 last_usable = it;
                 continue;
             }
-            if (info.complete_tries_total_time / info.complete_tries_total >=
-                current_goal_time)
-            {
+            double avg_time_per_try = info.complete_tries_total_time /
+                                      info.complete_tries_total;
+            if (avg_time_per_try >= current_goal_time) {
                 last_usable = it;
             }
         }
@@ -98,7 +104,6 @@ struct LNSTimeAndSuccessInfo {
         return last_usable->first;
     }
 
-  private:
     std::size_t p_enlarge_num_removed() {
         return removed_classes_info.rbegin()->first + 1;
     }
