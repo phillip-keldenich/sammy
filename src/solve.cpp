@@ -12,6 +12,7 @@
 #include <sammy/sat_lns.h>
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
+#include <sammy/memory_usage.h>
 
 using namespace sammy;
 
