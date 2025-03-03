@@ -80,8 +80,8 @@ struct LNSTimeAndSuccessInfo {
         }
         auto last_usable = removed_classes_info.end();
         for (auto it = removed_classes_info.begin(),
-                e = removed_classes_info.end();
-            it != e; ++it)
+                  e = removed_classes_info.end();
+             it != e; ++it)
         {
             const auto& info = it->second;
             if (info.complete_tries_since_last_success >= num_failure_threshold)
@@ -92,8 +92,8 @@ struct LNSTimeAndSuccessInfo {
                 last_usable = it;
                 continue;
             }
-            double avg_time_per_try = info.complete_tries_total_time /
-                                      info.complete_tries_total;
+            double avg_time_per_try =
+                info.complete_tries_total_time / info.complete_tries_total;
             if (avg_time_per_try >= current_goal_time) {
                 last_usable = it;
             }

@@ -1,8 +1,8 @@
 #ifndef SAMMY_ALGORITHM_EX_H_INCLUDED_
 #define SAMMY_ALGORITHM_EX_H_INCLUDED_
 
-#include <boost/iterator/counting_iterator.hpp>
 #include "range.h"
+#include <boost/iterator/counting_iterator.hpp>
 
 namespace sammy {
 

@@ -1,8 +1,8 @@
+#include "io.h"
 #include <sammy/barrage.h>
 #include <sammy/experiment_flags.h>
 #include <sammy/output.h>
 #include <sammy/subproblem_solver_with_mes.h>
-#include "io.h"
 
 using namespace sammy;
 namespace po = boost::program_options;

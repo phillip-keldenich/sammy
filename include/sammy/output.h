@@ -13,8 +13,8 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <optional>
 #include <numeric>
+#include <optional>
 #include <stdexcept>
 
 #include <nlohmann/json.hpp>

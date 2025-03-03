@@ -183,7 +183,8 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
 
     bool p_update_looks_necessary() const {
         std::unique_lock l{*m_element_mutex};
-        return m_portfolio->get_best_solution_size() < m_destroy_seen_solution;
+        return m_portfolio->get_best_solution_size() <
+               m_destroy.total_num_configs();
     }
 
     void p_interrupt() {

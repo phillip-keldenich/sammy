@@ -732,6 +732,18 @@ void LNSDestroy::p_perform_removal(const std::vector<Index>& removal_indices,
                        [&](Index i) { return old_to_new[i]; });
         std::sort(sup.begin(), sup.end());
     }
+    if (!std::is_sorted(removal_indices.begin(), removal_indices.end())) {
+        throw std::logic_error("removal_indices not sorted");
+    }
+    auto cp = removal_indices;
+    if (std::unique(cp.begin(), cp.end()) != cp.end()) {
+        throw std::logic_error("removal_indices not unique");
+    }
+    if (std::any_of(removal_indices.begin(), removal_indices.end(),
+                    [&](Index i) { return i >= m_current_subproblem.size(); }))
+    {
+        throw std::logic_error("removal_indices out of bounds");
+    }
     for (auto& r : m_current_subproblem.remove_assignments(removal_indices)) {
         m_currently_removed.push_back(std::move(r));
     }

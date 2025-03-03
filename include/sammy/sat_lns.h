@@ -27,6 +27,63 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
     }
 
     /**
+     * Estimate the total size of the formula (in bytes)
+     * that would be created for a given subproblem.
+     */
+    static std::size_t estimate_formula_size(const ClauseDB* clause_db,
+                                             const LNSSubproblem& subproblem) {
+        // we need some estimate of the fixed memory per variable
+        static constexpr std::size_t bytes_per_var = 16;
+        // we need some estimate of the fixed memory per binary clause
+        static constexpr std::size_t bytes_per_binary = 8;
+        // we need some estimate of the fixed memory per long clause
+        static constexpr std::size_t bytes_per_long = 4 + 2 * 8;
+        // how many bytes does each longer-clause entry need?
+        static constexpr std::size_t bytes_per_long_entry = 4;
+        std::stringstream msg;
+
+        std::size_t num_configurations =
+            subproblem.removed_configurations.size() - 1;
+        std::size_t num_vars = subproblem.removed_configurations[0].size();
+        std::size_t num_uncovered = subproblem.uncovered_universe.size();
+        std::size_t num_concrete = subproblem.num_concrete;
+        std::size_t ncl = clause_db->num_clauses() - clause_db->num_unaries();
+        std::size_t nbin = clause_db->num_binaries();
+        std::size_t nlong = ncl - nbin;
+        std::size_t nlong_entries = clause_db->literal_db_size() - nlong;
+
+        // size for 'normal' variables (not coverage variables)
+        std::size_t num_normal_vars = num_vars * num_configurations;
+        std::size_t normal_var_size = num_normal_vars * bytes_per_var;
+        // size for 'normal' clauses
+        std::size_t num_normal_long = nlong * num_configurations;
+        std::size_t num_normal_bin = nbin * num_configurations;
+        std::size_t normal_clause_size =
+            num_normal_bin * bytes_per_binary +
+            num_normal_long * bytes_per_long +
+            nlong_entries * num_configurations * bytes_per_long_entry;
+        // size for 'vertical' clauses
+        std::size_t vertical_clause_count = 2 * num_concrete;
+        std::size_t vertical_clause_length = num_configurations;
+        std::size_t vertical_clause_size =
+            (bytes_per_long * vertical_clause_count) +
+            (bytes_per_long_entry * vertical_clause_length *
+             vertical_clause_count);
+        // size for 'coverage' variables
+        std::size_t coverage_var_size =
+            num_uncovered * num_configurations * bytes_per_var;
+        std::size_t coverage_var_clause_size =
+            num_uncovered * num_configurations *
+            (2 * bytes_per_binary + bytes_per_long + 3 * bytes_per_long_entry);
+        std::size_t coverage_clause_size =
+            num_uncovered *
+            (bytes_per_long + bytes_per_long_entry * num_configurations);
+        return normal_var_size + normal_clause_size + vertical_clause_size +
+               coverage_var_size + coverage_var_clause_size +
+               coverage_clause_size;
+    }
+
+    /**
      * Create a new solver for the given subproblem.
      */
     FixedMESSATImprovementSolver(PortfolioSolver* portfolio,
@@ -38,6 +95,8 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
           m_num_configs_allowed(m_subproblem.removed_configurations.size() - 1),
           m_config_vars() {
         try {
+            m_estimated_formula_size =
+                estimate_formula_size(&m_propagator.db(), m_subproblem);
             OutputObject event_data{
                 {"num_uncovered", m_subproblem.uncovered_universe.size()},
                 {"num_removed", m_subproblem.removed_configurations.size()},
@@ -186,9 +245,13 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
     std::vector<Lit> m_buffer;
     // buffer for the current solution
     std::vector<DynamicBitset> m_current_solution;
+    // stats
+    std::size_t m_added_binaries{0};
+    std::size_t m_added_long{0};
+    std::size_t m_added_literals{0};
+    std::size_t m_estimated_formula_size{0};
 
-    // --------------------------------- IMPLEMENTATION
-    // ---------------------------------
+    // ----------------------------- IMPLEMENTATION --------------------------
     /**
      * Store an event in the recorder.
      */
@@ -259,31 +322,36 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
             LitOrVal lv1 = p_config_lit_for(config, clause.first);
             LitOrVal lv2 = p_config_lit_for(config, clause.second);
             std::visit(
-                overloaded{
-                    [&](bool b1, bool b2) {
-                        // clause is either violated (indicating a logic error)
-                        // or already satisfied by propagation
-                        if (!b1 && !b2) {
-                            throw std::logic_error("Infeasible binary clause!");
-                        }
-                    },
-                    [&](bool b1, Lit l2) {
-                        // if b1 is true, clause is satisfied;
-                        // if b1 is false, propagation should have made l2 true.
-                        if (!b1) {
-                            throw std::logic_error(
-                                "Propagation should have made l2 true!");
-                        }
-                    },
-                    [&](Lit l1, bool b2) {
-                        // if b2 is true, clause is satisfied;
-                        // if b2 is false, propagation should have made l1 true.
-                        if (!b2) {
-                            throw std::logic_error(
-                                "Propagation should have made l1 true!");
-                        }
-                    },
-                    [&](Lit l1, Lit l2) { m_solver.add_short_clause(l1, l2); }},
+                overloaded{[&](bool b1, bool b2) {
+                               // clause is either violated (indicating a logic
+                               // error) or already satisfied by propagation
+                               if (!b1 && !b2) {
+                                   throw std::logic_error(
+                                       "Infeasible binary clause!");
+                               }
+                           },
+                           [&](bool b1, Lit l2) {
+                               // if b1 is true, clause is satisfied;
+                               // if b1 is false, propagation should have made
+                               // l2 true.
+                               if (!b1) {
+                                   throw std::logic_error(
+                                       "Propagation should have made l2 true!");
+                               }
+                           },
+                           [&](Lit l1, bool b2) {
+                               // if b2 is true, clause is satisfied;
+                               // if b2 is false, propagation should have made
+                               // l1 true.
+                               if (!b2) {
+                                   throw std::logic_error(
+                                       "Propagation should have made l1 true!");
+                               }
+                           },
+                           [&](Lit l1, Lit l2) {
+                               m_solver.add_short_clause(l1, l2);
+                               ++m_added_binaries;
+                           }},
                 lv1, lv2);
         }
     }
@@ -317,6 +385,8 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
                                        "should have assigned a value!");
             }
             m_solver.add_clause(m_buffer.begin(), m_buffer.end());
+            m_added_long += 1;
+            m_added_literals += m_buffer.size();
         }
     }
 
@@ -350,6 +420,8 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
                 break;
             }
             m_solver.add_clause(m_buffer.begin(), m_buffer.end());
+            m_added_long += 1;
+            m_added_literals += m_buffer.size();
         }
     }
 
@@ -483,6 +555,9 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
                 m_solver.add_short_clause(coverage_var, -l1, -l2);
                 m_solver.add_short_clause(-coverage_var, l1);
                 m_solver.add_short_clause(-coverage_var, l2);
+                m_added_long += 1;
+                m_added_literals += 3;
+                m_added_binaries += 2;
                 m_buffer.push_back(coverage_var);
             }
             if (m_buffer.empty()) {
@@ -490,6 +565,8 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
                 break;
             }
             m_solver.add_clause(m_buffer.begin(), m_buffer.end());
+            m_added_long += 1;
+            m_added_literals += m_buffer.size();
         }
     }
 };

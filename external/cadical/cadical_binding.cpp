@@ -2,6 +2,8 @@
 #include <cadical.hpp>
 #include <future>
 #include <thread>
+#include <mutex>
+#include <iostream>
 
 namespace sammy {
 
