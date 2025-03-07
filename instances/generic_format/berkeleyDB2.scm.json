@@ -1,0 +1,5063 @@
+{
+  "type": "software configuration model",
+  "name": "berkeleyDB2",
+  "meta": {},
+  "num_variables": 233,
+  "num_concrete_features": 103,
+  "labels": {
+    "CPBytes": 60,
+    "CPTime": 100,
+    "CheckLeaks": 43,
+    "CheckpointerDaemon": 90,
+    "Checksum": 20,
+    "ChunkedNIO": 98,
+    "CleanerDaemon": 72,
+    "CriticalEviction": 103,
+    "DeleteOp": 79,
+    "Derivative_CPBytes_CPTime": 2,
+    "Derivative_CheckpointerDaemon_CPBytes": 30,
+    "Derivative_DeleteOp_Evictor": 39,
+    "Derivative_DeleteOp_MemoryBudget": 86,
+    "Derivative_DeleteOp_TruncateOp": 81,
+    "Derivative_Evictor_CriticalEviction": 88,
+    "Derivative_Evictor_EvictorDaemon": 56,
+    "Derivative_Evictor_MemoryBudget": 99,
+    "Derivative_Evictor_MemoryBudget_CriticalEviction": 97,
+    "Derivative_FSync_Latches": 74,
+    "Derivative_FSync_Statistics": 52,
+    "Derivative_INCompressor_DeleteOp": 37,
+    "Derivative_INCompressor_Evictor": 5,
+    "Derivative_INCompressor_Evictor_CriticalEviction": 23,
+    "Derivative_IO_SynchronizedIO": 85,
+    "Derivative_Latches_CheckLeaks": 54,
+    "Derivative_Latches_DeleteOp": 24,
+    "Derivative_Latches_Evictor": 22,
+    "Derivative_Latches_FileHandleCache": 26,
+    "Derivative_Latches_INCompressor": 31,
+    "Derivative_Latches_MemoryBudget": 84,
+    "Derivative_Latches_RenameOp": 94,
+    "Derivative_Latches_Statistics": 53,
+    "Derivative_Latches_Statistics_Verifier": 87,
+    "Derivative_Latches_TruncateOp": 18,
+    "Derivative_Latches_Verifier_INCompressor": 46,
+    "Derivative_LoggingCleaner_DeleteOp": 36,
+    "Derivative_LoggingCleaner_LoggingBase": 62,
+    "Derivative_LoggingConfig_Statistics": 61,
+    "Derivative_LoggingConsoleHandler_LoggingBase": 82,
+    "Derivative_LoggingDbLogHandler_LoggingBase": 44,
+    "Derivative_LoggingEvictor_Evictor": 78,
+    "Derivative_LoggingEvictor_Evictor_LoggingBase": 49,
+    "Derivative_LoggingEvictor_Evictor_MemoryBudget_LoggingBase": 25,
+    "Derivative_LoggingEvictor_Statistics_Evictor_LoggingBase": 13,
+    "Derivative_LoggingFileHandler_LoggingBase": 68,
+    "Derivative_LoggingFine_INCompressor": 73,
+    "Derivative_LoggingFine_LoggingBase": 65,
+    "Derivative_LoggingFiner_LoggingBase": 7,
+    "Derivative_LoggingFinest_CPBytes": 41,
+    "Derivative_LoggingFinest_CPTime": 71,
+    "Derivative_LoggingFinest_LoggingBase": 48,
+    "Derivative_LoggingFinest_TruncateOp": 1,
+    "Derivative_LoggingInfo_MemoryBudget": 29,
+    "Derivative_LoggingInfo_Statistics_Verifier": 51,
+    "Derivative_LoggingRecovery_LoggingBase": 64,
+    "Derivative_LoggingSevere_EnvironmentLocking": 34,
+    "Derivative_LoggingSevere_LoggingBase": 9,
+    "Derivative_LookAHEADCache_Evictor_CriticalEviction": 32,
+    "Derivative_LookAHEADCache_MemoryBudget": 96,
+    "Derivative_LookAHEADCache_Statistics": 77,
+    "Derivative_NIO_ChunkedNIO": 101,
+    "Derivative_Statistics_CheckLeaks": 83,
+    "Derivative_Statistics_DeleteOp": 11,
+    "Derivative_Statistics_Evictor": 59,
+    "Derivative_Statistics_INCompressor": 17,
+    "Derivative_Statistics_MemoryBudget": 45,
+    "Derivative_Statistics_Verifier": 38,
+    "Derivative_Statistics_Verifier_DeleteOp": 91,
+    "Derivative_Statistics_Verifier_INCompressor": 58,
+    "Derivative_Verifier_INCompressor": 28,
+    "DirectNIO": 8,
+    "DiskFullErro": 63,
+    "EnvironmentLocking": 35,
+    "EvictorDaemon": 47,
+    "FSync": 92,
+    "FileHandleCache": 67,
+    "INCompressor": 27,
+    "Latches": 66,
+    "LoggingCleaner": 75,
+    "LoggingConfig": 89,
+    "LoggingConsoleHandler": 55,
+    "LoggingDbLogHandler": 80,
+    "LoggingEvictor": 40,
+    "LoggingFileHandler": 3,
+    "LoggingFine": 42,
+    "LoggingFiner": 19,
+    "LoggingFinest": 15,
+    "LoggingInfo": 21,
+    "LoggingRecovery": 76,
+    "LoggingSevere": 95,
+    "LookAHEADCache": 16,
+    "MemoryBudget": 4,
+    "NIO": 93,
+    "RenameOp": 70,
+    "Statistics": 69,
+    "SynchronizedIO": 6,
+    "Transactions": 33,
+    "TruncateOp": 12,
+    "Verifier": 50
+  },
+  "cnf_clauses": [
+    [
+      102
+    ],
+    [
+      -57,
+      102
+    ],
+    [
+      -103,
+      57
+    ],
+    [
+      -47,
+      57
+    ],
+    [
+      -27,
+      102
+    ],
+    [
+      -50,
+      102
+    ],
+    [
+      -43,
+      102
+    ],
+    [
+      -92,
+      102
+    ],
+    [
+      -66,
+      102
+    ],
+    [
+      -33,
+      102
+    ],
+    [
+      -232,
+      102
+    ],
+    [
+      2,
+      30,
+      39,
+      86,
+      81,
+      88,
+      56,
+      99,
+      97,
+      74,
+      52,
+      37,
+      5,
+      23,
+      85,
+      54,
+      24,
+      22,
+      26,
+      31,
+      84,
+      94,
+      53,
+      87,
+      18,
+      46,
+      36,
+      62,
+      61,
+      82,
+      44,
+      78,
+      49,
+      25,
+      13,
+      68,
+      73,
+      65,
+      7,
+      41,
+      71,
+      48,
+      1,
+      29,
+      51,
+      64,
+      34,
+      9,
+      32,
+      96,
+      77,
+      101,
+      83,
+      11,
+      59,
+      17,
+      45,
+      38,
+      91,
+      58,
+      28,
+      -232
+    ],
+    [
+      -2,
+      232
+    ],
+    [
+      -30,
+      232
+    ],
+    [
+      -39,
+      232
+    ],
+    [
+      -86,
+      232
+    ],
+    [
+      -81,
+      232
+    ],
+    [
+      -88,
+      232
+    ],
+    [
+      -56,
+      232
+    ],
+    [
+      -99,
+      232
+    ],
+    [
+      -97,
+      232
+    ],
+    [
+      -74,
+      232
+    ],
+    [
+      -52,
+      232
+    ],
+    [
+      -37,
+      232
+    ],
+    [
+      -5,
+      232
+    ],
+    [
+      -23,
+      232
+    ],
+    [
+      -85,
+      232
+    ],
+    [
+      -54,
+      232
+    ],
+    [
+      -24,
+      232
+    ],
+    [
+      -22,
+      232
+    ],
+    [
+      -26,
+      232
+    ],
+    [
+      -31,
+      232
+    ],
+    [
+      -84,
+      232
+    ],
+    [
+      -94,
+      232
+    ],
+    [
+      -53,
+      232
+    ],
+    [
+      -87,
+      232
+    ],
+    [
+      -18,
+      232
+    ],
+    [
+      -46,
+      232
+    ],
+    [
+      -36,
+      232
+    ],
+    [
+      -62,
+      232
+    ],
+    [
+      -61,
+      232
+    ],
+    [
+      -82,
+      232
+    ],
+    [
+      -44,
+      232
+    ],
+    [
+      -78,
+      232
+    ],
+    [
+      -49,
+      232
+    ],
+    [
+      -25,
+      232
+    ],
+    [
+      -13,
+      232
+    ],
+    [
+      -68,
+      232
+    ],
+    [
+      -73,
+      232
+    ],
+    [
+      -65,
+      232
+    ],
+    [
+      -7,
+      232
+    ],
+    [
+      -41,
+      232
+    ],
+    [
+      -71,
+      232
+    ],
+    [
+      -48,
+      232
+    ],
+    [
+      -1,
+      232
+    ],
+    [
+      -29,
+      232
+    ],
+    [
+      -51,
+      232
+    ],
+    [
+      -64,
+      232
+    ],
+    [
+      -34,
+      232
+    ],
+    [
+      -9,
+      232
+    ],
+    [
+      -32,
+      232
+    ],
+    [
+      -96,
+      232
+    ],
+    [
+      -77,
+      232
+    ],
+    [
+      -101,
+      232
+    ],
+    [
+      -83,
+      232
+    ],
+    [
+      -11,
+      232
+    ],
+    [
+      -59,
+      232
+    ],
+    [
+      -17,
+      232
+    ],
+    [
+      -45,
+      232
+    ],
+    [
+      -38,
+      232
+    ],
+    [
+      -91,
+      232
+    ],
+    [
+      -58,
+      232
+    ],
+    [
+      -28,
+      232
+    ],
+    [
+      -10,
+      102
+    ],
+    [
+      -75,
+      10
+    ],
+    [
+      -89,
+      10
+    ],
+    [
+      -55,
+      10
+    ],
+    [
+      -80,
+      10
+    ],
+    [
+      -40,
+      10
+    ],
+    [
+      -3,
+      10
+    ],
+    [
+      -42,
+      10
+    ],
+    [
+      -19,
+      10
+    ],
+    [
+      -15,
+      10
+    ],
+    [
+      -21,
+      10
+    ],
+    [
+      -76,
+      10
+    ],
+    [
+      -95,
+      10
+    ],
+    [
+      -4,
+      102
+    ],
+    [
+      -79,
+      102
+    ],
+    [
+      -70,
+      102
+    ],
+    [
+      -12,
+      102
+    ],
+    [
+      -60,
+      102
+    ],
+    [
+      -100,
+      102
+    ],
+    [
+      -90,
+      102
+    ],
+    [
+      -20,
+      102
+    ],
+    [
+      -63,
+      102
+    ],
+    [
+      -35,
+      102
+    ],
+    [
+      -67,
+      102
+    ],
+    [
+      -72,
+      102
+    ],
+    [
+      -16,
+      102
+    ],
+    [
+      -233,
+      -14
+    ],
+    [
+      233,
+      14,
+      -102
+    ],
+    [
+      -233,
+      102
+    ],
+    [
+      -8,
+      233
+    ],
+    [
+      -98,
+      -93
+    ],
+    [
+      98,
+      93,
+      -233
+    ],
+    [
+      -98,
+      233
+    ],
+    [
+      -93,
+      233
+    ],
+    [
+      -14,
+      102
+    ],
+    [
+      -6,
+      14
+    ],
+    [
+      -69,
+      102
+    ],
+    [
+      -104,
+      -57
+    ],
+    [
+      -104,
+      -47
+    ],
+    [
+      -104,
+      -16
+    ],
+    [
+      -105,
+      4
+    ],
+    [
+      104,
+      105
+    ],
+    [
+      -103,
+      27
+    ],
+    [
+      -60,
+      100
+    ],
+    [
+      -106,
+      -79
+    ],
+    [
+      -107,
+      57
+    ],
+    [
+      -107,
+      27
+    ],
+    [
+      -107,
+      4
+    ],
+    [
+      106,
+      107
+    ],
+    [
+      -108,
+      -4
+    ],
+    [
+      -109,
+      57
+    ],
+    [
+      -109,
+      66
+    ],
+    [
+      108,
+      109
+    ],
+    [
+      -12,
+      79
+    ],
+    [
+      -50,
+      27
+    ],
+    [
+      -110,
+      13
+    ],
+    [
+      -110,
+      10
+    ],
+    [
+      -110,
+      57
+    ],
+    [
+      -110,
+      69
+    ],
+    [
+      -110,
+      40
+    ],
+    [
+      -111,
+      -13
+    ],
+    [
+      -111,
+      -10,
+      -57,
+      -69,
+      -40
+    ],
+    [
+      110,
+      111
+    ],
+    [
+      -112,
+      25
+    ],
+    [
+      -112,
+      10
+    ],
+    [
+      -112,
+      57
+    ],
+    [
+      -112,
+      40
+    ],
+    [
+      -112,
+      4
+    ],
+    [
+      -113,
+      -25
+    ],
+    [
+      -113,
+      -10,
+      -57,
+      -40,
+      -4
+    ],
+    [
+      112,
+      113
+    ],
+    [
+      -114,
+      51
+    ],
+    [
+      -114,
+      50
+    ],
+    [
+      -114,
+      21
+    ],
+    [
+      -114,
+      69
+    ],
+    [
+      -115,
+      -51
+    ],
+    [
+      -115,
+      -50,
+      -21,
+      -69
+    ],
+    [
+      114,
+      115
+    ],
+    [
+      -116,
+      87
+    ],
+    [
+      -116,
+      66
+    ],
+    [
+      -116,
+      50
+    ],
+    [
+      -116,
+      69
+    ],
+    [
+      -117,
+      -87
+    ],
+    [
+      -117,
+      -66,
+      -50,
+      -69
+    ],
+    [
+      116,
+      117
+    ],
+    [
+      -118,
+      46
+    ],
+    [
+      -118,
+      66
+    ],
+    [
+      -118,
+      27
+    ],
+    [
+      -118,
+      50
+    ],
+    [
+      -119,
+      -46
+    ],
+    [
+      -119,
+      -66,
+      -27,
+      -50
+    ],
+    [
+      118,
+      119
+    ],
+    [
+      -120,
+      58
+    ],
+    [
+      -120,
+      27
+    ],
+    [
+      -120,
+      50
+    ],
+    [
+      -120,
+      69
+    ],
+    [
+      -121,
+      -58
+    ],
+    [
+      -121,
+      -27,
+      -50,
+      -69
+    ],
+    [
+      120,
+      121
+    ],
+    [
+      -122,
+      91
+    ],
+    [
+      -122,
+      50
+    ],
+    [
+      -122,
+      69
+    ],
+    [
+      -122,
+      79
+    ],
+    [
+      -123,
+      -91
+    ],
+    [
+      -123,
+      -50,
+      -69,
+      -79
+    ],
+    [
+      122,
+      123
+    ],
+    [
+      -124,
+      32
+    ],
+    [
+      -124,
+      57
+    ],
+    [
+      -124,
+      16
+    ],
+    [
+      -124,
+      103
+    ],
+    [
+      -125,
+      -32
+    ],
+    [
+      -125,
+      -57,
+      -16,
+      -103
+    ],
+    [
+      124,
+      125
+    ],
+    [
+      -126,
+      23
+    ],
+    [
+      -126,
+      27
+    ],
+    [
+      -126,
+      57
+    ],
+    [
+      -126,
+      103
+    ],
+    [
+      -127,
+      -23
+    ],
+    [
+      -127,
+      -27,
+      -57,
+      -103
+    ],
+    [
+      126,
+      127
+    ],
+    [
+      -128,
+      97
+    ],
+    [
+      -128,
+      57
+    ],
+    [
+      -128,
+      103
+    ],
+    [
+      -128,
+      4
+    ],
+    [
+      -129,
+      -97
+    ],
+    [
+      -129,
+      -57,
+      -103,
+      -4
+    ],
+    [
+      128,
+      129
+    ],
+    [
+      -130,
+      49
+    ],
+    [
+      -130,
+      10
+    ],
+    [
+      -130,
+      57
+    ],
+    [
+      -130,
+      40
+    ],
+    [
+      -131,
+      -49
+    ],
+    [
+      -131,
+      -10,
+      -57,
+      -40
+    ],
+    [
+      130,
+      131
+    ],
+    [
+      -132,
+      74
+    ],
+    [
+      -132,
+      66
+    ],
+    [
+      -132,
+      92
+    ],
+    [
+      -133,
+      -74
+    ],
+    [
+      -133,
+      -66,
+      -92
+    ],
+    [
+      132,
+      133
+    ],
+    [
+      -134,
+      101
+    ],
+    [
+      -134,
+      98
+    ],
+    [
+      -134,
+      93
+    ],
+    [
+      -135,
+      -101
+    ],
+    [
+      -135,
+      -98,
+      -93
+    ],
+    [
+      134,
+      135
+    ],
+    [
+      -136,
+      85
+    ],
+    [
+      -136,
+      14
+    ],
+    [
+      -136,
+      6
+    ],
+    [
+      -137,
+      -85
+    ],
+    [
+      -137,
+      -14,
+      -6
+    ],
+    [
+      136,
+      137
+    ],
+    [
+      -138,
+      61
+    ],
+    [
+      -138,
+      89
+    ],
+    [
+      -138,
+      69
+    ],
+    [
+      -139,
+      -61
+    ],
+    [
+      -139,
+      -89,
+      -69
+    ],
+    [
+      138,
+      139
+    ],
+    [
+      -140,
+      52
+    ],
+    [
+      -140,
+      92
+    ],
+    [
+      -140,
+      69
+    ],
+    [
+      -141,
+      -52
+    ],
+    [
+      -141,
+      -92,
+      -69
+    ],
+    [
+      140,
+      141
+    ],
+    [
+      -142,
+      77
+    ],
+    [
+      -142,
+      16
+    ],
+    [
+      -142,
+      69
+    ],
+    [
+      -143,
+      -77
+    ],
+    [
+      -143,
+      -16,
+      -69
+    ],
+    [
+      142,
+      143
+    ],
+    [
+      -144,
+      53
+    ],
+    [
+      -144,
+      66
+    ],
+    [
+      -144,
+      69
+    ],
+    [
+      -145,
+      -53
+    ],
+    [
+      -145,
+      -66,
+      -69
+    ],
+    [
+      144,
+      145
+    ],
+    [
+      -146,
+      54
+    ],
+    [
+      -146,
+      66
+    ],
+    [
+      -146,
+      43
+    ],
+    [
+      -147,
+      -54
+    ],
+    [
+      -147,
+      -66,
+      -43
+    ],
+    [
+      146,
+      147
+    ],
+    [
+      -148,
+      83
+    ],
+    [
+      -148,
+      43
+    ],
+    [
+      -148,
+      69
+    ],
+    [
+      -149,
+      -83
+    ],
+    [
+      -149,
+      -43,
+      -69
+    ],
+    [
+      148,
+      149
+    ],
+    [
+      -150,
+      38
+    ],
+    [
+      -150,
+      50
+    ],
+    [
+      -150,
+      69
+    ],
+    [
+      -151,
+      -38
+    ],
+    [
+      -151,
+      -50,
+      -69
+    ],
+    [
+      150,
+      151
+    ],
+    [
+      -152,
+      41
+    ],
+    [
+      -152,
+      60
+    ],
+    [
+      -152,
+      15
+    ],
+    [
+      -153,
+      -41
+    ],
+    [
+      -153,
+      -60,
+      -15
+    ],
+    [
+      152,
+      153
+    ],
+    [
+      -154,
+      30
+    ],
+    [
+      -154,
+      60
+    ],
+    [
+      -154,
+      90
+    ],
+    [
+      -155,
+      -30
+    ],
+    [
+      -155,
+      -60,
+      -90
+    ],
+    [
+      154,
+      155
+    ],
+    [
+      -156,
+      71
+    ],
+    [
+      -156,
+      15
+    ],
+    [
+      -156,
+      100
+    ],
+    [
+      -157,
+      -71
+    ],
+    [
+      -157,
+      -15,
+      -100
+    ],
+    [
+      156,
+      157
+    ],
+    [
+      -158,
+      2
+    ],
+    [
+      -158,
+      60
+    ],
+    [
+      -158,
+      100
+    ],
+    [
+      -159,
+      -2
+    ],
+    [
+      -159,
+      -60,
+      -100
+    ],
+    [
+      158,
+      159
+    ],
+    [
+      -160,
+      73
+    ],
+    [
+      -160,
+      27
+    ],
+    [
+      -160,
+      42
+    ],
+    [
+      -161,
+      -73
+    ],
+    [
+      -161,
+      -27,
+      -42
+    ],
+    [
+      160,
+      161
+    ],
+    [
+      -162,
+      31
+    ],
+    [
+      -162,
+      66
+    ],
+    [
+      -162,
+      27
+    ],
+    [
+      -163,
+      -31
+    ],
+    [
+      -163,
+      -66,
+      -27
+    ],
+    [
+      162,
+      163
+    ],
+    [
+      -164,
+      17
+    ],
+    [
+      -164,
+      27
+    ],
+    [
+      -164,
+      69
+    ],
+    [
+      -165,
+      -17
+    ],
+    [
+      -165,
+      -27,
+      -69
+    ],
+    [
+      164,
+      165
+    ],
+    [
+      -166,
+      28
+    ],
+    [
+      -166,
+      27
+    ],
+    [
+      -166,
+      50
+    ],
+    [
+      -167,
+      -28
+    ],
+    [
+      -167,
+      -27,
+      -50
+    ],
+    [
+      166,
+      167
+    ],
+    [
+      -168,
+      36
+    ],
+    [
+      -168,
+      75
+    ],
+    [
+      -168,
+      79
+    ],
+    [
+      -169,
+      -36
+    ],
+    [
+      -169,
+      -75,
+      -79
+    ],
+    [
+      168,
+      169
+    ],
+    [
+      -170,
+      24
+    ],
+    [
+      -170,
+      66
+    ],
+    [
+      -170,
+      79
+    ],
+    [
+      -171,
+      -24
+    ],
+    [
+      -171,
+      -66,
+      -79
+    ],
+    [
+      170,
+      171
+    ],
+    [
+      -172,
+      11
+    ],
+    [
+      -172,
+      69
+    ],
+    [
+      -172,
+      79
+    ],
+    [
+      -173,
+      -11
+    ],
+    [
+      -173,
+      -69,
+      -79
+    ],
+    [
+      172,
+      173
+    ],
+    [
+      -174,
+      37
+    ],
+    [
+      -174,
+      27
+    ],
+    [
+      -174,
+      79
+    ],
+    [
+      -175,
+      -37
+    ],
+    [
+      -175,
+      -27,
+      -79
+    ],
+    [
+      174,
+      175
+    ],
+    [
+      -176,
+      1
+    ],
+    [
+      -176,
+      15
+    ],
+    [
+      -176,
+      12
+    ],
+    [
+      -177,
+      -1
+    ],
+    [
+      -177,
+      -15,
+      -12
+    ],
+    [
+      176,
+      177
+    ],
+    [
+      -178,
+      18
+    ],
+    [
+      -178,
+      66
+    ],
+    [
+      -178,
+      12
+    ],
+    [
+      -179,
+      -18
+    ],
+    [
+      -179,
+      -66,
+      -12
+    ],
+    [
+      178,
+      179
+    ],
+    [
+      -180,
+      81
+    ],
+    [
+      -180,
+      12
+    ],
+    [
+      -180,
+      79
+    ],
+    [
+      -181,
+      -81
+    ],
+    [
+      -181,
+      -12,
+      -79
+    ],
+    [
+      180,
+      181
+    ],
+    [
+      -182,
+      94
+    ],
+    [
+      -182,
+      66
+    ],
+    [
+      -182,
+      70
+    ],
+    [
+      -183,
+      -94
+    ],
+    [
+      -183,
+      -66,
+      -70
+    ],
+    [
+      182,
+      183
+    ],
+    [
+      -184,
+      78
+    ],
+    [
+      -184,
+      57
+    ],
+    [
+      -184,
+      40
+    ],
+    [
+      -185,
+      -78
+    ],
+    [
+      -185,
+      -57,
+      -40
+    ],
+    [
+      184,
+      185
+    ],
+    [
+      -186,
+      22
+    ],
+    [
+      -186,
+      66
+    ],
+    [
+      -186,
+      57
+    ],
+    [
+      -187,
+      -22
+    ],
+    [
+      -187,
+      -66,
+      -57
+    ],
+    [
+      186,
+      187
+    ],
+    [
+      -188,
+      59
+    ],
+    [
+      -188,
+      57
+    ],
+    [
+      -188,
+      69
+    ],
+    [
+      -189,
+      -59
+    ],
+    [
+      -189,
+      -57,
+      -69
+    ],
+    [
+      188,
+      189
+    ],
+    [
+      -190,
+      5
+    ],
+    [
+      -190,
+      27
+    ],
+    [
+      -190,
+      57
+    ],
+    [
+      -191,
+      -5
+    ],
+    [
+      -191,
+      -27,
+      -57
+    ],
+    [
+      190,
+      191
+    ],
+    [
+      -192,
+      39
+    ],
+    [
+      -192,
+      57
+    ],
+    [
+      -192,
+      79
+    ],
+    [
+      -193,
+      -39
+    ],
+    [
+      -193,
+      -57,
+      -79
+    ],
+    [
+      192,
+      193
+    ],
+    [
+      -194,
+      29
+    ],
+    [
+      -194,
+      21
+    ],
+    [
+      -194,
+      4
+    ],
+    [
+      -195,
+      -29
+    ],
+    [
+      -195,
+      -21,
+      -4
+    ],
+    [
+      194,
+      195
+    ],
+    [
+      -196,
+      96
+    ],
+    [
+      -196,
+      16
+    ],
+    [
+      -196,
+      4
+    ],
+    [
+      -197,
+      -96
+    ],
+    [
+      -197,
+      -16,
+      -4
+    ],
+    [
+      196,
+      197
+    ],
+    [
+      -198,
+      84
+    ],
+    [
+      -198,
+      66
+    ],
+    [
+      -198,
+      4
+    ],
+    [
+      -199,
+      -84
+    ],
+    [
+      -199,
+      -66,
+      -4
+    ],
+    [
+      198,
+      199
+    ],
+    [
+      -200,
+      45
+    ],
+    [
+      -200,
+      69
+    ],
+    [
+      -200,
+      4
+    ],
+    [
+      -201,
+      -45
+    ],
+    [
+      -201,
+      -69,
+      -4
+    ],
+    [
+      200,
+      201
+    ],
+    [
+      -202,
+      86
+    ],
+    [
+      -202,
+      79
+    ],
+    [
+      -202,
+      4
+    ],
+    [
+      -203,
+      -86
+    ],
+    [
+      -203,
+      -79,
+      -4
+    ],
+    [
+      202,
+      203
+    ],
+    [
+      -204,
+      99
+    ],
+    [
+      -204,
+      57
+    ],
+    [
+      -204,
+      4
+    ],
+    [
+      -205,
+      -99
+    ],
+    [
+      -205,
+      -57,
+      -4
+    ],
+    [
+      204,
+      205
+    ],
+    [
+      -206,
+      88
+    ],
+    [
+      -206,
+      57
+    ],
+    [
+      -206,
+      103
+    ],
+    [
+      -207,
+      -88
+    ],
+    [
+      -207,
+      -57,
+      -103
+    ],
+    [
+      206,
+      207
+    ],
+    [
+      -208,
+      56
+    ],
+    [
+      -208,
+      57
+    ],
+    [
+      -208,
+      47
+    ],
+    [
+      -209,
+      -56
+    ],
+    [
+      -209,
+      -57,
+      -47
+    ],
+    [
+      208,
+      209
+    ],
+    [
+      -210,
+      26
+    ],
+    [
+      -210,
+      66
+    ],
+    [
+      -210,
+      67
+    ],
+    [
+      -211,
+      -26
+    ],
+    [
+      -211,
+      -66,
+      -67
+    ],
+    [
+      210,
+      211
+    ],
+    [
+      -212,
+      34
+    ],
+    [
+      -212,
+      95
+    ],
+    [
+      -212,
+      35
+    ],
+    [
+      -213,
+      -34
+    ],
+    [
+      -213,
+      -95,
+      -35
+    ],
+    [
+      212,
+      213
+    ],
+    [
+      -214,
+      48
+    ],
+    [
+      -214,
+      10
+    ],
+    [
+      -214,
+      15
+    ],
+    [
+      -215,
+      -48
+    ],
+    [
+      -215,
+      -10,
+      -15
+    ],
+    [
+      214,
+      215
+    ],
+    [
+      -216,
+      7
+    ],
+    [
+      -216,
+      10
+    ],
+    [
+      -216,
+      19
+    ],
+    [
+      -217,
+      -7
+    ],
+    [
+      -217,
+      -10,
+      -19
+    ],
+    [
+      216,
+      217
+    ],
+    [
+      -218,
+      65
+    ],
+    [
+      -218,
+      10
+    ],
+    [
+      -218,
+      42
+    ],
+    [
+      -219,
+      -65
+    ],
+    [
+      -219,
+      -10,
+      -42
+    ],
+    [
+      218,
+      219
+    ],
+    [
+      -220,
+      9
+    ],
+    [
+      -220,
+      10
+    ],
+    [
+      -220,
+      95
+    ],
+    [
+      -221,
+      -9
+    ],
+    [
+      -221,
+      -10,
+      -95
+    ],
+    [
+      220,
+      221
+    ],
+    [
+      -222,
+      64
+    ],
+    [
+      -222,
+      10
+    ],
+    [
+      -222,
+      76
+    ],
+    [
+      -223,
+      -64
+    ],
+    [
+      -223,
+      -10,
+      -76
+    ],
+    [
+      222,
+      223
+    ],
+    [
+      -224,
+      62
+    ],
+    [
+      -224,
+      75
+    ],
+    [
+      -224,
+      10
+    ],
+    [
+      -225,
+      -62
+    ],
+    [
+      -225,
+      -75,
+      -10
+    ],
+    [
+      224,
+      225
+    ],
+    [
+      -226,
+      68
+    ],
+    [
+      -226,
+      10
+    ],
+    [
+      -226,
+      3
+    ],
+    [
+      -227,
+      -68
+    ],
+    [
+      -227,
+      -10,
+      -3
+    ],
+    [
+      226,
+      227
+    ],
+    [
+      -228,
+      44
+    ],
+    [
+      -228,
+      10
+    ],
+    [
+      -228,
+      80
+    ],
+    [
+      -229,
+      -44
+    ],
+    [
+      -229,
+      -10,
+      -80
+    ],
+    [
+      228,
+      229
+    ],
+    [
+      -230,
+      82
+    ],
+    [
+      -230,
+      10
+    ],
+    [
+      -230,
+      55
+    ],
+    [
+      -231,
+      -82
+    ],
+    [
+      -231,
+      -10,
+      -55
+    ],
+    [
+      230,
+      231
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "generatedSPL",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "BTree",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "IEvictor",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CriticalEviction",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Evictor",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "EvictorDaemon",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "INCompressor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Verifier",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "ConcurrTrans",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CheckLeaks",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "FSync",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Latches",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Transactions",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "DERIVATIVES",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_CPBytes_CPTime",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_CheckpointerDaemon_CPBytes",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_DeleteOp_Evictor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_DeleteOp_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_DeleteOp_TruncateOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Evictor_CriticalEviction",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Evictor_EvictorDaemon",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Evictor_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Evictor_MemoryBudget_CriticalEviction",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_FSync_Latches",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_FSync_Statistics",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_INCompressor_DeleteOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_INCompressor_Evictor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_INCompressor_Evictor_CriticalEviction",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_IO_SynchronizedIO",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_CheckLeaks",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_DeleteOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_Evictor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_FileHandleCache",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_RenameOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_Statistics",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_Statistics_Verifier",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_TruncateOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Latches_Verifier_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingCleaner_DeleteOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingCleaner_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingConfig_Statistics",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingConsoleHandler_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingDbLogHandler_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingEvictor_Evictor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingEvictor_Evictor_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingEvictor_Evictor_MemoryBudget_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingEvictor_Statistics_Evictor_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFileHandler_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFine_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFine_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFiner_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFinest_CPBytes",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFinest_CPTime",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFinest_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingFinest_TruncateOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingInfo_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingInfo_Statistics_Verifier",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingRecovery_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingSevere_EnvironmentLocking",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LoggingSevere_LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LookAHEADCache_Evictor_CriticalEviction",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LookAHEADCache_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_LookAHEADCache_Statistics",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_NIO_ChunkedNIO",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_CheckLeaks",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_DeleteOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_Evictor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_MemoryBudget",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_Verifier",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_Verifier_DeleteOp",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Statistics_Verifier_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Derivative_Verifier_INCompressor",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Logging",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingCleaner",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingConfig",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingConsoleHandler",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingDbLogHandler",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingEvictor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingFileHandler",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingFine",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingFiner",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingFinest",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingInfo",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingRecovery",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoggingSevere",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "MemoryBudget",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Ops",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DeleteOp",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RenameOp",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "TruncateOp",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Persistance",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Checkpointer",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CPBytes",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CPTime",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CheckpointerDaemon",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Checksum",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DiskFullErro",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "EnvironmentLocking",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "FileHandleCache",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "IICleaner",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Cleaner",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CleanerDaemon",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LookAHEADCache",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "IIO",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "NewIO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "DirectNIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "ALT",
+                      "feature_literal": {
+                        "name": "NIOAccess",
+                        "negated": false
+                      },
+                      "mandatory": true,
+                      "elements": [
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "ChunkedNIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        },
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "NIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "OldIO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "IO",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "SynchronizedIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Statistics",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "base",
+            "negated": false
+          },
+          "mandatory": true
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "EvictorDaemon",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LookAHEADCache",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "CriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "INCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "CPBytes",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "CPTime",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "TruncateOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Verifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "INCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingEvictor_Statistics_Evictor_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingEvictor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingEvictor_Evictor_MemoryBudget_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingInfo_Statistics_Verifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingInfo",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_Statistics_Verifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_Verifier_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_Verifier_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_Verifier_DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LookAHEADCache_Evictor_CriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LookAHEADCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CriticalEviction",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_INCompressor_Evictor_CriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CriticalEviction",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Evictor_MemoryBudget_CriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CriticalEviction",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingEvictor_Evictor_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingEvictor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_FSync_Latches",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "FSync",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_NIO_ChunkedNIO",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ChunkedNIO",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "NIO",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_IO_SynchronizedIO",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "IO",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "SynchronizedIO",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingConfig_Statistics",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingConfig",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_FSync_Statistics",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "FSync",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LookAHEADCache_Statistics",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LookAHEADCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_Statistics",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_CheckLeaks",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CheckLeaks",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_CheckLeaks",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "CheckLeaks",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_Verifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFinest_CPBytes",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "CPBytes",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_CheckpointerDaemon_CPBytes",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "CPBytes",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CheckpointerDaemon",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFinest_CPTime",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CPTime",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_CPBytes_CPTime",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "CPBytes",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CPTime",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFine_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFine",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Verifier_INCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Verifier",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingCleaner_DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingCleaner",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_INCompressor_DeleteOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFinest_TruncateOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "TruncateOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_TruncateOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "TruncateOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_DeleteOp_TruncateOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "TruncateOp",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_RenameOp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "RenameOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingEvictor_Evictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingEvictor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_Evictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_Evictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_INCompressor_Evictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "INCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_DeleteOp_Evictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingInfo_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingInfo",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LookAHEADCache_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LookAHEADCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Statistics_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Statistics",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_DeleteOp_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "DeleteOp",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Evictor_MemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Evictor_CriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CriticalEviction",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Evictor_EvictorDaemon",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Evictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "EvictorDaemon",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_Latches_FileHandleCache",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Latches",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "FileHandleCache",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingSevere_EnvironmentLocking",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingSevere",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "EnvironmentLocking",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFinest_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFiner_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFiner",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFine_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFine",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingSevere_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingSevere",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingRecovery_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingRecovery",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingCleaner_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingCleaner",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingFileHandler_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingFileHandler",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingDbLogHandler_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingDbLogHandler",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Derivative_LoggingConsoleHandler_LoggingBase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "LoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "LoggingConsoleHandler",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

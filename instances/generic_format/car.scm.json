@@ -1,0 +1,385 @@
+{
+  "type": "software configuration model",
+  "name": "car",
+  "meta": {},
+  "num_variables": 14,
+  "num_concrete_features": 9,
+  "labels": {
+    "Automatic": 5,
+    "Bluetooth": 4,
+    "CD": 7,
+    "Europe": 3,
+    "Manual": 8,
+    "USA": 9,
+    "USB": 2
+  },
+  "cnf_clauses": [
+    [
+      1
+    ],
+    [
+      -5,
+      -8
+    ],
+    [
+      5,
+      8,
+      -1
+    ],
+    [
+      -5,
+      1
+    ],
+    [
+      -8,
+      1
+    ],
+    [
+      -10,
+      1
+    ],
+    [
+      -4,
+      10
+    ],
+    [
+      -6,
+      10
+    ],
+    [
+      -13,
+      6
+    ],
+    [
+      -3,
+      -9
+    ],
+    [
+      3,
+      9,
+      -13
+    ],
+    [
+      -3,
+      13
+    ],
+    [
+      -9,
+      13
+    ],
+    [
+      -14,
+      10
+    ],
+    [
+      7,
+      2,
+      -14
+    ],
+    [
+      -7,
+      14
+    ],
+    [
+      -2,
+      14
+    ],
+    [
+      -6,
+      2
+    ],
+    [
+      -3,
+      1
+    ],
+    [
+      -6,
+      2
+    ],
+    [
+      1
+    ],
+    [
+      1
+    ],
+    [
+      -1,
+      -10,
+      6
+    ],
+    [
+      -11,
+      -1
+    ],
+    [
+      -12,
+      5
+    ],
+    [
+      -12,
+      -4
+    ],
+    [
+      11,
+      12
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "Car",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Carbody",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Gearbox",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Automatic",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Manual",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "GearboxTest",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Radio",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Bluetooth",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Navigation",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "DigitalCards",
+                    "negated": false
+                  },
+                  "mandatory": false,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Europe",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "USA",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "GPSAntenna",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "Ports",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CD",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "USB",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Navigation",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "USB",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Europe",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Gearbox",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "GPSAntenna",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "USB",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "AND",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Carbody",
+            "negated": false,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Gearbox",
+            "negated": false,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Gearbox",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Radio",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Navigation",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Carbody",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Automatic",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Bluetooth",
+              "negated": true,
+              "auxiliary": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

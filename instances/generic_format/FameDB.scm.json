@@ -1,0 +1,331 @@
+{
+  "type": "software configuration model",
+  "name": "FameDB",
+  "meta": {},
+  "num_variables": 15,
+  "num_concrete_features": 13,
+  "labels": {
+    "BTree": 1,
+    "DebugLogging": 2,
+    "Dynamic": 3,
+    "InMemory": 13,
+    "LFU": 5,
+    "LRU": 12,
+    "NutOS": 10,
+    "Static": 8,
+    "Unindexed": 11,
+    "Win": 6,
+    "delete": 7,
+    "get": 9,
+    "put": 4
+  },
+  "cnf_clauses": [
+    [
+      14
+    ],
+    [
+      -13,
+      -15
+    ],
+    [
+      13,
+      15,
+      -14
+    ],
+    [
+      -13,
+      14
+    ],
+    [
+      -15,
+      14
+    ],
+    [
+      -3,
+      -8
+    ],
+    [
+      3,
+      8,
+      -15
+    ],
+    [
+      -3,
+      15
+    ],
+    [
+      -8,
+      15
+    ],
+    [
+      -5,
+      -12
+    ],
+    [
+      5,
+      12,
+      -15
+    ],
+    [
+      -5,
+      15
+    ],
+    [
+      -12,
+      15
+    ],
+    [
+      -2,
+      14
+    ],
+    [
+      -10,
+      -6
+    ],
+    [
+      10,
+      6,
+      -14
+    ],
+    [
+      -10,
+      14
+    ],
+    [
+      -6,
+      14
+    ],
+    [
+      7,
+      9,
+      4,
+      -14
+    ],
+    [
+      -7,
+      14
+    ],
+    [
+      -9,
+      14
+    ],
+    [
+      -4,
+      14
+    ],
+    [
+      -1,
+      -11
+    ],
+    [
+      1,
+      11,
+      -14
+    ],
+    [
+      -1,
+      14
+    ],
+    [
+      -11,
+      14
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "DB",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "BufferMgr",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InMemory",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Persistent",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "MemAlloc",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Dynamic",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Static",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "PageRepl",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "LFU",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "LRU",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "DebugLogging",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "OS",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "NutOS",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Win",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Storage",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "API",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "delete",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "get",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "put",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "Index",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "BTree",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Unindexed",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "rules": []
+  }
+}

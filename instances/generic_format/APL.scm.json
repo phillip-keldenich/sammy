@@ -1,0 +1,333 @@
+{
+  "type": "software configuration model",
+  "name": "APL",
+  "meta": {},
+  "num_variables": 15,
+  "num_concrete_features": 13,
+  "labels": {
+    "cpp": 1,
+    "drc": 12,
+    "guidsl": 10,
+    "jedi": 9,
+    "me": 11,
+    "mmatrix": 6,
+    "reform": 13,
+    "web": 5,
+    "xak": 7,
+    "xc": 3
+  },
+  "cnf_clauses": [
+    [
+      8
+    ],
+    [
+      -14,
+      8
+    ],
+    [
+      -10,
+      14
+    ],
+    [
+      -11,
+      14
+    ],
+    [
+      -6,
+      14
+    ],
+    [
+      -5,
+      14
+    ],
+    [
+      -9,
+      8
+    ],
+    [
+      -13,
+      8
+    ],
+    [
+      -15,
+      8
+    ],
+    [
+      -7,
+      -3
+    ],
+    [
+      7,
+      3,
+      -15
+    ],
+    [
+      -7,
+      15
+    ],
+    [
+      -3,
+      15
+    ],
+    [
+      -2,
+      8
+    ],
+    [
+      -4,
+      8
+    ],
+    [
+      -1,
+      8
+    ],
+    [
+      -12,
+      8
+    ],
+    [
+      -4,
+      6
+    ],
+    [
+      -11,
+      6
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "APL",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "mainAPL",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Gui",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "mainGUI",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "guidsl",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "me",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "mmatrix",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "web",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Java",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "mainJava",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "bali",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "jak2java",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "jedi",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "reform",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "Xml",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "xak",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "xc",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "aj",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "jak2aj",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "bc",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bcjak2java",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "cpp",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "drc",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "bc",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "mmatrix",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "me",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "mmatrix",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

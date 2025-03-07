@@ -1,0 +1,2417 @@
+{
+  "type": "software configuration model",
+  "name": "BankingSoftware",
+  "meta": {},
+  "num_variables": 128,
+  "num_concrete_features": 122,
+  "labels": {
+    "ATM": 117,
+    "ATM_1": 16,
+    "Accountent": 32,
+    "ActivateAccount": 6,
+    "AddAccountHolder": 54,
+    "AddPayee": 14,
+    "AmericanExpress": 9,
+    "ApplyBalanceTransfer": 63,
+    "ApplyChargesForCashWithdrawal": 5,
+    "ApplyLateFees": 84,
+    "ApplyProcessingFees": 87,
+    "AssetVerification": 89,
+    "AssitManager": 74,
+    "AutoATMPinForDebitCard": 115,
+    "Automatic": 23,
+    "Bank": 45,
+    "CancelDemandDraft": 118,
+    "CancelPayOrder": 35,
+    "CancelStandingInstructionOnCreditCard": 112,
+    "Cash": 76,
+    "CashWithdrawalFromCreditCard": 121,
+    "Cash_1": 111,
+    "ChangeATMPin": 80,
+    "ChangeMaxLimitForOnlineTransfer": 18,
+    "ChangePassword": 37,
+    "CheckingBalance": 105,
+    "CheckingMoneyExchangeRate": 69,
+    "Cheque": 7,
+    "ChequeClearance": 91,
+    "Cheque_1": 72,
+    "Cleark": 97,
+    "CloseAccount": 68,
+    "CloseFixedDeposit": 116,
+    "ConvertTransactionToEMI": 28,
+    "CreateDemandDraft": 81,
+    "CreateDemandDraftOnline": 60,
+    "CreateECSTransaction": 122,
+    "CreatePayOrder": 108,
+    "CreateStandingInstruction": 64,
+    "CreateStandingInstructionOnCreditCard": 30,
+    "CreditBTAmountToOtherCard": 107,
+    "CreditCardPayment": 85,
+    "CreditRewardPoints": 66,
+    "CreditThroughNEFT": 62,
+    "CreditThroughRTGS": 93,
+    "CurrencyExchange": 109,
+    "Current": 39,
+    "DebitCard": 70,
+    "DeleteAccountHolder": 13,
+    "DeleteECSTransaction": 75,
+    "DeleteStandingInstruction": 8,
+    "DepositMoney": 48,
+    "DinersClubCard": 49,
+    "ECS": 106,
+    "FastWithdrawal": 43,
+    "GenerateOTP": 94,
+    "GoldLoan": 40,
+    "HomeLoan": 20,
+    "InfiniaCard": 104,
+    "InterBank": 110,
+    "InterBankTransfer": 71,
+    "InternationalTransfer": 44,
+    "IntraBank": 36,
+    "IntraBankTransfer": 50,
+    "JetPrivilegeCard": 101,
+    "LanguageSelection": 95,
+    "LoanAgainstFD": 4,
+    "LoanAgainstProperty": 26,
+    "LoanRepaymentEMI": 92,
+    "LoanRepaymentForecloser": 38,
+    "Manager": 27,
+    "Manual": 24,
+    "MapChequeBookToAccount": 99,
+    "MapDebitCardToAccount": 10,
+    "Master": 52,
+    "MasterCard": 51,
+    "Mastro": 88,
+    "MastroCard": 98,
+    "MobileTopUp": 29,
+    "MoneyExchange": 65,
+    "Multicity": 78,
+    "NetBanking": 77,
+    "Online": 82,
+    "PayBills": 73,
+    "PayUtilityBills": 19,
+    "Personal": 41,
+    "PlatinumCard": 33,
+    "PreclosureFixedDeposit": 100,
+    "PrintingBalanceAfterWithdraw": 79,
+    "PrintingBankStatement": 83,
+    "ReactivateAccount": 11,
+    "ReconcilingATMTransactions": 67,
+    "RedemRewardPoints": 22,
+    "RegaliaCard": 46,
+    "RegisterForEstatement": 120,
+    "RegisterMobileNoForBanking": 25,
+    "Regular": 55,
+    "RemoveBeneficiary": 119,
+    "RequestDuplicateEstatement": 15,
+    "ReverseTransaction": 3,
+    "Saving": 56,
+    "SendEmailAlerts": 1,
+    "SendSMSAlerts": 57,
+    "SolitaireCard": 47,
+    "SuperiaCard": 96,
+    "TitaniumCard": 113,
+    "TitaniumEdgeCard": 2,
+    "UpdateContactDetails": 53,
+    "UserInterface": 17,
+    "VehicleLoan": 61,
+    "ViewUnbilledTransaction": 21,
+    "Visa": 58,
+    "VisaCard": 31,
+    "WithdrawMoney": 86,
+    "a100": 114,
+    "a15": 90,
+    "a30": 34,
+    "a50": 59,
+    "eStatement": 103
+  },
+  "cnf_clauses": [
+    [
+      102
+    ],
+    [
+      -6,
+      102
+    ],
+    [
+      -54,
+      102
+    ],
+    [
+      -123,
+      102
+    ],
+    [
+      110,
+      36,
+      -123
+    ],
+    [
+      -110,
+      123
+    ],
+    [
+      -36,
+      123
+    ],
+    [
+      -115,
+      102
+    ],
+    [
+      -32,
+      -74
+    ],
+    [
+      -32,
+      -97
+    ],
+    [
+      -32,
+      -27
+    ],
+    [
+      -74,
+      -97
+    ],
+    [
+      -74,
+      -27
+    ],
+    [
+      -97,
+      -27
+    ],
+    [
+      32,
+      74,
+      97,
+      27,
+      -102
+    ],
+    [
+      -32,
+      102
+    ],
+    [
+      -74,
+      102
+    ],
+    [
+      -97,
+      102
+    ],
+    [
+      -27,
+      102
+    ],
+    [
+      -117,
+      -45
+    ],
+    [
+      -117,
+      -82
+    ],
+    [
+      -45,
+      -82
+    ],
+    [
+      117,
+      45,
+      82,
+      -102
+    ],
+    [
+      -117,
+      102
+    ],
+    [
+      -45,
+      102
+    ],
+    [
+      -82,
+      102
+    ],
+    [
+      -118,
+      102
+    ],
+    [
+      -35,
+      102
+    ],
+    [
+      -80,
+      102
+    ],
+    [
+      -18,
+      102
+    ],
+    [
+      -37,
+      102
+    ],
+    [
+      -105,
+      102
+    ],
+    [
+      -69,
+      102
+    ],
+    [
+      -91,
+      102
+    ],
+    [
+      -68,
+      102
+    ],
+    [
+      -116,
+      102
+    ],
+    [
+      -81,
+      102
+    ],
+    [
+      -60,
+      102
+    ],
+    [
+      -122,
+      102
+    ],
+    [
+      -108,
+      102
+    ],
+    [
+      -64,
+      102
+    ],
+    [
+      -85,
+      102
+    ],
+    [
+      -62,
+      102
+    ],
+    [
+      -93,
+      102
+    ],
+    [
+      -109,
+      102
+    ],
+    [
+      -13,
+      102
+    ],
+    [
+      -75,
+      102
+    ],
+    [
+      -8,
+      102
+    ],
+    [
+      -48,
+      102
+    ],
+    [
+      -43,
+      102
+    ],
+    [
+      -124,
+      102
+    ],
+    [
+      23,
+      24,
+      -124
+    ],
+    [
+      -23,
+      124
+    ],
+    [
+      -24,
+      124
+    ],
+    [
+      -71,
+      102
+    ],
+    [
+      -44,
+      102
+    ],
+    [
+      -50,
+      102
+    ],
+    [
+      -125,
+      102
+    ],
+    [
+      78,
+      55,
+      -125
+    ],
+    [
+      -78,
+      125
+    ],
+    [
+      -55,
+      125
+    ],
+    [
+      -114,
+      -90
+    ],
+    [
+      -114,
+      -34
+    ],
+    [
+      -114,
+      -59
+    ],
+    [
+      -90,
+      -34
+    ],
+    [
+      -90,
+      -59
+    ],
+    [
+      -34,
+      -59
+    ],
+    [
+      114,
+      90,
+      34,
+      59,
+      -125
+    ],
+    [
+      -114,
+      125
+    ],
+    [
+      -90,
+      125
+    ],
+    [
+      -34,
+      125
+    ],
+    [
+      -59,
+      125
+    ],
+    [
+      -95,
+      102
+    ],
+    [
+      -99,
+      102
+    ],
+    [
+      -10,
+      102
+    ],
+    [
+      -29,
+      102
+    ],
+    [
+      -65,
+      102
+    ],
+    [
+      -39,
+      -56
+    ],
+    [
+      39,
+      56,
+      -102
+    ],
+    [
+      -39,
+      102
+    ],
+    [
+      -56,
+      102
+    ],
+    [
+      -73,
+      102
+    ],
+    [
+      -100,
+      102
+    ],
+    [
+      -79,
+      102
+    ],
+    [
+      -83,
+      102
+    ],
+    [
+      -11,
+      102
+    ],
+    [
+      -67,
+      102
+    ],
+    [
+      -126,
+      102
+    ],
+    [
+      -51,
+      -98
+    ],
+    [
+      -51,
+      -31
+    ],
+    [
+      -98,
+      -31
+    ],
+    [
+      51,
+      98,
+      31,
+      -126
+    ],
+    [
+      -51,
+      126
+    ],
+    [
+      -98,
+      126
+    ],
+    [
+      -31,
+      126
+    ],
+    [
+      -25,
+      102
+    ],
+    [
+      -119,
+      102
+    ],
+    [
+      -53,
+      102
+    ],
+    [
+      -17,
+      102
+    ],
+    [
+      -86,
+      102
+    ],
+    [
+      -12,
+      102
+    ],
+    [
+      -14,
+      12
+    ],
+    [
+      -63,
+      12
+    ],
+    [
+      -5,
+      12
+    ],
+    [
+      -84,
+      12
+    ],
+    [
+      -87,
+      12
+    ],
+    [
+      -112,
+      12
+    ],
+    [
+      49,
+      104,
+      101,
+      33,
+      46,
+      47,
+      96,
+      113,
+      2,
+      -12
+    ],
+    [
+      -49,
+      12
+    ],
+    [
+      -104,
+      12
+    ],
+    [
+      -101,
+      12
+    ],
+    [
+      -33,
+      12
+    ],
+    [
+      -46,
+      12
+    ],
+    [
+      -47,
+      12
+    ],
+    [
+      -96,
+      12
+    ],
+    [
+      -113,
+      12
+    ],
+    [
+      -2,
+      12
+    ],
+    [
+      -121,
+      12
+    ],
+    [
+      -28,
+      12
+    ],
+    [
+      -30,
+      12
+    ],
+    [
+      -107,
+      12
+    ],
+    [
+      -66,
+      12
+    ],
+    [
+      -94,
+      12
+    ],
+    [
+      -127,
+      12
+    ],
+    [
+      16,
+      111,
+      72,
+      128,
+      -127
+    ],
+    [
+      -16,
+      127
+    ],
+    [
+      -111,
+      127
+    ],
+    [
+      -72,
+      127
+    ],
+    [
+      -128,
+      127
+    ],
+    [
+      -70,
+      -77
+    ],
+    [
+      70,
+      77,
+      -128
+    ],
+    [
+      -70,
+      128
+    ],
+    [
+      -77,
+      128
+    ],
+    [
+      -19,
+      12
+    ],
+    [
+      9,
+      52,
+      88,
+      58,
+      -12
+    ],
+    [
+      -9,
+      12
+    ],
+    [
+      -52,
+      12
+    ],
+    [
+      -88,
+      12
+    ],
+    [
+      -58,
+      12
+    ],
+    [
+      -22,
+      12
+    ],
+    [
+      -120,
+      12
+    ],
+    [
+      -15,
+      12
+    ],
+    [
+      -3,
+      12
+    ],
+    [
+      -1,
+      12
+    ],
+    [
+      -57,
+      12
+    ],
+    [
+      -21,
+      12
+    ],
+    [
+      -103,
+      12
+    ],
+    [
+      -42,
+      102
+    ],
+    [
+      -89,
+      42
+    ],
+    [
+      -92,
+      42
+    ],
+    [
+      -38,
+      42
+    ],
+    [
+      -76,
+      -7
+    ],
+    [
+      -76,
+      -106
+    ],
+    [
+      -7,
+      -106
+    ],
+    [
+      76,
+      7,
+      106,
+      -42
+    ],
+    [
+      -76,
+      42
+    ],
+    [
+      -7,
+      42
+    ],
+    [
+      -106,
+      42
+    ],
+    [
+      -40,
+      -20
+    ],
+    [
+      -40,
+      -4
+    ],
+    [
+      -40,
+      -26
+    ],
+    [
+      -40,
+      -41
+    ],
+    [
+      -40,
+      -61
+    ],
+    [
+      -20,
+      -4
+    ],
+    [
+      -20,
+      -26
+    ],
+    [
+      -20,
+      -41
+    ],
+    [
+      -20,
+      -61
+    ],
+    [
+      -4,
+      -26
+    ],
+    [
+      -4,
+      -41
+    ],
+    [
+      -4,
+      -61
+    ],
+    [
+      -26,
+      -41
+    ],
+    [
+      -26,
+      -61
+    ],
+    [
+      -41,
+      -61
+    ],
+    [
+      40,
+      20,
+      4,
+      26,
+      41,
+      61,
+      -42
+    ],
+    [
+      -40,
+      42
+    ],
+    [
+      -20,
+      42
+    ],
+    [
+      -4,
+      42
+    ],
+    [
+      -26,
+      42
+    ],
+    [
+      -41,
+      42
+    ],
+    [
+      -61,
+      42
+    ],
+    [
+      -26,
+      89
+    ],
+    [
+      -20,
+      89
+    ],
+    [
+      -4,
+      89
+    ],
+    [
+      -40,
+      89
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "BankingSoftware",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CoreBanking",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "ATMLogin",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Customer",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ActivateAccount",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AddAccountHolder",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "AddBeneficiary",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "InterBank",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "IntraBank",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AutoATMPinForDebitCard",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "BankEmployeeLogin",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "Employee",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Accountent",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "AssitManager",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Cleark",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Manager",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "BankingMode",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ATM",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Bank",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Online",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CancelDemandDraft",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CancelPayOrder",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ChangeATMPin",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ChangeMaxLimitForOnlineTransfer",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ChangePassword",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CheckingBalance",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CheckingMoneyExchangeRate",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ChequeClearance",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CloseAccount",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CloseFixedDeposit",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreateDemandDraft",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreateDemandDraftOnline",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreateECSTransaction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreatePayOrder",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreateStandingInstruction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditCardPayment",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditInterestToAccount",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditThroughNEFT",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditThroughRTGS",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CurrencyExchange",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DebitAnnualChargesOnDebitCard",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DeleteAccountHolder",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DeleteECSTransaction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DeleteStandingInstruction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DepositMoney",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "FastWithdrawal",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FreezeAccount",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Automatic",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Manual",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InterBankTransfer",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InternationalTransfer",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IntraBankTransfer",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "IssueChequeBook",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "OR",
+                  "feature_literal": {
+                    "name": "ChequeBookType",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Multicity",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Regular",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                },
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "Size",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "a100",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "a15",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "a30",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "a50",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LanguageSelection",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoadCashInATM",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MapChequeBookToAccount",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MapDebitCardToAccount",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MobileTopUp",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MoneyExchange",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "OnlineCustomerLogin",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "OpenAccount",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "AccountType",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Current",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Saving",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PayBills",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PreclosureFixedDeposit",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PrintingBalanceAfterWithdraw",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PrintingBankStatement",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ReactivateAccount",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ReconcilingATMTransactions",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "ReconcilingCardsTransactions",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "CardType",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "MasterCard",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "MastroCard",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "VisaCard",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RegisterMobileNoForBanking",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RemoveBeneficiary",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ScanSignatureToAccount",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ScanSignatureToAccount_1",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UpdateContactDetails",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UserInterface",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WithdrawMoney",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CreditCards",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AddPayee",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyAnnualCharges",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyBalanceTransfer",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyChargesForCashWithdrawal",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyForCrediCardOnline",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyInterestOnOutstandingAmount",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyLateFees",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyProcessingFees",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CancelStandingInstructionOnCreditCard",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "CardType_1",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "DinersClubCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "InfiniaCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "JetPrivilegeCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "PlatinumCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "RegaliaCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "SolitaireCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "SuperiaCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "TitaniumCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "TitaniumEdgeCard",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CashWithdrawalFromCreditCard",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CheckCreditCardStatus",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ConvertTransactionToEMI",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreateStandingInstructionOnCreditCard",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditBTAmountToOtherCard",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CreditRewardPoints",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "EligibilityChecker",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "GenerateOTP",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InitiateSettlementProcess",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MarkDefaulter",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "PayCreditCardBill",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "OR",
+                  "feature_literal": {
+                    "name": "PaymentChannel",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "ATM_1",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Cash_1",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Cheque_1",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "ALT",
+                      "feature_literal": {
+                        "name": "Online_1",
+                        "negated": false
+                      },
+                      "mandatory": true,
+                      "elements": [
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "DebitCard",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        },
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "NetBanking",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PayUtilityBills",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "PaymentMode",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "AmericanExpress",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Master",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Mastro",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Visa",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RedemRewardPoints",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RegisterForEstatement",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RequestDuplicateEstatement",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ReverseTransaction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SendEmailAlerts",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SendSMSAlerts",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UnmarkDefaulter",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UploadDocuments",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VerifyDocuments",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ViewAccountSummary",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ViewUnbilledTransaction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "eStatement",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Loan",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AddCoBorrower",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ApplyForLoanOnline",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AssetVerification",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DisburseLoanAmount",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "EMICalculator",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "InitiateDefaulterProcess",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "SendNotice",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InsureLoanWithThirdParty",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LoanEligibilityChecker",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "LoanRepayment",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LoanRepaymentEMI",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LoanRepaymentForecloser",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "RepaymentMode",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Cash",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Cheque",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "ECS",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "LoanType",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "GoldLoan",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "HomeLoan",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LoanAgainstFD",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LoanAgainstProperty",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Personal",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "VehicleLoan",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SanctionLoan",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UploadLoanDocuments",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VerifyLoanDocuments",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VerifyLoanEligibility",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "LoanAgainstProperty",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "AssetVerification",
+            "negated": false,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "HomeLoan",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "AssetVerification",
+            "negated": false,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "LoanAgainstFD",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "AssetVerification",
+            "negated": false,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "GoldLoan",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "AssetVerification",
+            "negated": false,
+            "auxiliary": false
+          }
+        ]
+      }
+    ]
+  }
+}

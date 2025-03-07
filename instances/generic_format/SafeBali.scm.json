@@ -1,0 +1,295 @@
+{
+  "type": "software configuration model",
+  "name": "SafeBali",
+  "meta": {},
+  "num_variables": 10,
+  "num_concrete_features": 10,
+  "labels": {
+    "require": 8,
+    "requireBali2jak": 3,
+    "requireBali2jcc": 1,
+    "requireComposer": 2,
+    "requireSyntax": 10
+  },
+  "cnf_clauses": [
+    [
+      7
+    ],
+    [
+      -8,
+      7
+    ],
+    [
+      -10,
+      7
+    ],
+    [
+      -5,
+      -6
+    ],
+    [
+      -5,
+      -9
+    ],
+    [
+      -5,
+      -4
+    ],
+    [
+      -6,
+      -9
+    ],
+    [
+      -6,
+      -4
+    ],
+    [
+      -9,
+      -4
+    ],
+    [
+      5,
+      6,
+      9,
+      4,
+      -7
+    ],
+    [
+      -5,
+      7
+    ],
+    [
+      -3,
+      5
+    ],
+    [
+      -6,
+      7
+    ],
+    [
+      -1,
+      6
+    ],
+    [
+      -9,
+      7
+    ],
+    [
+      -2,
+      9
+    ],
+    [
+      -4,
+      7
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "Bali",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Base",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "bali",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "collect",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "kernel",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "require",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "requireSyntax",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "syntax",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "visitor",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Tool",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "A",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bali2jak",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "requireBali2jak",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "B",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bali2jcc",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "requireBali2jcc",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "C",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "composer",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "requireComposer",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "D",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bali2layer",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bali2layerGUI",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "bali2layerOptions",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "codegen",
+            "negated": false
+          },
+          "mandatory": true
+        }
+      ]
+    },
+    "rules": []
+  }
+}

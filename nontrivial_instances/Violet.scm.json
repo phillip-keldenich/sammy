@@ -1,0 +1,2330 @@
+{
+  "type": "software configuration model",
+  "name": "Violet",
+  "meta": {},
+  "num_variables": 115,
+  "num_concrete_features": 88,
+  "labels": {
+    "About": 10,
+    "Actor": 11,
+    "ClassAggregationEdge": 24,
+    "ClassAssociationEdge": 51,
+    "ClassCompositionEdge": 27,
+    "ClassD": 66,
+    "ClassDependencyEdge": 61,
+    "ClassInheritanceEdge": 3,
+    "ClassInterfaceEdge": 81,
+    "ClassNode": 46,
+    "ClassNoteEdge": 67,
+    "ClassNoteNode": 70,
+    "ClipDrawingArea": 69,
+    "CloseWindow": 49,
+    "CommandLine": 62,
+    "DeleteItem": 8,
+    "DiagramSupport": 53,
+    "EditMenu": 74,
+    "EditProperties": 29,
+    "Exit": 9,
+    "ExportImage": 85,
+    "ExtendRelationshipEdge": 5,
+    "ExtensionFilter": 63,
+    "FileMenu": 33,
+    "FileUtility": 7,
+    "FinalStateNode": 32,
+    "GraphUtility": 43,
+    "GrowDrawingArea": 87,
+    "HelpMenu": 14,
+    "HideGrid": 23,
+    "ImageFilter": 80,
+    "IncludeRelationshipEdge": 72,
+    "InitialStateNode": 54,
+    "InterfaceNode": 56,
+    "InternalFrame": 58,
+    "LargerGrid": 21,
+    "License": 12,
+    "LookAndFeel": 59,
+    "MaximizeWindow": 55,
+    "MenuResources": 76,
+    "NewFile": 31,
+    "NextWindow": 17,
+    "ObjectAssociationEdge": 25,
+    "ObjectD": 37,
+    "ObjectFieldNode": 77,
+    "ObjectNode": 50,
+    "ObjectNoteEdge": 28,
+    "ObjectNoteNode": 13,
+    "ObjectReferenceEdge": 16,
+    "OpenFile": 75,
+    "PackageNode": 52,
+    "Preferences": 64,
+    "PreviousWindow": 47,
+    "Print": 6,
+    "Read": 38,
+    "RecentFile": 78,
+    "RestoreWindow": 79,
+    "SaveAs": 73,
+    "SaveFile": 48,
+    "SelectNext": 26,
+    "SelectPrevious": 20,
+    "SequenceCallEdge": 60,
+    "SequenceCallNode": 2,
+    "SequenceD": 45,
+    "SequenceNoteEdge": 41,
+    "SequenceNoteNode": 30,
+    "SequenceParameterNode": 86,
+    "SequenceReturnEdge": 65,
+    "SetTitle": 34,
+    "SmallerGrid": 22,
+    "StateD": 42,
+    "StateNode": 39,
+    "StateNoteEdge": 83,
+    "StateNoteNode": 71,
+    "StateTransitionEdge": 44,
+    "UseCaseAssociationEdge": 19,
+    "UseCaseD": 88,
+    "UseCaseGeneralizationEdge": 1,
+    "UseCaseNode": 84,
+    "UseCaseNoteEdge": 68,
+    "UseCaseNoteNode": 82,
+    "VersionChecker": 57,
+    "ViewMenu": 18,
+    "VioletFilter": 15,
+    "WindowMenu": 36,
+    "ZoomIn": 40,
+    "ZoomOut": 4
+  },
+  "cnf_clauses": [
+    [
+      35
+    ],
+    [
+      -95,
+      35
+    ],
+    [
+      62,
+      80,
+      64,
+      34,
+      57,
+      15,
+      -95
+    ],
+    [
+      -62,
+      95
+    ],
+    [
+      -80,
+      95
+    ],
+    [
+      -64,
+      95
+    ],
+    [
+      -34,
+      95
+    ],
+    [
+      -57,
+      95
+    ],
+    [
+      -15,
+      95
+    ],
+    [
+      -66,
+      35
+    ],
+    [
+      -100,
+      35
+    ],
+    [
+      24,
+      51,
+      27,
+      61,
+      3,
+      81,
+      46,
+      67,
+      70,
+      56,
+      52,
+      -100
+    ],
+    [
+      -24,
+      100
+    ],
+    [
+      -51,
+      100
+    ],
+    [
+      -27,
+      100
+    ],
+    [
+      -61,
+      100
+    ],
+    [
+      -3,
+      100
+    ],
+    [
+      -81,
+      100
+    ],
+    [
+      -46,
+      100
+    ],
+    [
+      -67,
+      100
+    ],
+    [
+      -70,
+      100
+    ],
+    [
+      -56,
+      100
+    ],
+    [
+      -52,
+      100
+    ],
+    [
+      -53,
+      35
+    ],
+    [
+      -91,
+      35
+    ],
+    [
+      8,
+      29,
+      26,
+      20,
+      -91
+    ],
+    [
+      -8,
+      91
+    ],
+    [
+      -29,
+      91
+    ],
+    [
+      -26,
+      91
+    ],
+    [
+      -20,
+      91
+    ],
+    [
+      -74,
+      35
+    ],
+    [
+      -63,
+      35
+    ],
+    [
+      -90,
+      35
+    ],
+    [
+      9,
+      85,
+      75,
+      6,
+      78,
+      73,
+      48,
+      -90
+    ],
+    [
+      -9,
+      90
+    ],
+    [
+      -85,
+      90
+    ],
+    [
+      -75,
+      90
+    ],
+    [
+      -6,
+      90
+    ],
+    [
+      -78,
+      90
+    ],
+    [
+      -73,
+      90
+    ],
+    [
+      -48,
+      90
+    ],
+    [
+      -33,
+      35
+    ],
+    [
+      -7,
+      35
+    ],
+    [
+      -43,
+      35
+    ],
+    [
+      -94,
+      35
+    ],
+    [
+      10,
+      12,
+      -94
+    ],
+    [
+      -10,
+      94
+    ],
+    [
+      -12,
+      94
+    ],
+    [
+      -14,
+      35
+    ],
+    [
+      -58,
+      35
+    ],
+    [
+      -76,
+      35
+    ],
+    [
+      -31,
+      35
+    ],
+    [
+      -37,
+      35
+    ],
+    [
+      -103,
+      35
+    ],
+    [
+      25,
+      77,
+      50,
+      28,
+      13,
+      16,
+      -103
+    ],
+    [
+      -25,
+      103
+    ],
+    [
+      -77,
+      103
+    ],
+    [
+      -50,
+      103
+    ],
+    [
+      -28,
+      103
+    ],
+    [
+      -13,
+      103
+    ],
+    [
+      -16,
+      103
+    ],
+    [
+      -38,
+      35
+    ],
+    [
+      -45,
+      35
+    ],
+    [
+      -101,
+      35
+    ],
+    [
+      60,
+      2,
+      41,
+      30,
+      86,
+      65,
+      -101
+    ],
+    [
+      -60,
+      101
+    ],
+    [
+      -2,
+      101
+    ],
+    [
+      -41,
+      101
+    ],
+    [
+      -30,
+      101
+    ],
+    [
+      -86,
+      101
+    ],
+    [
+      -65,
+      101
+    ],
+    [
+      -42,
+      35
+    ],
+    [
+      -102,
+      35
+    ],
+    [
+      32,
+      54,
+      39,
+      83,
+      71,
+      44,
+      -102
+    ],
+    [
+      -32,
+      102
+    ],
+    [
+      -54,
+      102
+    ],
+    [
+      -39,
+      102
+    ],
+    [
+      -83,
+      102
+    ],
+    [
+      -71,
+      102
+    ],
+    [
+      -44,
+      102
+    ],
+    [
+      -88,
+      35
+    ],
+    [
+      -104,
+      35
+    ],
+    [
+      11,
+      5,
+      72,
+      19,
+      1,
+      84,
+      68,
+      82,
+      -104
+    ],
+    [
+      -11,
+      104
+    ],
+    [
+      -5,
+      104
+    ],
+    [
+      -72,
+      104
+    ],
+    [
+      -19,
+      104
+    ],
+    [
+      -1,
+      104
+    ],
+    [
+      -84,
+      104
+    ],
+    [
+      -68,
+      104
+    ],
+    [
+      -82,
+      104
+    ],
+    [
+      -92,
+      35
+    ],
+    [
+      69,
+      87,
+      23,
+      21,
+      59,
+      22,
+      40,
+      4,
+      -92
+    ],
+    [
+      -69,
+      92
+    ],
+    [
+      -87,
+      92
+    ],
+    [
+      -23,
+      92
+    ],
+    [
+      -21,
+      92
+    ],
+    [
+      -59,
+      92
+    ],
+    [
+      -22,
+      92
+    ],
+    [
+      -40,
+      92
+    ],
+    [
+      -4,
+      92
+    ],
+    [
+      -18,
+      35
+    ],
+    [
+      -93,
+      35
+    ],
+    [
+      49,
+      55,
+      17,
+      47,
+      79,
+      -93
+    ],
+    [
+      -49,
+      93
+    ],
+    [
+      -55,
+      93
+    ],
+    [
+      -17,
+      93
+    ],
+    [
+      -47,
+      93
+    ],
+    [
+      -79,
+      93
+    ],
+    [
+      -36,
+      35
+    ],
+    [
+      -89,
+      -90
+    ],
+    [
+      -89,
+      -31
+    ],
+    [
+      -89,
+      -91
+    ],
+    [
+      -89,
+      -92
+    ],
+    [
+      -89,
+      -93
+    ],
+    [
+      -89,
+      -94
+    ],
+    [
+      -89,
+      -95
+    ],
+    [
+      -96,
+      76
+    ],
+    [
+      -96,
+      43
+    ],
+    [
+      -96,
+      63
+    ],
+    [
+      -96,
+      7
+    ],
+    [
+      -96,
+      58
+    ],
+    [
+      -96,
+      38
+    ],
+    [
+      89,
+      96
+    ],
+    [
+      -97,
+      -90
+    ],
+    [
+      -97,
+      -31
+    ],
+    [
+      -98,
+      33
+    ],
+    [
+      97,
+      98
+    ],
+    [
+      -91,
+      74
+    ],
+    [
+      -92,
+      18
+    ],
+    [
+      -93,
+      36
+    ],
+    [
+      -94,
+      14
+    ],
+    [
+      -99,
+      -100
+    ],
+    [
+      -99,
+      -101
+    ],
+    [
+      -99,
+      -102
+    ],
+    [
+      -99,
+      -103
+    ],
+    [
+      -99,
+      -104
+    ],
+    [
+      -105,
+      53
+    ],
+    [
+      -105,
+      31
+    ],
+    [
+      99,
+      105
+    ],
+    [
+      -100,
+      66
+    ],
+    [
+      -101,
+      45
+    ],
+    [
+      -102,
+      42
+    ],
+    [
+      -103,
+      37
+    ],
+    [
+      -104,
+      88
+    ],
+    [
+      -78,
+      75
+    ],
+    [
+      -48,
+      73
+    ],
+    [
+      -106,
+      -80
+    ],
+    [
+      -107,
+      63
+    ],
+    [
+      -107,
+      85
+    ],
+    [
+      106,
+      107
+    ],
+    [
+      -15,
+      63
+    ],
+    [
+      -62,
+      75
+    ],
+    [
+      -108,
+      -61
+    ],
+    [
+      -108,
+      -3
+    ],
+    [
+      -108,
+      -24
+    ],
+    [
+      -108,
+      -51
+    ],
+    [
+      -108,
+      -27
+    ],
+    [
+      -108,
+      -81
+    ],
+    [
+      -109,
+      46
+    ],
+    [
+      108,
+      109
+    ],
+    [
+      -67,
+      70
+    ],
+    [
+      -110,
+      -60
+    ],
+    [
+      -110,
+      -65
+    ],
+    [
+      -111,
+      2
+    ],
+    [
+      110,
+      111
+    ],
+    [
+      -41,
+      30
+    ],
+    [
+      -44,
+      39
+    ],
+    [
+      -83,
+      71
+    ],
+    [
+      -112,
+      -16
+    ],
+    [
+      -112,
+      -25
+    ],
+    [
+      -113,
+      50
+    ],
+    [
+      112,
+      113
+    ],
+    [
+      -28,
+      13
+    ],
+    [
+      -114,
+      -19
+    ],
+    [
+      -114,
+      -5
+    ],
+    [
+      -114,
+      -72
+    ],
+    [
+      -114,
+      -1
+    ],
+    [
+      -115,
+      11
+    ],
+    [
+      114,
+      115
+    ],
+    [
+      -68,
+      82
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "VioletDef",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "Additional",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CommandLine",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ImageFilter",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Preferences",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SetTitle",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VersionChecker",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VioletFilter",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "ClassD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "ClassDiagram",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassAggregationEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassAssociationEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassCompositionEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassDependencyEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassInheritanceEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassInterfaceEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassNoteEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClassNoteNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InterfaceNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PackageNode",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "DiagramSupport",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "Edit",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DeleteItem",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "EditProperties",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SelectNext",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SelectPrevious",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "EditMenu",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "ExtensionFilter",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "File",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Exit",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ExportImage",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "OpenFile",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Print",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RecentFile",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SaveAs",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SaveFile",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "FileMenu",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "FileUtility",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "GraphUtility",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "Help",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "About",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "License",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "HelpMenu",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "InternalFrame",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "MenuResources",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "NewFile",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "ObjectD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "ObjectDiagram",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectAssociationEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectFieldNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectNoteEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectNoteNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ObjectReferenceEdge",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Read",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "SequenceD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "SequenceDiagram",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceCallEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceCallNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceNoteEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceNoteNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceParameterNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SequenceReturnEdge",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "StateD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "StateDiagram",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "FinalStateNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InitialStateNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StateNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StateNoteEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StateNoteNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StateTransitionEdge",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "UseCaseD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "UseCaseDiagram",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Actor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ExtendRelationshipEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IncludeRelationshipEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UseCaseAssociationEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UseCaseGeneralizationEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UseCaseNode",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UseCaseNoteEdge",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UseCaseNoteNode",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "View",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ClipDrawingArea",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "GrowDrawingArea",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "HideGrid",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LargerGrid",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "LookAndFeel",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SmallerGrid",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ZoomIn",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ZoomOut",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "ViewMenu",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "Window",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CloseWindow",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MaximizeWindow",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "NextWindow",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PreviousWindow",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "RestoreWindow",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "WindowMenu",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "base",
+            "negated": false
+          },
+          "mandatory": true
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "File",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "NewFile",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Edit",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "View",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Window",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Help",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Additional",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "MenuResources",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "GraphUtility",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ExtensionFilter",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "FileUtility",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "InternalFrame",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Read",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "File",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "NewFile",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "FileMenu",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Edit",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "EditMenu",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "View",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ViewMenu",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Window",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "WindowMenu",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Help",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "HelpMenu",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ClassDiagram",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "SequenceDiagram",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "StateDiagram",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ObjectDiagram",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "UseCaseDiagram",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "DiagramSupport",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "NewFile",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ClassDiagram",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ClassD",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "SequenceDiagram",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "SequenceD",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "StateDiagram",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "StateD",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ObjectDiagram",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ObjectD",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "UseCaseDiagram",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "UseCaseD",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "RecentFile",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "OpenFile",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "SaveFile",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "SaveAs",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ImageFilter",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ExtensionFilter",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ExportImage",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "VioletFilter",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ExtensionFilter",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "CommandLine",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "OpenFile",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ClassDependencyEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ClassInheritanceEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ClassAggregationEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ClassAssociationEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ClassCompositionEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ClassInterfaceEdge",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ClassNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ClassNoteEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ClassNoteNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "SequenceCallEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "SequenceReturnEdge",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "SequenceCallNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "SequenceNoteEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "SequenceNoteNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "StateTransitionEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "StateNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "StateNoteEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "StateNoteNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ObjectReferenceEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ObjectAssociationEdge",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ObjectNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ObjectNoteEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ObjectNoteNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "UseCaseAssociationEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "ExtendRelationshipEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "IncludeRelationshipEdge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "UseCaseGeneralizationEdge",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Actor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "UseCaseNoteEdge",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "UseCaseNoteNode",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

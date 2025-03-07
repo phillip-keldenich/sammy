@@ -1,0 +1,1710 @@
+{
+  "type": "software configuration model",
+  "name": "berkeleyDB1",
+  "meta": {},
+  "num_variables": 79,
+  "num_concrete_features": 53,
+  "labels": {
+    "dummyFeatureLocking": 40,
+    "featureCheckLeaks": 21,
+    "featureCheckpointerDaemon": 46,
+    "featureChecksum": 12,
+    "featureChunkedNIO": 19,
+    "featureCleanerDaemon": 50,
+    "featureCriticalEviction": 29,
+    "featureCustomizableCheckpointerBytes": 45,
+    "featureCustomizableCheckpointerTime": 35,
+    "featureDeleteDb": 44,
+    "featureDirectNIO": 18,
+    "featureEnvironmentLock": 51,
+    "featureEvictorDaemon": 3,
+    "featureFSync": 26,
+    "featureFileHandleCache": 38,
+    "featureHandleFullDiscError": 41,
+    "featureINCompressor": 7,
+    "featureLatch": 32,
+    "featureLoggingConfig": 17,
+    "featureLoggingConsole": 27,
+    "featureLoggingDbLog": 4,
+    "featureLoggingFile": 25,
+    "featureLoggingFine": 1,
+    "featureLoggingFiner": 43,
+    "featureLoggingFinest": 30,
+    "featureLoggingInfo": 31,
+    "featureLoggingSevere": 8,
+    "featureLookAheadCache": 48,
+    "featureMemoryBudget": 9,
+    "featureNIO": 2,
+    "featureStatisticsDatabase": 22,
+    "featureStatisticsEnvCaching": 34,
+    "featureStatisticsEnvCheckpointer": 33,
+    "featureStatisticsEnvCleaner": 10,
+    "featureStatisticsEnvEvictor": 11,
+    "featureStatisticsEnvFSync": 23,
+    "featureStatisticsEnvINCompressor": 36,
+    "featureStatisticsEnvLog": 16,
+    "featureStatisticsLock": 14,
+    "featureStatisticsPreload": 52,
+    "featureStatisticsSequence": 24,
+    "featureStatisticsTransaction": 28,
+    "featureSynchronizedIO": 6,
+    "featureTransaction": 53,
+    "featureTreeVisitor": 42,
+    "featureTruncateDb": 13,
+    "featureVerifier": 47
+  },
+  "cnf_clauses": [
+    [
+      5
+    ],
+    [
+      -49,
+      5
+    ],
+    [
+      -29,
+      49
+    ],
+    [
+      -3,
+      49
+    ],
+    [
+      -7,
+      5
+    ],
+    [
+      -42,
+      5
+    ],
+    [
+      -47,
+      5
+    ],
+    [
+      -74,
+      5
+    ],
+    [
+      40,
+      21,
+      26,
+      32,
+      53,
+      -74
+    ],
+    [
+      -40,
+      74
+    ],
+    [
+      -21,
+      74
+    ],
+    [
+      -26,
+      74
+    ],
+    [
+      -32,
+      74
+    ],
+    [
+      -53,
+      74
+    ],
+    [
+      -75,
+      5
+    ],
+    [
+      44,
+      13,
+      -75
+    ],
+    [
+      -44,
+      75
+    ],
+    [
+      -13,
+      75
+    ],
+    [
+      -20,
+      5
+    ],
+    [
+      -17,
+      20
+    ],
+    [
+      -27,
+      20
+    ],
+    [
+      -4,
+      20
+    ],
+    [
+      -25,
+      20
+    ],
+    [
+      -1,
+      20
+    ],
+    [
+      -43,
+      20
+    ],
+    [
+      -30,
+      20
+    ],
+    [
+      -31,
+      20
+    ],
+    [
+      -8,
+      20
+    ],
+    [
+      -37,
+      -76
+    ],
+    [
+      37,
+      76,
+      -5
+    ],
+    [
+      -37,
+      5
+    ],
+    [
+      -6,
+      37
+    ],
+    [
+      -76,
+      5
+    ],
+    [
+      -19,
+      -2
+    ],
+    [
+      19,
+      2,
+      -76
+    ],
+    [
+      -19,
+      76
+    ],
+    [
+      -2,
+      76
+    ],
+    [
+      -18,
+      76
+    ],
+    [
+      -77,
+      5
+    ],
+    [
+      78,
+      79,
+      12,
+      51,
+      38,
+      41,
+      -77
+    ],
+    [
+      -78,
+      77
+    ],
+    [
+      -46,
+      78
+    ],
+    [
+      -45,
+      78
+    ],
+    [
+      -35,
+      78
+    ],
+    [
+      -79,
+      77
+    ],
+    [
+      -50,
+      79
+    ],
+    [
+      -48,
+      79
+    ],
+    [
+      -12,
+      77
+    ],
+    [
+      -51,
+      77
+    ],
+    [
+      -38,
+      77
+    ],
+    [
+      -41,
+      77
+    ],
+    [
+      -15,
+      5
+    ],
+    [
+      39,
+      22,
+      14,
+      52,
+      24,
+      28,
+      -15
+    ],
+    [
+      -39,
+      15
+    ],
+    [
+      -34,
+      39
+    ],
+    [
+      -33,
+      39
+    ],
+    [
+      -10,
+      39
+    ],
+    [
+      -11,
+      39
+    ],
+    [
+      -23,
+      39
+    ],
+    [
+      -36,
+      39
+    ],
+    [
+      -16,
+      39
+    ],
+    [
+      -22,
+      15
+    ],
+    [
+      -14,
+      15
+    ],
+    [
+      -52,
+      15
+    ],
+    [
+      -24,
+      15
+    ],
+    [
+      -28,
+      15
+    ],
+    [
+      -9,
+      5
+    ],
+    [
+      -54,
+      -49
+    ],
+    [
+      -54,
+      -3
+    ],
+    [
+      -54,
+      -48
+    ],
+    [
+      -54,
+      -34
+    ],
+    [
+      -55,
+      9
+    ],
+    [
+      54,
+      55
+    ],
+    [
+      -21,
+      14
+    ],
+    [
+      -29,
+      7
+    ],
+    [
+      -45,
+      35
+    ],
+    [
+      -56,
+      -44
+    ],
+    [
+      -57,
+      40
+    ],
+    [
+      -57,
+      49
+    ],
+    [
+      -57,
+      7
+    ],
+    [
+      -57,
+      9
+    ],
+    [
+      56,
+      57
+    ],
+    [
+      -58,
+      -32
+    ],
+    [
+      -59,
+      40
+    ],
+    [
+      -59,
+      21
+    ],
+    [
+      -59,
+      44
+    ],
+    [
+      -59,
+      49
+    ],
+    [
+      -59,
+      38
+    ],
+    [
+      -59,
+      26
+    ],
+    [
+      -59,
+      7
+    ],
+    [
+      -59,
+      9
+    ],
+    [
+      -59,
+      14
+    ],
+    [
+      -59,
+      42
+    ],
+    [
+      -59,
+      13
+    ],
+    [
+      -59,
+      47
+    ],
+    [
+      58,
+      59
+    ],
+    [
+      -8,
+      51
+    ],
+    [
+      -60,
+      -1
+    ],
+    [
+      -61,
+      40
+    ],
+    [
+      -61,
+      49
+    ],
+    [
+      -61,
+      7
+    ],
+    [
+      60,
+      61
+    ],
+    [
+      -62,
+      -31
+    ],
+    [
+      -63,
+      12
+    ],
+    [
+      -63,
+      9
+    ],
+    [
+      62,
+      63
+    ],
+    [
+      -64,
+      -20
+    ],
+    [
+      -64,
+      -30
+    ],
+    [
+      -65,
+      53
+    ],
+    [
+      64,
+      65
+    ],
+    [
+      -66,
+      -9
+    ],
+    [
+      -67,
+      49
+    ],
+    [
+      -67,
+      32
+    ],
+    [
+      66,
+      67
+    ],
+    [
+      -68,
+      -14
+    ],
+    [
+      -68,
+      -28
+    ],
+    [
+      -69,
+      40
+    ],
+    [
+      68,
+      69
+    ],
+    [
+      -11,
+      49
+    ],
+    [
+      -23,
+      26
+    ],
+    [
+      -36,
+      7
+    ],
+    [
+      -28,
+      53
+    ],
+    [
+      -22,
+      42
+    ],
+    [
+      -70,
+      -53
+    ],
+    [
+      -71,
+      40
+    ],
+    [
+      -71,
+      44
+    ],
+    [
+      -71,
+      13
+    ],
+    [
+      70,
+      71
+    ],
+    [
+      -13,
+      44
+    ],
+    [
+      -72,
+      -47
+    ],
+    [
+      -73,
+      7
+    ],
+    [
+      -73,
+      42
+    ],
+    [
+      72,
+      73
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "BerkeleyDB",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "BASE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "BTree",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Evictor",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureCriticalEviction",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEvictor",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEvictorDaemon",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureINCompressor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTreeVisitor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureVerifier",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "FConcurrency",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "dummyFeatureLocking",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureCheckLeaks",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureFSync",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLatch",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTransaction",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "FDbOperation",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureDeleteDb",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTruncateDb",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Logging",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingConfig",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingConsole",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingDbLog",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFile",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFine",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFiner",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFinest",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingInfo",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingSevere",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Persistency",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "FIOFeature",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "IO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureIO",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureSynchronizedIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "NIO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "ALT",
+                      "feature_literal": {
+                        "name": "FNIOType",
+                        "negated": false
+                      },
+                      "mandatory": true,
+                      "elements": [
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "featureChunkedNIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        },
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "featureNIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        }
+                      ]
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureDirectNIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FPersistencyFeatures",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "Checkpointer",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCheckpointerDaemon",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCustomizableCheckpointerBytes",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCustomizableCheckpointerTime",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "Cleaner",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCleanerDaemon",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureLookAheadCache",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureChecksum",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEnvironmentLock",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureFileHandleCache",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureHandleFullDiscError",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Statistics",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FStatisticsFeatures",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "EnvStats",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvBase",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCaching",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCheckpointer",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCleaner",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvEvictor",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvFSync",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvINCompressor",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvLog",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsDatabase",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsLock",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsPreload",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsSequence",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsTransaction",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureStatisticsBase",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "featureMemoryBudget",
+            "negated": false
+          },
+          "mandatory": false
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictorDaemon",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLookAheadCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsEnvCaching",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureMemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCheckLeaks",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureStatisticsLock",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureINCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCustomizableCheckpointerBytes",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureCustomizableCheckpointerTime",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureDeleteDb",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLatch",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureCheckLeaks",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureDeleteDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureFileHandleCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureFSync",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsLock",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTreeVisitor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTruncateDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureVerifier",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingSevere",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureEnvironmentLock",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingFine",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingInfo",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureChecksum",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureLoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureMemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLatch",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureStatisticsLock",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsTransaction",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "dummyFeatureLocking",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvEvictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureEvictor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvFSync",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureFSync",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvINCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureINCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsTransaction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsDatabase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTreeVisitor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureDeleteDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTruncateDb",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureTruncateDb",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureDeleteDb",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureVerifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTreeVisitor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
