@@ -25,6 +25,7 @@ enum class ExternalSolverType { KISSAT, CADICAL, LINGELING, CRYPTOMINISAT };
 
 inline const char* get_solver_name(ExternalSolverType e) noexcept {
     switch (e) {
+	default:
     case ExternalSolverType::KISSAT:
         return "kissat";
     case ExternalSolverType::CADICAL:
@@ -169,6 +170,7 @@ int sat_only_main() {
 
 inline int sat_only_entry_point(ExternalSolverType solver_type) {
     switch (solver_type) {
+	default:
     case ExternalSolverType::KISSAT:
         return sat_only_main<KissatSolver>();
     case ExternalSolverType::CADICAL:
@@ -348,9 +350,9 @@ template <ExternalSolverType EST> class ExternalNonIncrementalSAT {
     }
 
     void p_write_formula() {
-        m_total_size = std::reduce(
-            m_chunks.begin(), m_chunks.end(), std::size_t{0},
-            [](std::size_t acc, const Chunk& c) { return acc + c.size(); });
+		m_total_size = 0;
+		std::for_each(m_chunks.begin(), m_chunks.end(), 
+				      [&] (const Chunk& c) { m_total_size += c.size(); });
         m_process.write_to_process(reinterpret_cast<const char*>(&m_max_var),
                                    sizeof(m_max_var));
         for (const auto& c : m_chunks) {

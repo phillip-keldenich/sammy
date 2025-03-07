@@ -38,7 +38,7 @@ else()
 endif()
 
 # find packages
-find_package(Boost REQUIRED COMPONENTS iostreams program_options)
+find_package(Boost REQUIRED COMPONENTS iostreams program_options filesystem system)
 find_package(gurobi CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
@@ -54,7 +54,8 @@ if(SAMMY_USE_CUDA)
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
     target_link_libraries(sammycuda PUBLIC nlohmann_json::nlohmann_json Boost::boost
-	                        Boost::iostreams Boost::program_options)
+	                        Boost::iostreams Boost::program_options Boost::filesystem 
+							Boost::system)
     target_include_directories(sammycuda PUBLIC "${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}")
     target_compile_definitions(sammycuda PUBLIC "-DSAMMY_CUDA_SUPPORTED=1")
     target_link_libraries(sammy INTERFACE sammycuda)
@@ -66,9 +67,9 @@ target_compile_features(sammy INTERFACE cxx_std_17)
 target_include_directories(sammy INTERFACE 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> # include the public header directory in the source tree when building the lib
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)    # include the include directory when using the installed lib
-target_link_libraries(sammy INTERFACE nlohmann_json::nlohmann_json Boost::boost 
-                                      Boost::iostreams Boost::program_options
-                                      gurobi::gurobi)
+target_link_libraries(sammy INTERFACE nlohmann_json::nlohmann_json Boost::boost
+	                        Boost::iostreams Boost::program_options Boost::filesystem 
+							Boost::system gurobi::gurobi)
 
 add_subdirectory("external")
 

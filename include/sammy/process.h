@@ -3,6 +3,12 @@
 
 #include <boost/filesystem.hpp>
 #include <memory>
+#include <optional>
+#include <cstddef>
+#include <cstdlib>
+#include <vector>
+#include <string>
+#include <numeric>
 
 namespace sammy {
 
