@@ -2,10 +2,10 @@
 #define SAMMY_BARRAGE_WORKER_EXACT_H_INCLUDED_
 
 #include "barrage.h"
-#include "cadical_solver.h"
 #include "clique_sat_dsatur.h"
 #include "implied_vertices.h"
-#include "lingeling_solver.h"
+
+#include <sammy/cadical_solver.h>
 
 namespace sammy {
 

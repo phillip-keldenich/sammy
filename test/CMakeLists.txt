@@ -21,7 +21,12 @@ add_executable(
     test_cadical_binding.cpp
     test_cryptominisat_binding.cpp
     test_subproblem_solver_with_mes.cpp
+    test_external_sat.cpp
 )
+
+if(UNIX)
+    target_sources(sammy_test PRIVATE "../src/process_unix.cpp")
+endif()
 
 if(SAMMY_USE_CUDA)
 	target_sources(sammy_test PRIVATE test_cuda.cpp)

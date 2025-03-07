@@ -2,7 +2,9 @@
 #include <sammy/barrage_worker_cnp.h>
 #include <sammy/barrage_worker_exact.h>
 #include <sammy/barrage_worker_lns.h>
+#include <sammy/cmsat5_solver.h>
 #include <sammy/experiment_flags.h>
+#include <sammy/external_sat_solver.h>
 #include <sammy/incremental_sat_lns.h>
 #include <sammy/kissat_solver.h>
 #include <sammy/lingeling_solver.h>
@@ -92,9 +94,15 @@ using CNPElement = PortfolioElementWithCore<CutAndPricePortfolioCore>;
 using ExactElement = PortfolioElementWithCore<CliqueSatDSaturExactSolverCore>;
 
 /**
- * MES + Incremental SAT as LNS elements.
+ * Actual SAT solver to use.
  */
-using LNSInner = sammy::FixedMESSATImprovementSolver<CadicalSolver>;
+using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
+// using SatSolver = CadicalSolver;
+
+/**
+ * MES + SAT as LNS elements.
+ */
+using LNSInner = sammy::FixedMESSATImprovementSolver<SatSolver>;
 // using LNSInner =
 // sammy::FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
 using LNSOuter = sammy::SubproblemSolverWithMES<LNSInner>;
@@ -444,6 +452,13 @@ class Main {
 };
 
 int main(int argc, char** argv) {
+    // check if we are running a SAT-only call
+    auto sat_only = is_sat_only_call(argc, argv);
+    if (sat_only) {
+        return sat_only_entry_point(*sat_only);
+    }
+
+    // run the main program
     Main main(argc, argv);
     main.main();
     return 0;

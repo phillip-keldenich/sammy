@@ -35,6 +35,13 @@ class CadicalSolver {
     Lit new_var(bool reusable = true);
 
     /**
+     * Add num_vars new variables;
+     * returns the a literal corresponding
+     * to the first new variable.
+     */
+    Lit new_vars(Lit num_vars);
+
+    /**
      * Get the number of variables.
      */
     Lit num_vars() const noexcept;
@@ -126,11 +133,19 @@ class CadicalSolver {
       public:
         ModelMap() = default;
 
+        std::vector<bool>& raw() noexcept {
+            return model_map;
+        }
+
+        const std::vector<bool>& raw() const noexcept {
+            return model_map;
+        }
+
         bool operator[](Lit l) const noexcept {
             if(l < 0) {
-                return !model_map[-l];
+                return !model_map[-(l+1)];
             } else {
-                return model_map[l];
+                return model_map[l-1];
             }
         }
 

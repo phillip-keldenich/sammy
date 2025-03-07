@@ -110,8 +110,13 @@ add_library(cadical_binding STATIC "cadical_binding.cpp")
 target_compile_definitions(cadical_binding PRIVATE "-DNCONTRACTS" "-DNTRACING" "-DNCONTRIB" "-DNIPASIR")
 target_link_libraries(cadical_binding PUBLIC cadical)
 target_include_directories(cadical_binding PRIVATE "${CMAKE_CURRENT_LIST_DIR}/cadical_build_header"
-                                                   "${CMAKE_CURRENT_LIST_DIR}/cadical/src"
-                                                   "${CMAKE_CURRENT_LIST_DIR}/include")
+                                                   "${CMAKE_CURRENT_LIST_DIR}/cadical/src")
+
+# include the public header directory in the source tree when building the lib
+# include the include directory when using the installed lib
+target_include_directories(cadical_binding PUBLIC 
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> 
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)    
 
 if(LTO_SUPPORTED)
   set_property(TARGET cadical PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)

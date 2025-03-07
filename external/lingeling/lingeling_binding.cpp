@@ -55,6 +55,15 @@ auto LingelingSolver::new_var(bool reusable) -> Lit {
     return nv;
 }
 
+auto LingelingSolver::new_vars(std::size_t n) -> Lit {
+    LGL* s = static_cast<LGL*>(solver);
+    Lit res = m_num_vars + 1;
+    for(std::size_t i = 0; i < n; ++i) {
+        lglfreeze(s, ++m_num_vars);
+    }
+    return res;
+}
+
 void LingelingSolver::add_literal(Lit l) {
     m_num_vars = (std::max)((std::abs)(l), m_num_vars);
     lgladd(static_cast<LGL*>(solver), l);

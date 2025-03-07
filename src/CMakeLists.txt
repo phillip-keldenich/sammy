@@ -1,5 +1,8 @@
 add_executable(sammy_solve solve.cpp)
 target_link_libraries(sammy_solve PRIVATE sammy)
+if(UNIX)
+  target_sources(sammy_solve PRIVATE "process_unix.cpp")
+endif()
 
 add_executable(generate_subproblem_mes_entry_points generate_subproblem_mes_entry_points.cpp)
 target_link_libraries(generate_subproblem_mes_entry_points PRIVATE sammy)

@@ -86,6 +86,7 @@ class LingelingSolver {
 
     Lit num_vars() const noexcept { return m_num_vars; }
     Lit new_var(bool reusable = true);
+    Lit new_vars(std::size_t n);
 
     template<typename Arg1, typename... Args> void add_literals(Arg1&& a1, Args&&... args) {
         add_literal(std::forward<Arg1>(a1));

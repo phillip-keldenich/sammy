@@ -155,6 +155,12 @@ class KissatSolver {
     }
 
     /**
+     * Create a number of new variables,
+     * returning the first of them.
+     */
+    Lit new_vars(Lit num_vars);
+
+    /**
      * Get the number of variables.
      */
     Lit num_vars() const noexcept {

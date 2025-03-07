@@ -51,16 +51,26 @@ auto CadicalSolver::new_var(bool /*reusable*/) -> Lit {
     return m_num_vars;
 }
 
+auto CadicalSolver::new_vars(Lit num_vars) -> Lit {
+    if(m_num_vars == 0) {
+        m_num_vars = m_solver->vars();
+    }
+    Lit result = m_num_vars + 1;
+    m_num_vars += num_vars;
+    m_solver->reserve(m_num_vars);
+    return result;
+}
+
 auto CadicalSolver::num_vars() const noexcept -> Lit {
     return m_solver->vars();
 }
 
 auto CadicalSolver::get_model() const -> ModelMap {
     ModelMap map;
-    map.model_map = std::vector<bool>(m_solver->vars() + 1, false);
+    map.model_map = std::vector<bool>(m_solver->vars(), false);
     for(Lit l = 1, nvars = num_vars(); l <= nvars; ++l) {
         if(m_solver->val(l) > 0) {
-            map.model_map[l] = true;
+            map.model_map[l-1] = true;
         }
     }
     return map;

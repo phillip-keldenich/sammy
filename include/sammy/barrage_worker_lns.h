@@ -5,7 +5,6 @@
 #include "barrage.h"
 #include "barrage_worker_with_core.h"
 #include "clique_sat_dsatur.h"
-#include "cmsat5_solver.h"
 #include "gurobi_clique_solver_g2.h"
 #include "implied_vertices.h"
 #include "lns_destroy.h"

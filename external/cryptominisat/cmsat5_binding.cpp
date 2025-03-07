@@ -28,6 +28,12 @@ class CMSAT5Solver::Impl {
         m_solver.new_var();
         return Lit(CMSat::Lit(var_index, false).toInt());
     }
+
+    Lit new_vars(std::size_t new_vars) {
+        std::uint32_t var_index = m_solver.nVars();
+        m_solver.new_vars(new_vars);
+        return Lit(CMSat::Lit(var_index, false).toInt());
+    }
     
     std::optional<bool> solve(const std::vector<CMSat::Lit>& assumptions,
                               double time_limit)
@@ -184,6 +190,22 @@ void CMSAT5Solver::reset_terminate() {
 bool CMSAT5Solver::should_terminate() const noexcept {
     assert(m_impl);
     return m_impl->should_terminate();
+}
+
+CMSAT5Solver::Lit CMSAT5Solver::lit_from_dimacs_int(std::int32_t l) const {
+    assert(l != 0);
+    std::uint32_t var_index;
+    if(l < 0) {
+        var_index = -(l + 1);
+    } else {
+        var_index = l - 1;
+    }
+    return Lit(CMSat::Lit(var_index, l < 0).toInt());
+}
+
+auto CMSAT5Solver::new_vars(std::size_t num_vars) -> Lit {
+    assert(m_impl);
+    return m_impl->new_vars(num_vars);
 }
 
 }

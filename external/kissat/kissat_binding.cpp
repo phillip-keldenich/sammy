@@ -82,4 +82,11 @@ void KissatSolver::terminate() {
     kissat_terminate(static_cast<kissat*>(solver));
 }
 
+auto KissatSolver::new_vars(Lit num_vars) -> Lit {
+    Lit result = m_num_vars + 1;
+    m_num_vars += num_vars;
+    kissat_reserve(static_cast<kissat*>(solver), m_num_vars);
+    return result;
+}
+
 }

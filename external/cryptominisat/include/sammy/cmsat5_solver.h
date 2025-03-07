@@ -51,6 +51,9 @@ class CMSAT5Solver {
       public:
         bool operator[](Lit l) const noexcept;
 
+        std::vector<bool> &raw() noexcept { return m_model; }
+        const std::vector<bool> &raw() const noexcept { return m_model; }
+
       private:
         friend class CMSAT5Solver;
         friend class CMSAT5Solver::Impl;
@@ -91,6 +94,11 @@ class CMSAT5Solver {
      * With cryptominisat, all variables are reusable.
      */
     Lit new_var(bool reusable = true);
+
+    /**
+     * Create a number of new variables, returning the first one.
+     */
+    Lit new_vars(std::size_t num_vars);
 
     /**
      * Add a short clause to the solver, consisting of the given literals.
@@ -172,6 +180,11 @@ class CMSAT5Solver {
     static const char* name() noexcept {
         return "cryptominisat5";
     }
+
+    /**
+     * Translate a DIMACS integer to a Lit.
+     */
+    Lit lit_from_dimacs_int(std::int32_t l) const;
 
   private:
     template<typename... Lits>
