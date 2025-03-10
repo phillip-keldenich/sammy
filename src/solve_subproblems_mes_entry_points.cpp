@@ -5,15 +5,13 @@
 #include <sammy/clique_sat_dsatur.h>
 #include <sammy/cmsat5_solver.h>
 #include <sammy/incremental_sat_lns.h>
-#include <sammy/kissat_solver.h>
+//#include <sammy/kissat_solver.h>
 #include <sammy/lingeling_solver.h>
 #include <sammy/output.h>
 #include <sammy/sat_lns.h>
 #include <sammy/subproblem_solver_with_mes.h>
 
 using namespace sammy;
-
-using SatSolver = KissatSolver;
 
 namespace po = boost::program_options;
 
@@ -211,10 +209,11 @@ int main(int argc, char** argv) {
 
         for (std::size_t i = 0; i < 3; ++i) {
             // non-incremental SAT solver backed
-            run_solver_type(
-                "fixed_sat[kissat]",
-                static_cast<FixedMESSATImprovementSolver<KissatSolver>*>(
-                    nullptr));
+            // kissat apparently still broken with some compilers and opt. flags
+            //run_solver_type(
+            //    "fixed_sat[kissat]",
+            //    static_cast<FixedMESSATImprovementSolver<KissatSolver>*>(
+            //        nullptr));
             run_solver_type(
                 "fixed_sat[cadical]",
                 static_cast<FixedMESSATImprovementSolver<CadicalSolver>*>(

@@ -84,6 +84,12 @@ struct LNSTimeAndSuccessInfo {
              it != e; ++it)
         {
             const auto& info = it->second;
+            if (info.complete_tries_since_last_success == 0 &&
+                info.complete_tries_total > 0)
+            {
+                last_usable = it;
+                break;
+            }
             if (info.complete_tries_since_last_success >= num_failure_threshold)
             {
                 continue;
