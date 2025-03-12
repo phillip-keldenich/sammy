@@ -30,12 +30,14 @@ list(TRANSFORM KISSAT_LIB_SOURCES PREPEND "${CMAKE_CURRENT_LIST_DIR}/kissat/src/
 add_library(kissat STATIC ${KISSAT_LIB_SOURCES})
 target_compile_definitions(kissat PRIVATE QUIET=1)
 add_library(kissat_binding STATIC "kissat_binding.cpp")
-if(LTO_SUPPORTED)
-  set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
-  set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
-  set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
-  set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
-endif()
+
+# kissat is currently broken with LTO;
+# see https://github.com/arminbiere/kissat/issues/65
+set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
+set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
+#set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+#set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+
 target_include_directories(kissat PRIVATE "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
 target_include_directories(kissat PRIVATE "${CMAKE_BINARY_DIR}/kissat")
 target_include_directories(kissat_binding PRIVATE "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
