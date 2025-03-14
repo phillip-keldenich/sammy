@@ -11,3 +11,7 @@ cmake_layout
 [generators]
 CMakeToolchain
 CMakeDeps
+
+[options]
+boost/*:lzma=True
+

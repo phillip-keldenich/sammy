@@ -244,13 +244,13 @@ class ImpliedVertexCache {
 
         inline void
         compute_impliers_handle_trail_literal(Lit trail_literal,
-                                              std::size_t pushed_index);
-        inline void mark_and_merge_two_sorted_lists(Lit implier, Lit implied);
-        inline void compute_literal_partners_of();
-        inline void compute_impliers();
-        inline void limited_compute_impliers(double time_limit);
-        inline void compute_impliers_single_literal();
-        inline void compress_path(std::size_t v);
+                                              std::size_t pushed_index) __attribute__((noinline));
+        inline void mark_and_merge_two_sorted_lists(Lit implier, Lit implied) __attribute__((noinline));
+        inline void compute_literal_partners_of() __attribute__((noinline));
+        inline void compute_impliers() __attribute__((noinline));
+        inline void limited_compute_impliers(double time_limit) __attribute__((noinline));
+        inline void compute_impliers_single_literal() __attribute__((noinline));
+        inline void compress_path(std::size_t v) __attribute__((noinline));
 
         /**
          * Compress all paths of length > 1 by
@@ -489,6 +489,14 @@ void ImpliedVertexCache::EliminationAlgorithm::compute_impliers() {
         if (is_implied(i))
             continue;
         Vertex v = universe[i];
+        // TODO: it should suffice to check the level 2 part of the trail since
+        // we cover implied-by-single-literal earlier;
+        // it could also help to only push one literal and pop one literal
+        // unless the first literal of our vertex has changed.
+        // other datastructure/algorithm ideas?
+        // could create a graph-like structure for each level 1 literal,
+        // using all second literals of not-yet-implied vertices, but this
+        // sounds rather complex
         reset_and_push_noresolve(propagator, v);
         for (Lit l : propagator.get_trail()) {
             compute_impliers_handle_trail_literal(l, i);
@@ -579,18 +587,31 @@ void ImpliedVertexCache::limited_reduce_universe(ClauseDB& clause_db,
         reduce_universe(clause_db);
         return;
     }
-
+    std::cout << "BEGINNING LIMITED REDUCE!\n";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     auto begin_time = std::chrono::steady_clock::now();
     EliminationAlgorithm algorithm(clause_db, this);
+    auto con_time = std::chrono::steady_clock::now();
     algorithm.compute_literal_partners_of();
+    auto clpo = std::chrono::steady_clock::now();
     algorithm.compute_impliers_single_literal();
     auto now = std::chrono::steady_clock::now();
     double trem = time_limit - seconds_between(begin_time, now);
     if (trem > 0.0) {
         algorithm.limited_compute_impliers(trem);
     }
+    auto post_limited = std::chrono::steady_clock::now();
     algorithm.compress_paths();
+    auto post_compress = std::chrono::steady_clock::now();
     algorithm.export_to_cache();
+    auto post_export = std::chrono::steady_clock::now();
+    std::cout << "EliminationAlgorithm construction: " << seconds_between(begin_time, con_time) << std::endl;
+    std::cout << "compute_literal_partners_of: " << seconds_between(con_time, clpo) << std::endl;
+    std::cout << "compute_impliers_single_literal: " << seconds_between(clpo, now) << std::endl;
+    std::cout << "limited_compute_impliers: " << seconds_between(now, post_limited) << std::endl;
+    std::cout << "compress_paths: " << seconds_between(post_limited, post_compress) << std::endl;
+    std::cout << "export_to_cache: " << seconds_between(post_compress, post_export) << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 } // namespace sammy

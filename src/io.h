@@ -4,6 +4,11 @@
 #include <sammy/clause_db.h>
 #include <sammy/output.h>
 #include <sammy/barrage.h>
+#include <boost/iostreams/filtering_stream.hpp>
+#include <boost/iostreams/filter/lzma.hpp>
+#include <boost/iostreams/filter/gzip.hpp>
+#include <boost/iostreams/filter/bzip2.hpp>
+#include <boost/exception/diagnostic_information.hpp>
 
 namespace sammy {
 
@@ -21,17 +26,61 @@ inline ProblemInput interpret_problem_json(nlohmann::json input_data) {
             std::move(input_data)};
 }
 
+inline nlohmann::json 
+read_json_path(const std::filesystem::path& file)
+{
+    auto ext = file.extension().string();
+    std::ifstream raw_input;
+    boost::iostreams::filtering_istream input;
+    auto input_flags = std::ios::in;
+    if(ext == ".xz" || ext == ".XZ" ||
+       ext == ".lzma" || ext == ".LZMA")
+    {
+        input_flags |= std::ios::binary;
+        input.push(boost::iostreams::lzma_decompressor());
+    } else if(ext == ".gz" || ext == ".GZ") {
+        input_flags |= std::ios::binary;
+        input.push(boost::iostreams::gzip_decompressor());
+    } else if(ext == ".bz2" || ext == ".BZ2" || 
+              ext == ".bzip2" || ext == ".BZIP2") 
+    {
+        input_flags |= std::ios::binary;
+        input.push(boost::iostreams::bzip2_decompressor());
+    }
+    try {
+        raw_input.exceptions(std::ios::failbit | std::ios::badbit);
+        raw_input.open(file, input_flags);
+        raw_input.exceptions(std::ios::badbit);
+    } catch (const std::exception& e) {
+        throw std::runtime_error("Failed to open the input file: " + 
+                                 file.string());
+    }
+    try {
+        input.push(raw_input);
+        return nlohmann::json::parse(input);
+    } catch(const boost::iostreams::lzma_error& e) {
+        std::cerr << "Failed to read JSON data from LZMA file "
+                  << file << ": " << e.error() << " - " 
+                  << e.code().message() << std::endl;
+        std::exit(1);
+    } catch(const boost::exception& e) {
+        std::cerr << "Failed to read JSON data from file "
+                  << file << ": " << boost::diagnostic_information(e, true)
+                  << std::endl;
+        std::exit(1);
+    } catch(const std::exception& e) {
+        std::cerr << "Failed to read JSON data from file "
+                  << file << ": " << e.what() << std::endl;
+        std::exit(1);
+    }
+}
+
 inline ProblemInput
 load_problem_input(const std::filesystem::path& formula_file) {
     if (!std::filesystem::is_regular_file(formula_file)) {
         throw std::runtime_error("The given formula file does not exist!");
     }
-    std::ifstream input;
-    input.exceptions(std::ios::failbit | std::ios::badbit);
-    input.open(formula_file, std::ios::in);
-    nlohmann::json input_data;
-    input >> input_data;
-    return interpret_problem_json(std::move(input_data));
+    return interpret_problem_json(read_json_path(formula_file));
 }
 
 struct SubproblemInput {
@@ -81,12 +130,7 @@ load_subproblem_input(const std::filesystem::path& subproblem_file) {
     if (!std::filesystem::is_regular_file(subproblem_file)) {
         throw std::runtime_error("The given subproblem file does not exist!");
     }
-    std::ifstream input;
-    input.exceptions(std::ios::failbit | std::ios::badbit);
-    input.open(subproblem_file, std::ios::in);
-    nlohmann::json input_data;
-    input >> input_data;
-    return interpret_subproblem_json(std::move(input_data));
+    return interpret_subproblem_json(read_json_path(subproblem_file));
 }
 
 }
