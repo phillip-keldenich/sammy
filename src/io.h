@@ -75,6 +75,38 @@ read_json_path(const std::filesystem::path& file)
     }
 }
 
+inline void
+write_json_path(const std::filesystem::path& file, const nlohmann::json& d) {
+    namespace io = boost::iostreams;
+    auto ext = file.extension().string();
+    std::ofstream raw_output;
+    boost::iostreams::filtering_ostream output;
+    auto output_flags = std::ios::out | std::ios::trunc;
+
+    if(ext == ".xz" || ext == ".XZ" ||
+       ext == ".lzma" || ext == ".LZMA")
+    {
+        output_flags |= std::ios::binary;
+        auto level = io::lzma::best_compression;
+        output.push(io::lzma_compressor(io::lzma_params{level, 1}));
+    } else if(ext == ".gz" || ext == ".GZ" ||
+              ext == ".gzip" || ext == ".GZIP")
+    {
+        output_flags |= std::ios::binary;
+        auto level = io::gzip::best_compression;
+        output.push(io::gzip_compressor(io::gzip_params{level}));
+    } else if(ext == ".bz2" || ext == ".BZ2" ||
+              ext == ".bzip2" || ext == ".BZIP2")
+    {
+        output_flags |= std::ios::binary;
+        output.push(io::bzip2_compressor());
+    }
+    raw_output.exceptions(std::ios::failbit | std::ios::badbit);
+    raw_output.open(file, output_flags);
+    output.push(raw_output);
+    output << d.dump(2);
+}
+
 inline ProblemInput
 load_problem_input(const std::filesystem::path& formula_file) {
     if (!std::filesystem::is_regular_file(formula_file)) {

@@ -240,9 +240,6 @@ int main(int argc, char** argv) {
     overall_output_data["problem_input"] = std::move(problem_input.raw_input);
     overall_output_data["subproblem_input"] =
         std::move(subproblem_input.raw_input);
-    {
-        std::ofstream output(output_file, std::ios::out | std::ios::trunc);
-        output << overall_output_data.dump(2) << std::endl;
-    }
+    write_json_path(output_file, overall_output_data);
     return 0;
 }

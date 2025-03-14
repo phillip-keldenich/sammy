@@ -256,10 +256,7 @@ int main(int argc, char** argv) {
     }
 
     if (!output_file_path.empty()) {
-        std::ofstream output;
-        output.exceptions(std::ios::failbit | std::ios::badbit);
-        output.open(output_file_path, std::ios::out | std::ios::trunc);
-        output << overall_output.dump(2);
+        write_json_path(output_file_path, overall_output);
     }
     return 0;
 }
