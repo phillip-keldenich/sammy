@@ -19,7 +19,7 @@ set(KISSAT_LIB_SOURCES "allocate.c" "analyze.c"
                        "reduce.c" "reluctant.c" "rephase.c"
                        "report.c" "reorder.c" "resize.c" "resolve.c"
                        "resources.c" "restart.c" "search.c"
-                       "shrink.c" "smooth.c" "sort.c" "stack.c"
+                       "shrink.c" "smooth.c" "sort.c"
                        "statistics.c" "strengthen.c" "substitute.c"
                        "sweep.c" "terminate.c" "tiers.c" "trail.c" "transitive.c" "utilities.c"
                        "vector.c" "vivify.c" "walk.c" "warmup.c"
@@ -31,12 +31,12 @@ add_library(kissat STATIC ${KISSAT_LIB_SOURCES})
 target_compile_definitions(kissat PRIVATE QUIET=1)
 add_library(kissat_binding STATIC "kissat_binding.cpp")
 
-# kissat is currently broken with LTO;
-# see https://github.com/arminbiere/kissat/issues/65
-set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
-set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
-#set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
-#set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+if(LTO_SUPPORTED)
+    set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+    set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+    set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+    set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+endif()
 
 target_include_directories(kissat PRIVATE "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
 target_include_directories(kissat PRIVATE "${CMAKE_BINARY_DIR}/kissat")
