@@ -21,28 +21,38 @@ set(KISSAT_LIB_SOURCES "allocate.c" "analyze.c"
                        "resources.c" "restart.c" "search.c"
                        "shrink.c" "smooth.c" "sort.c"
                        "statistics.c" "strengthen.c" "substitute.c"
-                       "sweep.c" "terminate.c" "tiers.c" "trail.c" "transitive.c" "utilities.c"
+                       "sweep.c" "terminate.c" "tiers.c" "trail.c" 
+                       "transitive.c" "utilities.c"
                        "vector.c" "vivify.c" "walk.c" "warmup.c"
                        "watch.c" "weaken.c")
 file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/kissat/build.h"
      CONTENT "#define VERSION \"0\"\n#define ID \"0\"\n#define COMPILER \"${CMAKE_C_COMPILER_ID}\"\n#define BUILD \"0\"\n")
-list(TRANSFORM KISSAT_LIB_SOURCES PREPEND "${CMAKE_CURRENT_LIST_DIR}/kissat/src/")
+list(TRANSFORM KISSAT_LIB_SOURCES PREPEND 
+     "${CMAKE_CURRENT_LIST_DIR}/kissat/src/")
 add_library(kissat STATIC ${KISSAT_LIB_SOURCES})
 target_compile_definitions(kissat PRIVATE QUIET=1)
 add_library(kissat_binding STATIC "kissat_binding.cpp")
 
 if(LTO_SUPPORTED)
-    set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
-    set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
-    set_property(TARGET kissat PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
-    set_property(TARGET kissat_binding PROPERTY INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+    set_property(TARGET kissat PROPERTY 
+                 INTERPROCEDURAL_OPTIMIZATION TRUE)
+    set_property(TARGET kissat_binding PROPERTY
+                 INTERPROCEDURAL_OPTIMIZATION TRUE)
+    set_property(TARGET kissat PROPERTY
+                 INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
+    set_property(TARGET kissat_binding PROPERTY 
+                 INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 endif()
 
-target_include_directories(kissat PRIVATE "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
+target_include_directories(kissat PRIVATE 
+                           "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
 target_include_directories(kissat PRIVATE "${CMAKE_BINARY_DIR}/kissat")
-target_include_directories(kissat_binding PRIVATE "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
+target_include_directories(kissat_binding PRIVATE 
+                           "${CMAKE_CURRENT_LIST_DIR}/kissat/src")
 target_link_libraries(kissat_binding PUBLIC kissat)
 target_include_directories(kissat_binding PUBLIC 
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> # include the public header directory in the source tree when building the lib
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)    # include the include directory when using the installed lib
+    # include the public header directory in the source tree when building
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+    # include the include directory when using the installed library
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 target_compile_features(kissat_binding PUBLIC cxx_std_17)

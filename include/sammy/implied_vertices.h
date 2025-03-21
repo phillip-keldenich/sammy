@@ -587,31 +587,17 @@ void ImpliedVertexCache::limited_reduce_universe(ClauseDB& clause_db,
         reduce_universe(clause_db);
         return;
     }
-    std::cout << "BEGINNING LIMITED REDUCE!\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
     auto begin_time = std::chrono::steady_clock::now();
     EliminationAlgorithm algorithm(clause_db, this);
-    auto con_time = std::chrono::steady_clock::now();
     algorithm.compute_literal_partners_of();
-    auto clpo = std::chrono::steady_clock::now();
     algorithm.compute_impliers_single_literal();
-    auto now = std::chrono::steady_clock::now();
-    double trem = time_limit - seconds_between(begin_time, now);
+    double trem = time_limit - 
+        seconds_between(begin_time, std::chrono::steady_clock::now());
     if (trem > 0.0) {
         algorithm.limited_compute_impliers(trem);
     }
-    auto post_limited = std::chrono::steady_clock::now();
     algorithm.compress_paths();
-    auto post_compress = std::chrono::steady_clock::now();
     algorithm.export_to_cache();
-    auto post_export = std::chrono::steady_clock::now();
-    std::cout << "EliminationAlgorithm construction: " << seconds_between(begin_time, con_time) << std::endl;
-    std::cout << "compute_literal_partners_of: " << seconds_between(con_time, clpo) << std::endl;
-    std::cout << "compute_impliers_single_literal: " << seconds_between(clpo, now) << std::endl;
-    std::cout << "limited_compute_impliers: " << seconds_between(now, post_limited) << std::endl;
-    std::cout << "compress_paths: " << seconds_between(post_limited, post_compress) << std::endl;
-    std::cout << "export_to_cache: " << seconds_between(post_compress, post_export) << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 } // namespace sammy
