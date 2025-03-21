@@ -206,7 +206,7 @@ int main(int argc, char** argv) {
         std::move(subproblem_input.best_local_mes),
         std::move(subproblem_input.covering_assignments),
         static_cast<Lit>(portfolio.get_infeasibility_map().get_n_concrete())};
-    portfolio.implied_cache().replace_implied(subproblem.uncovered_universe);
+    portfolio.implied_cache().remove_implied(subproblem.uncovered_universe);
     portfolio.implied_cache().replace_implied(
         subproblem.mutually_exclusive_set);
     MESSolverObserver observer(subproblem.removed_configurations.size(),
