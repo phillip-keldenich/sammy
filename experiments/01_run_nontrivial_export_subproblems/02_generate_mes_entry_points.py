@@ -1,8 +1,9 @@
 import os
 import subprocess
+import sys
 
 output_dir = "02_output"
-generate_binary = "../../build/Release/src/generate_mes_entry_points"
+generate_binary = "../../build/Release/src/generate_subproblem_mes_entry_points"
 
 for f in os.listdir(output_dir):
     path = os.path.join(output_dir, f)
