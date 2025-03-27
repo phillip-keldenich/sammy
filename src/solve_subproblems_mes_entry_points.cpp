@@ -35,6 +35,7 @@ struct SolveResult {
     }
 };
 
+
 template <typename TypeWithSolveAndAbort>
 auto timeout_wrapped_solve(TypeWithSolveAndAbort& solver, double time_limit) {
     std::mutex m;
@@ -58,6 +59,7 @@ auto timeout_wrapped_solve(TypeWithSolveAndAbort& solver, double time_limit) {
     timeout_watcher.join();
     return res;
 }
+
 
 template <typename SolverType>
 std::pair<LNSSubproblem, SolveResult>
@@ -85,6 +87,7 @@ make_and_run_common_interface_solver(LNSSubproblem&& subproblem,
     }
     return {solver.move_out_subproblem(), std::move(result)};
 }
+
 
 int main(int argc, char** argv) {
     std::string mes_entry_point_file;
@@ -118,9 +121,7 @@ int main(int argc, char** argv) {
     }
 
     // read MES entry point file
-    std::ifstream input_file(mes_entry_point_file.c_str(), std::ios::in);
-    auto input = nlohmann::json::parse(input_file);
-
+    nlohmann::json input = read_json_path(mes_entry_point_file);
     ProblemInput problem_input =
         interpret_problem_json(input.at("problem_input"));
     SubproblemInput subproblem_input =
@@ -132,12 +133,17 @@ int main(int argc, char** argv) {
         {"subproblem_file", input.at("subproblem_file")},
         {"entry_point_file", mes_entry_point_file},
         {"solve_time_limit", solve_time_limit},
-        {"solver_runs", OutputObject{}}};
+        {"solver_runs", OutputObject{}},
+        {"removal_size", subproblem_input.covering_assignments.size()}
+    };
 
-    auto add_solver_outcome = [&](const char* solver_name, SolveResult&& result,
+    auto add_solver_outcome = [&](const char* solver_name, 
+                                  std::size_t mes_size,
+                                  SolveResult&& result,
                                   const EventRecorder& recorder) {
         OutputObject entry;
         auto assignments = result.get_assignments();
+        entry["mes_size"] = mes_size;
         entry["outcome"] = std::move(result.outcome);
         entry["build_time"] = result.build_time;
         entry["solve_time"] = result.solve_time;
@@ -154,6 +160,7 @@ int main(int argc, char** argv) {
     for (const auto& entry : mes_history_data) {
         std::vector<Vertex> mes = lit::internalize(
             entry.at("mes").get<std::vector<ExternalVertex>>());
+        std::size_t mes_size = mes.size();
         LNSSubproblem subproblem{
             subproblem_input.uncovered_vertices, mes,
             subproblem_input.covering_assignments,
@@ -168,9 +175,8 @@ int main(int argc, char** argv) {
                     std::move(subproblem), &problem_input.clauses, &recorder,
                     solve_time_limit);
             subproblem = std::move(subproblem_and_result.first);
-            std::cerr << "\t - " << subproblem_and_result.second.outcome
-                      << std::endl;
-            add_solver_outcome(name, std::move(subproblem_and_result.second),
+            add_solver_outcome(name, mes_size, 
+                               std::move(subproblem_and_result.second), 
                                recorder);
         };
 
@@ -204,7 +210,8 @@ int main(int argc, char** argv) {
                      : "IMPROVED_SOLUTION"),
                 std::move(solution), seconds_between(before_make, after_make),
                 seconds_between(after_make, after_solve)};
-            add_solver_outcome(name, std::move(solve_result), recorder);
+            add_solver_outcome(name, mes_size, std::move(solve_result), 
+                               recorder);
         };
 
         for (std::size_t i = 0; i < 3; ++i) {
