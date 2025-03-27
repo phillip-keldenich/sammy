@@ -124,7 +124,7 @@ class Main {
         bool print_global_stats = false;
         bool print_initial_progress = false;
         bool dont_simplify = false;
-        std::uint64_t implied_reduction_limit = 2'000'000;
+        std::uint64_t implied_reduction_limit = 10'000'000;
         std::uint64_t exact_limit = 100'000;
         std::size_t max_lns_workers = std::thread::hardware_concurrency();
         std::size_t initial_goal_iterations = 10;

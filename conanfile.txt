@@ -14,4 +14,3 @@ CMakeDeps
 
 [options]
 boost/*:lzma=True
-

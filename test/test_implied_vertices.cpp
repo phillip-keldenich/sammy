@@ -1,5 +1,6 @@
 #include "test_instances.h"
 #include <doctest/doctest.h>
+#include <sammy/barrage.h>
 #include <sammy/implied_vertices.h>
 #include <sammy/initial_coloring_heuristic.h>
 #include <sammy/learn_infeasibilities.h>
@@ -59,3 +60,26 @@ TEST_CASE(
     solver.color_vertices_in_queue();
     CHECK(solver.num_uncovered() == 0);
 }
+
+#ifdef SAMMY_TEST_DATA
+
+TEST_CASE("[eliminate_implied_vertices] Test implied correct & unchanged") {
+    std::filesystem::path path_data(SAMMY_TEST_DATA);
+    path_data /= "soletta_17_03_09_initial.json";
+    std::ifstream input(path_data, std::ios::in);
+    OutputObject data = OutputObject::parse(input);
+    auto initial_phase_data = import_initial_phase_result(data);
+    ClauseDB& clauses = initial_phase_data.first;
+    InitialPhaseResult& initial_result = initial_phase_data.second;
+    SharedDBPropagator propagator{&clauses};
+    auto ticket = publish_clauses(clauses);
+    EventRecorder recorder;
+    PortfolioSolver solver{ticket, &recorder, std::move(initial_result)};
+    CHECK(solver.get_universe_size() == 124634);
+    solver.reduce_universe();
+    CHECK(solver.implied_cache().have_reduced_universe());
+    CHECK(solver.implied_cache().reduced_universe_size() == 20978);
+    CHECK(solver.implied_cache().original_universe_size() == 124634);
+}
+
+#endif
