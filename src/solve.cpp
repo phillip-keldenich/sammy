@@ -97,8 +97,8 @@ using ExactElement = PortfolioElementWithCore<CliqueSatDSaturExactSolverCore>;
  * Actual SAT solver to use.
  */
 //using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
-//using SatSolver = KissatSolver;
-using SatSolver = CadicalSolver;
+using SatSolver = KissatSolver;
+//using SatSolver = CadicalSolver;
 
 /**
  * MES + SAT as LNS elements.
