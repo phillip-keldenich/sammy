@@ -447,6 +447,10 @@ class DynamicBitset {
                ~Block(0);
     }
 
+    /**
+     * @brief Counts the number of True/1 bits in the bitset. This is essentially
+     * a sum of all its elements.
+     */
     std::size_t count() const noexcept {
         return std::transform_reduce(m_blocks.begin(), m_blocks.end(),
                                      std::size_t(0), std::plus<>{},

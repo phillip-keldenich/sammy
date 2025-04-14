@@ -11,11 +11,47 @@
 
 namespace sammy {
 
+/**
+ * @brief Configuration structure for the initial run of the algorithm.
+ * 
+ * This structure contains parameters to configure the behavior of the 
+ * initial run, including time limits, iteration goals, and other options.
+ */
 struct RunInitialConfig {
-    double min_time = 60.0, max_time = std::numeric_limits<double>::infinity();
+    /**
+     * @brief Minimum time (in seconds) for the initial run.
+     * Default value is 60.0 seconds.
+     */
+    double min_time = 60.0,
+
+    /**
+     * @brief Maximum time (in seconds) for the initial run.
+     * Default value is infinity.
+     */
+    double max_time = std::numeric_limits<double>::infinity();
+
+    /**
+     * @brief Number of random clique restarts per iteration.
+     * Default value is 40.
+     */
     std::size_t random_clique_restarts_per_iteration = 40;
+
+    /**
+     * @brief Target number of iterations for the initial run.
+     * Default value is 20.
+     */
     std::size_t goal_iterations = 20;
+
+    /**
+     * @brief Flag to enable or disable simplification during the initial run.
+     * Default value is true (enabled).
+     */
     bool simplify = true;
+
+    /**
+     * @brief Flag to enable or disable quiet mode (suppress output).
+     * Default value is true (quiet mode enabled).
+     */
     bool quiet = true;
 };
 

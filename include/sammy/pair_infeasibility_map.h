@@ -89,10 +89,23 @@ class PairInfeasibilityMap {
     using Matrix = std::vector<Row>;
 
   private:
+    // Number of concrete variables so we can create the matrices.
+    // Note that we assume that the concrete variables are indexed from 0 to
+    // num_vars -1, i.e., the literals are from 0 to 2 * num_vars - 1.
     std::size_t num_vars;
-    Matrix m_matrix;
-    Matrix m_def_feasible;
-    std::vector<Lit> m_incorporate_buffer;
+    // Represents a symmetric boolean matrix
+    // that stores the infeasible pairs, i.e., m_matrix[l1][l2] is true if
+    // we know that l1 and l2 are infeasible together. If it is false, check
+    // m_def_feasible[l1][l2] to see if they are feasible together. If both are
+    // false, we don't know anything about the pair yet.
+    Matrix m_matrix;  
+    // Represents a symmetric boolean matrix
+    // that stores the definitely feasible pairs, i.e., m_def_feasible[l1][l2]
+    // is true if we know that l1 and l2 are feasible together. If it is false,
+    // check m_matrix[l1][l2] to see if they are infeasible together. If both are
+    // false, we don't know anything about the pair yet.
+    Matrix m_def_feasible;  
+    std::vector<Lit> m_incorporate_buffer;  // only here for reuse
 
     explicit PairInfeasibilityMap(std::size_t n_concrete,
                                   const std::vector<std::vector<bool>>& bits)
@@ -125,27 +138,58 @@ class PairInfeasibilityMap {
     const Row& operator[](Lit l) const noexcept { return m_matrix[l]; }
 
     void literal_infeasible(Lit l) noexcept {
+        // nl represents the last literal in the matrix
         const auto nl = 2 * num_vars;
+        // Mark the literals row as infeasible
         m_matrix[l].set();
+        // Mark the literals column as infeasible
         for (Lit i = 0; i < nl; ++i) {
             m_matrix[i][l] = true;
         }
     }
 
+    /**
+     * @brief Marks the pair of literals as infeasible, i.e., we know that
+     * there is no feasible configuration that contains both literals.
+     * 
+     * @param l1 The first literal. It does *not* need to be less than l2.
+     * @param l2 The second literal.
+     */
     void literal_pair_infeasible(Lit l1, Lit l2) noexcept {
         m_matrix[l1][l2] = true;
         m_matrix[l2][l1] = true;
     }
 
+    /**
+     * @brief Returns true if the pair of literals is marked as infeasible, i.e.,
+     * we know that there is no feasible configuration that contains both
+     * literals. The literals do not need to be ordered.
+     */
     bool operator()(Lit lmin, Lit lmax) const noexcept {
         return m_matrix[lmin][lmax];
     }
 
+    /**
+     * @brief Checks if the pair of literals is marked as definitely
+     * feasible, i.e., we know of a feasible configuration that contains
+     * both literals. The literals do not need to be ordered.
+     */
     bool is_definitely_feasible(Lit lmin, Lit lmax) const noexcept {
         return m_def_feasible[lmin][lmax];
     }
 
+    /**
+     * @brief Marks the pair of literals as definitely feasible, i.e.,
+     * there exists a feasible configuration that contains both literals.
+     * 
+     * @param lmin The first literal. It does *not* need to be less than lmax.
+     * @param lmax The second literal.
+     */
     void set_definitely_feasible(Lit lmin, Lit lmax) noexcept {
+        assert(lmin >= 0 && lmin < static_cast<Lit>(m_def_feasible.size()) &&
+               "lmin is out of bounds");
+        assert(lmax >= 0 && lmax < static_cast<Lit>(m_def_feasible.size()) &&
+               "lmax is out of bounds");
         m_def_feasible[lmin][lmax] = true;
         m_def_feasible[lmax][lmin] = true;
     }
@@ -171,9 +215,17 @@ class PairInfeasibilityMap {
         return PairInfeasibilityMap{num_concrete, bits};
     }
 
+    /**
+     * @brief Will mark the trail of the given propagator as definitely feasible.
+     * NOTE: Does not seem to be used anywhere in the code. Looks like something
+     * that was expected to be useful but never used in the end.
+     * 
+     * @param propagator 
+     */
     void incorporate_complete_class(const SharedDBPropagator& propagator) {
         const Lit nc_lit = 2 * num_vars;
-        m_incorporate_buffer.clear();
+        m_incorporate_buffer.clear();  // will not deallocate, thus we reuse the 
+                                        // memory without reallocation
         std::copy_if(propagator.get_trail().begin(),
                      propagator.get_trail().end(),
                      std::back_inserter(m_incorporate_buffer),
@@ -193,6 +245,15 @@ class PairInfeasibilityMap {
         }
     }
 
+    /**
+     * @brief Marks the literals in the given class as definitely feasible. This
+     * can be faster than calling set_definitely_feasible for each pair of literals
+     * in the class, especially if the class is simply a configuration.
+     * 
+     * @param literals_in_class A vector of literals that are all in the same class. This can be a configuration
+     * from a primal heuristic.
+     * @param tpool Thread pool to use for parallelization.
+     */
     void incorporate_complete_classes(
         const std::vector<DynamicBitset>& literals_in_class,
         ThreadGroup<void>& tpool) {
@@ -261,13 +322,23 @@ class PairInfeasibilityMap {
     }
 
     std::size_t count_vertices() const noexcept {
+        // Sum up the m_def_feasible matrix, equivalent to counting the
+        // number of ones in the matrix. Each pair is counted twice, so we
+        // divide by 2 at the end to obtain the number of vertices.
         auto res = std::transform_reduce(
             m_def_feasible.begin(), m_def_feasible.end(), std::size_t(0),
             std::plus<>{}, [](const Row& r) { return r.count(); });
+        assert(res % 2 == 0 && "Counted odd number of vertices!");
         res /= 2;
         return res;
     }
 
+    /**
+     * @brief Collects all known feasible pairs of literals in a vector. If you do not need
+     * all the pairs, you can use the sample_vertices function instead.
+     * 
+     * @param reserve_size Can be used to reserve space in the vector to save some reallocations.
+     */
     std::vector<Vertex>
     collect_vertices(std::size_t reserve_size = 0) const noexcept {
         std::vector<Vertex> result;
@@ -282,6 +353,16 @@ class PairInfeasibilityMap {
         return result;
     }
 
+    /**
+     * @brief Instead of returning all the vertices (see collect_vertices), this function samples a random
+     * subset of the vertices. The expected size can be controlled by the
+     * target_size parameter.
+     * 
+     * 
+     * @param target_size The targeted expected size of the sample. Not strict!
+     * @param total_size If the total size is known, enter it here to avoid
+     * recomputing it.
+     */
     std::vector<Vertex> sample_vertices(std::size_t target_size,
                                         std::size_t total_size = 0) {
         if (!total_size) {
