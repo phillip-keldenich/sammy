@@ -206,11 +206,11 @@ template <ExternalSolverType EST> class ExternalNonIncrementalSAT {
         bool operator[](Lit l) const noexcept {
             if (l < 0) {
                 auto index = -(l + 1);
-                assert(index < raw.size());
+                assert(index < m_raw.size());
                 return !m_raw[index];
             } else {
                 auto index = l - 1;
-                assert(index < raw.size());
+                assert(index < m_raw.size());
                 return m_raw[index];
             }
         }

@@ -12,7 +12,6 @@ endif()
 project(sammy C CXX)
 
 # options
-option(SAMMY_NO_ORTOOLS "Do not use ortools" OFF)
 option(SAMMY_NO_CUDA "Disable CUDA support; only relevant on CUDA platforms" OFF)
 option(SAMMY_NO_LTO "Do not attempt link-time optimization" Off)
 
@@ -41,10 +40,6 @@ endif()
 find_package(Boost REQUIRED COMPONENTS iostreams program_options filesystem system)
 find_package(gurobi CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
-
-if(NOT SAMMY_NO_ORTOOLS)
-  find_package(ortools CONFIG REQUIRED)
-endif()
 
 add_library(sammy INTERFACE)
 if(SAMMY_USE_CUDA)
