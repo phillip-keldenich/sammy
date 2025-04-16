@@ -16,7 +16,7 @@ instances_path = "../../instances/benchmark_models.zip"
 output_dir = "01_baseline"
 algorithms = ["YASA", "YASA3", "YASA5", "YASA10"]
 instances = ["Automotive02_V1", "Automotive02_V2", "Automotive02_V3", "Automotive02_V4"]
-time_limit = 1  # seconds
+time_limit = 3600 # seconds
 
 benchmark = Benchmark(output_dir)
 benchmark.capture_logger("baseline")
