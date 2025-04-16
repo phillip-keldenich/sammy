@@ -13,10 +13,10 @@ slurminade.update_default_configuration(
 )  # global options for slurm
 
 instances_path = "../../instances/benchmark_models.zip"
-output_dir = "01_baseline"
+output_dir = "01_baseline_3h"
 algorithms = ["YASA", "YASA3", "YASA5", "YASA10"]
 instances = ["Automotive02_V1", "Automotive02_V2", "Automotive02_V3", "Automotive02_V4"]
-time_limit = 3600 # seconds
+time_limit = 10800 # seconds
 
 benchmark = Benchmark(output_dir)
 benchmark.capture_logger("baseline")
@@ -45,6 +45,15 @@ def solve_baseline(instance_name: str, alg_params: dict):
     benchmark.add(solve, instance_name=instance_name, alg_params=alg_params)
 
 
+@slurminade.slurmify(
+    mail_type="ALL"
+)
+def compress():
+    """
+    Compress the output directory
+    """
+    benchmark.compress()
+
 if __name__ == "__main__":
 
     all_alg_params = [
@@ -60,3 +69,6 @@ if __name__ == "__main__":
         for instance in instances:
             for alg_params in all_alg_params:
                 solve_baseline.distribute(instance_name=instance, alg_params=alg_params)
+
+    slurminade.join()
+    compress.distribute()
