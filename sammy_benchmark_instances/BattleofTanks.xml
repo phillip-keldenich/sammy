@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and mandatory="true" name="TankWar">
+				<alt mandatory="true" name="Tank_Player1">
+					<feature mandatory="true" name="Feature_16"/>
+					<feature mandatory="true" name="Feature_17"/>
+					<feature mandatory="true" name="Feature_18"/>
+					<feature mandatory="true" name="Feature_19"/>
+					<feature mandatory="true" name="Feature_20"/>
+					<feature mandatory="true" name="Feature_21"/>
+				</alt>
+				<alt mandatory="true" name="Tank_Player2">
+					<feature mandatory="true" name="Feature_23"/>
+					<feature mandatory="true" name="Feature_24"/>
+					<feature mandatory="true" name="Feature_25"/>
+					<feature mandatory="true" name="Feature_26"/>
+					<feature mandatory="true" name="Feature_27"/>
+					<feature mandatory="true" name="Feature_28"/>
+				</alt>
+				<alt mandatory="true" name="mov">
+					<feature mandatory="true" name="Feature_30"/>
+					<feature mandatory="true" name="Feature_31"/>
+					<feature mandatory="true" name="Feature_32"/>
+					<feature mandatory="true" name="Feature_33"/>
+					<feature mandatory="true" name="Feature_34"/>
+				</alt>
+				<feature name="tar"/>
+				<feature name="Hinderniss_Set"/>
+				<or mandatory="true" name="Power_Ups">
+					<feature mandatory="true" name="Feature_36"/>
+					<feature mandatory="true" name="Feature_37"/>
+					<feature mandatory="true" name="Feature_38"/>
+					<feature mandatory="true" name="Feature_39"/>
+					<feature mandatory="true" name="Feature_40"/>
+					<feature mandatory="true" name="Feature_41"/>
+					<feature mandatory="true" name="Feature_42"/>
+					<feature mandatory="true" name="Feature_43"/>
+					<feature mandatory="true" name="Feature_44"/>
+					<feature mandatory="true" name="Feature_45"/>
+					<feature mandatory="true" name="Feature_46"/>
+					<feature mandatory="true" name="Feature_47"/>
+					<feature mandatory="true" name="Feature_48"/>
+					<feature mandatory="true" name="Feature_49"/>
+					<feature mandatory="true" name="Feature_50"/>
+					<feature mandatory="true" name="Feature_51"/>
+					<feature mandatory="true" name="Feature_52"/>
+					<feature mandatory="true" name="Feature_53"/>
+					<feature mandatory="true" name="Feature_54"/>
+					<feature mandatory="true" name="Feature_55"/>
+					<feature mandatory="true" name="Feature_56"/>
+					<feature mandatory="true" name="Feature_57"/>
+				</or>
+				<and name="Activate_Power_Up">
+					<feature name="Feature_58"/>
+					<feature name="Feature_59"/>
+					<feature name="Feature_60"/>
+					<feature name="Feature_61"/>
+					<feature name="Feature_62"/>
+					<feature name="Feature_63"/>
+					<feature name="Feature_64"/>
+					<feature name="Feature_65"/>
+				</and>
+				<alt mandatory="true" name="Background">
+					<feature mandatory="true" name="Feature_67"/>
+					<feature mandatory="true" name="Feature_68"/>
+					<feature mandatory="true" name="Feature_69"/>
+					<feature mandatory="true" name="Feature_70"/>
+					<feature mandatory="true" name="Feature_71"/>
+					<feature mandatory="true" name="Feature_72"/>
+					<feature mandatory="true" name="Feature_73"/>
+					<feature mandatory="true" name="Feature_74"/>
+					<feature mandatory="true" name="Feature_75"/>
+					<feature mandatory="true" name="Feature_76"/>
+					<feature mandatory="true" name="Feature_77"/>
+					<feature mandatory="true" name="Feature_78"/>
+					<feature mandatory="true" name="Feature_79"/>
+				</alt>
+				<alt mandatory="true" name="rocketStyle">
+					<feature mandatory="true" name="Feature_81"/>
+					<feature mandatory="true" name="Feature_82"/>
+					<feature mandatory="true" name="Feature_83"/>
+					<feature mandatory="true" name="Feature_84"/>
+					<feature mandatory="true" name="Feature_85"/>
+				</alt>
+				<and mandatory="true" name="Sounds">
+					<alt name="Player1_Sound_Rotation">
+						<feature mandatory="true" name="Feature_87"/>
+						<feature mandatory="true" name="Feature_88"/>
+						<feature mandatory="true" name="Feature_89"/>
+						<feature mandatory="true" name="Feature_90"/>
+						<feature mandatory="true" name="Feature_91"/>
+						<feature mandatory="true" name="Feature_92"/>
+						<feature mandatory="true" name="Feature_93"/>
+						<feature mandatory="true" name="Feature_94"/>
+						<feature mandatory="true" name="Feature_95"/>
+						<feature mandatory="true" name="Feature_96"/>
+						<feature mandatory="true" name="Feature_97"/>
+						<feature mandatory="true" name="Feature_98"/>
+						<feature mandatory="true" name="Feature_99"/>
+						<feature mandatory="true" name="Feature_100"/>
+						<feature mandatory="true" name="Feature_101"/>
+						<feature mandatory="true" name="Feature_102"/>
+					</alt>
+					<alt name="Player1_Sound_Movement">
+						<feature mandatory="true" name="Feature_104"/>
+						<feature mandatory="true" name="Feature_105"/>
+						<feature mandatory="true" name="Feature_106"/>
+						<feature mandatory="true" name="Feature_107"/>
+						<feature mandatory="true" name="Feature_108"/>
+						<feature mandatory="true" name="Feature_109"/>
+						<feature mandatory="true" name="Feature_110"/>
+						<feature mandatory="true" name="Feature_111"/>
+						<feature mandatory="true" name="Feature_112"/>
+						<feature mandatory="true" name="Feature_113"/>
+						<feature mandatory="true" name="Feature_114"/>
+						<feature mandatory="true" name="Feature_115"/>
+						<feature mandatory="true" name="Feature_116"/>
+						<feature mandatory="true" name="Feature_117"/>
+						<feature mandatory="true" name="Feature_118"/>
+						<feature mandatory="true" name="Feature_119"/>
+					</alt>
+					<alt name="Player2_Sound_Rotation">
+						<feature mandatory="true" name="Feature_121"/>
+						<feature mandatory="true" name="Feature_122"/>
+						<feature mandatory="true" name="Feature_123"/>
+						<feature mandatory="true" name="Feature_124"/>
+						<feature mandatory="true" name="Feature_125"/>
+						<feature mandatory="true" name="Feature_126"/>
+						<feature mandatory="true" name="Feature_127"/>
+						<feature mandatory="true" name="Feature_128"/>
+						<feature mandatory="true" name="Feature_129"/>
+						<feature mandatory="true" name="Feature_130"/>
+						<feature mandatory="true" name="Feature_131"/>
+						<feature mandatory="true" name="Feature_132"/>
+						<feature mandatory="true" name="Feature_133"/>
+						<feature mandatory="true" name="Feature_134"/>
+						<feature mandatory="true" name="Feature_135"/>
+						<feature mandatory="true" name="Feature_136"/>
+					</alt>
+					<alt name="Player2_Sound_Movement">
+						<feature mandatory="true" name="Feature_138"/>
+						<feature mandatory="true" name="Feature_139"/>
+						<feature mandatory="true" name="Feature_140"/>
+						<feature mandatory="true" name="Feature_141"/>
+						<feature mandatory="true" name="Feature_142"/>
+						<feature mandatory="true" name="Feature_143"/>
+						<feature mandatory="true" name="Feature_144"/>
+						<feature mandatory="true" name="Feature_145"/>
+						<feature mandatory="true" name="Feature_146"/>
+						<feature mandatory="true" name="Feature_147"/>
+						<feature mandatory="true" name="Feature_148"/>
+						<feature mandatory="true" name="Feature_149"/>
+						<feature mandatory="true" name="Feature_150"/>
+						<feature mandatory="true" name="Feature_151"/>
+						<feature mandatory="true" name="Feature_152"/>
+						<feature mandatory="true" name="Feature_153"/>
+					</alt>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
