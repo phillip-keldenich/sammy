@@ -22,7 +22,7 @@ struct RunInitialConfig {
      * @brief Minimum time (in seconds) for the initial run.
      * Default value is 60.0 seconds.
      */
-    double min_time = 60.0,
+    double min_time = 60.0;
 
     /**
      * @brief Maximum time (in seconds) for the initial run.

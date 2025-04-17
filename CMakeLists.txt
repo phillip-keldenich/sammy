@@ -12,8 +12,8 @@ endif()
 project(sammy C CXX)
 
 # options
-option(SAMMY_NO_ORTOOLS "Do not use ortools" OFF)
-option(SAMMY_NO_CUDA "Disable CUDA support; only relevant on CUDA platforms" OFF)
+option(SAMMY_NO_ORTOOLS "Do not use ortools" On)
+option(SAMMY_NO_CUDA "Disable CUDA support; only relevant on CUDA platforms" On)
 option(SAMMY_NO_LTO "Do not attempt link-time optimization" Off)
 
 # check for CUDA support
