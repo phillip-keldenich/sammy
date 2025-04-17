@@ -1,1 +1,2520 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/axTLS.xml|EQ|CNF", "n_all": 106, "n_concrete": 58, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[CONFIG_VISUAL_STUDIO_8_0_alt]", "l1": ["CONFIG_VISUAL_STUDIO_8_0_alt", "root", "CONFIG_BIGINT_MONTGOMERY_alt", "CONFIG_VISUAL_STUDIO_8_0_BASE", "CONFIG_PLATFORM_LINUX_alt", "CONFIG_SSL_PROT_HIGH_alt", "CONFIG_VISUAL_STUDIO_7_0_BASE", "CONFIG_SSL_CERT_VERIFICATION_alt", "CONFIG_HTTP_HTTPS_PORT", "CONFIG_SSL_EXPIRY_TIME", "CONFIG_HTTP_SESSION_CACHE_SIZE", "CONFIG_X509_MAX_CA_CERTS", "CONFIG_SSL_PRIVATE_KEY_PASSWORD", "CONFIG_SSL_X509_CERT_LOCATION", "CONFIG_HTTP_PORT", "CONFIG_DOT_NET_FRAMEWORK_BASE", "CONFIG_SSL_MAX_CERTS", "CONFIG_EXTRA_CFLAGS_OPTIONS", "CONFIG_HTTP_TIMEOUT", "CONFIG_HTTP_WEBROOT", "CONFIG_EXTRA_LDFLAGS_OPTIONS", "PREFIX"], "l2": []}, {"feature": "SUB[CONFIG_JAVA_BINDINGS]", "l1": ["CONFIG_JAVA_BINDINGS", "CONFIG_JAVA_HOME"], "l2": []}, {"feature": "SUB[CONFIG_BIGINT_KARATSUBA]", "l1": ["CONFIG_BIGINT_KARATSUBA", "SQU_KARATSUBA_THRESH", "MUL_KARATSUBA_THRESH"], "l2": []}, {"feature": "SUB[CONFIG_LUA_BINDINGS]", "l1": ["CONFIG_LUA_BINDINGS", "CONFIG_LUA_CORE"], "l2": []}, {"feature": "SUB[CONFIG_HTTP_ENABLE_DIFFERENT_USER]", "l1": ["CONFIG_HTTP_ENABLE_DIFFERENT_USER", "CONFIG_HTTP_USER"], "l2": []}, {"feature": "SUB[CONFIG_SSL_GENERATE_X509_CERT]", "l1": ["CONFIG_SSL_GENERATE_X509_CERT", "CONFIG_SSL_X509_ORGANIZATION_UNIT_NAME", "CONFIG_SSL_X509_ORGANIZATION_NAME", "CONFIG_SSL_X509_COMMON_NAME"], "l2": []}, {"feature": "SUB[CONFIG_HTTP_CGI_EXTENSIONS]", "l1": ["CONFIG_HTTP_CGI_EXTENSIONS", "CONFIG_HTTP_HAS_CGI"], "l2": []}, {"feature": "SUB[CONFIG_HTTP_ENABLE_LUA]", "l1": ["CONFIG_HTTP_ENABLE_LUA", "CONFIG_HTTP_LUA_CGI_LAUNCHER", "CONFIG_HTTP_LUA_PREFIX"], "l2": []}, {"feature": "SUB[CONFIG_PERL_BINDINGS]", "l1": ["CONFIG_PERL_BINDINGS", "CONFIG_PERL_LIB", "CONFIG_PERL_CORE"], "l2": []}, {"feature": "SUB[CONFIG_SSL_PRIVATE_KEY_LOCATION]", "l1": ["CONFIG_SSL_PRIVATE_KEY_LOCATION", "CONFIG_SSL_USE_DEFAULT_KEY"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["CONFIG_OPENSSL_COMPATIBLE"], "l2": []}, {"feature": 1, "l1": ["CONFIG_SSL_HAS_PEM"], "l2": []}, {"feature": 2, "l1": ["SUB[CONFIG_PERL_BINDINGS]"], "l2": []}, {"feature": 3, "l1": ["CONFIG_PLATFORM_CYGWIN"], "l2": []}, {"feature": 4, "l1": ["CONFIG_SSL_CERT_VERIFICATION"], "l2": []}, {"feature": 5, "l1": ["CONFIG_SSL_FULL_MODE"], "l2": []}, {"feature": 6, "l1": ["CONFIG_SSL_ENABLE_V23_HANDSHAKE"], "l2": []}, {"feature": 7, "l1": ["CONFIG_HTTP_BUILD_LUA"], "l2": []}, {"feature": 8, "l1": ["CONFIG_SSL_USE_PKCS12"], "l2": []}, {"feature": 9, "l1": ["SUB[CONFIG_BIGINT_KARATSUBA]"], "l2": []}, {"feature": 10, "l1": ["SUB[CONFIG_LUA_BINDINGS]"], "l2": []}, {"feature": 11, "l1": ["CONFIG_JAVA_SAMPLES"], "l2": []}, {"feature": 12, "l1": ["CONFIG_PERL_SAMPLES"], "l2": []}, {"feature": 13, "l1": ["CONFIG_AXTLSWRAP"], "l2": []}, {"feature": 14, "l1": ["CONFIG_PERFORMANCE_TESTING"], "l2": []}, {"feature": 15, "l1": ["CONFIG_BIGINT_SLIDING_WINDOW"], "l2": []}, {"feature": 16, "l1": ["SUB[CONFIG_JAVA_BINDINGS]"], "l2": []}, {"feature": 17, "l1": ["CONFIG_USE_DEV_URANDOM"], "l2": []}, {"feature": 18, "l1": ["CONFIG_SSL_PROT_MEDIUM"], "l2": []}, {"feature": 19, "l1": ["CONFIG_LUA_SAMPLES"], "l2": []}, {"feature": 20, "l1": ["SUB[CONFIG_VISUAL_STUDIO_8_0_alt]"], "l2": []}, {"feature": 21, "l1": ["HAVE_DOT_CONFIG"], "l2": []}, {"feature": 22, "l1": ["CONFIG_HTTP_HAS_AUTHORIZATION"], "l2": []}, {"feature": 23, "l1": ["CONFIG_SSL_CTX_MUTEXING"], "l2": []}, {"feature": 24, "l1": ["CONFIG_SSL_ENABLE_CLIENT"], "l2": []}, {"feature": 25, "l1": ["CONFIG_HTTP_VERBOSE"], "l2": []}, {"feature": 26, "l1": ["CONFIG_BIGINT_CRT"], "l2": []}, {"feature": 27, "l1": ["CONFIG_BIGINT_CHECK_ON"], "l2": []}, {"feature": 28, "l1": ["CONFIG_SSL_SKELETON_MODE"], "l2": []}, {"feature": 29, "l1": ["CONFIG_BIGINT_BARRETT"], "l2": []}, {"feature": 30, "l1": ["CONFIG_VBNET_SAMPLES"], "l2": []}, {"feature": 31, "l1": ["CONFIG_BIGINT_SQUARE"], "l2": []}, {"feature": 32, "l1": ["SUB[CONFIG_HTTP_ENABLE_LUA]"], "l2": []}, {"feature": 33, "l1": ["CONFIG_HTTP_IS_DAEMON"], "l2": []}, {"feature": 34, "l1": ["CONFIG_BIGINT_MONTGOMERY"], "l2": []}, {"feature": 35, "l1": ["CONFIG_HTTP_HAS_IPV6"], "l2": []}, {"feature": 36, "l1": ["CONFIG_BIGINT_CLASSICAL"], "l2": []}, {"feature": 37, "l1": ["CONFIG_VISUAL_STUDIO_7_0"], "l2": []}, {"feature": 38, "l1": ["CONFIG_SSL_PROT_HIGH"], "l2": []}, {"feature": 39, "l1": ["CONFIG_CSHARP_BINDINGS"], "l2": []}, {"feature": 40, "l1": ["CONFIG_VISUAL_STUDIO_8_0"], "l2": []}, {"feature": 41, "l1": ["CONFIG_VBNET_BINDINGS"], "l2": []}, {"feature": 42, "l1": ["CONFIG_SSL_TEST"], "l2": []}, {"feature": 43, "l1": ["CONFIG_SSL_PROT_LOW"], "l2": []}, {"feature": 44, "l1": ["CONFIG_WIN32_USE_CRYPTO_LIB"], "l2": []}, {"feature": 45, "l1": ["CONFIG_AXHTTPD"], "l2": []}, {"feature": 46, "l1": ["CONFIG_STRIP_UNWANTED_SECTIONS"], "l2": []}, {"feature": 47, "l1": ["SUB[CONFIG_SSL_GENERATE_X509_CERT]"], "l2": []}, {"feature": 48, "l1": ["CONFIG_PLATFORM_WIN32"], "l2": []}, {"feature": 49, "l1": ["CONFIG_HTTP_STATIC_BUILD"], "l2": []}, {"feature": 50, "l1": ["CONFIG_CSHARP_SAMPLES"], "l2": []}, {"feature": 51, "l1": ["SUB[CONFIG_HTTP_CGI_EXTENSIONS]"], "l2": []}, {"feature": 52, "l1": ["CONFIG_SSL_SERVER_ONLY"], "l2": []}, {"feature": 53, "l1": ["CONFIG_C_SAMPLES"], "l2": []}, {"feature": 54, "l1": ["SUB[CONFIG_SSL_PRIVATE_KEY_LOCATION]"], "l2": []}, {"feature": 55, "l1": ["SUB[CONFIG_HTTP_ENABLE_DIFFERENT_USER]"], "l2": []}, {"feature": 56, "l1": ["CONFIG_HTTP_DIRECTORIES"], "l2": []}, {"feature": 57, "l1": ["CONFIG_PLATFORM_LINUX"], "l2": []}, {"feature": 58, "l1": ["__AUX[1]"], "l2": []}, {"feature": 59, "l1": ["__AUX[2]"], "l2": []}, {"feature": 60, "l1": ["__AUX[5]"], "l2": []}, {"feature": 61, "l1": ["CONFIG_DEBUG"], "l2": []}, {"feature": 62, "l1": ["__AUX[6]"], "l2": []}, {"feature": 63, "l1": ["__AUX[3]"], "l2": []}, {"feature": 64, "l1": ["__AUX[4]"], "l2": []}, {"feature": 65, "l1": ["__AUX[7]"], "l2": []}, {"feature": 66, "l1": ["__AUX[8]"], "l2": []}, {"feature": 67, "l1": ["__AUX[9]"], "l2": []}, {"feature": 68, "l1": ["__AUX[10]"], "l2": []}, {"feature": 69, "l1": ["__AUX[13]"], "l2": []}, {"feature": 70, "l1": ["__AUX[14]"], "l2": []}, {"feature": 71, "l1": ["__AUX[11]"], "l2": []}, {"feature": 72, "l1": ["__AUX[12]"], "l2": []}, {"feature": 73, "l1": ["__AUX[15]"], "l2": []}, {"feature": 74, "l1": ["__AUX[16]"], "l2": []}, {"feature": 75, "l1": ["__AUX[19]"], "l2": []}, {"feature": 76, "l1": ["__AUX[20]"], "l2": []}, {"feature": 77, "l1": ["__AUX[21]"], "l2": []}, {"feature": 78, "l1": ["__AUX[17]"], "l2": []}, {"feature": 79, "l1": ["__AUX[18]"], "l2": []}, {"feature": 80, "l1": ["__AUX[24]"], "l2": []}, {"feature": 81, "l1": ["CONFIG_SAMPLES"], "l2": []}, {"feature": 82, "l1": ["__AUX[25]"], "l2": []}, {"feature": 83, "l1": ["__AUX[22]"], "l2": []}, {"feature": 84, "l1": ["__AUX[23]"], "l2": []}, {"feature": 85, "l1": ["__AUX[28]"], "l2": []}, {"feature": 86, "l1": ["__AUX[29]"], "l2": []}, {"feature": 87, "l1": ["__AUX[26]"], "l2": []}, {"feature": 88, "l1": ["__AUX[27]"], "l2": []}, {"feature": 89, "l1": ["__AUX[32]"], "l2": []}, {"feature": 90, "l1": ["__AUX[33]"], "l2": []}, {"feature": 91, "l1": ["__AUX[30]"], "l2": []}, {"feature": 92, "l1": ["__AUX[31]"], "l2": []}, {"feature": 93, "l1": ["__AUX[36]"], "l2": []}, {"feature": 94, "l1": ["__AUX[37]"], "l2": []}, {"feature": 95, "l1": ["__AUX[34]"], "l2": []}, {"feature": 96, "l1": ["__AUX[35]"], "l2": []}, {"feature": 97, "l1": ["__AUX[40]"], "l2": []}, {"feature": 98, "l1": ["__AUX[41]"], "l2": []}, {"feature": 99, "l1": ["__AUX[38]"], "l2": []}, {"feature": 100, "l1": ["__AUX[39]"], "l2": []}, {"feature": 101, "l1": ["__AUX[44]"], "l2": []}, {"feature": 102, "l1": ["__AUX[45]"], "l2": []}, {"feature": 103, "l1": ["__AUX[42]"], "l2": []}, {"feature": 104, "l1": ["__AUX[43]"], "l2": []}, {"feature": 105, "l1": ["CONFIG_BINDINGS"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 59, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 59, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 59, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 61, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 61, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 46, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 63, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 46, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 64, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 64, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 61, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 63, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 64, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 62, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 65, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 54, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 65, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 1, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 66, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 65, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 66, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 47, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 54, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 68, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 68, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 69, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 52, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 69, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 52, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 71, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 72, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 52, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 72, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 71, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 72, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 69, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 70, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 48, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 44, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 73, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 73, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 47, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 74, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 42, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 73, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 74, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 75, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 76, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 77, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 78, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 77, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 78, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 77, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 79, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 77, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 78, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 79, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 77, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 75, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 76, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 77, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 80, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 80, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 82, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 50, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 82, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 83, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 50, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 82, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 84, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 82, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 84, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 82, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 83, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 84, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 80, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 82, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 85, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 85, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 86, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 30, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 86, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 87, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 30, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 86, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 88, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 86, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 88, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 86, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 87, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 88, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 85, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 86, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 89, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 89, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 90, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 90, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 91, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 90, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 92, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 90, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 92, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 90, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 91, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 92, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 89, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 90, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 93, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 93, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 94, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 12, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 94, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 95, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 12, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 94, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 96, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 94, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 96, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 94, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 95, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 96, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 93, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 94, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 97, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 97, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 98, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 98, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 99, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 98, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 100, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 81, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 98, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 100, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 98, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 99, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 100, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 97, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 98, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 101, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 101, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 101, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": false, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 103, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 104, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 104, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 104, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 102, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 103, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 104, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 101, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 102, "negated": false, "auxiliary": true}]}], "structure": {"type": "AND", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "ALT", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 37, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 40, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": false}, {"type": "ALT", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 36, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 34, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 29, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 44, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 16, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 42, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 61, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 46, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 31, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "ALT", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 57, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 48, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 56, "negated": false}, "mandatory": false}, {"type": "ALT", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 43, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 38, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "AND", "feature_literal": {"name": 10, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 20, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 52, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 24, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 28, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 25, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 55, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 55, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 27, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 21, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 35, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 49, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 47, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 47, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 47, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 47, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 33, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 105, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 39, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 41, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 51, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 51, "negated": false}, "mandatory": true}, {"type": "AND", "feature_literal": {"name": 32, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 32, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 32, "negated": false}, "mandatory": true}]}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 26, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 2, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": true}]}, {"type": "AND", "feature_literal": {"name": 81, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 30, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 50, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 53, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 22, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 23, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 45, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "AND", "feature_literal": {"name": 54, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 54, "negated": false}, "mandatory": true}]}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/axTLS.xml",
+  "meta": {},
+  "num_variables": 106,
+  "num_concrete_features": 58,
+  "labels": {
+    "CONFIG_AXHTTPD": 35,
+    "CONFIG_AXTLSWRAP": 48,
+    "CONFIG_BIGINT_BARRETT": 51,
+    "CONFIG_BIGINT_CHECK_ON": 14,
+    "CONFIG_BIGINT_CLASSICAL": 43,
+    "CONFIG_BIGINT_CRT": 28,
+    "CONFIG_BIGINT_MONTGOMERY": 20,
+    "CONFIG_BIGINT_SLIDING_WINDOW": 30,
+    "CONFIG_BIGINT_SQUARE": 15,
+    "CONFIG_CSHARP_BINDINGS": 33,
+    "CONFIG_CSHARP_SAMPLES": 9,
+    "CONFIG_C_SAMPLES": 3,
+    "CONFIG_HTTP_BUILD_LUA": 32,
+    "CONFIG_HTTP_DIRECTORIES": 8,
+    "CONFIG_HTTP_HAS_AUTHORIZATION": 10,
+    "CONFIG_HTTP_HAS_IPV6": 36,
+    "CONFIG_HTTP_IS_DAEMON": 50,
+    "CONFIG_HTTP_STATIC_BUILD": 21,
+    "CONFIG_HTTP_VERBOSE": 47,
+    "CONFIG_JAVA_SAMPLES": 11,
+    "CONFIG_LUA_SAMPLES": 1,
+    "CONFIG_OPENSSL_COMPATIBLE": 58,
+    "CONFIG_PERFORMANCE_TESTING": 56,
+    "CONFIG_PERL_SAMPLES": 12,
+    "CONFIG_PLATFORM_CYGWIN": 13,
+    "CONFIG_PLATFORM_LINUX": 24,
+    "CONFIG_PLATFORM_WIN32": 19,
+    "CONFIG_SSL_CERT_VERIFICATION": 2,
+    "CONFIG_SSL_CTX_MUTEXING": 27,
+    "CONFIG_SSL_ENABLE_CLIENT": 31,
+    "CONFIG_SSL_ENABLE_V23_HANDSHAKE": 6,
+    "CONFIG_SSL_FULL_MODE": 16,
+    "CONFIG_SSL_HAS_PEM": 34,
+    "CONFIG_SSL_PROT_HIGH": 7,
+    "CONFIG_SSL_PROT_LOW": 57,
+    "CONFIG_SSL_PROT_MEDIUM": 49,
+    "CONFIG_SSL_SERVER_ONLY": 25,
+    "CONFIG_SSL_SKELETON_MODE": 18,
+    "CONFIG_SSL_TEST": 39,
+    "CONFIG_SSL_USE_PKCS12": 53,
+    "CONFIG_STRIP_UNWANTED_SECTIONS": 26,
+    "CONFIG_USE_DEV_URANDOM": 5,
+    "CONFIG_VBNET_BINDINGS": 42,
+    "CONFIG_VBNET_SAMPLES": 46,
+    "CONFIG_VISUAL_STUDIO_7_0": 54,
+    "CONFIG_VISUAL_STUDIO_8_0": 45,
+    "CONFIG_WIN32_USE_CRYPTO_LIB": 41,
+    "HAVE_DOT_CONFIG": 29
+  },
+  "cnf_clauses": [
+    [
+      4
+    ],
+    [
+      -35,
+      4
+    ],
+    [
+      -48,
+      4
+    ],
+    [
+      -14,
+      4
+    ],
+    [
+      -28,
+      4
+    ],
+    [
+      -55,
+      4
+    ],
+    [
+      -51,
+      -43
+    ],
+    [
+      -51,
+      -20
+    ],
+    [
+      -43,
+      -20
+    ],
+    [
+      51,
+      43,
+      20,
+      -4
+    ],
+    [
+      -51,
+      4
+    ],
+    [
+      -43,
+      4
+    ],
+    [
+      -20,
+      4
+    ],
+    [
+      -30,
+      4
+    ],
+    [
+      -15,
+      4
+    ],
+    [
+      -106,
+      4
+    ],
+    [
+      -33,
+      106
+    ],
+    [
+      -42,
+      106
+    ],
+    [
+      -62,
+      4
+    ],
+    [
+      -26,
+      62
+    ],
+    [
+      -8,
+      4
+    ],
+    [
+      -23,
+      4
+    ],
+    [
+      -10,
+      4
+    ],
+    [
+      -22,
+      4
+    ],
+    [
+      -40,
+      22
+    ],
+    [
+      -32,
+      40
+    ],
+    [
+      -36,
+      4
+    ],
+    [
+      -50,
+      4
+    ],
+    [
+      -21,
+      4
+    ],
+    [
+      -47,
+      4
+    ],
+    [
+      -38,
+      4
+    ],
+    [
+      -37,
+      4
+    ],
+    [
+      -58,
+      4
+    ],
+    [
+      -56,
+      4
+    ],
+    [
+      -17,
+      4
+    ],
+    [
+      -13,
+      -24
+    ],
+    [
+      -13,
+      -19
+    ],
+    [
+      -24,
+      -19
+    ],
+    [
+      13,
+      24,
+      19,
+      -4
+    ],
+    [
+      -13,
+      4
+    ],
+    [
+      -24,
+      4
+    ],
+    [
+      -19,
+      4
+    ],
+    [
+      -82,
+      4
+    ],
+    [
+      -9,
+      82
+    ],
+    [
+      -3,
+      82
+    ],
+    [
+      -11,
+      82
+    ],
+    [
+      -1,
+      82
+    ],
+    [
+      -12,
+      82
+    ],
+    [
+      -46,
+      82
+    ],
+    [
+      -2,
+      -31
+    ],
+    [
+      -2,
+      -16
+    ],
+    [
+      -2,
+      -25
+    ],
+    [
+      -2,
+      -18
+    ],
+    [
+      -31,
+      -16
+    ],
+    [
+      -31,
+      -25
+    ],
+    [
+      -31,
+      -18
+    ],
+    [
+      -16,
+      -25
+    ],
+    [
+      -16,
+      -18
+    ],
+    [
+      -25,
+      -18
+    ],
+    [
+      2,
+      31,
+      16,
+      25,
+      18,
+      -4
+    ],
+    [
+      -2,
+      4
+    ],
+    [
+      -31,
+      4
+    ],
+    [
+      -16,
+      4
+    ],
+    [
+      -25,
+      4
+    ],
+    [
+      -18,
+      4
+    ],
+    [
+      -27,
+      4
+    ],
+    [
+      -6,
+      4
+    ],
+    [
+      -44,
+      4
+    ],
+    [
+      -34,
+      4
+    ],
+    [
+      -7,
+      -57
+    ],
+    [
+      -7,
+      -49
+    ],
+    [
+      -57,
+      -49
+    ],
+    [
+      7,
+      57,
+      49,
+      -4
+    ],
+    [
+      -7,
+      4
+    ],
+    [
+      -57,
+      4
+    ],
+    [
+      -49,
+      4
+    ],
+    [
+      -39,
+      4
+    ],
+    [
+      -52,
+      4
+    ],
+    [
+      -53,
+      4
+    ],
+    [
+      -5,
+      4
+    ],
+    [
+      -54,
+      -45
+    ],
+    [
+      54,
+      45,
+      -4
+    ],
+    [
+      -54,
+      4
+    ],
+    [
+      -45,
+      4
+    ],
+    [
+      -41,
+      4
+    ],
+    [
+      -29,
+      4
+    ],
+    [
+      -59,
+      -19
+    ],
+    [
+      -60,
+      19,
+      4
+    ],
+    [
+      -60,
+      -4,
+      -19
+    ],
+    [
+      59,
+      60
+    ],
+    [
+      -61,
+      -19
+    ],
+    [
+      -61,
+      -62
+    ],
+    [
+      -63,
+      19,
+      62,
+      26
+    ],
+    [
+      -63,
+      -64,
+      -26
+    ],
+    [
+      -63,
+      -65,
+      -19
+    ],
+    [
+      -63,
+      -65,
+      -62
+    ],
+    [
+      -63,
+      64,
+      65
+    ],
+    [
+      61,
+      63
+    ],
+    [
+      -66,
+      -52
+    ],
+    [
+      -66,
+      34
+    ],
+    [
+      -67,
+      -4
+    ],
+    [
+      66,
+      67
+    ],
+    [
+      -68,
+      -44
+    ],
+    [
+      -68,
+      -52
+    ],
+    [
+      -68,
+      -18
+    ],
+    [
+      -69,
+      -4
+    ],
+    [
+      68,
+      69
+    ],
+    [
+      -70,
+      -25
+    ],
+    [
+      -70,
+      -18
+    ],
+    [
+      -71,
+      25,
+      18,
+      4
+    ],
+    [
+      -71,
+      -72,
+      -4
+    ],
+    [
+      -71,
+      -73,
+      -25
+    ],
+    [
+      -71,
+      -73,
+      -18
+    ],
+    [
+      -71,
+      72,
+      73
+    ],
+    [
+      70,
+      71
+    ],
+    [
+      19,
+      -41
+    ],
+    [
+      -74,
+      16
+    ],
+    [
+      -74,
+      -44
+    ],
+    [
+      -75,
+      -39
+    ],
+    [
+      74,
+      75
+    ],
+    [
+      -76,
+      33
+    ],
+    [
+      -77,
+      42
+    ],
+    [
+      -78,
+      -79,
+      -33
+    ],
+    [
+      -78,
+      -79,
+      -42
+    ],
+    [
+      -78,
+      -80,
+      4
+    ],
+    [
+      -78,
+      79,
+      80
+    ],
+    [
+      -78,
+      -4,
+      33,
+      42
+    ],
+    [
+      76,
+      77,
+      78
+    ],
+    [
+      -81,
+      82
+    ],
+    [
+      -81,
+      33
+    ],
+    [
+      -83,
+      -82,
+      -33,
+      9
+    ],
+    [
+      -83,
+      -84,
+      -9
+    ],
+    [
+      -83,
+      -85,
+      82
+    ],
+    [
+      -83,
+      -85,
+      33
+    ],
+    [
+      -83,
+      84,
+      85
+    ],
+    [
+      81,
+      83
+    ],
+    [
+      -86,
+      82
+    ],
+    [
+      -86,
+      42
+    ],
+    [
+      -87,
+      -82,
+      -42,
+      46
+    ],
+    [
+      -87,
+      -88,
+      -46
+    ],
+    [
+      -87,
+      -89,
+      82
+    ],
+    [
+      -87,
+      -89,
+      42
+    ],
+    [
+      -87,
+      88,
+      89
+    ],
+    [
+      86,
+      87
+    ],
+    [
+      -90,
+      82
+    ],
+    [
+      -90,
+      38
+    ],
+    [
+      -91,
+      -82,
+      -38,
+      11
+    ],
+    [
+      -91,
+      -92,
+      -11
+    ],
+    [
+      -91,
+      -93,
+      82
+    ],
+    [
+      -91,
+      -93,
+      38
+    ],
+    [
+      -91,
+      92,
+      93
+    ],
+    [
+      90,
+      91
+    ],
+    [
+      -94,
+      82
+    ],
+    [
+      -94,
+      17
+    ],
+    [
+      -95,
+      -82,
+      -17,
+      12
+    ],
+    [
+      -95,
+      -96,
+      -12
+    ],
+    [
+      -95,
+      -97,
+      82
+    ],
+    [
+      -95,
+      -97,
+      17
+    ],
+    [
+      -95,
+      96,
+      97
+    ],
+    [
+      94,
+      95
+    ],
+    [
+      -98,
+      82
+    ],
+    [
+      -98,
+      37
+    ],
+    [
+      -99,
+      -82,
+      -37,
+      1
+    ],
+    [
+      -99,
+      -100,
+      -1
+    ],
+    [
+      -99,
+      -101,
+      82
+    ],
+    [
+      -99,
+      -101,
+      37
+    ],
+    [
+      -99,
+      100,
+      101
+    ],
+    [
+      98,
+      99
+    ],
+    [
+      -102,
+      -18
+    ],
+    [
+      -102,
+      55
+    ],
+    [
+      -102,
+      15
+    ],
+    [
+      -103,
+      18,
+      -55,
+      -15,
+      55
+    ],
+    [
+      -103,
+      -104,
+      -55
+    ],
+    [
+      -103,
+      -105,
+      -18
+    ],
+    [
+      -103,
+      -105,
+      55
+    ],
+    [
+      -103,
+      -105,
+      15
+    ],
+    [
+      -103,
+      104,
+      105
+    ],
+    [
+      102,
+      103
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "root",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_AXHTTPD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_AXTLSWRAP",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_CHECK_ON",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_CRT",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_KARATSUBA",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MUL_KARATSUBA_THRESH",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "SQU_KARATSUBA_THRESH",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_MONTGOMERY_alt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_BIGINT_BARRETT",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_BIGINT_CLASSICAL",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_BIGINT_MONTGOMERY",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_SLIDING_WINDOW",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_BIGINT_SQUARE",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_BINDINGS",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_CSHARP_BINDINGS",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_VBNET_BINDINGS",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_DEBUG",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_STRIP_UNWANTED_SECTIONS",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_DOT_NET_FRAMEWORK_BASE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_EXTRA_CFLAGS_OPTIONS",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_EXTRA_LDFLAGS_OPTIONS",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_DIRECTORIES",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_ENABLE_DIFFERENT_USER",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_HTTP_USER",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_HAS_AUTHORIZATION",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_HAS_CGI",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_HTTP_CGI_EXTENSIONS",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "CONFIG_HTTP_ENABLE_LUA",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CONFIG_HTTP_BUILD_LUA",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CONFIG_HTTP_LUA_CGI_LAUNCHER",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CONFIG_HTTP_LUA_PREFIX",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_HAS_IPV6",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_HTTPS_PORT",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_IS_DAEMON",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_PORT",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_SESSION_CACHE_SIZE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_STATIC_BUILD",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_TIMEOUT",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_VERBOSE",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_HTTP_WEBROOT",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_JAVA_BINDINGS",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_JAVA_HOME",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_LUA_BINDINGS",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_LUA_CORE",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_OPENSSL_COMPATIBLE",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_PERFORMANCE_TESTING",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_PERL_BINDINGS",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PERL_CORE",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PERL_LIB",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "CONFIG_PLATFORM_LINUX_alt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PLATFORM_CYGWIN",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PLATFORM_LINUX",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PLATFORM_WIN32",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_SAMPLES",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_CSHARP_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_C_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_JAVA_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_LUA_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_PERL_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_VBNET_SAMPLES",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "CONFIG_SSL_CERT_VERIFICATION_alt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_CERT_VERIFICATION",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_ENABLE_CLIENT",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_FULL_MODE",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_SERVER_ONLY",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_SKELETON_MODE",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_CTX_MUTEXING",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_ENABLE_V23_HANDSHAKE",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_EXPIRY_TIME",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_SSL_GENERATE_X509_CERT",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_X509_COMMON_NAME",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_X509_ORGANIZATION_NAME",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_X509_ORGANIZATION_UNIT_NAME",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_HAS_PEM",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_MAX_CERTS",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_PRIVATE_KEY_PASSWORD",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "CONFIG_SSL_PROT_HIGH_alt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_PROT_HIGH",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_PROT_LOW",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_PROT_MEDIUM",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_TEST",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "CONFIG_SSL_USE_DEFAULT_KEY",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_SSL_PRIVATE_KEY_LOCATION",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_USE_PKCS12",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_SSL_X509_CERT_LOCATION",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_USE_DEV_URANDOM",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_VISUAL_STUDIO_7_0_BASE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_VISUAL_STUDIO_8_0_BASE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "CONFIG_VISUAL_STUDIO_8_0_alt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_VISUAL_STUDIO_7_0",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CONFIG_VISUAL_STUDIO_8_0",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_WIN32_USE_CRYPTO_LIB",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CONFIG_X509_MAX_CA_CERTS",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "HAVE_DOT_CONFIG",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "PREFIX",
+            "negated": false
+          },
+          "mandatory": true
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "CONFIG_PLATFORM_WIN32",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PLATFORM_WIN32",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "PREFIX",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "PREFIX",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PLATFORM_WIN32",
+                    "negated": true,
+                    "auxiliary": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_PLATFORM_WIN32",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_DEBUG",
+                "negated": true,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PLATFORM_WIN32",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_DEBUG",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_STRIP_UNWANTED_SECTIONS",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_STRIP_UNWANTED_SECTIONS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_PLATFORM_WIN32",
+                        "negated": true,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_DEBUG",
+                        "negated": true,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_USE_DEFAULT_KEY",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_HAS_PEM",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "VAR",
+            "name": "CONFIG_SSL_PRIVATE_KEY_PASSWORD",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_GENERATE_X509_CERT",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_USE_DEFAULT_KEY",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_SKELETON_MODE",
+                "negated": true,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "VAR",
+            "name": "CONFIG_SSL_X509_CERT_LOCATION",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_SERVER_ONLY",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_SKELETON_MODE",
+                "negated": true,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SSL_SERVER_ONLY",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SSL_SKELETON_MODE",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_X509_MAX_CA_CERTS",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_X509_MAX_CA_CERTS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SSL_SERVER_ONLY",
+                        "negated": true,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SSL_SKELETON_MODE",
+                        "negated": true,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "CONFIG_PLATFORM_WIN32",
+            "negated": false,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "CONFIG_WIN32_USE_CRYPTO_LIB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_FULL_MODE",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_GENERATE_X509_CERT",
+                "negated": true,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "VAR",
+            "name": "CONFIG_SSL_TEST",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "CONFIG_CSHARP_BINDINGS",
+            "negated": false,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "CONFIG_VBNET_BINDINGS",
+            "negated": false,
+            "auxiliary": false
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_CSHARP_BINDINGS",
+                        "negated": true,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_VBNET_BINDINGS",
+                        "negated": true,
+                        "auxiliary": false
+                      }
+                    ]
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_DOT_NET_FRAMEWORK_BASE",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_DOT_NET_FRAMEWORK_BASE",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_CSHARP_BINDINGS",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_VBNET_BINDINGS",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SAMPLES",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_CSHARP_BINDINGS",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_CSHARP_BINDINGS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_CSHARP_SAMPLES",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_CSHARP_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SAMPLES",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_CSHARP_BINDINGS",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SAMPLES",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_VBNET_BINDINGS",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_VBNET_BINDINGS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_VBNET_SAMPLES",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_VBNET_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SAMPLES",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_VBNET_BINDINGS",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SAMPLES",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_JAVA_BINDINGS",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_JAVA_BINDINGS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_JAVA_SAMPLES",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_JAVA_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SAMPLES",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_JAVA_BINDINGS",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SAMPLES",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_PERL_BINDINGS",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PERL_BINDINGS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PERL_SAMPLES",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_PERL_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SAMPLES",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_PERL_BINDINGS",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SAMPLES",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_LUA_BINDINGS",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_LUA_BINDINGS",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_LUA_SAMPLES",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_LUA_SAMPLES",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SAMPLES",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_LUA_BINDINGS",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "VAR",
+                "name": "CONFIG_SSL_SKELETON_MODE",
+                "negated": true,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_BIGINT_KARATSUBA",
+                "negated": false,
+                "auxiliary": false
+              },
+              {
+                "type": "VAR",
+                "name": "CONFIG_BIGINT_SQUARE",
+                "negated": false,
+                "auxiliary": false
+              }
+            ]
+          },
+          {
+            "type": "AND",
+            "elements": [
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_SSL_SKELETON_MODE",
+                    "negated": false,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_BIGINT_KARATSUBA",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "CONFIG_BIGINT_SQUARE",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "VAR",
+                    "name": "SQU_KARATSUBA_THRESH",
+                    "negated": false,
+                    "auxiliary": false
+                  }
+                ]
+              },
+              {
+                "type": "OR",
+                "elements": [
+                  {
+                    "type": "VAR",
+                    "name": "SQU_KARATSUBA_THRESH",
+                    "negated": true,
+                    "auxiliary": false
+                  },
+                  {
+                    "type": "AND",
+                    "elements": [
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_SSL_SKELETON_MODE",
+                        "negated": true,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_BIGINT_KARATSUBA",
+                        "negated": false,
+                        "auxiliary": false
+                      },
+                      {
+                        "type": "VAR",
+                        "name": "CONFIG_BIGINT_SQUARE",
+                        "negated": false,
+                        "auxiliary": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

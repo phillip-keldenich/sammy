@@ -1,1 +1,3256 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/dell.xml|EQ|CNF", "n_all": 39, "n_concrete": 37, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[DellLaptops_Notebooks]", "l1": ["DellLaptops_Notebooks", "ProductCategory", "OperatingSystem", "HardDrive", "LaptopWeight", "Memory", "Processor", "Price"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["IntelAtom"], "l2": []}, {"feature": 1, "l1": ["StudioXPSLaptops"], "l2": []}, {"feature": 2, "l1": ["WindowsVista64bit"], "l2": []}, {"feature": 3, "l1": ["DVD_ROMDriveandDVD__RW"], "l2": []}, {"feature": 4, "l1": ["UltraLight"], "l2": []}, {"feature": 5, "l1": ["DesktopReplacement"], "l2": []}, {"feature": 6, "l1": ["a320GB"], "l2": []}, {"feature": 7, "l1": ["IntelCeleron"], "l2": []}, {"feature": 8, "l1": ["CD_DVD_RW"], "l2": []}, {"feature": 9, "l1": ["BluRayDisc"], "l2": []}, {"feature": 10, "l1": ["MiniNotebooks"], "l2": []}, {"feature": 11, "l1": ["Morethan4GB"], "l2": []}, {"feature": 12, "l1": ["StudioLaptops"], "l2": []}, {"feature": 13, "l1": ["Morethan_1200"], "l2": []}, {"feature": 14, "l1": ["IntelCore2Duo"], "l2": []}, {"feature": 15, "l1": ["a3GB"], "l2": []}, {"feature": 16, "l1": ["Light"], "l2": []}, {"feature": 17, "l1": ["a500GB"], "l2": []}, {"feature": 18, "l1": ["a128GBSolidState"], "l2": []}, {"feature": 19, "l1": ["IntelPentiumDualcore"], "l2": []}, {"feature": 20, "l1": ["InspironLaptops"], "l2": []}, {"feature": 21, "l1": ["_400__800"], "l2": []}, {"feature": 22, "l1": ["a1GB"], "l2": []}, {"feature": 23, "l1": ["Lessthan_400"], "l2": []}, {"feature": 24, "l1": ["WindowsXPHome"], "l2": []}, {"feature": 25, "l1": ["a80GB"], "l2": []}, {"feature": 26, "l1": ["Adamo"], "l2": []}, {"feature": 27, "l1": ["UbuntuLinux"], "l2": []}, {"feature": 28, "l1": ["DVD__RWandCD_RWCombo"], "l2": []}, {"feature": 29, "l1": ["a2GB"], "l2": []}, {"feature": 30, "l1": ["a4GB"], "l2": []}, {"feature": 31, "l1": ["VistawithDowngradetoXP"], "l2": []}, {"feature": 32, "l1": ["_800__1200"], "l2": []}, {"feature": 33, "l1": ["a250GB"], "l2": []}, {"feature": 34, "l1": ["XPSLaptops"], "l2": []}, {"feature": 35, "l1": ["a160GB"], "l2": []}, {"feature": 36, "l1": ["a120GB"], "l2": []}, {"feature": 37, "l1": ["SUB[DellLaptops_Notebooks]"], "l2": []}, {"feature": 38, "l1": ["OpticalDrive"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 33, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 8, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 30, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 14, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 10, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 25, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 35, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 25, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 29, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 35, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 25, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 29, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 33, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 35, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 25, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 8, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 21, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 31, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 33, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 35, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 25, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 28, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 29, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 21, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 1, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}], "structure": {"type": "AND", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 34, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 26, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 31, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 24, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 27, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 33, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 35, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 36, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 25, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 38, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 28, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 30, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 29, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 22, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": true}]}, {"type": "ALT", "feature_literal": {"name": 37, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 23, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 21, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 32, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": true}]}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/dell.xml",
+  "meta": {},
+  "num_variables": 39,
+  "num_concrete_features": 37,
+  "labels": {
+    "Adamo": 21,
+    "BluRayDisc": 15,
+    "CD_DVD_RW": 17,
+    "DVD_ROMDriveandDVD__RW": 24,
+    "DVD__RWandCD_RWCombo": 9,
+    "DesktopReplacement": 31,
+    "InspironLaptops": 3,
+    "IntelAtom": 35,
+    "IntelCeleron": 14,
+    "IntelCore2Duo": 29,
+    "IntelPentiumDualcore": 6,
+    "Lessthan_400": 20,
+    "Light": 8,
+    "MiniNotebooks": 11,
+    "Morethan4GB": 36,
+    "Morethan_1200": 19,
+    "StudioLaptops": 18,
+    "StudioXPSLaptops": 4,
+    "UbuntuLinux": 2,
+    "UltraLight": 30,
+    "VistawithDowngradetoXP": 1,
+    "WindowsVista64bit": 5,
+    "WindowsXPHome": 16,
+    "XPSLaptops": 37,
+    "_400__800": 27,
+    "_800__1200": 26,
+    "a120GB": 32,
+    "a128GBSolidState": 22,
+    "a160GB": 7,
+    "a1GB": 34,
+    "a250GB": 10,
+    "a2GB": 28,
+    "a320GB": 12,
+    "a3GB": 23,
+    "a4GB": 33,
+    "a500GB": 13,
+    "a80GB": 25
+  },
+  "cnf_clauses": [
+    [
+      38
+    ],
+    [
+      -32,
+      -22
+    ],
+    [
+      -32,
+      -7
+    ],
+    [
+      -32,
+      -10
+    ],
+    [
+      -32,
+      -12
+    ],
+    [
+      -32,
+      -13
+    ],
+    [
+      -32,
+      -25
+    ],
+    [
+      -22,
+      -7
+    ],
+    [
+      -22,
+      -10
+    ],
+    [
+      -22,
+      -12
+    ],
+    [
+      -22,
+      -13
+    ],
+    [
+      -22,
+      -25
+    ],
+    [
+      -7,
+      -10
+    ],
+    [
+      -7,
+      -12
+    ],
+    [
+      -7,
+      -13
+    ],
+    [
+      -7,
+      -25
+    ],
+    [
+      -10,
+      -12
+    ],
+    [
+      -10,
+      -13
+    ],
+    [
+      -10,
+      -25
+    ],
+    [
+      -12,
+      -13
+    ],
+    [
+      -12,
+      -25
+    ],
+    [
+      -13,
+      -25
+    ],
+    [
+      32,
+      22,
+      7,
+      10,
+      12,
+      13,
+      25,
+      -38
+    ],
+    [
+      -32,
+      38
+    ],
+    [
+      -22,
+      38
+    ],
+    [
+      -7,
+      38
+    ],
+    [
+      -10,
+      38
+    ],
+    [
+      -12,
+      38
+    ],
+    [
+      -13,
+      38
+    ],
+    [
+      -25,
+      38
+    ],
+    [
+      -31,
+      -8
+    ],
+    [
+      -31,
+      -30
+    ],
+    [
+      -8,
+      -30
+    ],
+    [
+      31,
+      8,
+      30,
+      -38
+    ],
+    [
+      -31,
+      38
+    ],
+    [
+      -8,
+      38
+    ],
+    [
+      -30,
+      38
+    ],
+    [
+      -36,
+      -34
+    ],
+    [
+      -36,
+      -28
+    ],
+    [
+      -36,
+      -23
+    ],
+    [
+      -36,
+      -33
+    ],
+    [
+      -34,
+      -28
+    ],
+    [
+      -34,
+      -23
+    ],
+    [
+      -34,
+      -33
+    ],
+    [
+      -28,
+      -23
+    ],
+    [
+      -28,
+      -33
+    ],
+    [
+      -23,
+      -33
+    ],
+    [
+      36,
+      34,
+      28,
+      23,
+      33,
+      -38
+    ],
+    [
+      -36,
+      38
+    ],
+    [
+      -34,
+      38
+    ],
+    [
+      -28,
+      38
+    ],
+    [
+      -23,
+      38
+    ],
+    [
+      -33,
+      38
+    ],
+    [
+      -2,
+      -1
+    ],
+    [
+      -2,
+      -5
+    ],
+    [
+      -2,
+      -16
+    ],
+    [
+      -1,
+      -5
+    ],
+    [
+      -1,
+      -16
+    ],
+    [
+      -5,
+      -16
+    ],
+    [
+      2,
+      1,
+      5,
+      16,
+      -38
+    ],
+    [
+      -2,
+      38
+    ],
+    [
+      -1,
+      38
+    ],
+    [
+      -5,
+      38
+    ],
+    [
+      -16,
+      38
+    ],
+    [
+      -39,
+      38
+    ],
+    [
+      -15,
+      -17
+    ],
+    [
+      -15,
+      -24
+    ],
+    [
+      -15,
+      -9
+    ],
+    [
+      -17,
+      -24
+    ],
+    [
+      -17,
+      -9
+    ],
+    [
+      -24,
+      -9
+    ],
+    [
+      15,
+      17,
+      24,
+      9,
+      -39
+    ],
+    [
+      -15,
+      39
+    ],
+    [
+      -17,
+      39
+    ],
+    [
+      -24,
+      39
+    ],
+    [
+      -9,
+      39
+    ],
+    [
+      -20,
+      -19
+    ],
+    [
+      -20,
+      -27
+    ],
+    [
+      -20,
+      -26
+    ],
+    [
+      -19,
+      -27
+    ],
+    [
+      -19,
+      -26
+    ],
+    [
+      -27,
+      -26
+    ],
+    [
+      20,
+      19,
+      27,
+      26,
+      -38
+    ],
+    [
+      -20,
+      38
+    ],
+    [
+      -19,
+      38
+    ],
+    [
+      -27,
+      38
+    ],
+    [
+      -26,
+      38
+    ],
+    [
+      -35,
+      -14
+    ],
+    [
+      -35,
+      -29
+    ],
+    [
+      -35,
+      -6
+    ],
+    [
+      -14,
+      -29
+    ],
+    [
+      -14,
+      -6
+    ],
+    [
+      -29,
+      -6
+    ],
+    [
+      35,
+      14,
+      29,
+      6,
+      -38
+    ],
+    [
+      -35,
+      38
+    ],
+    [
+      -14,
+      38
+    ],
+    [
+      -29,
+      38
+    ],
+    [
+      -6,
+      38
+    ],
+    [
+      -21,
+      -3
+    ],
+    [
+      -21,
+      -11
+    ],
+    [
+      -21,
+      -18
+    ],
+    [
+      -21,
+      -4
+    ],
+    [
+      -21,
+      -37
+    ],
+    [
+      -3,
+      -11
+    ],
+    [
+      -3,
+      -18
+    ],
+    [
+      -3,
+      -4
+    ],
+    [
+      -3,
+      -37
+    ],
+    [
+      -11,
+      -18
+    ],
+    [
+      -11,
+      -4
+    ],
+    [
+      -11,
+      -37
+    ],
+    [
+      -18,
+      -4
+    ],
+    [
+      -18,
+      -37
+    ],
+    [
+      -4,
+      -37
+    ],
+    [
+      21,
+      3,
+      11,
+      18,
+      4,
+      37,
+      -38
+    ],
+    [
+      -21,
+      38
+    ],
+    [
+      -3,
+      38
+    ],
+    [
+      -11,
+      38
+    ],
+    [
+      -18,
+      38
+    ],
+    [
+      -4,
+      38
+    ],
+    [
+      -37,
+      38
+    ],
+    [
+      -11,
+      -1
+    ],
+    [
+      -11,
+      -5
+    ],
+    [
+      -11,
+      -13
+    ],
+    [
+      -11,
+      -12
+    ],
+    [
+      -11,
+      -10
+    ],
+    [
+      -11,
+      -22
+    ],
+    [
+      -11,
+      -17
+    ],
+    [
+      -11,
+      -24
+    ],
+    [
+      -11,
+      -9
+    ],
+    [
+      -11,
+      -15
+    ],
+    [
+      -11,
+      -8
+    ],
+    [
+      -11,
+      -31
+    ],
+    [
+      -11,
+      -36
+    ],
+    [
+      -11,
+      -33
+    ],
+    [
+      -11,
+      -23
+    ],
+    [
+      -11,
+      -29
+    ],
+    [
+      -11,
+      -6
+    ],
+    [
+      -11,
+      -14
+    ],
+    [
+      -11,
+      -26
+    ],
+    [
+      -11,
+      -19
+    ],
+    [
+      -3,
+      -5
+    ],
+    [
+      -3,
+      -16
+    ],
+    [
+      -3,
+      -2
+    ],
+    [
+      -3,
+      -22
+    ],
+    [
+      -3,
+      -32
+    ],
+    [
+      -3,
+      -25
+    ],
+    [
+      -3,
+      -24
+    ],
+    [
+      -3,
+      -9
+    ],
+    [
+      -3,
+      -15
+    ],
+    [
+      -3,
+      -30
+    ],
+    [
+      -3,
+      -31
+    ],
+    [
+      -3,
+      -36
+    ],
+    [
+      -3,
+      -34
+    ],
+    [
+      -3,
+      -35
+    ],
+    [
+      -3,
+      -19
+    ],
+    [
+      -18,
+      -1
+    ],
+    [
+      -18,
+      -16
+    ],
+    [
+      -18,
+      -2
+    ],
+    [
+      -18,
+      -7
+    ],
+    [
+      -18,
+      -22
+    ],
+    [
+      -18,
+      -32
+    ],
+    [
+      -18,
+      -25
+    ],
+    [
+      -18,
+      -36
+    ],
+    [
+      -18,
+      -28
+    ],
+    [
+      -18,
+      -34
+    ],
+    [
+      -18,
+      -14
+    ],
+    [
+      -18,
+      -35
+    ],
+    [
+      -18,
+      -20
+    ],
+    [
+      -18,
+      -19
+    ],
+    [
+      -37,
+      -1
+    ],
+    [
+      -37,
+      -16
+    ],
+    [
+      -37,
+      -2
+    ],
+    [
+      -37,
+      -7
+    ],
+    [
+      -37,
+      -22
+    ],
+    [
+      -37,
+      -32
+    ],
+    [
+      -37,
+      -25
+    ],
+    [
+      -37,
+      -24
+    ],
+    [
+      -37,
+      -9
+    ],
+    [
+      -37,
+      -28
+    ],
+    [
+      -37,
+      -34
+    ],
+    [
+      -37,
+      -6
+    ],
+    [
+      -37,
+      -14
+    ],
+    [
+      -37,
+      -35
+    ],
+    [
+      -37,
+      -20
+    ],
+    [
+      -21,
+      -1
+    ],
+    [
+      -21,
+      -16
+    ],
+    [
+      -21,
+      -2
+    ],
+    [
+      -21,
+      -13
+    ],
+    [
+      -21,
+      -12
+    ],
+    [
+      -21,
+      -10
+    ],
+    [
+      -21,
+      -7
+    ],
+    [
+      -21,
+      -32
+    ],
+    [
+      -21,
+      -25
+    ],
+    [
+      -21,
+      -17
+    ],
+    [
+      -21,
+      -24
+    ],
+    [
+      -21,
+      -9
+    ],
+    [
+      -21,
+      -15
+    ],
+    [
+      -21,
+      -8
+    ],
+    [
+      -21,
+      -31
+    ],
+    [
+      -21,
+      -36
+    ],
+    [
+      -21,
+      -23
+    ],
+    [
+      -21,
+      -34
+    ],
+    [
+      -21,
+      -6
+    ],
+    [
+      -21,
+      -14
+    ],
+    [
+      -21,
+      -35
+    ],
+    [
+      -21,
+      -20
+    ],
+    [
+      -21,
+      -27
+    ],
+    [
+      -21,
+      -26
+    ],
+    [
+      -4,
+      -1
+    ],
+    [
+      -4,
+      -16
+    ],
+    [
+      -4,
+      -2
+    ],
+    [
+      -4,
+      -10
+    ],
+    [
+      -4,
+      -7
+    ],
+    [
+      -4,
+      -22
+    ],
+    [
+      -4,
+      -32
+    ],
+    [
+      -4,
+      -25
+    ],
+    [
+      -4,
+      -24
+    ],
+    [
+      -4,
+      -9
+    ],
+    [
+      -4,
+      -15
+    ],
+    [
+      -4,
+      -31
+    ],
+    [
+      -4,
+      -36
+    ],
+    [
+      -4,
+      -23
+    ],
+    [
+      -4,
+      -28
+    ],
+    [
+      -4,
+      -34
+    ],
+    [
+      -4,
+      -6
+    ],
+    [
+      -4,
+      -14
+    ],
+    [
+      -4,
+      -35
+    ],
+    [
+      -4,
+      -20
+    ],
+    [
+      -4,
+      -27
+    ],
+    [
+      -4,
+      -19
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "DellLaptops_Notebooks",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "HardDrive",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a120GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a128GBSolidState",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a160GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a250GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a320GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a500GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a80GB",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "LaptopWeight",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DesktopReplacement",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Light",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UltraLight",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Memory",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Morethan4GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a1GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a2GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a3GB",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "a4GB",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "OperatingSystem",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UbuntuLinux",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "VistawithDowngradetoXP",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WindowsVista64bit",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WindowsXPHome",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "OpticalDrive",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "BluRayDisc",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CD_DVD_RW",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DVD_ROMDriveandDVD__RW",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DVD__RWandCD_RWCombo",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Price",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Lessthan_400",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Morethan_1200",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "_400__800",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "_800__1200",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Processor",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IntelAtom",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IntelCeleron",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IntelCore2Duo",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "IntelPentiumDualcore",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "ProductCategory",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Adamo",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "InspironLaptops",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MiniNotebooks",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StudioLaptops",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StudioXPSLaptops",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "XPSLaptops",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "VistawithDowngradetoXP",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsVista64bit",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a500GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a320GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a250GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a128GBSolidState",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "CD_DVD_RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD_ROMDriveandDVD__RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD__RWandCD_RWCombo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "BluRayDisc",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Light",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DesktopReplacement",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a3GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCore2Duo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelPentiumDualcore",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCeleron",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "_800__1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "MiniNotebooks",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan_1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsVista64bit",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsXPHome",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UbuntuLinux",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a128GBSolidState",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a120GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a80GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD_ROMDriveandDVD__RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD__RWandCD_RWCombo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "BluRayDisc",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UltraLight",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DesktopReplacement",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a1GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelAtom",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "InspironLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan_1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "VistawithDowngradetoXP",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsXPHome",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UbuntuLinux",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a160GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a128GBSolidState",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a120GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a80GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a2GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a1GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCeleron",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelAtom",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Lessthan_400",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan_1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "VistawithDowngradetoXP",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsXPHome",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UbuntuLinux",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a160GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a128GBSolidState",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a120GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a80GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD_ROMDriveandDVD__RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD__RWandCD_RWCombo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a2GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a1GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelPentiumDualcore",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCeleron",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelAtom",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "XPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Lessthan_400",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "VistawithDowngradetoXP",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsXPHome",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UbuntuLinux",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a500GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a320GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a250GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a160GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a120GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a80GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "CD_DVD_RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD_ROMDriveandDVD__RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD__RWandCD_RWCombo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "BluRayDisc",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Light",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DesktopReplacement",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a3GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a1GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelPentiumDualcore",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCeleron",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelAtom",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Lessthan_400",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "_400__800",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "Adamo",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "_800__1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "VistawithDowngradetoXP",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "WindowsXPHome",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "UbuntuLinux",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a250GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a160GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a128GBSolidState",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a120GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a80GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD_ROMDriveandDVD__RW",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DVD__RWandCD_RWCombo",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "BluRayDisc",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "DesktopReplacement",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan4GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a3GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a2GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "a1GB",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelPentiumDualcore",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelCeleron",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "IntelAtom",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Lessthan_400",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "_400__800",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      },
+      {
+        "type": "OR",
+        "elements": [
+          {
+            "type": "VAR",
+            "name": "StudioXPSLaptops",
+            "negated": true,
+            "auxiliary": false
+          },
+          {
+            "type": "VAR",
+            "name": "Morethan_1200",
+            "negated": true,
+            "auxiliary": false
+          }
+        ]
+      }
+    ]
+  }
+}

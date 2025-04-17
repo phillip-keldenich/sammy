@@ -1,1 +1,1710 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/berkeleyDB1.xml|EQ|CNF", "n_all": 79, "n_concrete": 53, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[BerkeleyDB]", "l1": ["BerkeleyDB", "Persistency", "BTree", "BASE", "FIOFeature"], "l2": []}, {"feature": "SUB[Logging]", "l1": ["Logging", "featureLoggingBase"], "l2": []}, {"feature": "SUB[FNIOType]", "l1": ["FNIOType", "NIO"], "l2": []}, {"feature": "SUB[IO]", "l1": ["IO", "featureIO"], "l2": []}, {"feature": "SUB[FStatisticsFeatures]", "l1": ["FStatisticsFeatures", "Statistics", "featureStatisticsBase"], "l2": []}, {"feature": "SUB[EnvStats]", "l1": ["EnvStats", "featureStatisticsEnvBase"], "l2": []}, {"feature": "SUB[Evictor]", "l1": ["Evictor", "featureEvictor"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["featureNIO"], "l2": []}, {"feature": 1, "l1": ["featureLoggingDbLog"], "l2": []}, {"feature": 2, "l1": ["featureStatisticsEnvCleaner"], "l2": []}, {"feature": 3, "l1": ["featureStatisticsPreload"], "l2": []}, {"feature": 4, "l1": ["featureMemoryBudget"], "l2": []}, {"feature": 5, "l1": ["featureLoggingSevere"], "l2": []}, {"feature": 6, "l1": ["featureStatisticsLock"], "l2": []}, {"feature": 7, "l1": ["featureLookAheadCache"], "l2": []}, {"feature": 8, "l1": ["SUB[FStatisticsFeatures]"], "l2": []}, {"feature": 9, "l1": ["featureDirectNIO"], "l2": []}, {"feature": 10, "l1": ["featureLoggingConfig"], "l2": []}, {"feature": 11, "l1": ["featureCheckpointerDaemon"], "l2": []}, {"feature": 12, "l1": ["featureChecksum"], "l2": []}, {"feature": 13, "l1": ["featureLoggingFiner"], "l2": []}, {"feature": 14, "l1": ["featureSynchronizedIO"], "l2": []}, {"feature": 15, "l1": ["featureEnvironmentLock"], "l2": []}, {"feature": 16, "l1": ["featureLoggingFile"], "l2": []}, {"feature": 17, "l1": ["featureLoggingInfo"], "l2": []}, {"feature": 18, "l1": ["featureStatisticsEnvFSync"], "l2": []}, {"feature": 19, "l1": ["featureDeleteDb"], "l2": []}, {"feature": 20, "l1": ["featureEvictorDaemon"], "l2": []}, {"feature": 21, "l1": ["SUB[IO]"], "l2": []}, {"feature": 22, "l1": ["featureFileHandleCache"], "l2": []}, {"feature": 23, "l1": ["featureTransaction"], "l2": []}, {"feature": 24, "l1": ["featureINCompressor"], "l2": []}, {"feature": 25, "l1": ["featureStatisticsDatabase"], "l2": []}, {"feature": 26, "l1": ["featureHandleFullDiscError"], "l2": []}, {"feature": 27, "l1": ["featureStatisticsSequence"], "l2": []}, {"feature": 28, "l1": ["featureCriticalEviction"], "l2": []}, {"feature": 29, "l1": ["featureStatisticsEnvCaching"], "l2": []}, {"feature": 30, "l1": ["featureCleanerDaemon"], "l2": []}, {"feature": 31, "l1": ["featureStatisticsEnvCheckpointer"], "l2": []}, {"feature": 32, "l1": ["SUB[Evictor]"], "l2": []}, {"feature": 33, "l1": ["featureCustomizableCheckpointerBytes"], "l2": []}, {"feature": 34, "l1": ["featureLatch"], "l2": []}, {"feature": 35, "l1": ["featureStatisticsEnvINCompressor"], "l2": []}, {"feature": 36, "l1": ["featureTreeVisitor"], "l2": []}, {"feature": 37, "l1": ["featureCheckLeaks"], "l2": []}, {"feature": 38, "l1": ["featureLoggingFine"], "l2": []}, {"feature": 39, "l1": ["featureCustomizableCheckpointerTime"], "l2": []}, {"feature": 40, "l1": ["dummyFeatureLocking"], "l2": []}, {"feature": 41, "l1": ["featureVerifier"], "l2": []}, {"feature": 42, "l1": ["featureStatisticsEnvEvictor"], "l2": []}, {"feature": 43, "l1": ["featureTruncateDb"], "l2": []}, {"feature": 44, "l1": ["featureStatisticsTransaction"], "l2": []}, {"feature": 45, "l1": ["SUB[EnvStats]"], "l2": []}, {"feature": 46, "l1": ["SUB[BerkeleyDB]"], "l2": []}, {"feature": 47, "l1": ["featureChunkedNIO"], "l2": []}, {"feature": 48, "l1": ["SUB[Logging]"], "l2": []}, {"feature": 49, "l1": ["featureFSync"], "l2": []}, {"feature": 50, "l1": ["featureLoggingConsole"], "l2": []}, {"feature": 51, "l1": ["featureStatisticsEnvLog"], "l2": []}, {"feature": 52, "l1": ["featureLoggingFinest"], "l2": []}, {"feature": 53, "l1": ["__AUX[1]"], "l2": []}, {"feature": 54, "l1": ["__AUX[2]"], "l2": []}, {"feature": 55, "l1": ["__AUX[3]"], "l2": []}, {"feature": 56, "l1": ["__AUX[4]"], "l2": []}, {"feature": 57, "l1": ["__AUX[5]"], "l2": []}, {"feature": 58, "l1": ["__AUX[6]"], "l2": []}, {"feature": 59, "l1": ["__AUX[7]"], "l2": []}, {"feature": 60, "l1": ["__AUX[8]"], "l2": []}, {"feature": 61, "l1": ["__AUX[9]"], "l2": []}, {"feature": 62, "l1": ["__AUX[10]"], "l2": []}, {"feature": 63, "l1": ["__AUX[11]"], "l2": []}, {"feature": 64, "l1": ["__AUX[12]"], "l2": []}, {"feature": 65, "l1": ["__AUX[13]"], "l2": []}, {"feature": 66, "l1": ["__AUX[14]"], "l2": []}, {"feature": 67, "l1": ["__AUX[15]"], "l2": []}, {"feature": 68, "l1": ["__AUX[16]"], "l2": []}, {"feature": 69, "l1": ["__AUX[17]"], "l2": []}, {"feature": 70, "l1": ["__AUX[18]"], "l2": []}, {"feature": 71, "l1": ["__AUX[19]"], "l2": []}, {"feature": 72, "l1": ["__AUX[20]"], "l2": []}, {"feature": 73, "l1": ["FPersistencyFeatures"], "l2": []}, {"feature": 74, "l1": ["Checkpointer"], "l2": []}, {"feature": 75, "l1": ["Cleaner"], "l2": []}, {"feature": 76, "l1": ["SUB[FNIOType]"], "l2": []}, {"feature": 77, "l1": ["FConcurrency"], "l2": []}, {"feature": 78, "l1": ["FDbOperation"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 53, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 53, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 53, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 53, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 29, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 54, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 53, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 54, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 37, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 28, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 33, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 39, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 55, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 56, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 40, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 56, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 56, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 56, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 55, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 56, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 57, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 34, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 40, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 37, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 49, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 43, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 58, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 57, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 58, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 5, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 59, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 38, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 40, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 60, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 59, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 60, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 61, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 12, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 62, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 61, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 62, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 63, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 48, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 63, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 52, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 64, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 63, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 64, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 65, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 66, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 66, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 34, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 65, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 66, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 44, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 68, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 40, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 67, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 68, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 42, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 32, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 18, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 49, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 35, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 44, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 25, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 69, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 40, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 70, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 43, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 69, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 70, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 43, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 71, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 41, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 72, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 72, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 36, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 71, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 72, "negated": false, "auxiliary": true}]}], "structure": {"type": "AND", "feature_literal": {"name": 46, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 48, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 50, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 52, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 38, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 48, "negated": false}, "mandatory": true}]}, {"type": "AND", "feature_literal": {"name": 46, "negated": false}, "mandatory": true, "elements": [{"type": "OR", "feature_literal": {"name": 73, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 22, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 26, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": true}, {"type": "AND", "feature_literal": {"name": 74, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 39, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 33, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 75, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 30, "negated": false}, "mandatory": false}]}]}, {"type": "ALT", "feature_literal": {"name": 46, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 76, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": false}, {"type": "ALT", "feature_literal": {"name": 76, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 47, "negated": false}, "mandatory": true}]}]}, {"type": "AND", "feature_literal": {"name": 21, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 21, "negated": false}, "mandatory": true}]}]}]}, {"type": "AND", "feature_literal": {"name": 8, "negated": false}, "mandatory": false, "elements": [{"type": "OR", "feature_literal": {"name": 8, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 45, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 51, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 35, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 42, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 31, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 29, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 45, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 25, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 27, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 44, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}, {"type": "OR", "feature_literal": {"name": 77, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 34, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 49, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 23, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 40, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 37, "negated": false}, "mandatory": true}]}, {"type": "OR", "feature_literal": {"name": 78, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 43, "negated": false}, "mandatory": true}]}, {"type": "AND", "feature_literal": {"name": 46, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 41, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 36, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 24, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 32, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 28, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 32, "negated": false}, "mandatory": true}]}]}, {"type": "CONCRETE", "feature_literal": {"name": 46, "negated": false}, "mandatory": true}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/berkeleyDB1.xml",
+  "meta": {},
+  "num_variables": 79,
+  "num_concrete_features": 53,
+  "labels": {
+    "dummyFeatureLocking": 1,
+    "featureCheckLeaks": 26,
+    "featureCheckpointerDaemon": 49,
+    "featureChecksum": 50,
+    "featureChunkedNIO": 31,
+    "featureCleanerDaemon": 7,
+    "featureCriticalEviction": 33,
+    "featureCustomizableCheckpointerBytes": 14,
+    "featureCustomizableCheckpointerTime": 24,
+    "featureDeleteDb": 23,
+    "featureDirectNIO": 3,
+    "featureEnvironmentLock": 11,
+    "featureEvictorDaemon": 4,
+    "featureFSync": 15,
+    "featureFileHandleCache": 29,
+    "featureHandleFullDiscError": 27,
+    "featureINCompressor": 18,
+    "featureLatch": 2,
+    "featureLoggingConfig": 42,
+    "featureLoggingConsole": 51,
+    "featureLoggingDbLog": 43,
+    "featureLoggingFile": 12,
+    "featureLoggingFine": 8,
+    "featureLoggingFiner": 30,
+    "featureLoggingFinest": 35,
+    "featureLoggingInfo": 5,
+    "featureLoggingSevere": 37,
+    "featureLookAheadCache": 48,
+    "featureMemoryBudget": 52,
+    "featureNIO": 36,
+    "featureStatisticsDatabase": 34,
+    "featureStatisticsEnvCaching": 20,
+    "featureStatisticsEnvCheckpointer": 40,
+    "featureStatisticsEnvCleaner": 10,
+    "featureStatisticsEnvEvictor": 53,
+    "featureStatisticsEnvFSync": 25,
+    "featureStatisticsEnvINCompressor": 21,
+    "featureStatisticsEnvLog": 41,
+    "featureStatisticsLock": 16,
+    "featureStatisticsPreload": 38,
+    "featureStatisticsSequence": 32,
+    "featureStatisticsTransaction": 6,
+    "featureSynchronizedIO": 39,
+    "featureTransaction": 13,
+    "featureTreeVisitor": 45,
+    "featureTruncateDb": 44,
+    "featureVerifier": 19
+  },
+  "cnf_clauses": [
+    [
+      22
+    ],
+    [
+      -47,
+      22
+    ],
+    [
+      -33,
+      47
+    ],
+    [
+      -4,
+      47
+    ],
+    [
+      -18,
+      22
+    ],
+    [
+      -45,
+      22
+    ],
+    [
+      -19,
+      22
+    ],
+    [
+      -74,
+      22
+    ],
+    [
+      1,
+      26,
+      15,
+      2,
+      13,
+      -74
+    ],
+    [
+      -1,
+      74
+    ],
+    [
+      -26,
+      74
+    ],
+    [
+      -15,
+      74
+    ],
+    [
+      -2,
+      74
+    ],
+    [
+      -13,
+      74
+    ],
+    [
+      -75,
+      22
+    ],
+    [
+      23,
+      44,
+      -75
+    ],
+    [
+      -23,
+      75
+    ],
+    [
+      -44,
+      75
+    ],
+    [
+      -46,
+      22
+    ],
+    [
+      -42,
+      46
+    ],
+    [
+      -51,
+      46
+    ],
+    [
+      -43,
+      46
+    ],
+    [
+      -12,
+      46
+    ],
+    [
+      -8,
+      46
+    ],
+    [
+      -30,
+      46
+    ],
+    [
+      -35,
+      46
+    ],
+    [
+      -5,
+      46
+    ],
+    [
+      -37,
+      46
+    ],
+    [
+      -28,
+      -76
+    ],
+    [
+      28,
+      76,
+      -22
+    ],
+    [
+      -28,
+      22
+    ],
+    [
+      -39,
+      28
+    ],
+    [
+      -76,
+      22
+    ],
+    [
+      -31,
+      -36
+    ],
+    [
+      31,
+      36,
+      -76
+    ],
+    [
+      -31,
+      76
+    ],
+    [
+      -36,
+      76
+    ],
+    [
+      -3,
+      76
+    ],
+    [
+      -77,
+      22
+    ],
+    [
+      78,
+      79,
+      50,
+      11,
+      29,
+      27,
+      -77
+    ],
+    [
+      -78,
+      77
+    ],
+    [
+      -49,
+      78
+    ],
+    [
+      -14,
+      78
+    ],
+    [
+      -24,
+      78
+    ],
+    [
+      -79,
+      77
+    ],
+    [
+      -7,
+      79
+    ],
+    [
+      -48,
+      79
+    ],
+    [
+      -50,
+      77
+    ],
+    [
+      -11,
+      77
+    ],
+    [
+      -29,
+      77
+    ],
+    [
+      -27,
+      77
+    ],
+    [
+      -17,
+      22
+    ],
+    [
+      9,
+      34,
+      16,
+      38,
+      32,
+      6,
+      -17
+    ],
+    [
+      -9,
+      17
+    ],
+    [
+      -20,
+      9
+    ],
+    [
+      -40,
+      9
+    ],
+    [
+      -10,
+      9
+    ],
+    [
+      -53,
+      9
+    ],
+    [
+      -25,
+      9
+    ],
+    [
+      -21,
+      9
+    ],
+    [
+      -41,
+      9
+    ],
+    [
+      -34,
+      17
+    ],
+    [
+      -16,
+      17
+    ],
+    [
+      -38,
+      17
+    ],
+    [
+      -32,
+      17
+    ],
+    [
+      -6,
+      17
+    ],
+    [
+      -52,
+      22
+    ],
+    [
+      -54,
+      -47
+    ],
+    [
+      -54,
+      -4
+    ],
+    [
+      -54,
+      -48
+    ],
+    [
+      -54,
+      -20
+    ],
+    [
+      -55,
+      52
+    ],
+    [
+      54,
+      55
+    ],
+    [
+      -26,
+      16
+    ],
+    [
+      -33,
+      18
+    ],
+    [
+      -14,
+      24
+    ],
+    [
+      -56,
+      -23
+    ],
+    [
+      -57,
+      1
+    ],
+    [
+      -57,
+      47
+    ],
+    [
+      -57,
+      18
+    ],
+    [
+      -57,
+      52
+    ],
+    [
+      56,
+      57
+    ],
+    [
+      -58,
+      -2
+    ],
+    [
+      -59,
+      1
+    ],
+    [
+      -59,
+      26
+    ],
+    [
+      -59,
+      23
+    ],
+    [
+      -59,
+      47
+    ],
+    [
+      -59,
+      29
+    ],
+    [
+      -59,
+      15
+    ],
+    [
+      -59,
+      18
+    ],
+    [
+      -59,
+      52
+    ],
+    [
+      -59,
+      16
+    ],
+    [
+      -59,
+      45
+    ],
+    [
+      -59,
+      44
+    ],
+    [
+      -59,
+      19
+    ],
+    [
+      58,
+      59
+    ],
+    [
+      -37,
+      11
+    ],
+    [
+      -60,
+      -8
+    ],
+    [
+      -61,
+      1
+    ],
+    [
+      -61,
+      47
+    ],
+    [
+      -61,
+      18
+    ],
+    [
+      60,
+      61
+    ],
+    [
+      -62,
+      -5
+    ],
+    [
+      -63,
+      50
+    ],
+    [
+      -63,
+      52
+    ],
+    [
+      62,
+      63
+    ],
+    [
+      -64,
+      -46
+    ],
+    [
+      -64,
+      -35
+    ],
+    [
+      -65,
+      13
+    ],
+    [
+      64,
+      65
+    ],
+    [
+      -66,
+      -52
+    ],
+    [
+      -67,
+      47
+    ],
+    [
+      -67,
+      2
+    ],
+    [
+      66,
+      67
+    ],
+    [
+      -68,
+      -16
+    ],
+    [
+      -68,
+      -6
+    ],
+    [
+      -69,
+      1
+    ],
+    [
+      68,
+      69
+    ],
+    [
+      -53,
+      47
+    ],
+    [
+      -25,
+      15
+    ],
+    [
+      -21,
+      18
+    ],
+    [
+      -6,
+      13
+    ],
+    [
+      -34,
+      45
+    ],
+    [
+      -70,
+      -13
+    ],
+    [
+      -71,
+      1
+    ],
+    [
+      -71,
+      23
+    ],
+    [
+      -71,
+      44
+    ],
+    [
+      70,
+      71
+    ],
+    [
+      -44,
+      23
+    ],
+    [
+      -72,
+      -19
+    ],
+    [
+      -73,
+      18
+    ],
+    [
+      -73,
+      45
+    ],
+    [
+      72,
+      73
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "BerkeleyDB",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "BASE",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "BTree",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Evictor",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureCriticalEviction",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEvictor",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEvictorDaemon",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureINCompressor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTreeVisitor",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureVerifier",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "FConcurrency",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "dummyFeatureLocking",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureCheckLeaks",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureFSync",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLatch",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTransaction",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "FDbOperation",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureDeleteDb",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureTruncateDb",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Logging",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingBase",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingConfig",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingConsole",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingDbLog",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFile",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFine",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFiner",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingFinest",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingInfo",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureLoggingSevere",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Persistency",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "FIOFeature",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "IO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureIO",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureSynchronizedIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "NIO",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "ALT",
+                      "feature_literal": {
+                        "name": "FNIOType",
+                        "negated": false
+                      },
+                      "mandatory": true,
+                      "elements": [
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "featureChunkedNIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        },
+                        {
+                          "type": "CONCRETE",
+                          "feature_literal": {
+                            "name": "featureNIO",
+                            "negated": false
+                          },
+                          "mandatory": true
+                        }
+                      ]
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureDirectNIO",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FPersistencyFeatures",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "Checkpointer",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCheckpointerDaemon",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCustomizableCheckpointerBytes",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCustomizableCheckpointerTime",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "Cleaner",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureCleanerDaemon",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureLookAheadCache",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureChecksum",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureEnvironmentLock",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureFileHandleCache",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureHandleFullDiscError",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Statistics",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FStatisticsFeatures",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "EnvStats",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvBase",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCaching",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCheckpointer",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvCleaner",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvEvictor",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvFSync",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvINCompressor",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "featureStatisticsEnvLog",
+                        "negated": false
+                      },
+                      "mandatory": false
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsDatabase",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsLock",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsPreload",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsSequence",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "featureStatisticsTransaction",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "featureStatisticsBase",
+                "negated": false
+              },
+              "mandatory": true
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "featureMemoryBudget",
+            "negated": false
+          },
+          "mandatory": false
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictorDaemon",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLookAheadCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsEnvCaching",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureMemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCheckLeaks",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureStatisticsLock",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCriticalEviction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureINCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureCustomizableCheckpointerBytes",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureCustomizableCheckpointerTime",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureDeleteDb",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLatch",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureCheckLeaks",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureDeleteDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureFileHandleCache",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureFSync",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsLock",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTreeVisitor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTruncateDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureVerifier",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingSevere",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureEnvironmentLock",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingFine",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureLoggingInfo",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureChecksum",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureMemoryBudget",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureLoggingBase",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLoggingFinest",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureMemoryBudget",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureEvictor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureLatch",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureStatisticsLock",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureStatisticsTransaction",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "dummyFeatureLocking",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvEvictor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureEvictor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvFSync",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureFSync",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsEnvINCompressor",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureINCompressor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsTransaction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureStatisticsDatabase",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureTreeVisitor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureTransaction",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "dummyFeatureLocking",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureDeleteDb",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTruncateDb",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureTruncateDb",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "featureDeleteDb",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "featureVerifier",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "featureINCompressor",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "featureTreeVisitor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

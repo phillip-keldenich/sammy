@@ -1,1 +1,394 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/FeatureIDE.xml|EQ|CNF", "n_all": 21, "n_concrete": 16, "to_original_universe": {"chain": {"chain": null, "origins": []}, "origins": [{"feature": 0, "l1": ["FeatureCpp"], "l2": []}, {"feature": 1, "l1": ["AHEAD"], "l2": []}, {"feature": 2, "l1": ["FeatureHouse"], "l2": []}, {"feature": 3, "l1": ["ExtendedFM"], "l2": []}, {"feature": 4, "l1": ["DeltaJEclipsePlugin"], "l2": []}, {"feature": 5, "l1": ["DeltaMontiArc"], "l2": []}, {"feature": 6, "l1": ["Munge"], "l2": []}, {"feature": 7, "l1": ["MoSoPoLiTe"], "l2": []}, {"feature": 8, "l1": ["FAMILIAR"], "l2": []}, {"feature": 9, "l1": ["DeltaJ"], "l2": []}, {"feature": 10, "l1": ["AJDT"], "l2": []}, {"feature": 11, "l1": ["AspectJ"], "l2": []}, {"feature": 12, "l1": ["Antenna"], "l2": []}, {"feature": 13, "l1": ["JDT"], "l2": []}, {"feature": 14, "l1": ["CDT"], "l2": []}, {"feature": 15, "l1": ["CIDE"], "l2": []}, {"feature": 16, "l1": ["__AUX[1]"], "l2": []}, {"feature": 17, "l1": ["__AUX[2]"], "l2": []}, {"feature": 18, "l1": ["Eclipse"], "l2": []}, {"feature": 19, "l1": ["FeatureModeling"], "l2": []}, {"feature": 20, "l1": ["FeatureIDE"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 16, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 1, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 16, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 16, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 16, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 12, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 17, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 16, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 17, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 0, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 14, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 11, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 9, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}], "structure": {"type": "AND", "feature_literal": {"name": 18, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 19, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": false}, {"type": "OR", "feature_literal": {"name": 20, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/FeatureIDE.xml",
+  "meta": {},
+  "num_variables": 21,
+  "num_concrete_features": 16,
+  "labels": {
+    "AHEAD": 9,
+    "AJDT": 13,
+    "Antenna": 16,
+    "AspectJ": 5,
+    "CDT": 8,
+    "CIDE": 1,
+    "DeltaJ": 3,
+    "DeltaJEclipsePlugin": 14,
+    "DeltaMontiArc": 7,
+    "ExtendedFM": 11,
+    "FAMILIAR": 12,
+    "FeatureCpp": 2,
+    "FeatureHouse": 15,
+    "JDT": 10,
+    "MoSoPoLiTe": 4,
+    "Munge": 6
+  },
+  "cnf_clauses": [
+    [
+      19
+    ],
+    [
+      -13,
+      19
+    ],
+    [
+      -8,
+      19
+    ],
+    [
+      -14,
+      19
+    ],
+    [
+      -20,
+      19
+    ],
+    [
+      -1,
+      20
+    ],
+    [
+      -11,
+      20
+    ],
+    [
+      -12,
+      20
+    ],
+    [
+      -21,
+      20
+    ],
+    [
+      9,
+      16,
+      5,
+      3,
+      7,
+      2,
+      15,
+      6,
+      -21
+    ],
+    [
+      -9,
+      21
+    ],
+    [
+      -16,
+      21
+    ],
+    [
+      -5,
+      21
+    ],
+    [
+      -3,
+      21
+    ],
+    [
+      -7,
+      21
+    ],
+    [
+      -2,
+      21
+    ],
+    [
+      -15,
+      21
+    ],
+    [
+      -6,
+      21
+    ],
+    [
+      -4,
+      20
+    ],
+    [
+      -10,
+      19
+    ],
+    [
+      -17,
+      -9
+    ],
+    [
+      -17,
+      -15
+    ],
+    [
+      -17,
+      -6
+    ],
+    [
+      -17,
+      -16
+    ],
+    [
+      -18,
+      10
+    ],
+    [
+      17,
+      18
+    ],
+    [
+      -2,
+      8
+    ],
+    [
+      -5,
+      13
+    ],
+    [
+      -3,
+      14
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "Eclipse",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "AJDT",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "CDT",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "DeltaJEclipsePlugin",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "FeatureModeling",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CIDE",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ExtendedFM",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "FAMILIAR",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "FeatureIDE",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "AHEAD",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Antenna",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "AspectJ",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "DeltaJ",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "DeltaMontiArc",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "FeatureCpp",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "FeatureHouse",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Munge",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MoSoPoLiTe",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "JDT",
+            "negated": false
+          },
+          "mandatory": false
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "AHEAD",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "FeatureHouse",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Munge",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Antenna",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "JDT",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "FeatureCpp",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "CDT",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "AspectJ",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "AJDT",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "DeltaJ",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DeltaJEclipsePlugin",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

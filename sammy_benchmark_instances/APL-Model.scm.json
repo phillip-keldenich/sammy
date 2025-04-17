@@ -1,1 +1,518 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/APL-Model.xml|EQ|CNF", "n_all": 24, "n_concrete": 21, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[Layers]", "l1": ["Layers", "SvgMapApp", "Legends", "USStates", "Base"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["StatsSex"], "l2": []}, {"feature": 1, "l1": ["StatsHouseholds"], "l2": []}, {"feature": 2, "l1": ["Lakes"], "l2": []}, {"feature": 3, "l1": ["Legend"], "l2": []}, {"feature": 4, "l1": ["SUB[Layers]"], "l2": []}, {"feature": 5, "l1": ["ColorRegion"], "l2": []}, {"feature": 6, "l1": ["PopCircleControls"], "l2": []}, {"feature": 7, "l1": ["StatsPopulation"], "l2": []}, {"feature": 8, "l1": ["RiverControls"], "l2": []}, {"feature": 9, "l1": ["AgeChart"], "l2": []}, {"feature": 10, "l1": ["StatsMedianAge"], "l2": []}, {"feature": 11, "l1": ["Relief"], "l2": []}, {"feature": 12, "l1": ["ReliefControls"], "l2": []}, {"feature": 13, "l1": ["EthnicPieChart"], "l2": []}, {"feature": 14, "l1": ["L2Build"], "l2": []}, {"feature": 15, "l1": ["Navigator"], "l2": []}, {"feature": 16, "l1": ["PopCircle"], "l2": []}, {"feature": 17, "l1": ["CoordinateDisplay"], "l2": []}, {"feature": 18, "l1": ["EthnicBarChart"], "l2": []}, {"feature": 19, "l1": ["Rivers"], "l2": []}, {"feature": 20, "l1": ["LakeControls"], "l2": []}, {"feature": 21, "l1": ["Controls"], "l2": []}, {"feature": 22, "l1": ["Stats1"], "l2": []}, {"feature": 23, "l1": ["Stats2"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 6, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 12, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 8, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 19, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 20, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 21, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 22, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 23, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 14, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}], "structure": {"type": "AND", "feature_literal": {"name": 4, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 4, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 4, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 21, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 22, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 23, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": true}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/APL-Model.xml",
+  "meta": {},
+  "num_variables": 24,
+  "num_concrete_features": 21,
+  "labels": {
+    "AgeChart": 14,
+    "ColorRegion": 1,
+    "CoordinateDisplay": 12,
+    "EthnicBarChart": 2,
+    "EthnicPieChart": 21,
+    "L2Build": 11,
+    "LakeControls": 6,
+    "Lakes": 20,
+    "Legend": 3,
+    "Navigator": 18,
+    "PopCircle": 19,
+    "PopCircleControls": 8,
+    "Relief": 13,
+    "ReliefControls": 16,
+    "RiverControls": 7,
+    "Rivers": 10,
+    "StatsHouseholds": 5,
+    "StatsMedianAge": 9,
+    "StatsPopulation": 4,
+    "StatsSex": 15
+  },
+  "cnf_clauses": [
+    [
+      17
+    ],
+    [
+      -11,
+      17
+    ],
+    [
+      -1,
+      17
+    ],
+    [
+      -20,
+      17
+    ],
+    [
+      -19,
+      17
+    ],
+    [
+      -13,
+      17
+    ],
+    [
+      -10,
+      17
+    ],
+    [
+      -22,
+      17
+    ],
+    [
+      -12,
+      22
+    ],
+    [
+      -6,
+      22
+    ],
+    [
+      -18,
+      22
+    ],
+    [
+      -8,
+      22
+    ],
+    [
+      -16,
+      22
+    ],
+    [
+      -7,
+      22
+    ],
+    [
+      -3,
+      17
+    ],
+    [
+      -23,
+      17
+    ],
+    [
+      -14,
+      23
+    ],
+    [
+      -2,
+      23
+    ],
+    [
+      -21,
+      23
+    ],
+    [
+      -9,
+      23
+    ],
+    [
+      -24,
+      17
+    ],
+    [
+      -5,
+      24
+    ],
+    [
+      -4,
+      24
+    ],
+    [
+      -15,
+      24
+    ],
+    [
+      -8,
+      19
+    ],
+    [
+      -16,
+      13
+    ],
+    [
+      -7,
+      10
+    ],
+    [
+      -6,
+      20
+    ],
+    [
+      -22,
+      3
+    ],
+    [
+      -23,
+      3
+    ],
+    [
+      -24,
+      3
+    ],
+    [
+      -11,
+      -2
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "SvgMapApp",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Base",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "L2Build",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Layers",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "ColorRegion",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Lakes",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "PopCircle",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Relief",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Rivers",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Legends",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Controls",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CoordinateDisplay",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LakeControls",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Navigator",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "PopCircleControls",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ReliefControls",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "RiverControls",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Legend",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Stats1",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "AgeChart",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "EthnicBarChart",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "EthnicPieChart",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "StatsMedianAge",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Stats2",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "StatsHouseholds",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "StatsPopulation",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "StatsSex",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "USStates",
+            "negated": false
+          },
+          "mandatory": true
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "PopCircleControls",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "PopCircle",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "ReliefControls",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Relief",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "RiverControls",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Rivers",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LakeControls",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Lakes",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Controls",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Legend",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Stats1",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Legend",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Stats2",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Legend",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "L2Build",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "EthnicBarChart",
+          "negated": true,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

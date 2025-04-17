@@ -1,1 +1,1132 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/gpl.xml|EQ|CNF", "n_all": 39, "n_concrete": 25, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[MainGpl]", "l1": ["MainGpl", "TestProg", "Alg", "WeightOptions", "Wgt", "HiddenGtp", "Gtp", "Implementation", "Base"], "l2": []}, {"feature": "SUB[StrongC]", "l1": ["StrongC", "Transpose", "StronglyConnected"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["UndirectedWithEdges"], "l2": []}, {"feature": 1, "l1": ["WeightedWithEdges"], "l2": []}, {"feature": 2, "l1": ["UndirectedOnlyVertices"], "l2": []}, {"feature": 3, "l1": ["SUB[MainGpl]"], "l2": []}, {"feature": 4, "l1": ["Undirected"], "l2": []}, {"feature": 5, "l1": ["WithNeighbors"], "l2": []}, {"feature": 6, "l1": ["DirectedWithEdges"], "l2": []}, {"feature": 7, "l1": ["WeightedOnlyVertices"], "l2": []}, {"feature": 8, "l1": ["DirectedWithNeighbors"], "l2": []}, {"feature": 9, "l1": ["WithEdges"], "l2": []}, {"feature": 10, "l1": ["WeightedWithNeighbors"], "l2": []}, {"feature": 11, "l1": ["UndirectedWithNeighbors"], "l2": []}, {"feature": 12, "l1": ["BFS"], "l2": []}, {"feature": 13, "l1": ["SUB[StrongC]"], "l2": []}, {"feature": 14, "l1": ["DirectedOnlyVertices"], "l2": []}, {"feature": 15, "l1": ["MSTKruskal"], "l2": []}, {"feature": 16, "l1": ["Cycle"], "l2": []}, {"feature": 17, "l1": ["Directed"], "l2": []}, {"feature": 18, "l1": ["MSTPrim"], "l2": []}, {"feature": 19, "l1": ["OnlyVertices"], "l2": []}, {"feature": 20, "l1": ["Connected"], "l2": []}, {"feature": 21, "l1": ["Unweighted"], "l2": []}, {"feature": 22, "l1": ["Weighted"], "l2": []}, {"feature": 23, "l1": ["Number"], "l2": []}, {"feature": 24, "l1": ["DFS"], "l2": []}, {"feature": 25, "l1": ["__AUX[1]"], "l2": []}, {"feature": 26, "l1": ["__AUX[2]"], "l2": []}, {"feature": 27, "l1": ["Src"], "l2": []}, {"feature": 28, "l1": ["__AUX[3]"], "l2": []}, {"feature": 29, "l1": ["__AUX[4]"], "l2": []}, {"feature": 30, "l1": ["__AUX[5]"], "l2": []}, {"feature": 31, "l1": ["__AUX[6]"], "l2": []}, {"feature": 32, "l1": ["__AUX[7]"], "l2": []}, {"feature": 33, "l1": ["__AUX[8]"], "l2": []}, {"feature": 34, "l1": ["__AUX[9]"], "l2": []}, {"feature": 35, "l1": ["__AUX[10]"], "l2": []}, {"feature": 36, "l1": ["__AUX[11]"], "l2": []}, {"feature": 37, "l1": ["__AUX[12]"], "l2": []}, {"feature": 38, "l1": ["__AUX[13]"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 25, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 23, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 25, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 26, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 28, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 29, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 29, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 27, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 28, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 29, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 30, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 31, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 31, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 30, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 31, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 32, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 16, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 33, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 3, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 33, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 32, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 33, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 35, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 35, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 34, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 35, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 36, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 36, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 37, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 38, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 36, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 37, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 38, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 19, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 5, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 9, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 1, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 19, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 14, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 5, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 8, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 9, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 17, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 19, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 2, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 5, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 9, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": false, "auxiliary": false}]}], "structure": {"type": "AND", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": true}, {"type": "OR", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 23, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 13, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": false}]}, {"type": "ALT", "feature_literal": {"name": 27, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 24, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": false}]}, {"type": "ALT", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 22, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 21, "negated": false}, "mandatory": false}]}, {"type": "ALT", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": false}]}, {"type": "ALT", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}]}, {"type": "ALT", "feature_literal": {"name": 3, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": true}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/gpl.xml",
+  "meta": {},
+  "num_variables": 39,
+  "num_concrete_features": 25,
+  "labels": {
+    "BFS": 15,
+    "Connected": 14,
+    "Cycle": 16,
+    "DFS": 11,
+    "Directed": 12,
+    "DirectedOnlyVertices": 17,
+    "DirectedWithEdges": 10,
+    "DirectedWithNeighbors": 22,
+    "MSTKruskal": 3,
+    "MSTPrim": 13,
+    "Number": 20,
+    "OnlyVertices": 21,
+    "Undirected": 19,
+    "UndirectedOnlyVertices": 5,
+    "UndirectedWithEdges": 25,
+    "UndirectedWithNeighbors": 9,
+    "Unweighted": 18,
+    "Weighted": 4,
+    "WeightedOnlyVertices": 23,
+    "WeightedWithEdges": 1,
+    "WeightedWithNeighbors": 24,
+    "WithEdges": 6,
+    "WithNeighbors": 2
+  },
+  "cnf_clauses": [
+    [
+      7
+    ],
+    [
+      14,
+      16,
+      3,
+      13,
+      20,
+      8,
+      -7
+    ],
+    [
+      -14,
+      7
+    ],
+    [
+      -16,
+      7
+    ],
+    [
+      -3,
+      7
+    ],
+    [
+      -13,
+      7
+    ],
+    [
+      -20,
+      7
+    ],
+    [
+      -8,
+      7
+    ],
+    [
+      -12,
+      -19
+    ],
+    [
+      12,
+      19,
+      -7
+    ],
+    [
+      -12,
+      7
+    ],
+    [
+      -19,
+      7
+    ],
+    [
+      -17,
+      -10
+    ],
+    [
+      -17,
+      -22
+    ],
+    [
+      -17,
+      -5
+    ],
+    [
+      -17,
+      -25
+    ],
+    [
+      -17,
+      -9
+    ],
+    [
+      -10,
+      -22
+    ],
+    [
+      -10,
+      -5
+    ],
+    [
+      -10,
+      -25
+    ],
+    [
+      -10,
+      -9
+    ],
+    [
+      -22,
+      -5
+    ],
+    [
+      -22,
+      -25
+    ],
+    [
+      -22,
+      -9
+    ],
+    [
+      -5,
+      -25
+    ],
+    [
+      -5,
+      -9
+    ],
+    [
+      -25,
+      -9
+    ],
+    [
+      17,
+      10,
+      22,
+      5,
+      25,
+      9,
+      -7
+    ],
+    [
+      -17,
+      7
+    ],
+    [
+      -10,
+      7
+    ],
+    [
+      -22,
+      7
+    ],
+    [
+      -5,
+      7
+    ],
+    [
+      -25,
+      7
+    ],
+    [
+      -9,
+      7
+    ],
+    [
+      -21,
+      -6
+    ],
+    [
+      -21,
+      -2
+    ],
+    [
+      -6,
+      -2
+    ],
+    [
+      21,
+      6,
+      2,
+      -7
+    ],
+    [
+      -21,
+      7
+    ],
+    [
+      -6,
+      7
+    ],
+    [
+      -2,
+      7
+    ],
+    [
+      -28,
+      7
+    ],
+    [
+      -15,
+      -11
+    ],
+    [
+      15,
+      11,
+      -28
+    ],
+    [
+      -15,
+      28
+    ],
+    [
+      -11,
+      28
+    ],
+    [
+      -23,
+      7
+    ],
+    [
+      -1,
+      7
+    ],
+    [
+      -24,
+      7
+    ],
+    [
+      -18,
+      -4
+    ],
+    [
+      18,
+      4,
+      -7
+    ],
+    [
+      -18,
+      7
+    ],
+    [
+      -4,
+      7
+    ],
+    [
+      -26,
+      -20
+    ],
+    [
+      -27,
+      7
+    ],
+    [
+      -27,
+      28
+    ],
+    [
+      26,
+      27
+    ],
+    [
+      -29,
+      -14
+    ],
+    [
+      -30,
+      19
+    ],
+    [
+      -30,
+      28
+    ],
+    [
+      29,
+      30
+    ],
+    [
+      -31,
+      -8
+    ],
+    [
+      -32,
+      12
+    ],
+    [
+      -32,
+      11
+    ],
+    [
+      31,
+      32
+    ],
+    [
+      -33,
+      -16
+    ],
+    [
+      -34,
+      7
+    ],
+    [
+      -34,
+      11
+    ],
+    [
+      33,
+      34
+    ],
+    [
+      -35,
+      -3
+    ],
+    [
+      -35,
+      -13
+    ],
+    [
+      -36,
+      19
+    ],
+    [
+      -36,
+      4
+    ],
+    [
+      35,
+      36
+    ],
+    [
+      -37,
+      -3
+    ],
+    [
+      -37,
+      -13
+    ],
+    [
+      -38,
+      -3
+    ],
+    [
+      -39,
+      -13
+    ],
+    [
+      37,
+      38,
+      39
+    ],
+    [
+      -21,
+      -4,
+      23
+    ],
+    [
+      -2,
+      -4,
+      24
+    ],
+    [
+      -6,
+      -4,
+      1
+    ],
+    [
+      -21,
+      -12,
+      17
+    ],
+    [
+      -2,
+      -12,
+      22
+    ],
+    [
+      -6,
+      -12,
+      10
+    ],
+    [
+      -21,
+      -19,
+      5
+    ],
+    [
+      -2,
+      -19,
+      9
+    ],
+    [
+      -6,
+      -19,
+      25
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "MainGpl",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "Alg",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Connected",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Cycle",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MSTKruskal",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "MSTPrim",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Number",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "StrongC",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "StronglyConnected",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Transpose",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Base",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Gtp",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Directed",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Undirected",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "HiddenGtp",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DirectedOnlyVertices",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DirectedWithEdges",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DirectedWithNeighbors",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UndirectedOnlyVertices",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UndirectedWithEdges",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "UndirectedWithNeighbors",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Implementation",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "OnlyVertices",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WithEdges",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WithNeighbors",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Src",
+            "negated": false
+          },
+          "mandatory": false,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "BFS",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DFS",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "TestProg",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "WeightOptions",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WeightedOnlyVertices",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WeightedWithEdges",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "WeightedWithNeighbors",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        },
+        {
+          "type": "ALT",
+          "feature_literal": {
+            "name": "Wgt",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Unweighted",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "Weighted",
+                "negated": false
+              },
+              "mandatory": false
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Number",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Gtp",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Src",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Connected",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Undirected",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Src",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "StrongC",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Directed",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DFS",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Cycle",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Gtp",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "DFS",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "MSTKruskal",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MSTPrim",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Undirected",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Weighted",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "MSTKruskal",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MSTPrim",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "MSTKruskal",
+              "negated": true,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "MSTPrim",
+              "negated": true,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "OnlyVertices",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Weighted",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "WeightedOnlyVertices",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithNeighbors",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Weighted",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "WeightedWithNeighbors",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithEdges",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Weighted",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "WeightedWithEdges",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "OnlyVertices",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Directed",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DirectedOnlyVertices",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithNeighbors",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Directed",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DirectedWithNeighbors",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithEdges",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Directed",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DirectedWithEdges",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "OnlyVertices",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Undirected",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "UndirectedOnlyVertices",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithNeighbors",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Undirected",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "UndirectedWithNeighbors",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "WithEdges",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Undirected",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "UndirectedWithEdges",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

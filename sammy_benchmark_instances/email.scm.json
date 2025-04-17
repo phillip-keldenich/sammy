@@ -1,1 +1,208 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/email.xml|EQ|CNF", "n_all": 9, "n_concrete": 7, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[Decrypt]", "l1": ["Decrypt", "Encrypt"], "l2": []}, {"feature": "SUB[Sign]", "l1": ["Sign", "Verify"], "l2": []}, {"feature": "SUB[Base]", "l1": ["Base", "Email"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["Addressbook"], "l2": []}, {"feature": 1, "l1": ["AutoResponder"], "l2": []}, {"feature": 2, "l1": ["SUB[Base]"], "l2": []}, {"feature": 3, "l1": ["Forward"], "l2": []}, {"feature": 4, "l1": ["SUB[Decrypt]"], "l2": []}, {"feature": 5, "l1": ["Keys"], "l2": []}, {"feature": 6, "l1": ["SUB[Sign]"], "l2": []}, {"feature": 7, "l1": ["__AUX[1]"], "l2": []}, {"feature": 8, "l1": ["__AUX[2]"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 7, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 4, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 7, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 8, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 5, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 7, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 8, "negated": false, "auxiliary": true}]}], "structure": {"type": "AND", "feature_literal": {"name": 2, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/email.xml",
+  "meta": {},
+  "num_variables": 9,
+  "num_concrete_features": 7,
+  "labels": {
+    "Addressbook": 3,
+    "AutoResponder": 5,
+    "Forward": 7,
+    "Keys": 4
+  },
+  "cnf_clauses": [
+    [
+      2
+    ],
+    [
+      -3,
+      2
+    ],
+    [
+      -5,
+      2
+    ],
+    [
+      -1,
+      2
+    ],
+    [
+      -1,
+      2
+    ],
+    [
+      -7,
+      2
+    ],
+    [
+      -4,
+      2
+    ],
+    [
+      -6,
+      2
+    ],
+    [
+      -6,
+      2
+    ],
+    [
+      -8,
+      -1
+    ],
+    [
+      -8,
+      -6
+    ],
+    [
+      -9,
+      4
+    ],
+    [
+      8,
+      9
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "Email",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Addressbook",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "AutoResponder",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Base",
+            "negated": false
+          },
+          "mandatory": true
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Decrypt",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Encrypt",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Forward",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Keys",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Sign",
+            "negated": false
+          },
+          "mandatory": false
+        },
+        {
+          "type": "CONCRETE",
+          "feature_literal": {
+            "name": "Verify",
+            "negated": false
+          },
+          "mandatory": false
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Encrypt",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "VAR",
+          "name": "Decrypt",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Sign",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "VAR",
+          "name": "Verify",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Encrypt",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Sign",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Keys",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

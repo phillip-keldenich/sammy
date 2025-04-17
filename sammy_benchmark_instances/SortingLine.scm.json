@@ -1,1 +1,817 @@
-{"name": "/Users/me/instance-cleanup-swconfig/models/clean_instances/SortingLine.xml|EQ|CNF", "n_all": 33, "n_concrete": 23, "to_original_universe": {"chain": {"chain": null, "origins": [{"feature": "SUB[Sorting]", "l1": ["Sorting", "Sorting_C", "Sorting_M", "Sorting_E", "Sorting_S", "DistributeWP", "StationDistributing", "Pneumatics", "EE", "Sensors", "MotorOfConveyor", "Lightbarrier", "SortingWP"], "l2": []}, {"feature": "SUB[Chute1]", "l1": ["Chute1", "StationSorting"], "l2": []}, {"feature": "SUB[CountWPS]", "l1": ["CountWPS", "Processed"], "l2": []}]}, "origins": [{"feature": 0, "l1": ["Switch2"], "l2": []}, {"feature": 1, "l1": ["Switch1"], "l2": []}, {"feature": 2, "l1": ["RejectsWithCap"], "l2": []}, {"feature": 3, "l1": ["StationSeparating"], "l2": []}, {"feature": 4, "l1": ["StationInspecting"], "l2": []}, {"feature": 5, "l1": ["Transporter"], "l2": []}, {"feature": 6, "l1": ["LightDarkS"], "l2": []}, {"feature": 7, "l1": ["SUB[Chute1]"], "l2": []}, {"feature": 8, "l1": ["RejectsWithoutCap"], "l2": []}, {"feature": 9, "l1": ["SUB[Sorting]"], "l2": []}, {"feature": 10, "l1": ["Chute2"], "l2": []}, {"feature": 11, "l1": ["LightDark"], "l2": []}, {"feature": 12, "l1": ["SUB[CountWPS]"], "l2": []}, {"feature": 13, "l1": ["MetalPlastic"], "l2": []}, {"feature": 14, "l1": ["AlarmFunction"], "l2": []}, {"feature": 15, "l1": ["MetalPlasticS"], "l2": []}, {"feature": 16, "l1": ["HandoverMetal"], "l2": []}, {"feature": 17, "l1": ["CountWP"], "l2": []}, {"feature": 18, "l1": ["OptSensor"], "l2": []}, {"feature": 19, "l1": ["Gripper"], "l2": []}, {"feature": 20, "l1": ["IndSensor"], "l2": []}, {"feature": 21, "l1": ["StationHandling"], "l2": []}, {"feature": 22, "l1": ["Chute3"], "l2": []}, {"feature": 23, "l1": ["__AUX[1]"], "l2": []}, {"feature": 24, "l1": ["__AUX[2]"], "l2": []}, {"feature": 25, "l1": ["__AUX[3]"], "l2": []}, {"feature": 26, "l1": ["__AUX[4]"], "l2": []}, {"feature": 27, "l1": ["__AUX[5]"], "l2": []}, {"feature": 28, "l1": ["__AUX[6]"], "l2": []}, {"feature": 29, "l1": ["__AUX[7]"], "l2": []}, {"feature": 30, "l1": ["__AUX[8]"], "l2": []}, {"feature": 31, "l1": ["SortWP"], "l2": []}, {"feature": 32, "l1": ["SeparateWP"], "l2": []}]}, "rules": [{"type": "OR", "elements": [{"type": "VAR", "name": 23, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 24, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 24, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 10, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 23, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 24, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 13, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 1, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 13, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 25, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 13, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 26, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 20, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 25, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 26, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 13, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 15, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 27, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 28, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 7, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 28, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 22, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 27, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 28, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 11, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 0, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 11, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 29, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 11, "negated": true, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 30, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 9, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 30, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 18, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 29, "negated": false, "auxiliary": true}, {"type": "VAR", "name": 30, "negated": false, "auxiliary": true}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 11, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 6, "negated": false, "auxiliary": false}]}, {"type": "OR", "elements": [{"type": "VAR", "name": 17, "negated": true, "auxiliary": false}, {"type": "VAR", "name": 12, "negated": false, "auxiliary": false}]}], "structure": {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "OR", "feature_literal": {"name": 31, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 13, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 11, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 17, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 14, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}, {"type": "ALT", "feature_literal": {"name": 32, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 16, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 2, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 8, "negated": false}, "mandatory": true}]}]}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "ALT", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 5, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 19, "negated": false}, "mandatory": true}]}, {"type": "CONCRETE", "feature_literal": {"name": 4, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 3, "negated": false}, "mandatory": false}, {"type": "AND", "feature_literal": {"name": 7, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 7, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 10, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 22, "negated": false}, "mandatory": false}]}, {"type": "CONCRETE", "feature_literal": {"name": 21, "negated": false}, "mandatory": false}]}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "OR", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 1, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 0, "negated": false}, "mandatory": true}]}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}]}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 9, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 20, "negated": false}, "mandatory": false}, {"type": "CONCRETE", "feature_literal": {"name": 18, "negated": false}, "mandatory": false}]}]}, {"type": "AND", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "AND", "feature_literal": {"name": 12, "negated": false}, "mandatory": false, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 12, "negated": false}, "mandatory": true}]}, {"type": "OR", "feature_literal": {"name": 9, "negated": false}, "mandatory": true, "elements": [{"type": "CONCRETE", "feature_literal": {"name": 15, "negated": false}, "mandatory": true}, {"type": "CONCRETE", "feature_literal": {"name": 6, "negated": false}, "mandatory": true}]}]}]}}
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/SortingLine.xml",
+  "meta": {},
+  "num_variables": 33,
+  "num_concrete_features": 23,
+  "labels": {
+    "AlarmFunction": 4,
+    "Chute2": 16,
+    "Chute3": 7,
+    "CountWP": 20,
+    "Gripper": 10,
+    "HandoverMetal": 11,
+    "IndSensor": 1,
+    "LightDark": 2,
+    "LightDarkS": 22,
+    "MetalPlastic": 17,
+    "MetalPlasticS": 8,
+    "OptSensor": 19,
+    "RejectsWithCap": 12,
+    "RejectsWithoutCap": 13,
+    "StationHandling": 21,
+    "StationInspecting": 5,
+    "StationSeparating": 14,
+    "Switch1": 3,
+    "Switch2": 23,
+    "Transporter": 15
+  },
+  "cnf_clauses": [
+    [
+      9
+    ],
+    [
+      -4,
+      9
+    ],
+    [
+      -20,
+      9
+    ],
+    [
+      -32,
+      9
+    ],
+    [
+      -11,
+      -12
+    ],
+    [
+      -11,
+      -13
+    ],
+    [
+      -12,
+      -13
+    ],
+    [
+      11,
+      12,
+      13,
+      -32
+    ],
+    [
+      -11,
+      32
+    ],
+    [
+      -12,
+      32
+    ],
+    [
+      -13,
+      32
+    ],
+    [
+      -33,
+      9
+    ],
+    [
+      2,
+      17,
+      -33
+    ],
+    [
+      -2,
+      33
+    ],
+    [
+      -17,
+      33
+    ],
+    [
+      3,
+      23,
+      -9
+    ],
+    [
+      -3,
+      9
+    ],
+    [
+      -23,
+      9
+    ],
+    [
+      -1,
+      9
+    ],
+    [
+      -19,
+      9
+    ],
+    [
+      -10,
+      -15
+    ],
+    [
+      10,
+      15,
+      -9
+    ],
+    [
+      -10,
+      9
+    ],
+    [
+      -15,
+      9
+    ],
+    [
+      -21,
+      9
+    ],
+    [
+      -5,
+      9
+    ],
+    [
+      -14,
+      9
+    ],
+    [
+      -6,
+      9
+    ],
+    [
+      -16,
+      6
+    ],
+    [
+      -7,
+      6
+    ],
+    [
+      -18,
+      9
+    ],
+    [
+      22,
+      8,
+      -9
+    ],
+    [
+      -22,
+      9
+    ],
+    [
+      -8,
+      9
+    ],
+    [
+      -24,
+      -17
+    ],
+    [
+      -25,
+      6
+    ],
+    [
+      -25,
+      16
+    ],
+    [
+      24,
+      25
+    ],
+    [
+      -17,
+      3
+    ],
+    [
+      -17,
+      9
+    ],
+    [
+      -26,
+      -17
+    ],
+    [
+      -27,
+      9
+    ],
+    [
+      -27,
+      1
+    ],
+    [
+      26,
+      27
+    ],
+    [
+      -17,
+      8
+    ],
+    [
+      -28,
+      -2
+    ],
+    [
+      -29,
+      6
+    ],
+    [
+      -29,
+      7
+    ],
+    [
+      28,
+      29
+    ],
+    [
+      -2,
+      23
+    ],
+    [
+      -2,
+      9
+    ],
+    [
+      -30,
+      -2
+    ],
+    [
+      -31,
+      9
+    ],
+    [
+      -31,
+      19
+    ],
+    [
+      30,
+      31
+    ],
+    [
+      -2,
+      22
+    ],
+    [
+      -20,
+      18
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "Sorting",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Sorting_C",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "AlarmFunction",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "CountWP",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "DistributeWP",
+                "negated": false
+              },
+              "mandatory": true
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "SeparateWP",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "HandoverMetal",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "RejectsWithCap",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "RejectsWithoutCap",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "SortWP",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LightDark",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "MetalPlastic",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Sorting_E",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "EE",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "MotorOfConveyor",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "Pneumatics",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Switch1",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Switch2",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Sensors",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "IndSensor",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Lightbarrier",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "OptSensor",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Sorting_M",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "StationDistributing",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Gripper",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Transporter",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StationHandling",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StationInspecting",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "CONCRETE",
+              "feature_literal": {
+                "name": "StationSeparating",
+                "negated": false
+              },
+              "mandatory": false
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "StationSorting",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Chute1",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Chute2",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Chute3",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "Sorting_S",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "CountWPS",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Processed",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "SortingWP",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "LightDarkS",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "MetalPlasticS",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MetalPlastic",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Chute1",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Chute2",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MetalPlastic",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Switch1",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MetalPlastic",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "MotorOfConveyor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MetalPlastic",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Lightbarrier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "IndSensor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "MetalPlastic",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "MetalPlasticS",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LightDark",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Chute1",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Chute3",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LightDark",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Switch2",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LightDark",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "MotorOfConveyor",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LightDark",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "AND",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Lightbarrier",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "OptSensor",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "LightDark",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "LightDarkS",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "CountWP",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Processed",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}
