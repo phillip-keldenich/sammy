@@ -96,9 +96,9 @@ using ExactElement = PortfolioElementWithCore<CliqueSatDSaturExactSolverCore>;
 /**
  * Actual SAT solver to use.
  */
-//using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
+// using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
 using SatSolver = KissatSolver;
-//using SatSolver = CadicalSolver;
+// using SatSolver = CadicalSolver;
 
 /**
  * MES + SAT as LNS elements.
@@ -124,7 +124,7 @@ class Main {
         bool print_global_stats = false;
         bool print_initial_progress = false;
         bool dont_simplify = false;
-	bool only_initial_phase = false;
+        bool only_initial_phase = false;
         std::uint64_t implied_reduction_limit = 10'000'000;
         std::uint64_t exact_limit = 100'000;
         std::size_t max_lns_workers = std::thread::hardware_concurrency();
@@ -146,7 +146,8 @@ class Main {
                 "If set, dump the result of the initial phase (formula, "
                 "universe, ...)"
                 " to the given file, then terminate.")(
-		"only-initial-phase", bool_switch(only_initial_phase), "only run the initial phase")(
+                "only-initial-phase", bool_switch(only_initial_phase),
+                "only run the initial phase")(
                 "all-concrete", bool_switch(all_concrete),
                 "If set, all features are considered concrete instead of the "
                 "number "
@@ -400,20 +401,20 @@ class Main {
     }
 
     void handle_output_only_initial_phase() {
-	handle_output_common();
-	output["ran_exact_solver"] = false;
-	std::size_t lb = initial_result->best_mutually_exclusive.size();
-	std::size_t ub = initial_result->best_solution.size();
-	output["lb"] = lb;
+        handle_output_common();
+        output["ran_exact_solver"] = false;
+        std::size_t lb = initial_result->best_mutually_exclusive.size();
+        std::size_t ub = initial_result->best_solution.size();
+        output["lb"] = lb;
         output["ub"] = ub;
-	output["optimal"] = (lb >= ub);
-	output["best_solution"] = reconstruct_sample(initial_result->best_solution);
-	output["mutually_exclusive_set"] = lit::externalize(
-		reconstruct_mes(initial_result->best_mutually_exclusive)
-	);
-	output["lb_vertices"] = output["mutually_exclusive_set"];
-	export_events(output, recorder.events());
-	if (!config.output_file.empty()) {
+        output["optimal"] = (lb >= ub);
+        output["best_solution"] =
+            reconstruct_sample(initial_result->best_solution);
+        output["mutually_exclusive_set"] = lit::externalize(
+            reconstruct_mes(initial_result->best_mutually_exclusive));
+        output["lb_vertices"] = output["mutually_exclusive_set"];
+        export_events(output, recorder.events());
+        if (!config.output_file.empty()) {
             output_data(output, config.output_file);
         }
     }
@@ -426,11 +427,11 @@ class Main {
             recorder.store_event("OPTIMALITY_REACHED");
             handle_output_initial_phase_optimal();
             return;
-        } else if(config.only_initial_phase) {
-	    recorder.store_event("ONLY_INITIAL_PHASE_CONFIGURED");
-	    handle_output_only_initial_phase();
-	    return;
-	}
+        } else if (config.only_initial_phase) {
+            recorder.store_event("ONLY_INITIAL_PHASE_CONFIGURED");
+            handle_output_only_initial_phase();
+            return;
+        }
         // setup clauses
         clause_db_ticket = publish_clauses(*actual_clause_db);
         // setup portfolio
