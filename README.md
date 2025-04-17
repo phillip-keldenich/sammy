@@ -5,7 +5,7 @@
 ```bash
 # Make sure you got all submodules
 git submodule update --init --recursive
-# Install conan
+# Install conan if needed
 pip install -U conan
 # Install Gurobi via local conan recipe
 conan create ./cmake/conan/gurobi_public -pr:b default -pr:h default  -s build_type=Release 
@@ -17,6 +17,7 @@ cmake --preset conan-release
 # Build the project
 cmake --build --preset conan-release
 # Run the program
+./build/Release/test/sammy_test    
 ./build/Release/src/sammy_solve
 ```
 

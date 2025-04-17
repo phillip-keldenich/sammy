@@ -1,6 +1,6 @@
 [requires]
 nlohmann_json/[>=3.11]
-boost/[>=1.80]
+boost/[>=1.85]
 doctest/[>=2.4.9]
 gurobi/[>=10.0]
 # ortools/[>=9.7]@ibralg/develop
