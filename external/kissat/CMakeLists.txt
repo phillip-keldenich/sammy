@@ -22,7 +22,7 @@ set(KISSAT_LIB_SOURCES "allocate.c" "analyze.c"
                        "shrink.c" "smooth.c" "sort.c"
                        "statistics.c" "strengthen.c" "substitute.c"
                        "sweep.c" "terminate.c" "tiers.c" "trail.c" 
-                       "transitive.c" "utilities.c"
+                       "transitive.c" "utilities.c" "stack.c"
                        "vector.c" "vivify.c" "walk.c" "warmup.c"
                        "watch.c" "weaken.c")
 file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/kissat/build.h"
