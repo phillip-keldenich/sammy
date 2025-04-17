@@ -16,7 +16,7 @@ def run_command(command):
 
 
 LIMITS = {
-    "Automotive02": 1,
+    "Automotive02": 0,
 }
 
 if __name__ == "__main__":
@@ -37,12 +37,15 @@ if __name__ == "__main__":
         extra = []
         for key, limit in LIMITS.items():
             if key in f:
-                extra += ["--max-lns-workers", str(limit)]
+                if limit > 0:
+                    extra += ["--max-lns-workers", str(limit)]
+                else:
+                    extra += ["--only-initial-phase"]
                 break
         commands.append([command_path, instance_path, "-o", output_file, *extra])
 
     random.shuffle(commands)
-    with slurminade.JobBundling(max_size=5):
+    with slurminade.JobBundling(max_size=1):
         for command in commands:
             run_command.distribute(command)
 
