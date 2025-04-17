@@ -27,6 +27,22 @@ If you get issues with building the test cases, you can run the following comman
 cmake --preset conan-release -DSAMMY_SKIP_TESTS=ON && cmake --build --preset conan-release     
 ```
 
+### Using `uv` on Arch to run conan
+
+Building with conda seems to be problematic. At the same time, having different versions of conan installed is also not ideal and system versions are usually a little outdated.
+A good alternative is to use `uv` to run conan in a virtual environment. This way, you can have different versions of conan installed without any issues.
+
+```bash
+# Install uv
+sudo pacman -S uv
+# Create a new virtual environment
+uv create conan
+# Activate the virtual environment
+uv activate conan
+# Install conan in the virtual environment
+pip install conan
+```
+
 # Write a better readme
 
 * [run_initial.h](./include/sammy/run_initial.h): Contains the code to create the initial solution and determine the coverable interactions.
