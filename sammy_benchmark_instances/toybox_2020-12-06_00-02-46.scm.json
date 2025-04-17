@@ -1,2979 +1,696 @@
 {
   "type": "software configuration model",
-  "name": "/Users/me/sammy/sammy_benchmark_instances/toybox_2020-12-06_00-02-46.xml",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/toybox_2020-12-06_00-02-46.dimacs",
   "meta": {},
-  "num_variables": 97,
-  "num_concrete_features": 96,
+  "num_variables": 334,
+  "num_concrete_features": 334,
   "labels": {
-    "CONFIG_BOOTCHARTD": 75,
-    "CONFIG_CAT": 2,
-    "CONFIG_CAT_V": 86,
-    "CONFIG_CD": 8,
-    "CONFIG_CHCON": 39,
-    "CONFIG_CRONTAB": 62,
-    "CONFIG_DEBUG_DHCP": 50,
-    "CONFIG_DHCPD": 31,
-    "CONFIG_EGREP": 26,
-    "CONFIG_EVAL": 28,
-    "CONFIG_EXEC": 17,
-    "CONFIG_EXIT": 4,
-    "CONFIG_EXPORT": 40,
-    "CONFIG_FGREP": 91,
-    "CONFIG_FSFREEZE": 34,
-    "CONFIG_GETENFORCE": 42,
-    "CONFIG_GREP": 44,
-    "CONFIG_HELP": 96,
-    "CONFIG_ICONV": 63,
-    "CONFIG_ID": 70,
-    "CONFIG_ID_Z": 94,
-    "CONFIG_JOBS": 59,
-    "CONFIG_KILL": 61,
-    "CONFIG_KILLALL5": 76,
-    "CONFIG_KLOGD": 71,
-    "CONFIG_KLOGD_SOURCE_RING_BUFFER": 35,
-    "CONFIG_LOAD_POLICY": 19,
-    "CONFIG_LOG": 9,
-    "CONFIG_LOGIN": 54,
-    "CONFIG_LSPCI": 1,
-    "CONFIG_LSPCI_TEXT": 93,
-    "CONFIG_MDEV": 95,
-    "CONFIG_MDEV_CONF": 18,
-    "CONFIG_MKDIR": 79,
-    "CONFIG_MKDIR_Z": 45,
-    "CONFIG_MKE2FS": 64,
-    "CONFIG_MKE2FS_EXTENDED": 88,
-    "CONFIG_MKE2FS_GEN": 66,
-    "CONFIG_MKE2FS_JOURNAL": 47,
-    "CONFIG_MKE2FS_LABEL": 36,
-    "CONFIG_MKFIFO": 87,
-    "CONFIG_MKFIFO_Z": 51,
-    "CONFIG_MKNOD": 10,
-    "CONFIG_MKNOD_Z": 84,
-    "CONFIG_MKPASSWD": 24,
-    "CONFIG_NBD_CLIENT": 13,
-    "CONFIG_NETCAT": 22,
-    "CONFIG_NETCAT_LISTEN": 77,
-    "CONFIG_NSENTER": 82,
-    "CONFIG_OPENVT": 55,
-    "CONFIG_PASSWD": 52,
-    "CONFIG_PASSWD_SAD": 60,
-    "CONFIG_RESTORECON": 5,
-    "CONFIG_RUNCON": 90,
-    "CONFIG_SENDEVENT": 89,
-    "CONFIG_SEQ": 20,
-    "CONFIG_SETENFORCE": 38,
-    "CONFIG_SHA224SUM": 37,
-    "CONFIG_SHA256SUM": 43,
-    "CONFIG_SHA384SUM": 46,
-    "CONFIG_SHA512SUM": 14,
-    "CONFIG_SHIFT": 49,
-    "CONFIG_SORT_FLOAT": 30,
-    "CONFIG_SOURCE": 3,
-    "CONFIG_SU": 7,
-    "CONFIG_SULOGIN": 27,
-    "CONFIG_TCPSVD": 73,
-    "CONFIG_TIME": 11,
-    "CONFIG_TOYBOX": 15,
-    "CONFIG_TOYBOX_ANDROID_SCHEDPOLICY": 68,
-    "CONFIG_TOYBOX_CONTAINER": 25,
-    "CONFIG_TOYBOX_COPYFILERANGE": 83,
-    "CONFIG_TOYBOX_FIFREEZE": 81,
-    "CONFIG_TOYBOX_FLOAT": 74,
-    "CONFIG_TOYBOX_FORCE_NOMMU": 33,
-    "CONFIG_TOYBOX_FORK": 6,
-    "CONFIG_TOYBOX_GETRANDOM": 57,
-    "CONFIG_TOYBOX_HELP": 65,
-    "CONFIG_TOYBOX_HELP_DASHDASH": 69,
-    "CONFIG_TOYBOX_ICONV": 32,
-    "CONFIG_TOYBOX_LIBCRYPTO": 56,
-    "CONFIG_TOYBOX_LSM_NONE": 12,
-    "CONFIG_TOYBOX_ON_ANDROID": 72,
-    "CONFIG_TOYBOX_PRLIMIT": 29,
-    "CONFIG_TOYBOX_SELINUX": 16,
-    "CONFIG_TOYBOX_SHADOW": 78,
-    "CONFIG_TOYBOX_SMACK": 41,
-    "CONFIG_TOYBOX_UID_SYS": 67,
-    "CONFIG_TOYBOX_UID_USR": 92,
-    "CONFIG_TOYBOX_UTMPX": 23,
-    "CONFIG_ULIMIT": 80,
-    "CONFIG_UNSET": 53,
-    "CONFIG_UNSHARE": 85,
-    "CONFIG_UPTIME": 58,
-    "CONFIG_W": 21,
-    "CONFIG_WHO": 48
+    "CONFIG_KILL": 1,
+    "CONFIG_TOYBOX_NORECURSE": 2,
+    "CONFIG_LOGGER": 3,
+    "CONFIG_WHICH": 4,
+    "CONFIG_DHCP6": 5,
+    "CONFIG_CRC32": 6,
+    "CONFIG_LSATTR": 7,
+    "CONFIG_TOYBOX_FORCE_NOMMU": 8,
+    "CONFIG_UUDECODE": 9,
+    "CONFIG_UNSHARE": 10,
+    "CONFIG_USERADD": 11,
+    "CONFIG_OPENVT": 12,
+    "CONFIG_IONICE": 13,
+    "CONFIG_SWITCH_ROOT": 14,
+    "CONFIG_WATCH": 15,
+    "CONFIG_FACTOR": 16,
+    "CONFIG_TOYBOX_HELP": 17,
+    "CONFIG_IFCONFIG": 18,
+    "CONFIG_READELF": 19,
+    "CONFIG_GROUPS": 20,
+    "CONFIG_TOYBOX_ANDROID_SCHEDPOLICY": 21,
+    "CONFIG_MKDIR": 22,
+    "CONFIG_UUIDGEN": 23,
+    "CONFIG_CATV": 24,
+    "CONFIG_MODINFO": 25,
+    "CONFIG_MDEV_CONF": 26,
+    "CONFIG_MKNOD_Z": 27,
+    "CONFIG_MCOOKIE": 28,
+    "CONFIG_IPCS": 29,
+    "CONFIG_FREERAMDISK": 30,
+    "CONFIG_UNIX2DOS": 31,
+    "CONFIG_SEQ": 32,
+    "CONFIG_ASCII": 33,
+    "CONFIG_TOYBOX_FORK": 34,
+    "CONFIG_LSUSB": 35,
+    "CONFIG_PS": 36,
+    "CONFIG_SYNC": 37,
+    "CONFIG_JOBS": 38,
+    "CONFIG_GZIP": 39,
+    "CONFIG_CHRT": 40,
+    "CONFIG_NBD_CLIENT": 41,
+    "CONFIG_FTPGET": 42,
+    "CONFIG_RMMOD": 43,
+    "CONFIG_TAIL": 44,
+    "CONFIG_ARCH": 45,
+    "CONFIG_MORE": 46,
+    "CONFIG_I2CDETECT": 47,
+    "CONFIG_CMP": 48,
+    "CONFIG_GUNZIP": 49,
+    "CONFIG_UNAME": 50,
+    "CONFIG_TAC": 51,
+    "CONFIG_LOAD_POLICY": 52,
+    "CONFIG_FSFREEZE": 53,
+    "CONFIG_I2CGET": 54,
+    "CONFIG_MV": 55,
+    "CONFIG_PATCH": 56,
+    "CONFIG_PKILL": 57,
+    "CONFIG_DOS2UNIX": 58,
+    "CONFIG_SENDEVENT": 59,
+    "CONFIG_ACPI": 60,
+    "CONFIG_MKTEMP": 61,
+    "CONFIG_READLINK": 62,
+    "CONFIG_DF": 63,
+    "CONFIG_TOYBOX_HELP_DASHDASH": 64,
+    "CONFIG_TOYBOX_COPYFILERANGE": 65,
+    "CONFIG_BC": 66,
+    "CONFIG_BZCAT": 67,
+    "CONFIG_DIFF": 68,
+    "CONFIG_TRUNCATE": 69,
+    "CONFIG_YES": 70,
+    "CONFIG_DEMO_SCANKEY": 71,
+    "CONFIG_ARP": 72,
+    "CONFIG_ID_Z": 73,
+    "CONFIG_HOST": 74,
+    "CONFIG_FOLD": 75,
+    "CONFIG_SHA1SUM": 76,
+    "CONFIG_TOYBOX_SHADOW": 77,
+    "CONFIG_DEMO_UTF8TOWC": 78,
+    "CONFIG_USLEEP": 79,
+    "CONFIG_NICE": 80,
+    "CONFIG_RFKILL": 81,
+    "CONFIG_LSPCI_TEXT": 82,
+    "CONFIG_GETFATTR": 83,
+    "CONFIG_EXIT": 84,
+    "CONFIG_VCONFIG": 85,
+    "CONFIG_SETFATTR": 86,
+    "CONFIG_TRACEROUTE": 87,
+    "CONFIG_TEE": 88,
+    "CONFIG_TEST": 89,
+    "CONFIG_ID": 90,
+    "CONFIG_TOYBOX_SUID": 91,
+    "CONFIG_TFTP": 92,
+    "CONFIG_FDISK": 93,
+    "CONFIG_BUNZIP2": 94,
+    "CONFIG_MOUNT": 95,
+    "CONFIG_TOYBOX": 96,
+    "CONFIG_HOSTID": 97,
+    "CONFIG_EXPR": 98,
+    "CONFIG_BLKDISCARD": 99,
+    "CONFIG_CP": 100,
+    "CONFIG_MICROCOM": 101,
+    "CONFIG_PARTPROBE": 102,
+    "CONFIG_RUNCON": 103,
+    "CONFIG_SPLIT": 104,
+    "CONFIG_SED": 105,
+    "CONFIG_RESET": 106,
+    "CONFIG_WGET": 107,
+    "CONFIG_TOYBOX_SELINUX": 108,
+    "CONFIG_NOHUP": 109,
+    "CONFIG_IP": 110,
+    "CONFIG_TOYBOX_PRLIMIT": 111,
+    "CONFIG_EVAL": 112,
+    "CONFIG_LSPCI": 113,
+    "CONFIG_HEAD": 114,
+    "CONFIG_UMOUNT": 115,
+    "CONFIG_DIRNAME": 116,
+    "CONFIG_CLEAR": 117,
+    "CONFIG_PASTE": 118,
+    "CONFIG_CD": 119,
+    "CONFIG_TIMEOUT": 120,
+    "CONFIG_VI": 121,
+    "CONFIG_STRINGS": 122,
+    "CONFIG_SULOGIN": 123,
+    "CONFIG_CKSUM": 124,
+    "CONFIG_I2CSET": 125,
+    "CONFIG_KILLALL5": 126,
+    "CONFIG_SETSID": 127,
+    "CONFIG_GROUPADD": 128,
+    "CONFIG_FGREP": 129,
+    "CONFIG_MKFIFO": 130,
+    "CONFIG_RESTORECON": 131,
+    "CONFIG_NSENTER": 132,
+    "CONFIG_TOYBOX_FLOAT": 133,
+    "CONFIG_ENV": 134,
+    "CONFIG_STAT": 135,
+    "CONFIG_TELNET": 136,
+    "CONFIG_SHA384SUM": 137,
+    "CONFIG_UPTIME": 138,
+    "CONFIG_LS": 139,
+    "CONFIG_PRINTF": 140,
+    "CONFIG_LOGNAME": 141,
+    "CONFIG_BLKID": 142,
+    "CONFIG_PGREP": 143,
+    "CONFIG_SHA512SUM": 144,
+    "CONFIG_MKPASSWD": 145,
+    "CONFIG_MAN": 146,
+    "CONFIG_PWDX": 147,
+    "CONFIG_SHRED": 148,
+    "CONFIG_PASSWD": 149,
+    "CONFIG_CAL": 150,
+    "CONFIG_SHIFT": 151,
+    "CONFIG_INOTIFYD": 152,
+    "CONFIG_WATCHDOG": 153,
+    "CONFIG_CRONTAB": 154,
+    "CONFIG_TASKSET": 155,
+    "CONFIG_BRCTL": 156,
+    "CONFIG_LAST": 157,
+    "CONFIG_WC": 158,
+    "CONFIG_GETOPT": 159,
+    "CONFIG_MKE2FS_EXTENDED": 160,
+    "CONFIG_MKE2FS": 161,
+    "CONFIG_TOYBOX_FREE": 162,
+    "CONFIG_SWAPON": 163,
+    "CONFIG_CHMOD": 164,
+    "CONFIG_TFTPD": 165,
+    "CONFIG_REALPATH": 166,
+    "CONFIG_UNIQ": 167,
+    "CONFIG_TOYBOX_FIFREEZE": 168,
+    "CONFIG_SNTP": 169,
+    "CONFIG_WHO": 170,
+    "CONFIG_TOYBOX_GETRANDOM": 171,
+    "CONFIG_HWCLOCK": 172,
+    "CONFIG_DMESG": 173,
+    "CONFIG_GETCONF": 174,
+    "CONFIG_MKNOD": 175,
+    "CONFIG_MOUNTPOINT": 176,
+    "CONFIG_KILLALL": 177,
+    "CONFIG_SHA224SUM": 178,
+    "CONFIG_DHCPD": 179,
+    "CONFIG_SLEEP": 180,
+    "CONFIG_EXEC": 181,
+    "CONFIG_INSTALL": 182,
+    "CONFIG_W": 183,
+    "CONFIG_PWGEN": 184,
+    "CONFIG_BASE64": 185,
+    "CONFIG_FALLOCATE": 186,
+    "CONFIG_KLOGD": 187,
+    "CONFIG_INSMOD": 188,
+    "CONFIG_MKSWAP": 189,
+    "CONFIG_RENICE": 190,
+    "CONFIG_CHATTR": 191,
+    "CONFIG_NETSTAT": 192,
+    "CONFIG_OD": 193,
+    "CONFIG_FMT": 194,
+    "CONFIG_DEBUG_DHCP": 195,
+    "CONFIG_TOYBOX_DEBUG": 196,
+    "CONFIG_RTCWAKE": 197,
+    "CONFIG_TTY": 198,
+    "CONFIG_DU": 199,
+    "CONFIG_CROND": 200,
+    "CONFIG_PWD": 201,
+    "CONFIG_EGREP": 202,
+    "CONFIG_DEVMEM": 203,
+    "CONFIG_BOOTCHARTD": 204,
+    "CONFIG_COMM": 205,
+    "CONFIG_ONEIT": 206,
+    "CONFIG_UNLINK": 207,
+    "CONFIG_NETCAT": 208,
+    "CONFIG_PASSWD_SAD": 209,
+    "CONFIG_HEXEDIT": 210,
+    "CONFIG_SHA256SUM": 211,
+    "CONFIG_CHVT": 212,
+    "CONFIG_FLOCK": 213,
+    "CONFIG_XARGS": 214,
+    "CONFIG_FSTYPE": 215,
+    "CONFIG_LSMOD": 216,
+    "CONFIG_SHA3SUM": 217,
+    "CONFIG_MIX": 218,
+    "CONFIG_INIT": 219,
+    "CONFIG_DEALLOCVT": 220,
+    "CONFIG_BASENAME": 221,
+    "CONFIG_RM": 222,
+    "CONFIG_LN": 223,
+    "CONFIG_DEMO_MANY_OPTIONS": 224,
+    "CONFIG_ICONV": 225,
+    "CONFIG_FIND": 226,
+    "CONFIG_MKE2FS_JOURNAL": 227,
+    "CONFIG_MODPROBE": 228,
+    "CONFIG_CUT": 229,
+    "CONFIG_MKE2FS_LABEL": 230,
+    "CONFIG_XXD": 231,
+    "CONFIG_XZCAT": 232,
+    "CONFIG_HELLO": 233,
+    "CONFIG_KLOGD_SOURCE_RING_BUFFER": 234,
+    "CONFIG_COUNT": 235,
+    "CONFIG_SORT_FLOAT": 236,
+    "CONFIG_MD5SUM": 237,
+    "CONFIG_TOYBOX_UID_SYS": 238,
+    "CONFIG_FALSE": 239,
+    "CONFIG_TAR": 240,
+    "CONFIG_LOGIN": 241,
+    "CONFIG_MAKEDEVS": 242,
+    "CONFIG_PRINTENV": 243,
+    "CONFIG_TOYBOX_LIBCRYPTO": 244,
+    "CONFIG_PING": 245,
+    "CONFIG_MKDIR_Z": 246,
+    "CONFIG_CAT_V": 247,
+    "CONFIG_IOTOP": 248,
+    "CONFIG_UNSET": 249,
+    "CONFIG_TOYBOX_ON_ANDROID": 250,
+    "CONFIG_FSYNC": 251,
+    "CONFIG_DNSDOMAINNAME": 252,
+    "CONFIG_ECHO": 253,
+    "CONFIG_TELNETD": 254,
+    "CONFIG_TRUE": 255,
+    "CONFIG_CPIO": 256,
+    "CONFIG_MKFIFO_Z": 257,
+    "CONFIG_FSCK": 258,
+    "CONFIG_TOYBOX_UID_USR": 259,
+    "CONFIG_CHGRP": 260,
+    "CONFIG_MDEV": 261,
+    "CONFIG_TR": 262,
+    "CONFIG_DHCP": 263,
+    "CONFIG_GROUPDEL": 264,
+    "CONFIG_EXPAND": 265,
+    "CONFIG_CAT": 266,
+    "CONFIG_SWAPOFF": 267,
+    "CONFIG_HELP": 268,
+    "CONFIG_DD": 269,
+    "CONFIG_RMDIR": 270,
+    "CONFIG_GREP": 271,
+    "CONFIG_I2CDUMP": 272,
+    "CONFIG_BLOCKDEV": 273,
+    "CONFIG_UUENCODE": 274,
+    "CONFIG_TUNCTL": 275,
+    "CONFIG_TOYBOX_PEDANTIC_ARGS": 276,
+    "CONFIG_IORENICE": 277,
+    "CONFIG_LOGWRAPPER": 278,
+    "CONFIG_PIDOF": 279,
+    "CONFIG_CHOWN": 280,
+    "CONFIG_CHROOT": 281,
+    "CONFIG_VMSTAT": 282,
+    "CONFIG_SKELETON_ALIAS": 283,
+    "CONFIG_NL": 284,
+    "CONFIG_PIVOT_ROOT": 285,
+    "CONFIG_ZCAT": 286,
+    "CONFIG_PMAP": 287,
+    "CONFIG_SU": 288,
+    "CONFIG_DUMPLEASES": 289,
+    "CONFIG_HOSTNAME": 290,
+    "CONFIG_SYSCTL": 291,
+    "CONFIG_NPROC": 292,
+    "CONFIG_ROUTE": 293,
+    "CONFIG_LSOF": 294,
+    "CONFIG_USERDEL": 295,
+    "CONFIG_LOSETUP": 296,
+    "CONFIG_TOYBOX_UTMPX": 297,
+    "CONFIG_TOYBOX_LIBZ": 298,
+    "CONFIG_REV": 299,
+    "CONFIG_SH": 300,
+    "CONFIG_IPCRM": 301,
+    "CONFIG_LINK": 302,
+    "CONFIG_TOYBOX_ICONV": 303,
+    "CONFIG_ULIMIT": 304,
+    "CONFIG_DATE": 305,
+    "CONFIG_WHOAMI": 306,
+    "CONFIG_MKE2FS_GEN": 307,
+    "CONFIG_GETTY": 308,
+    "CONFIG_FTPPUT": 309,
+    "CONFIG_SETENFORCE": 310,
+    "CONFIG_TOP": 311,
+    "CONFIG_EJECT": 312,
+    "CONFIG_TOYBOX_LSM_NONE": 313,
+    "CONFIG_FILE": 314,
+    "CONFIG_DEMO_NUMBER": 315,
+    "CONFIG_CHCON": 316,
+    "CONFIG_SORT": 317,
+    "CONFIG_SKELETON": 318,
+    "CONFIG_TCPSVD": 319,
+    "CONFIG_TOUCH": 320,
+    "CONFIG_REBOOT": 321,
+    "CONFIG_TOYBOX_CONTAINER": 322,
+    "CONFIG_TIME": 323,
+    "CONFIG_STTY": 324,
+    "CONFIG_READAHEAD": 325,
+    "CONFIG_SYSLOGD": 326,
+    "CONFIG_TOYBOX_SMACK": 327,
+    "CONFIG_NETCAT_LISTEN": 328,
+    "CONFIG_GETENFORCE": 329,
+    "CONFIG_SOURCE": 330,
+    "CONFIG_FREE": 331,
+    "CONFIG_EXPORT": 332,
+    "CONFIG_LOG": 333,
+    "CONFIG_ARPING": 334
   },
   "cnf_clauses": [
     [
-      97
+      -211,
+      244
     ],
     [
-      -75,
-      97
+      -138,
+      297
     ],
     [
-      -2,
-      97
+      96
     ],
     [
-      -86,
-      97
+      111
     ],
     [
-      -8,
-      97
-    ],
-    [
-      -39,
-      97
-    ],
-    [
-      -62,
-      97
-    ],
-    [
-      -50,
-      97
-    ],
-    [
-      -31,
-      97
-    ],
-    [
-      -26,
-      97
-    ],
-    [
-      -28,
-      97
-    ],
-    [
-      -17,
-      97
-    ],
-    [
-      -4,
-      97
-    ],
-    [
-      -40,
-      97
-    ],
-    [
-      -91,
-      97
-    ],
-    [
-      -34,
-      97
-    ],
-    [
-      -42,
-      97
-    ],
-    [
-      -44,
-      97
-    ],
-    [
-      -96,
-      97
-    ],
-    [
-      -63,
-      97
-    ],
-    [
-      -70,
-      97
-    ],
-    [
-      -94,
-      97
-    ],
-    [
-      -59,
-      97
-    ],
-    [
-      -61,
-      97
-    ],
-    [
-      -76,
-      97
-    ],
-    [
-      -71,
-      97
-    ],
-    [
-      -35,
-      97
-    ],
-    [
-      -19,
-      97
-    ],
-    [
-      -9,
-      97
-    ],
-    [
-      -54,
-      97
-    ],
-    [
-      -1,
-      97
-    ],
-    [
-      -93,
-      97
-    ],
-    [
-      -95,
-      97
-    ],
-    [
-      -18,
-      97
-    ],
-    [
-      -79,
-      97
-    ],
-    [
-      -45,
-      97
-    ],
-    [
-      -64,
-      97
-    ],
-    [
-      -88,
-      97
-    ],
-    [
-      -66,
-      97
-    ],
-    [
-      -47,
-      97
-    ],
-    [
-      -36,
-      97
-    ],
-    [
-      -87,
-      97
-    ],
-    [
-      -51,
-      97
-    ],
-    [
-      -10,
-      97
-    ],
-    [
-      -84,
-      97
-    ],
-    [
-      -24,
-      97
-    ],
-    [
-      -13,
-      97
-    ],
-    [
-      -22,
-      97
-    ],
-    [
-      -77,
-      97
+      322
     ],
     [
       -82,
-      97
+      113
     ],
     [
-      -55,
-      97
+      108,
+      -316
     ],
     [
-      -52,
-      97
+      1,
+      -126
     ],
     [
-      -60,
-      97
+      108,
+      -131
     ],
     [
-      -5,
-      97
+      161,
+      -230
     ],
     [
-      -90,
-      97
+      -10,
+      322
     ],
     [
-      -89,
-      97
+      -151
     ],
     [
-      -20,
-      97
+      -181
     ],
     [
-      -38,
-      97
+      -103,
+      108
     ],
     [
-      -37,
-      97
+      -178,
+      244
     ],
     [
-      -43,
-      97
+      -225,
+      303
     ],
     [
-      -46,
-      97
+      208,
+      -328
     ],
     [
-      -14,
-      97
+      77,
+      -241
     ],
     [
-      -49,
-      97
-    ],
-    [
-      -30,
-      97
-    ],
-    [
-      -3,
-      97
-    ],
-    [
-      -7,
-      97
-    ],
-    [
-      -27,
-      97
+      -145,
+      -250
     ],
     [
       -73,
-      97
+      90
     ],
     [
-      -11,
-      97
+      -8,
+      -34
     ],
     [
-      -15,
-      97
+      -73,
+      -313
     ],
     [
-      -68,
-      97
+      73,
+      -90,
+      313
     ],
     [
-      -25,
-      97
+      -249
     ],
     [
-      -83,
-      97
+      -330
     ],
     [
-      -81,
-      97
+      34,
+      -41
     ],
     [
-      -74,
-      97
+      133,
+      -323
     ],
     [
-      -33,
-      97
+      -12,
+      34
     ],
     [
-      -6,
-      97
+      -133,
+      236
     ],
     [
-      -57,
-      97
-    ],
-    [
-      -65,
-      97
-    ],
-    [
-      -69,
-      97
+      -27,
+      -313
     ],
     [
       -32,
-      97
+      133
     ],
     [
-      -56,
-      97
+      -108,
+      -327
     ],
     [
-      -12,
-      97
+      161,
+      -227
     ],
     [
-      -72,
-      97
+      -144,
+      244
     ],
     [
-      -29,
-      97
+      17,
+      -268
     ],
     [
-      -16,
-      97
-    ],
-    [
-      -78,
-      97
-    ],
-    [
-      -41,
-      97
-    ],
-    [
-      -67,
-      97
-    ],
-    [
-      -92,
-      97
-    ],
-    [
-      -23,
-      97
-    ],
-    [
-      -80,
-      97
+      -108,
+      -313
     ],
     [
       -53,
-      97
+      168
     ],
     [
-      -85,
-      97
+      77,
+      -149
     ],
     [
-      -58,
-      97
+      168
     ],
     [
-      -21,
-      97
+      297
     ],
     [
-      -48,
-      97
+      250,
+      -333
     ],
     [
-      -43,
-      56
+      108,
+      313,
+      327
     ],
     [
-      -58,
-      23
+      -84
     ],
     [
-      15
+      259
     ],
     [
-      29
+      34,
+      -154
     ],
     [
-      25
+      179,
+      -195
     ],
     [
-      -93,
-      1
+      27,
+      -175,
+      313
     ],
     [
-      16,
-      -39
-    ],
-    [
-      61,
-      -76
-    ],
-    [
-      16,
-      -5
-    ],
-    [
-      64,
-      -36
-    ],
-    [
-      -85,
-      25
-    ],
-    [
-      -49
-    ],
-    [
-      -17
-    ],
-    [
-      -90,
-      16
-    ],
-    [
-      -37,
-      56
-    ],
-    [
-      -63,
-      32
-    ],
-    [
-      22,
-      -77
-    ],
-    [
-      78,
-      -54
-    ],
-    [
-      -24,
-      -72
-    ],
-    [
-      -94,
-      70
-    ],
-    [
-      -33,
-      -6
-    ],
-    [
-      -94,
-      -12
-    ],
-    [
-      94,
-      -70,
-      12
-    ],
-    [
-      -53
-    ],
-    [
-      -3
-    ],
-    [
-      6,
-      -13
-    ],
-    [
-      74,
-      -11
-    ],
-    [
-      -55,
-      6
-    ],
-    [
-      -74,
-      30
-    ],
-    [
-      -84,
-      -12
-    ],
-    [
-      -20,
-      74
-    ],
-    [
-      -16,
-      -41
-    ],
-    [
-      64,
-      -47
-    ],
-    [
-      -14,
-      56
-    ],
-    [
-      65,
-      -96
-    ],
-    [
-      -16,
-      -12
-    ],
-    [
-      -34,
-      81
-    ],
-    [
-      78,
-      -52
-    ],
-    [
-      81
-    ],
-    [
-      23
-    ],
-    [
-      72,
-      -9
-    ],
-    [
-      16,
-      12,
-      41
-    ],
-    [
-      -4
-    ],
-    [
-      92
-    ],
-    [
-      6,
-      -62
-    ],
-    [
-      31,
-      -50
-    ],
-    [
-      84,
-      -10,
-      12
-    ],
-    [
-      -59
-    ],
-    [
-      -86,
-      2
-    ],
-    [
-      65,
-      -69
-    ],
-    [
-      91,
-      -44
-    ],
-    [
-      6,
-      -73
-    ],
-    [
-      67
-    ],
-    [
-      29,
-      -80
-    ],
-    [
-      16,
       -38
     ],
     [
+      -247,
+      266
+    ],
+    [
+      17,
+      -64
+    ],
+    [
+      129,
+      -271
+    ],
+    [
+      34,
+      -319
+    ],
+    [
+      238
+    ],
+    [
+      111,
+      -304
+    ],
+    [
+      108,
+      -310
+    ],
+    [
+      -202,
+      271
+    ],
+    [
+      77
+    ],
+    [
+      -129,
+      271
+    ],
+    [
+      -246,
+      -313
+    ],
+    [
+      -65
+    ],
+    [
+      -21
+    ],
+    [
+      161,
+      -307
+    ],
+    [
+      -119
+    ],
+    [
+      -313,
+      -327
+    ],
+    [
+      303
+    ],
+    [
+      -332
+    ],
+    [
+      -59,
+      250
+    ],
+    [
+      -250
+    ],
+    [
+      149,
+      -209
+    ],
+    [
+      -257,
+      -313
+    ],
+    [
+      -27,
+      175
+    ],
+    [
+      77,
+      -288
+    ],
+    [
+      -137,
+      244
+    ],
+    [
+      -130,
+      257,
+      313
+    ],
+    [
+      -170,
+      297
+    ],
+    [
+      -183,
+      297
+    ],
+    [
+      22,
+      -246
+    ],
+    [
+      202,
+      -271
+    ],
+    [
+      -132,
+      322
+    ],
+    [
+      77,
+      -123
+    ],
+    [
+      -112
+    ],
+    [
+      187,
+      -234
+    ],
+    [
+      8,
+      34
+    ],
+    [
+      34,
+      -204
+    ],
+    [
+      -22,
+      246,
+      313
+    ],
+    [
+      171
+    ],
+    [
       -26,
-      44
+      261
     ],
     [
-      78
+      -160,
+      161
     ],
     [
-      -91,
-      44
+      130,
+      -257
     ],
     [
-      -45,
-      -12
+      108,
+      -329
     ],
     [
-      -83
+      -52,
+      108
     ],
     [
-      -68
-    ],
-    [
-      64,
-      -66
-    ],
-    [
-      -8
-    ],
-    [
-      -12,
-      -41
-    ],
-    [
-      32
-    ],
-    [
-      -40
-    ],
-    [
-      -89,
-      72
-    ],
-    [
-      -72
-    ],
-    [
-      52,
-      -60
-    ],
-    [
-      -51,
-      -12
-    ],
-    [
-      -84,
-      10
-    ],
-    [
-      78,
-      -7
-    ],
-    [
-      -46,
-      56
-    ],
-    [
-      -87,
-      51,
-      12
-    ],
-    [
-      -48,
-      23
-    ],
-    [
-      -21,
-      23
-    ],
-    [
-      79,
-      -45
-    ],
-    [
-      26,
-      -44
-    ],
-    [
-      -82,
-      25
-    ],
-    [
-      78,
-      -27
-    ],
-    [
-      -28
-    ],
-    [
-      71,
-      -35
-    ],
-    [
-      33,
-      6
-    ],
-    [
-      6,
-      -75
-    ],
-    [
-      -79,
-      45,
-      12
-    ],
-    [
-      57
-    ],
-    [
-      -18,
-      95
-    ],
-    [
-      -88,
-      64
-    ],
-    [
-      87,
-      -51
-    ],
-    [
-      16,
-      -42
-    ],
-    [
-      -19,
-      16
-    ],
-    [
-      74,
-      -30
+      133,
+      -236
     ]
-  ],
-  "structure": {
-    "tree": {
-      "type": "AND",
-      "feature_literal": {
-        "name": "__Root__",
-        "negated": false
-      },
-      "mandatory": true,
-      "elements": [
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_BOOTCHARTD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CAT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CAT_V",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CHCON",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CRONTAB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEBUG_DHCP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DHCPD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_EGREP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_EVAL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_EXEC",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_EXIT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_EXPORT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FGREP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FSFREEZE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_GETENFORCE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_GREP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HELP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_ICONV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_ID",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_ID_Z",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_JOBS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_KILL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_KILLALL5",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_KLOGD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_KLOGD_SOURCE_RING_BUFFER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LOAD_POLICY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LOG",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LOGIN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LSPCI",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LSPCI_TEXT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MDEV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MDEV_CONF",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKDIR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKDIR_Z",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKE2FS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKE2FS_EXTENDED",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKE2FS_GEN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKE2FS_JOURNAL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKE2FS_LABEL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKFIFO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKFIFO_Z",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKNOD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKNOD_Z",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MKPASSWD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_NBD_CLIENT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_NETCAT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_NETCAT_LISTEN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_NSENTER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_OPENVT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PASSWD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PASSWD_SAD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_RESTORECON",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_RUNCON",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SENDEVENT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SEQ",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SETENFORCE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SHA224SUM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SHA256SUM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SHA384SUM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SHA512SUM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SHIFT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SORT_FLOAT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SOURCE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SU",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SULOGIN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TCPSVD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TIME",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_ANDROID_SCHEDPOLICY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_CONTAINER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_COPYFILERANGE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_FIFREEZE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_FLOAT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_FORCE_NOMMU",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_GETRANDOM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_HELP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_HELP_DASHDASH",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_ICONV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_LIBCRYPTO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_ON_ANDROID",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_PRLIMIT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_SHADOW",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_SMACK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_UID_SYS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_UID_USR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TOYBOX_UTMPX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_ULIMIT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_UNSET",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_UNSHARE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_UPTIME",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_W",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_WHO",
-            "negated": false
-          },
-          "mandatory": false
-        }
-      ]
-    },
-    "rules": [
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SHA256SUM",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LIBCRYPTO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_UPTIME",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_UTMPX",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_PRLIMIT",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_CONTAINER",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LSPCI_TEXT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LSPCI",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CHCON",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_KILL",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_KILLALL5",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESTORECON",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS_LABEL",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_UNSHARE",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_CONTAINER",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_SHIFT",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_EXEC",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_RUNCON",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SHA224SUM",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LIBCRYPTO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_ICONV",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_ICONV",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_NETCAT",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_NETCAT_LISTEN",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SHADOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOGIN",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKPASSWD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_ON_ANDROID",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_ID_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_ID",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORCE_NOMMU",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_ID_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_ID_Z",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_ID",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_UNSET",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_SOURCE",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_NBD_CLIENT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FLOAT",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TIME",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_OPENVT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FLOAT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_SORT_FLOAT",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKNOD_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SEQ",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FLOAT",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SMACK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS_JOURNAL",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SHA512SUM",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LIBCRYPTO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_HELP",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HELP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FSFREEZE",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FIFREEZE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SHADOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PASSWD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_FIFREEZE",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_UTMPX",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_ON_ANDROID",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SMACK",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_EXIT",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_UID_USR",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CRONTAB",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DHCPD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEBUG_DHCP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKNOD_Z",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKNOD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_JOBS",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CAT_V",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CAT",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_HELP",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_HELP_DASHDASH",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FGREP",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_GREP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TCPSVD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_UID_SYS",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_PRLIMIT",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_ULIMIT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_SETENFORCE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_EGREP",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_GREP",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_SHADOW",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FGREP",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_GREP",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKDIR_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_COPYFILERANGE",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_ANDROID_SCHEDPOLICY",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS_GEN",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_CD",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SMACK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_ICONV",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_EXPORT",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SENDEVENT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_ON_ANDROID",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_ON_ANDROID",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PASSWD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PASSWD_SAD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKFIFO_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKNOD_Z",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKNOD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SHADOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_SU",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SHA384SUM",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LIBCRYPTO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKFIFO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKFIFO_Z",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_WHO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_UTMPX",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_W",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_UTMPX",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKDIR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKDIR_Z",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_EGREP",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_GREP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_NSENTER",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_CONTAINER",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SHADOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_SULOGIN",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_EVAL",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_KLOGD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_KLOGD_SOURCE_RING_BUFFER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORCE_NOMMU",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FORK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_BOOTCHARTD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKDIR",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKDIR_Z",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_LSM_NONE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_TOYBOX_GETRANDOM",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MDEV_CONF",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MDEV",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS_EXTENDED",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKE2FS",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKFIFO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MKFIFO_Z",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_GETENFORCE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOAD_POLICY",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_SELINUX",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TOYBOX_FLOAT",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_SORT_FLOAT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      }
-    ]
-  }
+  ]
 }

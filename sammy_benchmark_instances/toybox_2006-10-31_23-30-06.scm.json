@@ -1,496 +1,79 @@
 {
   "type": "software configuration model",
-  "name": "/Users/me/sammy/sammy_benchmark_instances/toybox_2006-10-31_23-30-06.xml",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/toybox_2006-10-31_23-30-06.dimacs",
   "meta": {},
   "num_variables": 16,
-  "num_concrete_features": 15,
+  "num_concrete_features": 16,
   "labels": {
-    "CONFIG_CONFIG_DF": 15,
-    "CONFIG_CONFIG_DF_PEDANTIC": 14,
-    "CONFIG_CONFIG_TOYSH": 8,
-    "CONFIG_CONFIG_TOYSH_ARRAYS": 6,
-    "CONFIG_CONFIG_TOYSH_BUILTINS": 12,
-    "CONFIG_CONFIG_TOYSH_ENVVARS": 5,
-    "CONFIG_CONFIG_TOYSH_FLOWCTL": 3,
-    "CONFIG_CONFIG_TOYSH_JOBCTL": 13,
-    "CONFIG_CONFIG_TOYSH_LOCALS": 4,
-    "CONFIG_CONFIG_TOYSH_PIPES": 2,
-    "CONFIG_CONFIG_TOYSH_PROCARGS": 9,
-    "CONFIG_CONFIG_TOYSH_PROFILE": 7,
-    "CONFIG_CONFIG_TOYSH_QUOTES": 11,
-    "CONFIG_CONFIG_TOYSH_TTY": 10,
-    "CONFIG_CONFIG_TOYSH_WILDCARDS": 1
+    "CONFIG_CONFIG_TOYSH_TTY": 1,
+    "CONFIG_CONFIG_TOYSH_ENVVARS": 2,
+    "CONFIG_CONFIG_TOYSH_WILDCARDS": 3,
+    "CONFIG_CONFIG_TOYSH_FLOWCTL": 4,
+    "CONFIG_CONFIG_TOYSH_JOBCTL": 5,
+    "CONFIG_CONFIG_TOYS_FREE": 6,
+    "CONFIG_CONFIG_TOYSH_ARRAYS": 7,
+    "CONFIG_CONFIG_TOYSH_PIPES": 8,
+    "CONFIG_CONFIG_TOYSH_BUILTINS": 9,
+    "CONFIG_CONFIG_TOYSH_PROCARGS": 10,
+    "CONFIG_CONFIG_DF": 11,
+    "CONFIG_CONFIG_TOYSH_QUOTES": 12,
+    "CONFIG_CONFIG_TOYSH_PROFILE": 13,
+    "CONFIG_CONFIG_TOYSH": 14,
+    "CONFIG_CONFIG_DF_PEDANTIC": 15,
+    "CONFIG_CONFIG_TOYSH_LOCALS": 16
   },
   "cnf_clauses": [
     [
-      16
+      11,
+      -15
     ],
     [
-      -15,
-      16
+      1,
+      -13
     ],
     [
-      -14,
-      16
-    ],
-    [
-      -8,
-      16
-    ],
-    [
-      -6,
-      16
-    ],
-    [
-      -12,
-      16
-    ],
-    [
-      -5,
-      16
-    ],
-    [
-      -3,
-      16
-    ],
-    [
-      -13,
-      16
-    ],
-    [
-      -4,
-      16
-    ],
-    [
-      -2,
-      16
+      2,
+      -16
     ],
     [
       -9,
-      16
+      14
+    ],
+    [
+      1,
+      -5
     ],
     [
       -7,
       16
     ],
     [
-      -11,
-      16
-    ],
-    [
-      -10,
-      16
+      -8,
+      14
     ],
     [
       -1,
-      16
-    ],
-    [
-      15,
-      -14
-    ],
-    [
-      10,
-      -7
-    ],
-    [
-      5,
-      -4
-    ],
-    [
-      -12,
-      8
-    ],
-    [
-      10,
-      -13
-    ],
-    [
-      -6,
-      4
+      14
     ],
     [
       -2,
-      8
-    ],
-    [
-      -10,
-      8
-    ],
-    [
-      -5,
-      11
-    ],
-    [
-      -1,
-      11
-    ],
-    [
-      -11,
-      8
-    ],
-    [
-      -9,
-      11
+      12
     ],
     [
       -3,
-      8
+      12
+    ],
+    [
+      -12,
+      14
+    ],
+    [
+      -10,
+      12
+    ],
+    [
+      -4,
+      14
     ]
-  ],
-  "structure": {
-    "tree": {
-      "type": "AND",
-      "feature_literal": {
-        "name": "__Root__",
-        "negated": false
-      },
-      "mandatory": true,
-      "elements": [
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_DF",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_DF_PEDANTIC",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_ARRAYS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_BUILTINS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_ENVVARS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_FLOWCTL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_JOBCTL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_LOCALS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_PIPES",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_PROCARGS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_PROFILE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_QUOTES",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_TTY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CONFIG_TOYSH_WILDCARDS",
-            "negated": false
-          },
-          "mandatory": false
-        }
-      ]
-    },
-    "rules": [
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_DF",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_DF_PEDANTIC",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_TTY",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_PROFILE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_ENVVARS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_LOCALS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_BUILTINS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_TTY",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_JOBCTL",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_ARRAYS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_LOCALS",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_PIPES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_TTY",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_ENVVARS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_QUOTES",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_WILDCARDS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_QUOTES",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_QUOTES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_PROCARGS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_QUOTES",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH_FLOWCTL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_CONFIG_TOYSH",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      }
-    ]
-  }
+  ]
 }

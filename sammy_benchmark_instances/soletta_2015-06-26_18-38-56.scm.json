@@ -1,5563 +1,935 @@
 {
   "type": "software configuration model",
-  "name": "/Users/me/sammy/sammy_benchmark_instances/soletta_2015-06-26_18-38-56.xml",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/soletta_2015-06-26_18-38-56.dimacs",
   "meta": {},
-  "num_variables": 114,
-  "num_concrete_features": 113,
+  "num_variables": 129,
+  "num_concrete_features": 129,
   "labels": {
-    "CONFIG_COAP": 54,
-    "CONFIG_CORE": 40,
-    "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL": 2,
+    "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL": 1,
+    "CONFIG_HAVE_CHECK": 2,
+    "CONFIG_LINUX_MICRO_BLUETOOTH": 3,
+    "CONFIG_FLOW_NODE_TYPE_CONVERTER": 4,
+    "CONFIG_PLATFORM_LINUX_COMMON": 5,
+    "CONFIG_KDBUS": 6,
+    "CONFIG_HAVE_RIOTOS": 7,
+    "CONFIG_FLOW_NODE_TYPE_UDEV": 8,
+    "CONFIG_HAVE_STRINGS_H": 9,
+    "CONFIG_HAVE_GTK": 10,
+    "CONFIG_HAVE_DLFCN_H": 11,
+    "CONFIG_MAINLOOP_RIOTOS": 12,
+    "CONFIG_HAVE_PPOLL": 13,
+    "CONFIG_HAVE_MEMORY_H": 14,
+    "CONFIG_FLOW_NODE_TYPE_APP": 15,
+    "CONFIG_HAVE_STDLIB_H": 16,
+    "CONFIG_FLOW_NODE_TYPE_FLOAT": 17,
+    "CONFIG_FLOW_NODE_TYPE_NETWORK": 18,
+    "CONFIG_LINUX_MICRO_HOSTNAME": 19,
+    "CONFIG_FLOW_NODE_TYPE_KEYBOARD": 20,
+    "CONFIG_SOCKET_LINUX": 21,
+    "CONFIG_LINUX_MICRO_FSTAB": 22,
+    "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER": 23,
+    "CONFIG_TEST_ARENA": 24,
+    "CONFIG_TEST_BUFFER": 25,
+    "CONFIG_HAVE_ISATTY": 26,
+    "CONFIG_FLOW_NODE_TYPE_TEST": 27,
+    "CONFIG_USE_GLIB": 28,
+    "CONFIG_TEST_MAINLOOP_THREADS_SOL_RUN": 29,
+    "CONFIG_PLATFORM_RIOTOS": 30,
+    "CONFIG_HAVE_INTTYPES_H": 31,
+    "CONFIG_MAINLOOP_POSIX": 32,
+    "CONFIG_TEST_MAINLOOP_THREADS": 33,
+    "CONFIG_FLOW_NODE_TYPE_GTK": 34,
+    "CONFIG_LINUX_MICRO_LOCALE": 35,
+    "CONFIG_LINUX_MICRO": 36,
+    "CONFIG_CORE": 37,
+    "CONFIG_PREFIX": 38,
+    "CONFIG_INSPECTOR": 39,
+    "CONFIG_HAVE_UNISTD_H": 40,
+    "CONFIG_HAVE_LINUX_RTNETLINK_H": 41,
+    "CONFIG_TEST_FLOW_PARSER": 42,
+    "CONFIG_FLOW_NODE_TYPE_FS": 43,
+    "CONFIG_HAVE_LINUX_NETLINK_H": 44,
+    "CONFIG_FLOW_NODE_TYPE_GPIO": 45,
+    "CONFIG_FLOW": 46,
+    "CONFIG_MODULES": 47,
+    "CONFIG_LINUX_MICRO_NETWORK_UP": 48,
+    "CONFIG_FLOW_NODE_TYPE_CONSTANT": 49,
+    "CONFIG_USE_SYSTEMD": 50,
+    "CONFIG_DEFAULT_LOG_LEVEL_ERROR": 51,
+    "CONFIG_FLOW_NODE_TYPE_RANDOM": 52,
+    "CONFIG_FLOW_NODE_TYPE_STRING": 53,
+    "CONFIG_HAVE_SYSTEMD": 54,
+    "CONFIG_FLOW_NODE_TYPE_AIO": 55,
+    "CONFIG_FLOW_NODE_TYPE_TIMER": 56,
+    "CONFIG_TEST_MAINLOOP_LINUX": 57,
+    "CONFIG_FLOW_NODE_TYPE_CALAMARI": 58,
+    "CONFIG_PTHREAD": 59,
+    "CONFIG_FLOW_NODE_TYPE_OIC": 60,
+    "CONFIG_INTERNAL_SHARED": 61,
+    "CONFIG_ENABLE_DYNAMIC_MODULES": 62,
+    "CONFIG_HAVE_LINUX_WATCHDOG_H": 63,
+    "CONFIG_FLOW_NODE_TYPE_PLATFORM": 64,
+    "CONFIG_HAVE_PTHREAD": 65,
+    "CONFIG_FLOW_NODE_TYPE_WALLCLOCK": 66,
+    "CONFIG_FLOW_NODE_TYPE_HUB": 67,
+    "CONFIG_FLOW_NODE_TYPE_SERVO_MOTOR": 68,
+    "CONFIG_DEFAULT_LOG_LEVEL_WARNING": 69,
+    "CONFIG_HAVE_PTHREAD_H": 70,
+    "CONFIG_FLOW_NODE_TYPES": 71,
+    "CONFIG_HAVE_SYS_TYPES_H": 72,
+    "CONFIG_USE_UDEV": 73,
+    "CONFIG_TEST_FLOW": 74,
+    "CONFIG_TEST_FBP": 75,
+    "CONFIG_PLATFORM_DUMMY": 76,
+    "CONFIG_TEST_VECTOR": 77,
+    "CONFIG_HAVE_UDEV": 78,
+    "CONFIG_FLOW_NODE_TYPE_PIEZO_SPEAKER": 79,
+    "CONFIG_TEST_STR_SPLIT": 80,
+    "CONFIG_FBP_TO_DOT": 81,
+    "CONFIG_TEST_STR_SLICE": 82,
+    "CONFIG_HAVE_DECL_STRNDUPA": 83,
+    "CONFIG_MAINLOOP_GLIB": 84,
+    "CONFIG_RESOLVER_CONFFILE": 85,
+    "CONFIG_FLOW_NODE_TYPE_FILTER_REPEATED": 86,
+    "CONFIG_LINUX_MICRO_SYSCTL": 87,
+    "CONFIG_HAVE_ACCEPT4": 88,
+    "CONFIG_FLOW_NODE_TYPE_EVDEV": 89,
+    "CONFIG_FBP_RUNNER": 90,
+    "CONFIG_DEFAULT_LOG_LEVEL_INFO": 91,
+    "CONFIG_TEST_MAINLOOP": 92,
+    "CONFIG_FLOW_NODE_TYPE_PROCESS": 93,
+    "CONFIG_TEST_MONITORS": 94,
+    "CONFIG_FLOW_NODE_TYPE_TRIGONOMETRY": 95,
+    "CONFIG_COAP": 96,
+    "CONFIG_LINUX_MICRO_WATCHDOG": 97,
+    "CONFIG_FLOW_NODE_TYPE_CONSOLE": 98,
+    "CONFIG_LINUX_MICRO_RC_D": 99,
+    "CONFIG_HAVE_GLIB": 100,
+    "CONFIG_TEST_STR_TABLE": 101,
+    "CONFIG_USE_CHECK": 102,
+    "CONFIG_HAVE_STRING_H": 103,
+    "CONFIG_FLOW_NODE_TYPE_FILE": 104,
+    "CONFIG_TEST_COAP": 105,
+    "CONFIG_FLOW_NODE_TYPE_UNIX_SOCKET": 106,
+    "CONFIG_HAVE_DECL_IFLA_INET6_ADDR_GEN_MODE": 107,
+    "CONFIG_FLOW_NODE_TYPE_COLOR": 108,
     "CONFIG_DEFAULT_LOG_LEVEL_DEBUG": 109,
-    "CONFIG_DEFAULT_LOG_LEVEL_ERROR": 63,
-    "CONFIG_DEFAULT_LOG_LEVEL_INFO": 50,
-    "CONFIG_DEFAULT_LOG_LEVEL_WARNING": 59,
-    "CONFIG_ENABLE_DYNAMIC_MODULES": 20,
-    "CONFIG_FBP_GENERATOR": 68,
-    "CONFIG_FBP_RUNNER": 95,
-    "CONFIG_FBP_TO_DOT": 78,
-    "CONFIG_FLOW": 60,
-    "CONFIG_FLOW_NODE_TYPES": 70,
-    "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER": 111,
-    "CONFIG_FLOW_NODE_TYPE_AIO": 75,
-    "CONFIG_FLOW_NODE_TYPE_APP": 30,
-    "CONFIG_FLOW_NODE_TYPE_BOOLEAN": 79,
-    "CONFIG_FLOW_NODE_TYPE_BYTE": 94,
-    "CONFIG_FLOW_NODE_TYPE_CALAMARI": 76,
-    "CONFIG_FLOW_NODE_TYPE_COLOR": 58,
-    "CONFIG_FLOW_NODE_TYPE_CONSOLE": 65,
-    "CONFIG_FLOW_NODE_TYPE_CONSTANT": 25,
-    "CONFIG_FLOW_NODE_TYPE_CONVERTER": 39,
-    "CONFIG_FLOW_NODE_TYPE_EVDEV": 69,
-    "CONFIG_FLOW_NODE_TYPE_FILE": 89,
-    "CONFIG_FLOW_NODE_TYPE_FILTER_REPEATED": 107,
-    "CONFIG_FLOW_NODE_TYPE_FLOAT": 48,
-    "CONFIG_FLOW_NODE_TYPE_FS": 101,
-    "CONFIG_FLOW_NODE_TYPE_GPIO": 42,
-    "CONFIG_FLOW_NODE_TYPE_GROVE": 86,
-    "CONFIG_FLOW_NODE_TYPE_GTK": 88,
-    "CONFIG_FLOW_NODE_TYPE_GYROSCOPE": 52,
-    "CONFIG_FLOW_NODE_TYPE_HUB": 43,
-    "CONFIG_FLOW_NODE_TYPE_INT": 106,
-    "CONFIG_FLOW_NODE_TYPE_KEYBOARD": 16,
-    "CONFIG_FLOW_NODE_TYPE_NETWORK": 5,
-    "CONFIG_FLOW_NODE_TYPE_OIC": 74,
-    "CONFIG_FLOW_NODE_TYPE_PIEZO_SPEAKER": 31,
-    "CONFIG_FLOW_NODE_TYPE_PLATFORM": 91,
-    "CONFIG_FLOW_NODE_TYPE_PROCESS": 85,
-    "CONFIG_FLOW_NODE_TYPE_PWM": 87,
-    "CONFIG_FLOW_NODE_TYPE_RANDOM": 18,
-    "CONFIG_FLOW_NODE_TYPE_SERVO_MOTOR": 44,
-    "CONFIG_FLOW_NODE_TYPE_STRING": 12,
-    "CONFIG_FLOW_NODE_TYPE_TEST": 11,
-    "CONFIG_FLOW_NODE_TYPE_TIMER": 34,
-    "CONFIG_FLOW_NODE_TYPE_TRIGONOMETRY": 83,
-    "CONFIG_FLOW_NODE_TYPE_UDEV": 32,
-    "CONFIG_FLOW_NODE_TYPE_UNIX_SOCKET": 35,
-    "CONFIG_FLOW_NODE_TYPE_WALLCLOCK": 33,
-    "CONFIG_HAVE_ACCEPT4": 56,
-    "CONFIG_HAVE_CHECK": 113,
-    "CONFIG_HAVE_DECL_IFLA_INET6_ADDR_GEN_MODE": 22,
-    "CONFIG_HAVE_DECL_STRNDUPA": 14,
-    "CONFIG_HAVE_DLFCN_H": 10,
-    "CONFIG_HAVE_GLIB": 62,
-    "CONFIG_HAVE_GTK": 23,
-    "CONFIG_HAVE_INTTYPES_H": 27,
-    "CONFIG_HAVE_ISATTY": 28,
-    "CONFIG_HAVE_KDBUS": 53,
-    "CONFIG_HAVE_LINUX_NETLINK_H": 66,
-    "CONFIG_HAVE_LINUX_RTNETLINK_H": 9,
-    "CONFIG_HAVE_LINUX_WATCHDOG_H": 17,
-    "CONFIG_HAVE_MEMORY_H": 51,
-    "CONFIG_HAVE_PPOLL": 77,
-    "CONFIG_HAVE_PTHREAD": 73,
-    "CONFIG_HAVE_PTHREAD_H": 19,
-    "CONFIG_HAVE_RIOTOS": 55,
-    "CONFIG_HAVE_STDINT_H": 67,
-    "CONFIG_HAVE_STDLIB_H": 105,
-    "CONFIG_HAVE_STRINGS_H": 97,
-    "CONFIG_HAVE_STRING_H": 61,
-    "CONFIG_HAVE_SYSTEMD": 84,
-    "CONFIG_HAVE_SYS_STAT_H": 47,
-    "CONFIG_HAVE_SYS_TYPES_H": 93,
-    "CONFIG_HAVE_UDEV": 8,
-    "CONFIG_HAVE_UNISTD_H": 110,
-    "CONFIG_INSPECTOR": 4,
-    "CONFIG_INTERNAL_SHARED": 21,
-    "CONFIG_KDBUS": 1,
-    "CONFIG_LINUX_MICRO": 108,
-    "CONFIG_LINUX_MICRO_BLUETOOTH": 104,
-    "CONFIG_LINUX_MICRO_CONSOLE": 24,
-    "CONFIG_LINUX_MICRO_DBUS": 80,
-    "CONFIG_LINUX_MICRO_FSTAB": 98,
-    "CONFIG_LINUX_MICRO_HOSTNAME": 100,
-    "CONFIG_LINUX_MICRO_LOCALE": 99,
-    "CONFIG_LINUX_MICRO_NETWORK_UP": 96,
-    "CONFIG_LINUX_MICRO_RC_D": 26,
-    "CONFIG_LINUX_MICRO_SYSCTL": 49,
-    "CONFIG_LINUX_MICRO_WATCHDOG": 29,
-    "CONFIG_LOG": 45,
-    "CONFIG_MAINLOOP_GLIB": 38,
-    "CONFIG_MAINLOOP_POSIX": 46,
-    "CONFIG_MAINLOOP_RIOTOS": 41,
-    "CONFIG_MODULES": 37,
-    "CONFIG_PLATFORM_DUMMY": 15,
-    "CONFIG_PLATFORM_LINUX_COMMON": 112,
-    "CONFIG_PLATFORM_LINUX_MICRO": 13,
-    "CONFIG_PLATFORM_RIOTOS": 72,
-    "CONFIG_PLATFORM_SYSTEMD": 102,
-    "CONFIG_PREFIX": 81,
-    "CONFIG_PTHREAD": 6,
-    "CONFIG_RESOLVER_CONFFILE": 92,
-    "CONFIG_SOCKET_LINUX": 7,
-    "CONFIG_TEST_COAP": 64,
-    "CONFIG_TEST_MAINLOOP_THREADS": 71,
-    "CONFIG_TEST_MAINLOOP_THREADS_SOL_RUN": 3,
-    "CONFIG_USE_CHECK": 57,
-    "CONFIG_USE_GLIB": 103,
-    "CONFIG_USE_GTK": 82,
-    "CONFIG_USE_SYSTEMD": 36,
-    "CONFIG_USE_UDEV": 90
+    "CONFIG_LINUX_MICRO_DBUS": 110,
+    "CONFIG_HAVE_STDINT_H": 111,
+    "CONFIG_FLOW_RESOLVER": 112,
+    "CONFIG_TEST_FLOW_BUILDER": 113,
+    "CONFIG_TEST_FBP_SCANNER": 114,
+    "CONFIG_FLOW_NODE_TYPE_BYTE": 115,
+    "CONFIG_FLOW_NODE_TYPE_INT": 116,
+    "CONFIG_HAVE_KDBUS": 117,
+    "CONFIG_HAVE_SYS_STAT_H": 118,
+    "CONFIG_FLOW_NODE_TYPE_BOOLEAN": 119,
+    "CONFIG_LINUX_MICRO_CONSOLE": 120,
+    "CONFIG_FLOW_NODE_TYPE_GYROSCOPE": 121,
+    "CONFIG_PIN_MUX_INTEL_GALILEO_REV_G": 122,
+    "CONFIG_USE_GTK": 123,
+    "CONFIG_FLOW_NODE_TYPE_GROVE": 124,
+    "CONFIG_FBP_GENERATOR": 125,
+    "CONFIG_PLATFORM_LINUX_MICRO": 126,
+    "CONFIG_FLOW_NODE_TYPE_PWM": 127,
+    "CONFIG_LOG": 128,
+    "CONFIG_PLATFORM_SYSTEMD": 129
   },
   "cnf_clauses": [
     [
-      114
+      46,
+      -49
     ],
     [
-      -54,
-      114
-    ],
-    [
-      -40,
-      114
-    ],
-    [
-      -2,
-      114
-    ],
-    [
-      -109,
-      114
-    ],
-    [
-      -63,
-      114
-    ],
-    [
-      -50,
-      114
-    ],
-    [
-      -59,
-      114
-    ],
-    [
-      -20,
-      114
-    ],
-    [
-      -68,
-      114
-    ],
-    [
-      -95,
-      114
-    ],
-    [
-      -78,
-      114
-    ],
-    [
-      -60,
-      114
-    ],
-    [
-      -70,
-      114
-    ],
-    [
-      -111,
-      114
-    ],
-    [
-      -75,
-      114
-    ],
-    [
-      -30,
-      114
-    ],
-    [
-      -79,
-      114
-    ],
-    [
-      -94,
-      114
-    ],
-    [
-      -76,
-      114
-    ],
-    [
-      -58,
-      114
-    ],
-    [
-      -65,
-      114
-    ],
-    [
-      -25,
-      114
-    ],
-    [
-      -39,
-      114
-    ],
-    [
-      -69,
-      114
-    ],
-    [
-      -89,
-      114
-    ],
-    [
-      -107,
-      114
-    ],
-    [
-      -48,
-      114
-    ],
-    [
-      -101,
-      114
-    ],
-    [
-      -42,
-      114
-    ],
-    [
-      -86,
-      114
-    ],
-    [
-      -88,
-      114
-    ],
-    [
-      -52,
-      114
-    ],
-    [
-      -43,
-      114
-    ],
-    [
-      -106,
-      114
-    ],
-    [
-      -16,
-      114
-    ],
-    [
-      -5,
-      114
-    ],
-    [
-      -74,
-      114
-    ],
-    [
-      -31,
-      114
-    ],
-    [
-      -91,
-      114
-    ],
-    [
-      -85,
-      114
-    ],
-    [
-      -87,
-      114
-    ],
-    [
-      -18,
-      114
-    ],
-    [
-      -44,
-      114
+      46,
+      -64
     ],
     [
       -12,
-      114
+      30
     ],
     [
-      -11,
-      114
+      111
     ],
     [
-      -34,
-      114
-    ],
-    [
-      -83,
-      114
-    ],
-    [
-      -32,
-      114
-    ],
-    [
-      -35,
-      114
-    ],
-    [
-      -33,
-      114
-    ],
-    [
-      -56,
-      114
-    ],
-    [
-      -113,
-      114
-    ],
-    [
-      -22,
-      114
-    ],
-    [
-      -14,
-      114
-    ],
-    [
-      -10,
-      114
-    ],
-    [
-      -62,
-      114
-    ],
-    [
-      -23,
-      114
-    ],
-    [
-      -27,
-      114
-    ],
-    [
-      -28,
-      114
-    ],
-    [
-      -53,
-      114
-    ],
-    [
-      -66,
-      114
-    ],
-    [
-      -9,
-      114
-    ],
-    [
-      -17,
-      114
-    ],
-    [
-      -51,
-      114
-    ],
-    [
-      -77,
-      114
-    ],
-    [
-      -73,
-      114
-    ],
-    [
-      -19,
-      114
-    ],
-    [
-      -55,
-      114
-    ],
-    [
-      -67,
-      114
-    ],
-    [
-      -105,
-      114
-    ],
-    [
-      -97,
-      114
-    ],
-    [
-      -61,
-      114
-    ],
-    [
-      -84,
-      114
-    ],
-    [
-      -47,
-      114
-    ],
-    [
-      -93,
-      114
-    ],
-    [
-      -8,
-      114
-    ],
-    [
-      -110,
-      114
-    ],
-    [
-      -4,
-      114
-    ],
-    [
-      -21,
-      114
+      12,
+      32,
+      84,
+      -100,
+      -126
     ],
     [
       -1,
-      114
+      -69
     ],
     [
-      -108,
-      114
-    ],
-    [
-      -104,
-      114
-    ],
-    [
-      -24,
-      114
-    ],
-    [
-      -80,
-      114
-    ],
-    [
-      -98,
-      114
-    ],
-    [
-      -100,
-      114
-    ],
-    [
-      -99,
-      114
-    ],
-    [
-      -96,
-      114
-    ],
-    [
-      -26,
-      114
-    ],
-    [
-      -49,
-      114
-    ],
-    [
-      -29,
-      114
-    ],
-    [
-      -45,
-      114
-    ],
-    [
-      -38,
-      114
-    ],
-    [
-      -46,
-      114
-    ],
-    [
-      -41,
-      114
-    ],
-    [
-      -37,
-      114
-    ],
-    [
-      -15,
-      114
-    ],
-    [
-      -112,
-      114
-    ],
-    [
-      -13,
-      114
-    ],
-    [
-      -72,
-      114
-    ],
-    [
-      -102,
-      114
-    ],
-    [
-      -81,
-      114
-    ],
-    [
-      -6,
-      114
-    ],
-    [
-      -92,
-      114
-    ],
-    [
-      -7,
-      114
-    ],
-    [
-      -64,
-      114
-    ],
-    [
-      -71,
-      114
-    ],
-    [
-      -3,
-      114
-    ],
-    [
-      -57,
-      114
-    ],
-    [
-      -103,
-      114
-    ],
-    [
-      -82,
-      114
-    ],
-    [
-      -36,
-      114
-    ],
-    [
-      -90,
-      114
-    ],
-    [
-      60,
-      -25
-    ],
-    [
-      60,
-      -91
-    ],
-    [
-      -41,
-      72
-    ],
-    [
-      67
-    ],
-    [
-      41,
       46,
-      38,
-      -62,
-      -13
+      -108
     ],
     [
-      -2,
-      -59
+      46,
+      -67
     ],
     [
-      60,
-      -58
+      -117
     ],
     [
-      60,
-      -43
+      46,
+      -90
     ],
     [
-      -53
+      21,
+      -81
     ],
     [
-      60,
-      -95
+      5,
+      -76
     ],
     [
-      7,
-      -78
-    ],
-    [
-      112,
-      -15
-    ],
-    [
-      60,
-      -107
+      46,
+      -86
     ],
     [
       -109,
-      45
+      128
     ],
     [
-      77
+      13
     ],
     [
-      -23
+      -10
     ],
     [
-      -2,
+      -1,
       -109
     ],
     [
-      62
+      100
     ],
     [
-      60,
-      -35
+      46,
+      -106
     ],
     [
-      -13,
-      -102
+      -126,
+      -129
     ],
     [
-      -32,
-      60
+      -8,
+      46
     ],
     [
-      60,
-      6,
-      -89
+      46,
+      59,
+      -104
     ],
     [
-      92,
-      -68
+      85,
+      -125
     ],
     [
-      -50,
+      -91,
       -109
-    ],
-    [
-      51
-    ],
-    [
-      -70,
-      92
-    ],
-    [
-      -63,
-      -109
-    ],
-    [
-      -37,
-      20
-    ],
-    [
-      -72,
-      -15
-    ],
-    [
-      -55
-    ],
-    [
-      -72,
-      -102
-    ],
-    [
-      66
-    ],
-    [
-      112,
-      -52
     ],
     [
       14
     ],
     [
-      7,
-      -74,
-      54
+      -71,
+      85
     ],
     [
-      -6,
+      -51,
+      -109
+    ],
+    [
+      -47,
       62
     ],
     [
-      41,
+      -30,
+      -76
+    ],
+    [
+      -7
+    ],
+    [
+      -30,
+      -129
+    ],
+    [
+      44
+    ],
+    [
+      5,
+      -121
+    ],
+    [
+      83
+    ],
+    [
+      21,
+      -60,
+      96
+    ],
+    [
+      -59,
+      100
+    ],
+    [
+      12,
+      32,
+      84,
+      -126
+    ],
+    [
+      39,
+      -125
+    ],
+    [
       46,
-      38,
-      -13
+      -55
     ],
     [
-      4,
-      -68
+      -45,
+      46
     ],
     [
-      60,
-      -75
+      -84,
+      100
     ],
     [
-      -42,
-      60
-    ],
-    [
-      -38,
-      62
-    ],
-    [
-      60,
-      -94
-    ],
-    [
-      6,
-      -89
-    ],
-    [
-      112,
-      -85
-    ],
-    [
-      -46,
-      13,
-      102
-    ],
-    [
-      56
-    ],
-    [
-      60,
-      -69
-    ],
-    [
-      -88,
-      60
-    ],
-    [
-      41,
       46,
-      38,
-      -62,
-      -102
+      -115
     ],
     [
-      17
+      59,
+      -104
     ],
     [
-      112,
-      -111,
-      60
-    ],
-    [
-      97
-    ],
-    [
-      -1,
-      53
-    ],
-    [
-      -41,
-      -38
-    ],
-    [
-      73
-    ],
-    [
-      7,
-      -70
-    ],
-    [
-      88,
-      -82
-    ],
-    [
-      112,
-      -102
-    ],
-    [
-      57
-    ],
-    [
-      60,
-      -87
-    ],
-    [
-      54,
-      -64
-    ],
-    [
-      7,
-      92,
-      -68
-    ],
-    [
-      92,
-      -95
-    ],
-    [
-      23,
-      -88,
-      60
+      5,
+      -93
     ],
     [
       -32,
-      90
+      126,
+      129
     ],
     [
-      7,
-      4,
-      -95
+      88
     ],
     [
-      -7,
-      13,
-      102
+      46,
+      -89
+    ],
+    [
+      -34,
+      46
+    ],
+    [
+      12,
+      32,
+      84,
+      -100,
+      -129
+    ],
+    [
+      63
+    ],
+    [
+      5,
+      -23,
+      46
     ],
     [
       9
     ],
     [
       -6,
-      73,
-      62
+      117
     ],
     [
-      60,
-      -85
+      -12,
+      -84
     ],
     [
-      7,
-      -70,
-      92
+      65
     ],
     [
-      60,
-      -89
+      21,
+      -71
     ],
     [
-      42,
-      -76
+      34,
+      -123
     ],
     [
-      60,
-      -76
+      5,
+      -129
     ],
     [
-      60,
-      -44
-    ],
-    [
-      112,
-      -13
-    ],
-    [
-      -41,
-      -46
-    ],
-    [
-      47
-    ],
-    [
-      4,
-      60,
-      -95
-    ],
-    [
-      10
-    ],
-    [
-      -1,
-      84
-    ],
-    [
-      7,
-      -74
-    ],
-    [
-      -8
-    ],
-    [
-      -72,
-      -13
-    ],
-    [
-      28
-    ],
-    [
-      -36,
       102
     ],
     [
-      55,
-      -41
+      46,
+      -127
     ],
     [
-      112,
-      60,
-      -85
+      96,
+      -105
     ],
     [
-      7,
-      60,
-      -74
+      21,
+      85,
+      -125
     ],
     [
-      108,
-      -29
+      85,
+      -90
     ],
     [
-      -16,
-      60
+      10,
+      -34,
+      46
     ],
     [
-      72,
-      15,
-      13,
-      102
+      -8,
+      73
     ],
     [
-      7,
-      92,
-      -95
+      21,
+      39,
+      -90
     ],
     [
-      7,
-      4,
+      -21,
+      126,
+      129
+    ],
+    [
+      41
+    ],
+    [
+      -59,
+      65,
+      100
+    ],
+    [
+      46,
+      -93
+    ],
+    [
+      21,
+      -71,
+      85
+    ],
+    [
+      46,
+      -104
+    ],
+    [
+      45,
+      -58
+    ],
+    [
+      46,
+      -58
+    ],
+    [
+      46,
       -68
     ],
     [
-      60,
-      -12
+      5,
+      -126
     ],
     [
-      -30,
-      60
+      -12,
+      -32
     ],
     [
-      -74,
+      118
+    ],
+    [
+      39,
+      46,
+      -90
+    ],
+    [
+      11
+    ],
+    [
+      -6,
       54
     ],
     [
-      60,
-      -74
+      21,
+      -60
     ],
     [
-      112,
-      -111
+      -78
     ],
     [
-      108,
-      -24
+      -30,
+      -126
     ],
     [
-      4,
-      -70,
-      92
+      26
     ],
     [
-      60,
-      -68
+      -50,
+      129
     ],
     [
-      112,
-      60,
-      -52
+      7,
+      -12
     ],
     [
-      108,
-      -26
+      5,
+      46,
+      -93
     ],
     [
-      22
+      21,
+      46,
+      -60
     ],
     [
       36,
-      -102
+      -97
     ],
     [
-      -99,
-      108
+      -20,
+      46
     ],
     [
-      41,
+      30,
+      76,
+      126,
+      129
+    ],
+    [
+      21,
+      85,
+      -90
+    ],
+    [
+      21,
+      39,
+      -125
+    ],
+    [
       46,
-      38,
-      -102
-    ],
-    [
-      -78,
-      92
-    ],
-    [
-      60,
-      -52
+      -53
     ],
     [
       -15,
-      -102
+      46
     ],
     [
-      4,
-      92,
-      -95
+      -60,
+      96
     ],
     [
-      -5,
-      60
+      46,
+      -60
+    ],
+    [
+      5,
+      -23
+    ],
+    [
+      36,
+      -120
+    ],
+    [
+      39,
+      -71,
+      85
+    ],
+    [
+      46,
+      -125
+    ],
+    [
+      5,
+      46,
+      -121
+    ],
+    [
+      36,
+      -99
+    ],
+    [
+      107
+    ],
+    [
+      50,
+      -129
+    ],
+    [
+      -35,
+      36
+    ],
+    [
+      12,
+      32,
+      84,
+      -129
+    ],
+    [
+      -81,
+      85
+    ],
+    [
+      46,
+      -121
+    ],
+    [
+      -76,
+      -129
+    ],
+    [
+      39,
+      85,
+      -90
+    ],
+    [
+      -18,
+      46
+    ],
+    [
+      -6,
+      126,
+      129
+    ],
+    [
+      39,
+      -81
+    ],
+    [
+      37
+    ],
+    [
+      103
+    ],
+    [
+      21,
+      39,
+      -81
+    ],
+    [
+      39,
+      46,
+      -125
+    ],
+    [
+      -59,
+      100,
+      126,
+      129
+    ],
+    [
+      21,
+      39,
+      -71
+    ],
+    [
+      -27,
+      46
     ],
     [
       -1,
-      13,
-      102
+      -51
     ],
     [
-      4,
-      -78
+      -59,
+      65
+    ],
+    [
+      21,
+      -81,
+      85
+    ],
+    [
+      -59,
+      126,
+      129
+    ],
+    [
+      46,
+      -98
+    ],
+    [
+      36,
+      -87
+    ],
+    [
+      46,
+      -119
     ],
     [
       40
     ],
     [
-      61
+      72
     ],
     [
-      7,
-      4,
-      -78
-    ],
-    [
-      4,
-      60,
-      -68
-    ],
-    [
-      -6,
-      62,
-      13,
-      102
-    ],
-    [
-      7,
-      4,
-      -70
-    ],
-    [
-      -11,
-      60
-    ],
-    [
-      -2,
-      -63
-    ],
-    [
-      -6,
-      73
-    ],
-    [
-      7,
-      -78,
-      92
-    ],
-    [
-      -6,
-      13,
-      102
-    ],
-    [
-      60,
-      -65
-    ],
-    [
-      108,
-      -49
-    ],
-    [
-      60,
-      -79
-    ],
-    [
-      110
-    ],
-    [
-      93
-    ],
-    [
-      7,
-      -95
-    ],
-    [
-      60,
-      -31
-    ],
-    [
-      7,
-      60,
-      -68
-    ],
-    [
-      7,
-      60,
-      -95
-    ],
-    [
-      81
-    ],
-    [
-      -103,
-      38
-    ],
-    [
-      103,
-      -38
-    ],
-    [
-      -39,
-      60
-    ],
-    [
-      60,
-      -106
-    ],
-    [
-      60,
-      92,
-      -95
-    ],
-    [
-      -101,
-      60
-    ],
-    [
-      60,
-      -18
-    ],
-    [
-      4,
-      -95
-    ],
-    [
-      -50,
-      45
-    ],
-    [
-      60,
-      -86
-    ],
-    [
-      -63,
-      -59
-    ],
-    [
-      105
-    ],
-    [
-      -15,
-      -13
-    ],
-    [
-      -98,
-      108
-    ],
-    [
-      -59,
-      -109
-    ],
-    [
-      -59,
-      45
-    ],
-    [
-      -63,
-      -50
-    ],
-    [
-      -84
-    ],
-    [
-      -3,
-      6
-    ],
-    [
-      19
-    ],
-    [
-      -48,
-      60
-    ],
-    [
-      4,
-      -70
-    ],
-    [
-      32,
+      21,
       -90
     ],
     [
-      -46,
-      -38
-    ],
-    [
-      60,
-      -33
-    ],
-    [
-      4,
-      92,
-      -68
-    ],
-    [
-      60,
-      -74,
-      54
-    ],
-    [
-      -88,
-      82
-    ],
-    [
-      -113
-    ],
-    [
-      4,
-      -78,
-      92
-    ],
-    [
-      108,
-      -96
-    ],
-    [
-      2,
-      63,
-      59,
-      50,
-      109,
-      -45
-    ],
-    [
-      -59,
-      -50
-    ],
-    [
-      37,
-      -20
-    ],
-    [
-      42,
-      60,
-      -76
-    ],
-    [
-      7,
-      -68
-    ],
-    [
-      84,
-      -102
-    ],
-    [
-      108,
-      -80
-    ],
-    [
-      -100,
-      108
-    ],
-    [
-      -6,
-      73,
-      13,
-      102
-    ],
-    [
-      23,
-      -88
-    ],
-    [
-      -63,
-      45
-    ],
-    [
-      -104,
-      108
-    ],
-    [
-      -55,
-      41,
-      -72,
       46,
+      -79
+    ],
+    [
+      21,
+      46,
+      -125
+    ],
+    [
+      21,
+      46,
+      -90
+    ],
+    [
       38
     ],
     [
-      60,
+      -28,
+      84
+    ],
+    [
+      28,
+      -84
+    ],
+    [
+      -4,
+      46
+    ],
+    [
+      46,
+      -116
+    ],
+    [
+      46,
+      85,
+      -90
+    ],
+    [
+      -43,
+      46
+    ],
+    [
+      46,
+      -52
+    ],
+    [
+      39,
+      -90
+    ],
+    [
+      -91,
+      128
+    ],
+    [
+      46,
+      -124
+    ],
+    [
+      -51,
+      -69
+    ],
+    [
+      16
+    ],
+    [
+      -76,
+      -126
+    ],
+    [
+      -22,
+      36
+    ],
+    [
+      -69,
+      -109
+    ],
+    [
+      -69,
+      128
+    ],
+    [
+      -51,
+      -91
+    ],
+    [
+      -54
+    ],
+    [
+      -29,
+      59
+    ],
+    [
+      70
+    ],
+    [
+      -17,
+      46
+    ],
+    [
+      39,
+      -71
+    ],
+    [
+      8,
+      -73
+    ],
+    [
+      -32,
+      -84
+    ],
+    [
+      46,
+      -66
+    ],
+    [
+      39,
+      85,
+      -125
+    ],
+    [
+      46,
+      -60,
+      96
+    ],
+    [
+      -34,
+      123
+    ],
+    [
+      -2
+    ],
+    [
+      39,
+      -81,
+      85
+    ],
+    [
+      36,
+      -48
+    ],
+    [
+      1,
+      51,
+      69,
+      91,
+      109,
+      -128
+    ],
+    [
+      -69,
+      -91
+    ],
+    [
+      47,
+      -62
+    ],
+    [
+      45,
+      46,
+      -58
+    ],
+    [
+      21,
+      -125
+    ],
+    [
+      54,
+      -129
+    ],
+    [
+      36,
+      -110
+    ],
+    [
+      -19,
+      36
+    ],
+    [
+      -59,
+      65,
+      126,
+      129
+    ],
+    [
+      10,
       -34
     ],
     [
-      -2,
-      45
+      -51,
+      128
     ],
     [
-      60,
-      -83
+      -3,
+      36
     ],
     [
-      -112,
-      15,
-      13,
-      102
+      -7,
+      12,
+      -30,
+      32,
+      84
     ],
     [
-      -111,
-      60
+      46,
+      -56
     ],
     [
-      -38,
-      13,
-      102
+      -1,
+      128
     ],
     [
-      60,
-      92,
-      -68
+      46,
+      -95
     ],
     [
-      -2,
-      -50
+      -5,
+      76,
+      126,
+      129
     ],
     [
-      -71,
-      6
+      -23,
+      46
     ],
     [
-      27
+      -84,
+      126,
+      129
     ],
     [
-      -108,
-      13
+      46,
+      85,
+      -125
     ],
     [
-      21
+      -1,
+      -91
+    ],
+    [
+      -33,
+      59
+    ],
+    [
+      31
+    ],
+    [
+      -36,
+      126
+    ],
+    [
+      61
     ]
-  ],
-  "structure": {
-    "tree": {
-      "type": "AND",
-      "feature_literal": {
-        "name": "__Root__",
-        "negated": false
-      },
-      "mandatory": true,
-      "elements": [
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_COAP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_CORE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_ENABLE_DYNAMIC_MODULES",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_AIO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_APP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_BOOLEAN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_BYTE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_CALAMARI",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_COLOR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_CONSOLE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_CONSTANT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_CONVERTER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_EVDEV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_FILE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_FILTER_REPEATED",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_FLOAT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_FS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_GPIO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_GROVE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_GYROSCOPE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_HUB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_INT",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_KEYBOARD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_NETWORK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_PIEZO_SPEAKER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_PLATFORM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_PROCESS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_PWM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_RANDOM",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_SERVO_MOTOR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_STRING",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_TEST",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_TIMER",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_TRIGONOMETRY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_UDEV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_UNIX_SOCKET",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_FLOW_NODE_TYPE_WALLCLOCK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_ACCEPT4",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_CHECK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_DECL_IFLA_INET6_ADDR_GEN_MODE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_DECL_STRNDUPA",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_DLFCN_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_GTK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_INTTYPES_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_ISATTY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_KDBUS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_LINUX_NETLINK_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_LINUX_RTNETLINK_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_LINUX_WATCHDOG_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_MEMORY_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_PPOLL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_PTHREAD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_PTHREAD_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_RIOTOS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_STDINT_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_STDLIB_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_STRINGS_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_STRING_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_SYSTEMD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_SYS_STAT_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_SYS_TYPES_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_UDEV",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_HAVE_UNISTD_H",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_INSPECTOR",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_INTERNAL_SHARED",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_KDBUS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_BLUETOOTH",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_CONSOLE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_DBUS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_FSTAB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_HOSTNAME",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_LOCALE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_NETWORK_UP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_RC_D",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_SYSCTL",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LINUX_MICRO_WATCHDOG",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_LOG",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_MODULES",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PREFIX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_PTHREAD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TEST_COAP",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TEST_MAINLOOP_THREADS",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_TEST_MAINLOOP_THREADS_SOL_RUN",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_USE_CHECK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_USE_GLIB",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_USE_GTK",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_USE_SYSTEMD",
-            "negated": false
-          },
-          "mandatory": false
-        },
-        {
-          "type": "CONCRETE",
-          "feature_literal": {
-            "name": "CONFIG_USE_UDEV",
-            "negated": false
-          },
-          "mandatory": false
-        }
-      ]
-    },
-    "rules": [
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CONSTANT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PLATFORM",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_STDINT_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_COLOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_HUB",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_KDBUS",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FILTER_REPEATED",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_PPOLL",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_GTK",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_GLIB",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_UNIX_SOCKET",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_UDEV",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FILE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_MEMORY_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MODULES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_ENABLE_DYNAMIC_MODULES",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_RIOTOS",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_LINUX_NETLINK_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GYROSCOPE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_DECL_STRNDUPA",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_COAP",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_AIO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GPIO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_BYTE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FILE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PROCESS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_ACCEPT4",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_EVDEV",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_LINUX_WATCHDOG_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_STRINGS_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_KDBUS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_KDBUS",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_PTHREAD",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_GTK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_USE_CHECK",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PWM",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_COAP",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_TEST_COAP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GTK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_UDEV",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_UDEV",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_LINUX_RTNETLINK_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PROCESS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FILE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GPIO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CALAMARI",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CALAMARI",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_SERVO_MOTOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_SYS_STAT_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_DLFCN_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_KDBUS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_UDEV",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_ISATTY",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PROCESS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_WATCHDOG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_KEYBOARD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_STRING",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_APP",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_COAP",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_CONSOLE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GYROSCOPE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_RC_D",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_DECL_IFLA_INET6_ADDR_GEN_MODE",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_LOCALE",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GYROSCOPE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_NETWORK",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_KDBUS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_CORE",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_STRING_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_TEST",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CONSOLE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_SYSCTL",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_BOOLEAN",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_UNISTD_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_SYS_TYPES_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_PIEZO_SPEAKER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_PREFIX",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_GLIB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_GLIB",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CONVERTER",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_INT",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_RANDOM",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_RUNNER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GROVE",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_STDLIB_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_FSTAB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_SYSTEMD",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TEST_MAINLOOP_THREADS_SOL_RUN",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_PTHREAD_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_FLOAT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPES",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_UDEV",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_UDEV",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_WALLCLOCK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_OIC",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_COAP",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_USE_GTK",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_CHECK",
-        "negated": true,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_INSPECTOR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_TO_DOT",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_NETWORK_UP",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_DEBUG",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_WARNING",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MODULES",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_ENABLE_DYNAMIC_MODULES",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GPIO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_CALAMARI",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_SOCKET_LINUX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_DBUS",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_HOSTNAME",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_GTK",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_GTK",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_ERROR",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO_BLUETOOTH",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_HAVE_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_RIOTOS",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_RIOTOS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_POSIX",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_TIMER",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_LOG",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_TRIGONOMETRY",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_COMMON",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_DUMMY",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW_NODE_TYPE_ACCELEROMETER",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_MAINLOOP_GLIB",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_SYSTEMD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_FLOW",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_RESOLVER_CONFFILE",
-            "negated": false,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_FBP_GENERATOR",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_CRITICAL",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_DEFAULT_LOG_LEVEL_INFO",
-            "negated": true,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_TEST_MAINLOOP_THREADS",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PTHREAD",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_HAVE_INTTYPES_H",
-        "negated": false,
-        "auxiliary": false
-      },
-      {
-        "type": "OR",
-        "elements": [
-          {
-            "type": "VAR",
-            "name": "CONFIG_LINUX_MICRO",
-            "negated": true,
-            "auxiliary": false
-          },
-          {
-            "type": "VAR",
-            "name": "CONFIG_PLATFORM_LINUX_MICRO",
-            "negated": false,
-            "auxiliary": false
-          }
-        ]
-      },
-      {
-        "type": "VAR",
-        "name": "CONFIG_INTERNAL_SHARED",
-        "negated": false,
-        "auxiliary": false
-      }
-    ]
-  }
+  ]
 }
