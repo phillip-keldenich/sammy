@@ -1,0 +1,1039 @@
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/PPU.xml",
+  "meta": {},
+  "num_variables": 29,
+  "num_concrete_features": 25,
+  "labels": {
+    "ChangeoverArm": 19,
+    "ChangeoverArmControl": 17,
+    "ChangeoverArmM": 18,
+    "Continuous": 22,
+    "ContinuousS": 2,
+    "Diagnosis": 9,
+    "DiagnosisS": 23,
+    "Discrete": 7,
+    "DiscreteS": 21,
+    "Inductive": 24,
+    "Large": 16,
+    "Micro": 1,
+    "Potentiometer": 12,
+    "Rough": 25,
+    "Selfhealing": 14,
+    "SelfhealingS": 4,
+    "Setup": 3,
+    "Small": 6,
+    "Smooth": 8,
+    "Vendor 1": 5,
+    "Vendor 2": 20,
+    "muC": 11
+  },
+  "cnf_clauses": [
+    [
+      10
+    ],
+    [
+      -26,
+      10
+    ],
+    [
+      -9,
+      26
+    ],
+    [
+      -14,
+      26
+    ],
+    [
+      -25,
+      -8
+    ],
+    [
+      25,
+      8,
+      -10
+    ],
+    [
+      -25,
+      10
+    ],
+    [
+      -8,
+      10
+    ],
+    [
+      22,
+      7,
+      -10
+    ],
+    [
+      -22,
+      10
+    ],
+    [
+      -7,
+      10
+    ],
+    [
+      -27,
+      -11
+    ],
+    [
+      27,
+      11,
+      -10
+    ],
+    [
+      -27,
+      10
+    ],
+    [
+      -5,
+      -20
+    ],
+    [
+      5,
+      20,
+      -27
+    ],
+    [
+      -5,
+      27
+    ],
+    [
+      -20,
+      27
+    ],
+    [
+      -11,
+      10
+    ],
+    [
+      16,
+      6,
+      -10
+    ],
+    [
+      -16,
+      10
+    ],
+    [
+      -6,
+      10
+    ],
+    [
+      -19,
+      10
+    ],
+    [
+      -15,
+      10
+    ],
+    [
+      -24,
+      -1
+    ],
+    [
+      -24,
+      -12
+    ],
+    [
+      -1,
+      -12
+    ],
+    [
+      24,
+      1,
+      12,
+      -10
+    ],
+    [
+      -24,
+      10
+    ],
+    [
+      -1,
+      10
+    ],
+    [
+      -12,
+      10
+    ],
+    [
+      -13,
+      10
+    ],
+    [
+      28,
+      -10
+    ],
+    [
+      -28,
+      10
+    ],
+    [
+      -18,
+      -15
+    ],
+    [
+      18,
+      15,
+      -28
+    ],
+    [
+      -18,
+      28
+    ],
+    [
+      -15,
+      28
+    ],
+    [
+      -29,
+      10
+    ],
+    [
+      -23,
+      29
+    ],
+    [
+      -4,
+      29
+    ],
+    [
+      -17,
+      -15
+    ],
+    [
+      17,
+      15,
+      -10
+    ],
+    [
+      -17,
+      10
+    ],
+    [
+      -15,
+      10
+    ],
+    [
+      -3,
+      10
+    ],
+    [
+      2,
+      21,
+      -10
+    ],
+    [
+      -2,
+      10
+    ],
+    [
+      -21,
+      10
+    ],
+    [
+      -6,
+      18
+    ],
+    [
+      -6,
+      10
+    ],
+    [
+      -6,
+      19
+    ],
+    [
+      -6,
+      17
+    ],
+    [
+      -16,
+      18,
+      15
+    ],
+    [
+      -16,
+      10
+    ],
+    [
+      -7,
+      1,
+      24,
+      12
+    ],
+    [
+      -7,
+      21
+    ],
+    [
+      -22,
+      12
+    ],
+    [
+      -22,
+      2
+    ],
+    [
+      -8,
+      1,
+      24,
+      12
+    ],
+    [
+      -25,
+      24,
+      12
+    ]
+  ],
+  "structure": {
+    "tree": {
+      "type": "AND",
+      "feature_literal": {
+        "name": "PPU",
+        "negated": false
+      },
+      "mandatory": true,
+      "elements": [
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "PPUC",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Additional Functionalities",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Diagnosis",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Selfhealing",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Conditions",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "Environment",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Rough",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Smooth",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                },
+                {
+                  "type": "OR",
+                  "feature_literal": {
+                    "name": "PositioningC",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Continuous",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Discrete",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "Platform Type",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "PLC",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Vendor 1",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Vendor 2",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "muC",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "WorkPieces",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "OR",
+                  "feature_literal": {
+                    "name": "Size",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Large",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Small",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "PPUE",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Electrics",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ChangeoverArm",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Pneumatics",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Cylinder",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "VacuumGripper",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Sensors",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "ALT",
+                  "feature_literal": {
+                    "name": "PositioningE",
+                    "negated": false
+                  },
+                  "mandatory": true,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Inductive",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Micro",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    },
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "Potentiometer",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                },
+                {
+                  "type": "AND",
+                  "feature_literal": {
+                    "name": "Safety",
+                    "negated": false
+                  },
+                  "mandatory": false,
+                  "elements": [
+                    {
+                      "type": "CONCRETE",
+                      "feature_literal": {
+                        "name": "EmergencyStopButton",
+                        "negated": false
+                      },
+                      "mandatory": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "OR",
+          "feature_literal": {
+            "name": "PPUM",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "LiftingLowering",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ChangeoverArmM",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CylinderM",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "AND",
+          "feature_literal": {
+            "name": "PPUS",
+            "negated": false
+          },
+          "mandatory": true,
+          "elements": [
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Additional FunctionalitiesS",
+                "negated": false
+              },
+              "mandatory": false,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "DiagnosisS",
+                    "negated": false
+                  },
+                  "mandatory": false
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "SelfhealingS",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "ALT",
+              "feature_literal": {
+                "name": "Lifting Lowering Control",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ChangeoverArmControl",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "CylinderControl",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            },
+            {
+              "type": "AND",
+              "feature_literal": {
+                "name": "Mode of operation",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Automatic",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Manual",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "Setup",
+                    "negated": false
+                  },
+                  "mandatory": false
+                }
+              ]
+            },
+            {
+              "type": "OR",
+              "feature_literal": {
+                "name": "Position Control",
+                "negated": false
+              },
+              "mandatory": true,
+              "elements": [
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "ContinuousS",
+                    "negated": false
+                  },
+                  "mandatory": true
+                },
+                {
+                  "type": "CONCRETE",
+                  "feature_literal": {
+                    "name": "DiscreteS",
+                    "negated": false
+                  },
+                  "mandatory": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Small",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ChangeoverArmM",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Small",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "VacuumGripper",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Small",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ChangeoverArm",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Small",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ChangeoverArmControl",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Large",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "ChangeoverArmM",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "CylinderM",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Large",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "VacuumGripper",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Discrete",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Micro",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Inductive",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Potentiometer",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Discrete",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "DiscreteS",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Continuous",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "Potentiometer",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Continuous",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "VAR",
+          "name": "ContinuousS",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Smooth",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Micro",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Inductive",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Potentiometer",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "IMPL",
+        "condition": {
+          "type": "VAR",
+          "name": "Rough",
+          "negated": false,
+          "auxiliary": false
+        },
+        "implication": {
+          "type": "OR",
+          "elements": [
+            {
+              "type": "VAR",
+              "name": "Inductive",
+              "negated": false,
+              "auxiliary": false
+            },
+            {
+              "type": "VAR",
+              "name": "Potentiometer",
+              "negated": false,
+              "auxiliary": false
+            }
+          ]
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "Cylinder",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "VAR",
+          "name": "CylinderControl",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "CylinderControl",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "VAR",
+          "name": "CylinderM",
+          "negated": false,
+          "auxiliary": false
+        }
+      },
+      {
+        "type": "EQ",
+        "a": {
+          "type": "VAR",
+          "name": "CylinderM",
+          "negated": false,
+          "auxiliary": false
+        },
+        "b": {
+          "type": "VAR",
+          "name": "Cylinder",
+          "negated": false,
+          "auxiliary": false
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,2352 @@
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/busybox_2007-01-24_09-14-09.dimacs",
+  "meta": {},
+  "num_variables": 540,
+  "num_concrete_features": 540,
+  "labels": {
+    "CONFIG_KILL": 1,
+    "CONFIG_FEATURE_TRACEROUTE_USE_ICMP": 2,
+    "CONFIG_FEATURE_TAB_COMPLETION": 3,
+    "CONFIG_DEBUG_PESSIMIZE": 4,
+    "CONFIG_FEATURE_INSTALL_LONG_OPTIONS": 5,
+    "CONFIG_LOGGER": 6,
+    "CONFIG_WHICH": 7,
+    "CONFIG_FEATURE_LESS_FLAGS": 8,
+    "CONFIG_RAIDAUTORUN": 9,
+    "CONFIG_LSATTR": 10,
+    "CONFIG_FEATURE_XARGS_SUPPORT_CONFIRMATION": 11,
+    "CONFIG_ASH_MAIL": 12,
+    "CONFIG_UUDECODE": 13,
+    "CONFIG_FEATURE_IPV6": 14,
+    "CONFIG_LASH": 15,
+    "CONFIG_ASH": 16,
+    "CONFIG_FEATURE_IFCONFIG_MEMSTART_IOADDR_IRQ": 17,
+    "CONFIG_OPENVT": 18,
+    "CONFIG_SWITCH_ROOT": 19,
+    "CONFIG_ASH_READ_NCHARS": 20,
+    "CONFIG_ADJTIMEX": 21,
+    "CONFIG_AR": 22,
+    "CONFIG_WATCH": 23,
+    "CONFIG_FEATURE_MAKEDEVS_TABLE": 24,
+    "CONFIG_FEATURE_HTTPD_RELOAD_CONFIG_SIGHUP": 25,
+    "CONFIG_NC_EXTRA": 26,
+    "CONFIG_IFCONFIG": 27,
+    "CONFIG_FEATURE_IP_LINK": 28,
+    "CONFIG_FEATURE_ROTATE_LOGFILE": 29,
+    "CONFIG_FEATURE_MOUNT_LOOP": 30,
+    "CONFIG_MKDIR": 31,
+    "CONFIG_FEATURE_IFUPDOWN_IPX": 32,
+    "CONFIG_FEATURE_TELNET_AUTOLOGIN": 33,
+    "CONFIG_DEBUG_CROND_OPTION": 34,
+    "CONFIG_FEATURE_SH_IS_ASH": 35,
+    "CONFIG_HEXDUMP": 36,
+    "CONFIG_FEATURE_TELNET_TTYPE": 37,
+    "CONFIG_CATV": 38,
+    "CONFIG_FEATURE_WGET_LONG_OPTIONS": 39,
+    "CONFIG_FEATURE_GREP_CONTEXT": 40,
+    "CONFIG_FEATURE_TR_EQUIV": 41,
+    "CONFIG_PASSWORD_MINLEN": 42,
+    "CONFIG_FEATURE_MD5_SHA1_SUM_CHECK": 43,
+    "CONFIG_IFUPDOWN": 44,
+    "CONFIG_IPCS": 45,
+    "CONFIG_BUILD_LIBBUSYBOX": 46,
+    "CONFIG_ASH_JOB_CONTROL": 47,
+    "CONFIG_FEATURE_REMOTE_LOG": 48,
+    "CONFIG_FREERAMDISK": 49,
+    "CONFIG_FEATURE_EDITING_SAVEHISTORY": 50,
+    "CONFIG_FEATURE_TASKSET_FANCY": 51,
+    "CONFIG_FEATURE_FDISK_WRITABLE": 52,
+    "CONFIG_FEATURE_HTTPD_BASIC_AUTH": 53,
+    "CONFIG_SETKEYCODES": 54,
+    "CONFIG_UNIX2DOS": 55,
+    "CONFIG_SEQ": 56,
+    "CONFIG_FEATURE_FIND_XDEV": 57,
+    "CONFIG_FEATURE_TFTP_PUT": 58,
+    "CONFIG_FEATURE_WTMP": 59,
+    "CONFIG_PS": 60,
+    "CONFIG_FEATURE_MODPROBE_FANCY_ALIAS": 61,
+    "CONFIG_FEATURE_PASSWD_WEAK_CHECK": 62,
+    "CONFIG_SYNC": 63,
+    "CONFIG_FEATURE_CLEAN_UP": 64,
+    "CONFIG_FEATURE_FIND_PERM": 65,
+    "CONFIG_GZIP": 66,
+    "CONFIG_STATIC": 67,
+    "CONFIG_FEATURE_VI_YANKMARK": 68,
+    "CONFIG_FEATURE_TAR_FROM": 69,
+    "CONFIG_FEATURE_UTMP": 70,
+    "CONFIG_FTPGET": 71,
+    "CONFIG_FEATURE_FULL_LIBBUSYBOX": 72,
+    "CONFIG_RMMOD": 73,
+    "CONFIG_TAIL": 74,
+    "CONFIG_RUN_PARTS": 75,
+    "CONFIG_MORE": 76,
+    "CONFIG_DNSD": 77,
+    "CONFIG_CMP": 78,
+    "CONFIG_GUNZIP": 79,
+    "CONFIG_UNAME": 80,
+    "CONFIG_FEATURE_SUID_CONFIG_QUIET": 81,
+    "CONFIG_MV": 82,
+    "CONFIG_PATCH": 83,
+    "CONFIG_FEATURE_XARGS_SUPPORT_ZERO_TERM": 84,
+    "CONFIG_HAVE_DOT_CONFIG": 85,
+    "CONFIG_DOS2UNIX": 86,
+    "CONFIG_FEATURE_VI_OPTIMIZE_CURSOR": 87,
+    "CONFIG_MKTEMP": 88,
+    "CONFIG_FEATURE_LS_FILETYPES": 89,
+    "CONFIG_FEATURE_SUID": 90,
+    "CONFIG_READLINK": 91,
+    "CONFIG_DMALLOC": 92,
+    "CONFIG_DF": 93,
+    "CONFIG_RUNLEVEL": 94,
+    "CONFIG_FEATURE_IP_ROUTE": 95,
+    "CONFIG_FEATURE_BUFFERS_GO_ON_STACK": 96,
+    "CONFIG_LFS": 97,
+    "CONFIG_SETLOGCONS": 98,
+    "CONFIG_LOGIN_SCRIPTS": 99,
+    "CONFIG_FEATURE_CHECK_TAINTED_MODULE": 100,
+    "CONFIG_RUNSVDIR": 101,
+    "CONFIG_IPADDR": 102,
+    "CONFIG_FEATURE_IFUPDOWN_IFCONFIG_BUILTIN": 103,
+    "CONFIG_FEATURE_HDPARM_HDIO_UNREGISTER_HWIF": 104,
+    "CONFIG_DEVFSD_FG_NP": 105,
+    "CONFIG_UNCOMPRESS": 106,
+    "CONFIG_FEATURE_WGET_STATUSBAR": 107,
+    "CONFIG_FEATURE_GUNZIP_UNCOMPRESS": 108,
+    "CONFIG_DIFF": 109,
+    "CONFIG_UNZIP": 110,
+    "CONFIG_IPRULE": 111,
+    "CONFIG_RESIZE": 112,
+    "CONFIG_YES": 113,
+    "CONFIG_ARP": 114,
+    "CONFIG_FEATURE_FIND_NEWER": 115,
+    "CONFIG_FEATURE_BUFFERS_GO_IN_BSS": 116,
+    "CONFIG_ADDUSER": 117,
+    "CONFIG_FEATURE_SUN_LABEL": 118,
+    "CONFIG_FOLD": 119,
+    "CONFIG_FEATURE_LS_COLOR_IS_DEFAULT": 120,
+    "CONFIG_FEATURE_TAR_LZMA": 121,
+    "CONFIG_FEATURE_HTTPD_CGI": 122,
+    "CONFIG_SHA1SUM": 123,
+    "CONFIG_FEATURE_AR_LONG_FILENAMES": 124,
+    "CONFIG_FEATURE_FANCY_TAIL": 125,
+    "CONFIG_FEATURE_UDHCP_DEBUG": 126,
+    "CONFIG_FEATURE_SORT_BIG": 127,
+    "CONFIG_USLEEP": 128,
+    "CONFIG_NICE": 129,
+    "CONFIG_INSTALL_APPLET_DONT": 130,
+    "CONFIG_FEATURE_IP_RULE": 131,
+    "CONFIG_VCONFIG": 132,
+    "CONFIG_ASH_GETOPTS": 133,
+    "CONFIG_FEATURE_MOUNT_FLAGS": 134,
+    "CONFIG_HTTPD": 135,
+    "CONFIG_TRACEROUTE": 136,
+    "CONFIG_TEE": 137,
+    "CONFIG_TEST": 138,
+    "CONFIG_NAMEIF": 139,
+    "CONFIG_ID": 140,
+    "CONFIG_FEATURE_SH_STANDALONE_SHELL": 141,
+    "CONFIG_FEATURE_FANCY_SLEEP": 142,
+    "CONFIG_FEATURE_LZMA_FAST": 143,
+    "CONFIG_APP_DHCPRELAY": 144,
+    "CONFIG_FEATURE_FIND_MTIME": 145,
+    "CONFIG_FEATURE_SH_IS_LASH": 146,
+    "CONFIG_FEATURE_VI_WIN_RESIZE": 147,
+    "CONFIG_TFTP": 148,
+    "CONFIG_FDISK": 149,
+    "CONFIG_IPCALC": 150,
+    "CONFIG_BUNZIP2": 151,
+    "CONFIG_MOUNT": 152,
+    "CONFIG_FEATURE_RESIZE_PRINT": 153,
+    "CONFIG_HOSTID": 154,
+    "CONFIG_EXPR": 155,
+    "CONFIG_FEATURE_DEVFS": 156,
+    "CONFIG_CP": 157,
+    "CONFIG_FEATURE_IP_TUNNEL": 158,
+    "CONFIG_CHPST": 159,
+    "CONFIG_PREFIX": 160,
+    "CONFIG_FEATURE_IFUPDOWN_MAPPING": 161,
+    "CONFIG_FEATURE_LESS_FLAGCS": 162,
+    "CONFIG_ASH_MATH_SUPPORT": 163,
+    "CONFIG_FEATURE_FANCY_ECHO": 164,
+    "CONFIG_FEATURE_UDHCP_SYSLOG": 165,
+    "CONFIG_ASH_BUILTIN_ECHO": 166,
+    "CONFIG_FEATURE_TELNETD_STANDALONE": 167,
+    "CONFIG_SED": 168,
+    "CONFIG_FEATURE_TFTP_BLOCKSIZE": 169,
+    "CONFIG_RESET": 170,
+    "CONFIG_BBCONFIG": 171,
+    "CONFIG_FEATURE_MOUNT_NFS": 172,
+    "CONFIG_FEATURE_INSMOD_LOADINKMEM": 173,
+    "CONFIG_FEATURE_READLINK_FOLLOW": 174,
+    "CONFIG_WGET": 175,
+    "CONFIG_RX": 176,
+    "CONFIG_FEATURE_FANCY_PING": 177,
+    "CONFIG_ENVDIR": 178,
+    "CONFIG_LOADFONT": 179,
+    "CONFIG_FEATURE_USE_TERMIOS": 180,
+    "CONFIG_FEATURE_SETCONSOLE_LONG_OPTIONS": 181,
+    "CONFIG_FEATURE_MTAB_SUPPORT": 182,
+    "CONFIG_NOHUP": 183,
+    "CONFIG_IP": 184,
+    "CONFIG_BUSYBOX_EXEC_PATH": 185,
+    "CONFIG_FEATURE_VI_COLON": 186,
+    "CONFIG_HEAD": 187,
+    "CONFIG_UMOUNT": 188,
+    "CONFIG_DIRNAME": 189,
+    "CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN": 190,
+    "CONFIG_CLEAR": 191,
+    "CONFIG_MD5_SIZE_VS_SPEED": 192,
+    "CONFIG_FEATURE_DIFF_BINARY": 193,
+    "CONFIG_FEATURE_MKDIR_LONG_OPTIONS": 194,
+    "CONFIG_FEATURE_EXEC_PREFER_APPLETS": 195,
+    "CONFIG_LOCALE_SUPPORT": 196,
+    "CONFIG_DEBUG_TFTP": 197,
+    "CONFIG_VI": 198,
+    "CONFIG_FEATURE_FIND_PRINT0": 199,
+    "CONFIG_STRINGS": 200,
+    "CONFIG_FEATURE_EDITING": 201,
+    "CONFIG_FEATURE_VI_SET": 202,
+    "CONFIG_SULOGIN": 203,
+    "CONFIG_RDATE": 204,
+    "CONFIG_FEATURE_DEB_TAR_LZMA": 205,
+    "CONFIG_FDFLUSH": 206,
+    "CONFIG_SUM": 207,
+    "CONFIG_CKSUM": 208,
+    "CONFIG_FEATURE_EDITING_FANCY_PROMPT": 209,
+    "CONFIG_KILLALL5": 210,
+    "CONFIG_FEATURE_USE_INITTAB": 211,
+    "CONFIG_FEATURE_HAVE_RPC": 212,
+    "CONFIG_SETSID": 213,
+    "CONFIG_INSTALL_NO_USR": 214,
+    "CONFIG_FEATURE_TR_CLASSES": 215,
+    "CONFIG_FEATURE_MV_LONG_OPTIONS": 216,
+    "CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING": 217,
+    "CONFIG_FEATURE_SECURETTY": 218,
+    "CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME": 219,
+    "CONFIG_FEATURE_VI_SETOPTS": 220,
+    "CONFIG_EFENCE": 221,
+    "CONFIG_FEATURE_TFTP_GET": 222,
+    "CONFIG_FEATURE_VERBOSE_USAGE": 223,
+    "CONFIG_FEATURE_GREP_EGREP_ALIAS": 224,
+    "CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE": 225,
+    "CONFIG_FEATURE_SH_IS_HUSH": 226,
+    "CONFIG_FDFORMAT": 227,
+    "CONFIG_MKFIFO": 228,
+    "CONFIG_DESKTOP": 229,
+    "CONFIG_FEATURE_EXTRA_QUIET": 230,
+    "CONFIG_PIPE_PROGRESS": 231,
+    "CONFIG_FEATURE_LS_TIMESTAMPS": 232,
+    "CONFIG_ENV": 233,
+    "CONFIG_STAT": 234,
+    "CONFIG_VERBOSE_RESOLUTION_ERRORS": 235,
+    "CONFIG_IPTUNNEL": 236,
+    "CONFIG_TELNET": 237,
+    "CONFIG_FEATURE_SU_SYSLOG": 238,
+    "CONFIG_UPTIME": 239,
+    "CONFIG_LESS": 240,
+    "CONFIG_FEATURE_IFUPDOWN_IPV4": 241,
+    "CONFIG_HALT": 242,
+    "CONFIG_FEATURE_IP_SHORT_FORMS": 243,
+    "CONFIG_LS": 244,
+    "CONFIG_START_STOP_DAEMON": 245,
+    "CONFIG_DUMPKMAP": 246,
+    "CONFIG_PRINTF": 247,
+    "CONFIG_FEATURE_MOUNT_FSTAB": 248,
+    "CONFIG_LOGNAME": 249,
+    "CONFIG_FEATURE_LS_RECURSIVE": 250,
+    "CONFIG_MSH": 251,
+    "CONFIG_FEATURE_EDITING_FANCY_KEYS": 252,
+    "CONFIG_BB_SYSCTL": 253,
+    "CONFIG_PASSWD": 254,
+    "CONFIG_FEATURE_ALLOW_EXEC": 255,
+    "CONFIG_ED": 256,
+    "CONFIG_CAL": 257,
+    "CONFIG_FEATURE_XARGS_SUPPORT_QUOTES": 258,
+    "CONFIG_FEATURE_XARGS_SUPPORT_TERMOPT": 259,
+    "CONFIG_FEATURE_SH_IS_NONE": 260,
+    "CONFIG_PING6": 261,
+    "CONFIG_NC": 262,
+    "CONFIG_FEATURE_LS_FOLLOWLINKS": 263,
+    "CONFIG_FEATURE_TRACEROUTE_SOURCE_ROUTE": 264,
+    "CONFIG_FEATURE_TAR_GNU_EXTENSIONS": 265,
+    "CONFIG_FEATURE_AUTOWIDTH": 266,
+    "CONFIG_FAKEIDENTD": 267,
+    "CONFIG_WATCHDOG": 268,
+    "CONFIG_FEATURE_IFUPDOWN_IP": 269,
+    "CONFIG_CRONTAB": 270,
+    "CONFIG_TASKSET": 271,
+    "CONFIG_FEATURE_HTTPD_CONFIG_WITH_MIME_TYPES": 272,
+    "CONFIG_FEATURE_VI_USE_SIGNALS": 273,
+    "CONFIG_LAST": 274,
+    "CONFIG_FEATURE_UNARCHIVE_TAPE": 275,
+    "CONFIG_FEATURE_TAR_BZIP2": 276,
+    "CONFIG_WC": 277,
+    "CONFIG_FEATURE_TAR_CREATE": 278,
+    "CONFIG_GETOPT": 279,
+    "CONFIG_FEATURE_STAT_FORMAT": 280,
+    "CONFIG_FEATURE_LS_SORTFILES": 281,
+    "CONFIG_FEATURE_HDPARM_GET_IDENTITY": 282,
+    "CONFIG_CHMOD": 283,
+    "CONFIG_FEATURE_MAKEDEVS_LEAF": 284,
+    "CONFIG_REALPATH": 285,
+    "CONFIG_FEATURE_TAR_GZIP": 286,
+    "CONFIG_FEATURE_WC_LARGE": 287,
+    "CONFIG_FEATURE_EDITING_HISTORY": 288,
+    "CONFIG_UNIQ": 289,
+    "CONFIG_FEATURE_DPKG_DEB_EXTRACT_ONLY": 290,
+    "CONFIG_WHO": 291,
+    "CONFIG_HWCLOCK": 292,
+    "CONFIG_FEATURE_TAR_COMPRESS": 293,
+    "CONFIG_DMESG": 294,
+    "CONFIG_FEATURE_MDEV_EXEC": 295,
+    "CONFIG_MT": 296,
+    "CONFIG_MKNOD": 297,
+    "CONFIG_MOUNTPOINT": 298,
+    "CONFIG_SETCONSOLE": 299,
+    "CONFIG_KILLALL": 300,
+    "CONFIG_FEATURE_LSMOD_PRETTY_2_6_OUTPUT": 301,
+    "CONFIG_FEATURE_VI_SEARCH": 302,
+    "CONFIG_FEATURE_TAR_LONG_OPTIONS": 303,
+    "CONFIG_SLEEP": 304,
+    "CONFIG_FEATURE_INIT_COREDUMPS": 305,
+    "CONFIG_FEATURE_FIND_TYPE": 306,
+    "CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS": 307,
+    "CONFIG_LOADKMAP": 308,
+    "CONFIG_INSTALL": 309,
+    "CONFIG_FUSER": 310,
+    "CONFIG_SELINUX": 311,
+    "CONFIG_FEATURE_INSMOD_LOAD_MAP": 312,
+    "CONFIG_FEATURE_INSTALLER": 313,
+    "CONFIG_FEATURE_PRESERVE_HARDLINKS": 314,
+    "CONFIG_FEATURE_FBSET_FANCY": 315,
+    "CONFIG_VLOCK": 316,
+    "CONFIG_KLOGD": 317,
+    "CONFIG_ETHER_WAKE": 318,
+    "CONFIG_INSMOD": 319,
+    "CONFIG_FEATURE_WGET_AUTHENTICATION": 320,
+    "CONFIG_MKSWAP": 321,
+    "CONFIG_RENICE": 322,
+    "CONFIG_CHATTR": 323,
+    "CONFIG_NETSTAT": 324,
+    "CONFIG_FEATURE_HTTPD_SET_REMOTE_PORT_TO_ENV": 325,
+    "CONFIG_OD": 326,
+    "CONFIG_FEATURE_CROND_CALL_SENDMAIL": 327,
+    "CONFIG_FEATURE_SH_IS_MSH": 328,
+    "CONFIG_FEATURE_USERNAME_COMPLETION": 329,
+    "CONFIG_TTY": 330,
+    "CONFIG_FEATURE_LS_USERNAME": 331,
+    "CONFIG_DU": 332,
+    "CONFIG_FEATURE_HWCLOCK_LONG_OPTIONS": 333,
+    "CONFIG_CROND": 334,
+    "CONFIG_PWD": 335,
+    "CONFIG_INCLUDE_SUSv2": 336,
+    "CONFIG_FEATURE_DU_DEFAULT_BLOCKSIZE_1K": 337,
+    "CONFIG_COMM": 338,
+    "CONFIG_HDPARM": 339,
+    "CONFIG_FEATURE_INETD_RPC": 340,
+    "CONFIG_NC_SERVER": 341,
+    "CONFIG_FEATURE_2_6_MODULES": 342,
+    "CONFIG_FEATURE_HTTPD_ENCODE_URL_STR": 343,
+    "CONFIG_ASH_RANDOM_SUPPORT": 344,
+    "CONFIG_RPM": 345,
+    "CONFIG_FEATURE_IFCONFIG_STATUS": 346,
+    "CONFIG_FEATURE_SGI_LABEL": 347,
+    "CONFIG_FEATURE_TEST_64": 348,
+    "CONFIG_CHVT": 349,
+    "CONFIG_FEATURE_HTTPD_AUTH_MD5": 350,
+    "CONFIG_FEATURE_MOUNT_CIFS": 351,
+    "CONFIG_FEATURE_MINIX2": 352,
+    "CONFIG_FEATURE_DEVPTS": 353,
+    "CONFIG_FEATURE_FDISK_ADVANCED": 354,
+    "CONFIG_XARGS": 355,
+    "CONFIG_FEATURE_LESS_BRACKETS": 356,
+    "CONFIG_DELUSER": 357,
+    "CONFIG_LSMOD": 358,
+    "CONFIG_DC": 359,
+    "CONFIG_FBSET": 360,
+    "CONFIG_FEATURE_INSMOD_LOAD_MAP_FULL": 361,
+    "CONFIG_FEATURE_DEB_TAR_GZ": 362,
+    "CONFIG_INIT": 363,
+    "CONFIG_FSCK_MINIX": 364,
+    "CONFIG_MKFS_MINIX": 365,
+    "CONFIG_DEALLOCVT": 366,
+    "CONFIG_FEATURE_HTTPD_SETUID": 367,
+    "CONFIG_HUSH": 368,
+    "CONFIG_BASENAME": 369,
+    "CONFIG_FEATURE_COMPRESS_USAGE": 370,
+    "CONFIG_RM": 371,
+    "CONFIG_LN": 372,
+    "CONFIG_FEATURE_EDITING_VI": 373,
+    "CONFIG_FEATURE_INIT_SCTTY": 374,
+    "CONFIG_FIND": 375,
+    "CONFIG_MODPROBE": 376,
+    "CONFIG_CUT": 377,
+    "CONFIG_FDISK_SUPPORT_LARGE_DISKS": 378,
+    "CONFIG_FEATURE_FIND_EXEC": 379,
+    "CONFIG_SETUIDGID": 380,
+    "CONFIG_FEATURE_FANCY_HEAD": 381,
+    "CONFIG_FEATURE_DIFF_MINIMAL": 382,
+    "CONFIG_FEATURE_LESS_REGEXP": 383,
+    "CONFIG_MD5SUM": 384,
+    "CONFIG_FEATURE_DEB_TAR_BZ2": 385,
+    "CONFIG_FALSE": 386,
+    "CONFIG_TAR": 387,
+    "CONFIG_LOGIN": 388,
+    "CONFIG_MESG": 389,
+    "CONFIG_NMETER": 390,
+    "CONFIG_IPLINK": 391,
+    "CONFIG_SHOW_USAGE": 392,
+    "CONFIG_FEATURE_PIDOF_SINGLE": 393,
+    "CONFIG_FEATURE_SYSLOG": 394,
+    "CONFIG_FEATURE_IP_ADDRESS": 395,
+    "CONFIG_MAKEDEVS": 396,
+    "CONFIG_FEATURE_SHADOWPASSWDS": 397,
+    "CONFIG_FEATURE_INSMOD_KSYMOOPS_SYMBOLS": 398,
+    "CONFIG_PRINTENV": 399,
+    "CONFIG_SETARCH": 400,
+    "CONFIG_DELGROUP": 401,
+    "CONFIG_FEATURE_IFCONFIG_SLIP": 402,
+    "CONFIG_PING": 403,
+    "CONFIG_ASH_BUILTIN_TEST": 404,
+    "CONFIG_FEATURE_HWCLOCK_ADJTIME_FHS": 405,
+    "CONFIG_FEATURE_FANCY_PING6": 406,
+    "CONFIG_LOGREAD": 407,
+    "CONFIG_FEATURE_SHARED_BUSYBOX": 408,
+    "CONFIG_FEATURE_LESS_MAXLINES": 409,
+    "CONFIG_DEVFSD_MODLOAD": 410,
+    "CONFIG_DEVFSD": 411,
+    "CONFIG_FEATURE_MODPROBE_MULTIPLE_OPTIONS": 412,
+    "CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS": 413,
+    "CONFIG_ECHO": 414,
+    "CONFIG_ZCIP": 415,
+    "CONFIG_TELNETD": 416,
+    "CONFIG_FEATURE_LESS_MARKS": 417,
+    "CONFIG_FEATURE_MDEV_CONF": 418,
+    "CONFIG_TRUE": 419,
+    "CONFIG_CPIO": 420,
+    "CONFIG_FSCK": 421,
+    "CONFIG_CHGRP": 422,
+    "CONFIG_MDEV": 423,
+    "CONFIG_USE_BB_PWD_GRP": 424,
+    "CONFIG_TR": 425,
+    "CONFIG_FEATURE_2_4_MODULES": 426,
+    "CONFIG_FEATURE_START_STOP_DAEMON_FANCY": 427,
+    "CONFIG_ENVUIDGID": 428,
+    "CONFIG_CAT": 429,
+    "CONFIG_FEATURE_DD_IBS_OBS": 430,
+    "CONFIG_FEATURE_FBSET_READMODE": 431,
+    "CONFIG_FEATURE_HTTPD_CONFIG_WITH_SCRIPT_INTERPR": 432,
+    "CONFIG_APP_UDHCPC": 433,
+    "CONFIG_ADDGROUP": 434,
+    "CONFIG_DD": 435,
+    "CONFIG_RMDIR": 436,
+    "CONFIG_ASH_READ_TIMEOUT": 437,
+    "CONFIG_LENGTH": 438,
+    "CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD": 439,
+    "CONFIG_GREP": 440,
+    "CONFIG_INSTALL_APPLET_HARDLINKS": 441,
+    "CONFIG_SOFTLIMIT": 442,
+    "CONFIG_FEATURE_DD_SIGNAL_HANDLING": 443,
+    "CONFIG_FEATURE_UMOUNT_ALL": 444,
+    "CONFIG_UUENCODE": 445,
+    "CONFIG_FEATURE_PIDOF_OMIT": 446,
+    "CONFIG_FEATURE_OSF_LABEL": 447,
+    "CONFIG_NITPICK": 448,
+    "CONFIG_FEATURE_QUERY_MODULE_INTERFACE": 449,
+    "CONFIG_NSLOOKUP": 450,
+    "CONFIG_FEATURE_FTPGETPUT_LONG_OPTIONS": 451,
+    "CONFIG_PIDOF": 452,
+    "CONFIG_CHOWN": 453,
+    "CONFIG_CHROOT": 454,
+    "CONFIG_FEATURE_FIND_MMIN": 455,
+    "CONFIG_DPKG_DEB": 456,
+    "CONFIG_FEATURE_SU_CHECKS_SHELLS": 457,
+    "CONFIG_FEATURE_IFCONFIG_BROADCAST_PLUS": 458,
+    "CONFIG_DPKG": 459,
+    "CONFIG_FEATURE_HDPARM_HDIO_SCAN_HWIF": 460,
+    "CONFIG_DEVFSD_VERBOSE": 461,
+    "CONFIG_PIVOT_ROOT": 462,
+    "CONFIG_FEATURE_IFUPDOWN_IPV6": 463,
+    "CONFIG_FEATURE_LS_COLOR": 464,
+    "CONFIG_INSTALL_APPLET_SYMLINKS": 465,
+    "CONFIG_SU": 466,
+    "CONFIG_RPM2CPIO": 467,
+    "CONFIG_FEATURE_HDPARM_HDIO_GETSET_DMA": 468,
+    "CONFIG_FEATURE_TRACEROUTE_VERBOSE": 469,
+    "CONFIG_RUNSV": 470,
+    "CONFIG_FEATURE_AIX_LABEL": 471,
+    "CONFIG_HOSTNAME": 472,
+    "CONFIG_ROUTE": 473,
+    "CONFIG_USE_BB_SHADOW": 474,
+    "CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME": 475,
+    "CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO": 476,
+    "CONFIG_FEATURE_IPC_SYSLOG": 477,
+    "CONFIG_FEATURE_HDPARM_HDIO_TRISTATE_HWIF": 478,
+    "CONFIG_FEATURE_TOP_CPU_USAGE_PERCENTAGE": 479,
+    "CONFIG_GETOPT_LONG": 480,
+    "CONFIG_LOSETUP": 481,
+    "CONFIG_FEATURE_VI_DOT_CMD": 482,
+    "CONFIG_FEATURE_SH_EXTRA_QUIET": 483,
+    "CONFIG_FEATURE_BUFFERS_USE_MALLOC": 484,
+    "CONFIG_FEATURE_DATE_ISOFMT": 485,
+    "CONFIG_ASH_MATH_SUPPORT_64": 486,
+    "CONFIG_BUILD_AT_ONCE": 487,
+    "CONFIG_IPCRM": 488,
+    "CONFIG_FEATURE_IFUPDOWN_IP_BUILTIN": 489,
+    "CONFIG_FEATURE_SUID_CONFIG": 490,
+    "CONFIG_AWK": 491,
+    "CONFIG_EXPR_MATH_SUPPORT_64": 492,
+    "CONFIG_FEATURE_VI_READONLY": 493,
+    "CONFIG_APP_UDHCPD": 494,
+    "CONFIG_DEBUG_INIT": 495,
+    "CONFIG_FEATURE_DIFF_DIR": 496,
+    "CONFIG_DATE": 497,
+    "CONFIG_WHOAMI": 498,
+    "CONFIG_INETD": 499,
+    "CONFIG_FEATURE_IFCONFIG_HW": 500,
+    "CONFIG_GETTY": 501,
+    "CONFIG_FEATURE_DMESG_PRETTY": 502,
+    "CONFIG_ASH_EXPAND_PRMT": 503,
+    "CONFIG_FTPPUT": 504,
+    "CONFIG_SWAPONOFF": 505,
+    "CONFIG_SV": 506,
+    "CONFIG_FEATURE_FIND_INUM": 507,
+    "CONFIG_ASH_OPTIMIZE_FOR_SIZE": 508,
+    "CONFIG_FEATURE_IPCALC_LONG_OPTIONS": 509,
+    "CONFIG_DEBUG": 510,
+    "CONFIG_TOP": 511,
+    "CONFIG_FEATURE_ENV_LONG_OPTIONS": 512,
+    "CONFIG_ASH_CMDCMD": 513,
+    "CONFIG_FEATURE_PS_WIDE": 514,
+    "CONFIG_EJECT": 515,
+    "CONFIG_APP_DUMPLEASES": 516,
+    "CONFIG_UNLZMA": 517,
+    "CONFIG_SVLOGD": 518,
+    "CONFIG_FEATURE_TEE_USE_BLOCK_IO": 519,
+    "CONFIG_FEATURE_TAR_OLDGNU_COMPATIBILITY": 520,
+    "CONFIG_FEATURE_GREP_FGREP_ALIAS": 521,
+    "CONFIG_SORT": 522,
+    "CONFIG_FEATURE_MKSWAP_V0": 523,
+    "CONFIG_IPROUTE": 524,
+    "CONFIG_READPROFILE": 525,
+    "CONFIG_FEATURE_INSMOD_VERSION_CHECKING": 526,
+    "CONFIG_FEATURE_HUMAN_READABLE": 527,
+    "CONFIG_TOUCH": 528,
+    "CONFIG_FEATURE_INITRD": 529,
+    "CONFIG_TIME": 530,
+    "CONFIG_STTY": 531,
+    "CONFIG_READAHEAD": 532,
+    "CONFIG_SYSLOGD": 533,
+    "CONFIG_NO_DEBUG_LIB": 534,
+    "CONFIG_ASH_ALIAS": 535,
+    "CONFIG_FREE": 536,
+    "CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET": 537,
+    "CONFIG_FEATURE_IPCALC_FANCY": 538,
+    "CONFIG_FEATURE_AWK_MATH": 539,
+    "CONFIG_ARPING": 540
+  },
+  "cnf_clauses": [
+    [
+      149,
+      -471
+    ],
+    [
+      122,
+      -432
+    ],
+    [
+      269,
+      -489
+    ],
+    [
+      -53,
+      135
+    ],
+    [
+      -120,
+      464
+    ],
+    [
+      394,
+      -415
+    ],
+    [
+      394,
+      -499
+    ],
+    [
+      -312,
+      319
+    ],
+    [
+      -6,
+      394
+    ],
+    [
+      90,
+      -334
+    ],
+    [
+      -162,
+      240
+    ],
+    [
+      -334,
+      394
+    ],
+    [
+      -413,
+      480
+    ],
+    [
+      -48,
+      533
+    ],
+    [
+      -43,
+      123,
+      384
+    ],
+    [
+      -221,
+      510
+    ],
+    [
+      376,
+      -412
+    ],
+    [
+      -221,
+      -534
+    ],
+    [
+      -95,
+      -243,
+      524
+    ],
+    [
+      375,
+      -507
+    ],
+    [
+      -40,
+      440
+    ],
+    [
+      -8,
+      240
+    ],
+    [
+      135,
+      -272
+    ],
+    [
+      -15,
+      419
+    ],
+    [
+      244,
+      -464,
+      480
+    ],
+    [
+      59,
+      -274
+    ],
+    [
+      -130,
+      -465
+    ],
+    [
+      -116,
+      -484
+    ],
+    [
+      -278,
+      387
+    ],
+    [
+      -23,
+      497
+    ],
+    [
+      -199,
+      375
+    ],
+    [
+      184,
+      395,
+      -489
+    ],
+    [
+      -25,
+      135
+    ],
+    [
+      -122,
+      135
+    ],
+    [
+      -95,
+      184,
+      489
+    ],
+    [
+      -118,
+      149
+    ],
+    [
+      -284,
+      396
+    ],
+    [
+      -69,
+      387
+    ],
+    [
+      -223,
+      392
+    ],
+    [
+      -146,
+      -226
+    ],
+    [
+      -99,
+      388
+    ],
+    [
+      52,
+      -447
+    ],
+    [
+      -177,
+      403
+    ],
+    [
+      243,
+      -391
+    ],
+    [
+      198,
+      -482
+    ],
+    [
+      16,
+      -513
+    ],
+    [
+      -92,
+      -534
+    ],
+    [
+      35,
+      146,
+      226,
+      260,
+      328
+    ],
+    [
+      -172,
+      394
+    ],
+    [
+      -164,
+      414
+    ],
+    [
+      -194,
+      480
+    ],
+    [
+      91,
+      -174
+    ],
+    [
+      16,
+      -503
+    ],
+    [
+      -205,
+      456,
+      459
+    ],
+    [
+      -165,
+      394
+    ],
+    [
+      -439,
+      499
+    ],
+    [
+      -103,
+      -269
+    ],
+    [
+      240,
+      -417
+    ],
+    [
+      -240,
+      409
+    ],
+    [
+      -219,
+      499
+    ],
+    [
+      -479,
+      511
+    ],
+    [
+      -190,
+      499
+    ],
+    [
+      -96,
+      -484
+    ],
+    [
+      -333,
+      480
+    ],
+    [
+      -388,
+      394
+    ],
+    [
+      397,
+      424,
+      -474
+    ],
+    [
+      1,
+      -300
+    ],
+    [
+      363,
+      -374
+    ],
+    [
+      -251,
+      386
+    ],
+    [
+      -59,
+      274,
+      388,
+      466,
+      501
+    ],
+    [
+      93,
+      244,
+      332,
+      -527
+    ],
+    [
+      70,
+      -291,
+      -466
+    ],
+    [
+      16,
+      -47
+    ],
+    [
+      70,
+      -291,
+      -388
+    ],
+    [
+      -96,
+      -116
+    ],
+    [
+      14,
+      -463
+    ],
+    [
+      1,
+      -210
+    ],
+    [
+      -186,
+      198
+    ],
+    [
+      15,
+      16,
+      251,
+      368,
+      -483
+    ],
+    [
+      -30,
+      152,
+      188
+    ],
+    [
+      46,
+      -72
+    ],
+    [
+      -146,
+      -328
+    ],
+    [
+      44,
+      -241
+    ],
+    [
+      -81,
+      490
+    ],
+    [
+      -100,
+      319,
+      358
+    ],
+    [
+      319,
+      -398
+    ],
+    [
+      -184,
+      395,
+      -489
+    ],
+    [
+      46,
+      -67,
+      -408
+    ],
+    [
+      -203,
+      394
+    ],
+    [
+      261,
+      -406
+    ],
+    [
+      138,
+      -251
+    ],
+    [
+      -97,
+      149,
+      378
+    ],
+    [
+      76,
+      237,
+      244,
+      -266
+    ],
+    [
+      90,
+      -490
+    ],
+    [
+      -290,
+      456
+    ],
+    [
+      3,
+      -329
+    ],
+    [
+      339,
+      -468
+    ],
+    [
+      339,
+      -537
+    ],
+    [
+      -97,
+      -149,
+      378
+    ],
+    [
+      -35,
+      -146
+    ],
+    [
+      -39,
+      480
+    ],
+    [
+      -104,
+      339
+    ],
+    [
+      -142,
+      304
+    ],
+    [
+      -61,
+      342,
+      448
+    ],
+    [
+      212,
+      -340
+    ],
+    [
+      -342,
+      -449
+    ],
+    [
+      59,
+      -70,
+      291,
+      388,
+      466,
+      501
+    ],
+    [
+      321,
+      -523
+    ],
+    [
+      319,
+      -526
+    ],
+    [
+      -238,
+      466
+    ],
+    [
+      234,
+      -280
+    ],
+    [
+      184,
+      -243
+    ],
+    [
+      342,
+      -426,
+      449
+    ],
+    [
+      -107,
+      175
+    ],
+    [
+      -286,
+      387
+    ],
+    [
+      -312,
+      342,
+      426
+    ],
+    [
+      -67,
+      -408
+    ],
+    [
+      -173,
+      319
+    ],
+    [
+      -62,
+      254
+    ],
+    [
+      -65,
+      375
+    ],
+    [
+      28,
+      184,
+      -489
+    ],
+    [
+      -59,
+      70,
+      291,
+      388,
+      466,
+      501
+    ],
+    [
+      -477,
+      533
+    ],
+    [
+      244,
+      -250
+    ],
+    [
+      27,
+      -402
+    ],
+    [
+      395,
+      -489
+    ],
+    [
+      375,
+      -379
+    ],
+    [
+      102,
+      -243,
+      -395
+    ],
+    [
+      294,
+      -502
+    ],
+    [
+      42
+    ],
+    [
+      -24,
+      396
+    ],
+    [
+      79,
+      -108
+    ],
+    [
+      -410,
+      411
+    ],
+    [
+      111,
+      -131,
+      -243
+    ],
+    [
+      -305,
+      363
+    ],
+    [
+      -28,
+      184,
+      489
+    ],
+    [
+      -451,
+      480
+    ],
+    [
+      82,
+      157,
+      -314
+    ],
+    [
+      -61,
+      342,
+      376
+    ],
+    [
+      -11,
+      355
+    ],
+    [
+      59,
+      -274,
+      -466
+    ],
+    [
+      -232,
+      244
+    ],
+    [
+      -57,
+      375
+    ],
+    [
+      -111,
+      131
+    ],
+    [
+      198,
+      -493
+    ],
+    [
+      277,
+      -287
+    ],
+    [
+      201,
+      -373
+    ],
+    [
+      251,
+      -328
+    ],
+    [
+      16,
+      -344
+    ],
+    [
+      16,
+      -35
+    ],
+    [
+      -16,
+      138
+    ],
+    [
+      24,
+      284,
+      -396
+    ],
+    [
+      426,
+      -449
+    ],
+    [
+      148,
+      -169
+    ],
+    [
+      -39,
+      175
+    ],
+    [
+      16,
+      -404
+    ],
+    [
+      510,
+      -534
+    ],
+    [
+      -303,
+      387
+    ],
+    [
+      -430,
+      435
+    ],
+    [
+      -92,
+      -221
+    ],
+    [
+      90,
+      -270
+    ],
+    [
+      -147,
+      198
+    ],
+    [
+      -15,
+      138
+    ],
+    [
+      -92,
+      510
+    ],
+    [
+      -116,
+      448
+    ],
+    [
+      -260,
+      -328
+    ],
+    [
+      137,
+      -519
+    ],
+    [
+      28,
+      -184,
+      -489
+    ],
+    [
+      138,
+      -368
+    ],
+    [
+      -363,
+      394
+    ],
+    [
+      -5,
+      309
+    ],
+    [
+      -362,
+      456,
+      459
+    ],
+    [
+      138,
+      -348
+    ],
+    [
+      240,
+      -409
+    ],
+    [
+      55,
+      -86
+    ],
+    [
+      -143,
+      517
+    ],
+    [
+      -172,
+      212
+    ],
+    [
+      -61,
+      342
+    ],
+    [
+      -139,
+      394
+    ],
+    [
+      185
+    ],
+    [
+      160
+    ],
+    [
+      -211,
+      363
+    ],
+    [
+      59,
+      -274,
+      -388
+    ],
+    [
+      149,
+      -354
+    ],
+    [
+      90,
+      -316
+    ],
+    [
+      135,
+      -343
+    ],
+    [
+      52,
+      -354
+    ],
+    [
+      90,
+      -488
+    ],
+    [
+      332,
+      -337
+    ],
+    [
+      198,
+      -202
+    ],
+    [
+      28,
+      -391
+    ],
+    [
+      -61,
+      376
+    ],
+    [
+      90,
+      -254
+    ],
+    [
+      -2,
+      136
+    ],
+    [
+      201,
+      -288
+    ],
+    [
+      149,
+      -447
+    ],
+    [
+      -173,
+      426
+    ],
+    [
+      -64,
+      448
+    ],
+    [
+      -393,
+      452
+    ],
+    [
+      -236,
+      243
+    ],
+    [
+      60,
+      -514
+    ],
+    [
+      -251,
+      419
+    ],
+    [
+      -457,
+      466
+    ],
+    [
+      155,
+      -492
+    ],
+    [
+      -103,
+      473
+    ],
+    [
+      -59,
+      70,
+      -291
+    ],
+    [
+      -84,
+      355
+    ],
+    [
+      491,
+      -539
+    ],
+    [
+      440,
+      -521
+    ],
+    [
+      376,
+      -412,
+      448
+    ],
+    [
+      394,
+      -501
+    ],
+    [
+      52,
+      -471
+    ],
+    [
+      -34,
+      334
+    ],
+    [
+      494,
+      -516
+    ],
+    [
+      -127,
+      522
+    ],
+    [
+      -295,
+      418
+    ],
+    [
+      -102,
+      395
+    ],
+    [
+      480,
+      -512
+    ],
+    [
+      -130,
+      -441
+    ],
+    [
+      -5,
+      480
+    ],
+    [
+      95,
+      184,
+      -489
+    ],
+    [
+      71,
+      -451,
+      504
+    ],
+    [
+      -24,
+      -284
+    ],
+    [
+      -418,
+      423
+    ],
+    [
+      138,
+      -404
+    ],
+    [
+      -59,
+      70,
+      -388
+    ],
+    [
+      -315,
+      360
+    ],
+    [
+      -385,
+      456,
+      459
+    ],
+    [
+      96,
+      116,
+      -448,
+      484
+    ],
+    [
+      -89,
+      244
+    ],
+    [
+      16,
+      -50
+    ],
+    [
+      -131,
+      184
+    ],
+    [
+      -307,
+      480
+    ],
+    [
+      -368,
+      386
+    ],
+    [
+      -33,
+      237
+    ],
+    [
+      -407,
+      477
+    ],
+    [
+      -121,
+      387
+    ],
+    [
+      27,
+      -346
+    ],
+    [
+      27,
+      -103
+    ],
+    [
+      -50,
+      201
+    ],
+    [
+      -59,
+      70
+    ],
+    [
+      184,
+      -395,
+      489
+    ],
+    [
+      -158,
+      184
+    ],
+    [
+      -41,
+      425
+    ],
+    [
+      44,
+      -103,
+      -269
+    ],
+    [
+      225,
+      -477
+    ],
+    [
+      16,
+      -20
+    ],
+    [
+      -105,
+      411
+    ],
+    [
+      -29,
+      533
+    ],
+    [
+      -134,
+      152
+    ],
+    [
+      109,
+      -496
+    ],
+    [
+      -476,
+      499
+    ],
+    [
+      -225,
+      477
+    ],
+    [
+      44,
+      -269
+    ],
+    [
+      -376,
+      412,
+      448
+    ],
+    [
+      394,
+      -466
+    ],
+    [
+      -181,
+      -480
+    ],
+    [
+      -275,
+      387,
+      420
+    ],
+    [
+      360,
+      -431
+    ],
+    [
+      27,
+      -500
+    ],
+    [
+      245,
+      -427
+    ],
+    [
+      -15,
+      386
+    ],
+    [
+      -35,
+      -226
+    ],
+    [
+      244,
+      -331
+    ],
+    [
+      -282,
+      339
+    ],
+    [
+      95,
+      -489
+    ],
+    [
+      -35,
+      -328
+    ],
+    [
+      150,
+      -509
+    ],
+    [
+      150,
+      -538
+    ],
+    [
+      375,
+      -455
+    ],
+    [
+      73,
+      319,
+      376,
+      -426
+    ],
+    [
+      411,
+      -461
+    ],
+    [
+      -145,
+      375
+    ],
+    [
+      -126,
+      433,
+      494
+    ],
+    [
+      -58,
+      148
+    ],
+    [
+      135,
+      -367
+    ],
+    [
+      70,
+      -291,
+      -501
+    ],
+    [
+      -44,
+      75
+    ],
+    [
+      448,
+      -484
+    ],
+    [
+      -226,
+      -328
+    ],
+    [
+      363,
+      -529
+    ],
+    [
+      240,
+      -383
+    ],
+    [
+      175,
+      -320
+    ],
+    [
+      -258,
+      355
+    ],
+    [
+      95,
+      -524
+    ],
+    [
+      -352,
+      364,
+      365
+    ],
+    [
+      -464,
+      480
+    ],
+    [
+      -146,
+      -260
+    ],
+    [
+      426,
+      -526
+    ],
+    [
+      27,
+      -458
+    ],
+    [
+      -45,
+      90
+    ],
+    [
+      -485,
+      497
+    ],
+    [
+      130,
+      441,
+      465
+    ],
+    [
+      -87,
+      198
+    ],
+    [
+      82,
+      -216
+    ],
+    [
+      16,
+      -166
+    ],
+    [
+      16,
+      -535
+    ],
+    [
+      15,
+      -146
+    ],
+    [
+      -130,
+      141,
+      195,
+      313
+    ],
+    [
+      -59,
+      70,
+      -501
+    ],
+    [
+      -4,
+      510
+    ],
+    [
+      198,
+      -255,
+      491
+    ],
+    [
+      -96,
+      448
+    ],
+    [
+      244,
+      -464
+    ],
+    [
+      -201,
+      288
+    ],
+    [
+      52,
+      -347
+    ],
+    [
+      -317,
+      533
+    ],
+    [
+      187,
+      -381
+    ],
+    [
+      -398,
+      426
+    ],
+    [
+      394,
+      -416
+    ],
+    [
+      339,
+      -460
+    ],
+    [
+      -111,
+      243
+    ],
+    [
+      76,
+      -180
+    ],
+    [
+      109,
+      -382
+    ],
+    [
+      16,
+      -163
+    ],
+    [
+      363,
+      -495
+    ],
+    [
+      44,
+      -463
+    ],
+    [
+      -230,
+      363
+    ],
+    [
+      152,
+      -182,
+      188
+    ],
+    [
+      136,
+      -264
+    ],
+    [
+      92,
+      221,
+      -510,
+      534
+    ],
+    [
+      244,
+      -263
+    ],
+    [
+      -276,
+      387
+    ],
+    [
+      -259,
+      355
+    ],
+    [
+      -32,
+      44
+    ],
+    [
+      -55,
+      86
+    ],
+    [
+      387,
+      -520
+    ],
+    [
+      16,
+      -437
+    ],
+    [
+      152,
+      -351
+    ],
+    [
+      -218,
+      388
+    ],
+    [
+      59,
+      -274,
+      -501
+    ],
+    [
+      480,
+      -509
+    ],
+    [
+      16,
+      -133
+    ],
+    [
+      -226,
+      368
+    ],
+    [
+      152,
+      -248
+    ],
+    [
+      -226,
+      -260
+    ],
+    [
+      -265,
+      387
+    ],
+    [
+      -52,
+      149
+    ],
+    [
+      -12,
+      16
+    ],
+    [
+      394,
+      -411
+    ],
+    [
+      75,
+      -413
+    ],
+    [
+      198,
+      -273
+    ],
+    [
+      292,
+      -333
+    ],
+    [
+      61,
+      -342,
+      -376,
+      448
+    ],
+    [
+      73,
+      319,
+      -342,
+      376
+    ],
+    [
+      -306,
+      375
+    ],
+    [
+      262,
+      -341
+    ],
+    [
+      339,
+      -478
+    ],
+    [
+      -317,
+      394
+    ],
+    [
+      90,
+      -388
+    ],
+    [
+      -17,
+      27
+    ],
+    [
+      -217,
+      407
+    ],
+    [
+      184,
+      -489
+    ],
+    [
+      -446,
+      452
+    ],
+    [
+      95,
+      -184,
+      -489
+    ],
+    [
+      52,
+      -118
+    ],
+    [
+      -3,
+      201
+    ],
+    [
+      -51,
+      271
+    ],
+    [
+      198,
+      -220
+    ],
+    [
+      -301,
+      358
+    ],
+    [
+      -303,
+      480
+    ],
+    [
+      -215,
+      425
+    ],
+    [
+      -102,
+      243
+    ],
+    [
+      136,
+      -469
+    ],
+    [
+      90,
+      -466
+    ],
+    [
+      44,
+      -103
+    ],
+    [
+      312,
+      -361
+    ],
+    [
+      122,
+      -325
+    ],
+    [
+      -254,
+      394
+    ],
+    [
+      192
+    ],
+    [
+      -26,
+      262
+    ],
+    [
+      -370,
+      392
+    ],
+    [
+      -368,
+      419
+    ],
+    [
+      149,
+      -347
+    ],
+    [
+      198,
+      -302
+    ],
+    [
+      152,
+      -172
+    ],
+    [
+      -28,
+      -243,
+      391
+    ],
+    [
+      14,
+      -261
+    ],
+    [
+      -144,
+      494
+    ],
+    [
+      -68,
+      198
+    ],
+    [
+      -441,
+      -465
+    ],
+    [
+      -35,
+      -260
+    ],
+    [
+      -97,
+      378
+    ],
+    [
+      -224,
+      440
+    ],
+    [
+      -167,
+      416
+    ],
+    [
+      163,
+      -486
+    ],
+    [
+      245,
+      -307
+    ],
+    [
+      233,
+      -512
+    ],
+    [
+      53,
+      -350
+    ],
+    [
+      70,
+      -291
+    ],
+    [
+      201,
+      -252
+    ],
+    [
+      -165,
+      433,
+      494
+    ],
+    [
+      -293,
+      387
+    ],
+    [
+      97,
+      149,
+      -378
+    ],
+    [
+      148,
+      -197
+    ],
+    [
+      244,
+      -281
+    ],
+    [
+      109,
+      -193
+    ],
+    [
+      44,
+      -161
+    ],
+    [
+      -475,
+      499
+    ],
+    [
+      85
+    ],
+    [
+      15,
+      16,
+      -141,
+      251,
+      368
+    ],
+    [
+      292,
+      -405
+    ],
+    [
+      243,
+      -524
+    ],
+    [
+      -267,
+      394
+    ],
+    [
+      -327,
+      334
+    ],
+    [
+      -61,
+      376,
+      448
+    ],
+    [
+      -37,
+      237
+    ],
+    [
+      -158,
+      236,
+      -243
+    ],
+    [
+      16,
+      -508
+    ],
+    [
+      -181,
+      480
+    ],
+    [
+      -166,
+      414
+    ],
+    [
+      158,
+      -236
+    ],
+    [
+      74,
+      -125
+    ],
+    [
+      397,
+      -474
+    ],
+    [
+      -115,
+      375
+    ],
+    [
+      28,
+      -489
+    ],
+    [
+      188,
+      -444
+    ],
+    [
+      148,
+      -222
+    ],
+    [
+      240,
+      -356
+    ],
+    [
+      -216,
+      480
+    ],
+    [
+      112,
+      -153
+    ],
+    [
+      22,
+      -124
+    ],
+    [
+      -59,
+      70,
+      -466
+    ],
+    [
+      435,
+      -443
+    ],
+    [
+      31,
+      -194
+    ],
+    [
+      46,
+      -408
+    ],
+    [
+      201,
+      -209
+    ],
+    [
+      424,
+      -474
+    ],
+    [
+      -340,
+      499
+    ]
+  ]
+}
