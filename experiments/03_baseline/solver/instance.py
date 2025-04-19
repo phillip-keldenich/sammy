@@ -1,5 +1,20 @@
+import shutil
 from pathlib import Path
 from zipfile import ZipFile
+
+
+def get_instance_from_path(instance_name, out_dir, instances_path):
+    instance_path = Path(instances_path) / (instance_name + ".xml")
+    if not instance_path.exists():
+        instance_path = instance_path.with_suffix(".dimacs")
+
+    ext = instance_path.suffix
+
+    out_path = Path(out_dir) / "models" / instance_name / f"model{ext}"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy(instance_path, out_path)
+    return out_path
 
 
 def get_instance_from_archive(instance_name, out_dir,
