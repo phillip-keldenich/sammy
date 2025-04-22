@@ -77,11 +77,9 @@ make_and_run_common_interface_solver(LNSSubproblem&& subproblem,
     result.solve_time = seconds_between(after_make, after_solve);
     if (!res) {
         result.outcome = "TIMEOUT";
-    }
-    if (!*res) {
+    } else if (!*res) {
         result.outcome = "SOLUTION_WAS_OPTIMAL";
-    }
-    if (*res) {
+    } else {
         result.outcome = "IMPROVED_SOLUTION";
         result.configurations = solver.get_solution();
     }
