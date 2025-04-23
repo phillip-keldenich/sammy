@@ -125,6 +125,9 @@ def add_given_outcome(solutions_file, mes_size, solver, outcome):
             create_solutions_file(solutions_file)
         with lzma.open(solutions_file, "rt") as f:
             solutions_data = json.load(f)
+        if "solver_runs" not in solutions_data or \
+           solutions_data["solver_runs"] is None:
+            solutions_data["solver_runs"] = []
         solver_runs = solutions_data["solver_runs"]
         found_run = None
         for solver_run in solver_runs:
