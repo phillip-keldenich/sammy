@@ -195,12 +195,11 @@ def run_mes_solver_pairs(entries):
 
 
 if __name__ == "__main__":
-    with slurminade.JobBundling(max_size=1):
-        ur = []
-        for mef, sf, ms, sol, nr in unresolved_mes_solver_pairs():
-            ur.append((str(mef), str(sf), ms, sol, nr))
-            if len(ur) >= 200:
-                run_mes_solver_pairs.distribute(ur)
-                ur = []
-        if ur:
+    ur = []
+    for mef, sf, ms, sol, nr in unresolved_mes_solver_pairs():
+        ur.append((str(mef), str(sf), ms, sol, nr))
+        if len(ur) >= 200:
             run_mes_solver_pairs.distribute(ur)
+            ur = []
+    if ur:
+        run_mes_solver_pairs.distribute(ur)
