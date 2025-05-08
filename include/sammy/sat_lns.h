@@ -26,9 +26,7 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
         return std::string("SAT<") + BasicSatSolver::name() + ">";
     }
 
-    std::string strategy_name() const {
-        return name();
-    }
+    std::string strategy_name() const { return name(); }
 
     /**
      * Estimate the total size of the formula (in bytes)
@@ -585,19 +583,14 @@ template <typename BaseSolver> class FixedBoundSATSolver {
 
     FixedBoundSATSolver(SharedDBPropagator* propagator,
                         const std::vector<Vertex>* universe,
-                        std::vector<Vertex> clique,
-                        std::size_t max_num_configs) :
-        m_base_solver(),
-        m_propagator(propagator),
-        m_all_vertices(*universe),
-        m_class_vars(max_num_configs),
-        m_vertex_vars(universe->size())
-    {
-        if(clique.size() > max_num_configs) {
+                        std::vector<Vertex> clique, std::size_t max_num_configs)
+        : m_base_solver(), m_propagator(propagator), m_all_vertices(*universe),
+          m_class_vars(max_num_configs), m_vertex_vars(universe->size()) {
+        if (clique.size() > max_num_configs) {
             m_construction_infeasible = true;
             return;
         }
-        for(std::size_t i = 0; i < max_num_configs; ++i) {
+        for (std::size_t i = 0; i < max_num_configs; ++i) {
             if (i <= clique.size())
                 m_propagator->reset_or_throw();
             if (i < clique.size()) {
@@ -624,15 +617,13 @@ template <typename BaseSolver> class FixedBoundSATSolver {
     }
 
     std::optional<bool> solve() {
-        if(m_construction_infeasible) {
+        if (m_construction_infeasible) {
             return false;
         }
         return m_base_solver.solve();
     }
 
-    void abort() {
-        m_base_solver.terminate();
-    }
+    void abort() { m_base_solver.terminate(); }
 
     std::vector<std::vector<bool>> get_solution() const {
         const auto nclasses = m_class_vars.size();
@@ -652,8 +643,8 @@ template <typename BaseSolver> class FixedBoundSATSolver {
 
     PartialSolution get_partial(const PairInfeasibilityMap* inf_map) const {
         auto solution = get_solution();
-        PartialSolution result(m_propagator->db().num_vars(),
-                               inf_map, solution.begin(), solution.end());
+        PartialSolution result(m_propagator->db().num_vars(), inf_map,
+                               solution.begin(), solution.end());
         return result;
     }
 

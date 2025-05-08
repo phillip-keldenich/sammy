@@ -35,8 +35,7 @@ class SubproblemMESSolver {
                         m_subproblem.mutually_exclusive_set, p_get_config()),
           m_iterations_without_improvement_limit(
               iterations_without_improvement),
-          m_iterations_limit(iterations_limit)
-    {
+          m_iterations_limit(iterations_limit) {
         m_base_solver.make_abortable();
     }
 
@@ -189,10 +188,9 @@ class SubproblemMESSolver {
      * subproblem solver MES computation.
      */
     bool p_should_continue() {
-        if(m_iterations >= m_iterations_limit) {
-            m_recorder->store_event(
-                "LNS_MES_STOPPING_DUE_TO_MAX_ITERATIONS",
-                {{"worker_id", m_worker_id}}, "worker_id");
+        if (m_iterations >= m_iterations_limit) {
+            m_recorder->store_event("LNS_MES_STOPPING_DUE_TO_MAX_ITERATIONS",
+                                    {{"worker_id", m_worker_id}}, "worker_id");
             return false;
         }
         if (m_iterations_without_improvement >=
@@ -216,9 +214,10 @@ class SubproblemMESSolver {
             return p_price_all();
         }
         std::size_t sample_goal_size = 1000;
-        sample_goal_size = (std::max)(
-            sample_goal_size,
-            std::size_t(0.1 * m_subproblem.uncovered_universe.size()));
+        sample_goal_size =
+            (std::max)(sample_goal_size,
+                       std::size_t(0.1 *
+                                   m_subproblem.uncovered_universe.size()));
         if (sample_goal_size >= m_subproblem.uncovered_universe.size()) {
             return p_price_all();
         }
@@ -429,7 +428,7 @@ template <typename WrappedSubproblemSolver> class SubproblemSolverWithMES {
     }
 
     std::string strategy_name() const {
-        if(!m_sub_solver) {
+        if (!m_sub_solver) {
             return "mes_only";
         } else {
             return m_sub_solver->strategy_name();

@@ -2,13 +2,13 @@
 #define SAMMY_PROCESS_H_INCLUDED_
 
 #include <boost/filesystem.hpp>
-#include <memory>
-#include <optional>
 #include <cstddef>
 #include <cstdlib>
-#include <vector>
-#include <string>
+#include <memory>
 #include <numeric>
+#include <optional>
+#include <string>
+#include <vector>
 
 namespace sammy {
 

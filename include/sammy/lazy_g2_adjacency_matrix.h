@@ -22,9 +22,8 @@ class LazyG2AdjacencyMatrix {
     using Indices = std::vector<std::size_t>;
     using VertexMap = VertexMapTo<std::size_t>;
 
-    inline
-    LazyG2AdjacencyMatrix(std::vector<Vertex> considered_vertices,
-                          ClauseDB& clause_db, std::size_t n_concrete);
+    inline LazyG2AdjacencyMatrix(std::vector<Vertex> considered_vertices,
+                                 ClauseDB& clause_db, std::size_t n_concrete);
 
     /**
      * Get a list of vertex indices containing the given concrete literal l.

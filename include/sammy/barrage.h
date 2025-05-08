@@ -12,13 +12,12 @@
 #include "simplification.h"
 #include "thread_clauses.h"
 #include <any>
+#include <boost/circular_buffer.hpp>
+#include <chrono>
 #include <filesystem>
 #include <optional>
 #include <queue>
 #include <utility>
-#include <chrono>
-#include <boost/circular_buffer.hpp>
-
 
 namespace sammy {
 
@@ -68,41 +67,36 @@ struct LNSTimeAndSuccessInfo {
     std::size_t min_num_tries_for_time = 5;
 
     void report_success(std::size_t removed_classes, double time,
-                        const std::string& strategy) 
-    {
+                        const std::string& strategy) {
         // called on finding an improved solution
         auto& info = removed_classes_info[removed_classes];
         info.complete_tries_since_last_success = 0;
         info.complete_tries_total++;
         info.complete_try_successes++;
         info.complete_tries_total_time += time;
-        RecentCompletionHistoryEntry entry{
-            removed_classes, time,
-            std::chrono::steady_clock::now(), true, strategy
-        };
+        RecentCompletionHistoryEntry entry{removed_classes, time,
+                                           std::chrono::steady_clock::now(),
+                                           true, strategy};
         recent_successes.push_back(entry);
         recent_completions.push_back(std::move(entry));
     }
 
     void report_failure(std::size_t removed_classes, double time,
-                        const std::string& strategy) 
-    {
+                        const std::string& strategy) {
         // called on provable non-improvability
         auto& info = removed_classes_info[removed_classes];
         info.complete_tries_since_last_success++;
         info.complete_tries_total++;
         info.complete_tries_total_time += time;
-        RecentCompletionHistoryEntry entry{
-            removed_classes, time,
-            std::chrono::steady_clock::now(), false, strategy
-        };
+        RecentCompletionHistoryEntry entry{removed_classes, time,
+                                           std::chrono::steady_clock::now(),
+                                           false, strategy};
         recent_completions.push_back(std::move(entry));
     }
 
     void report_aborted(std::size_t removed_classes, double time,
-                        const std::string& strategy) 
-    {
-        // called on timeout or 
+                        const std::string& strategy) {
+        // called on timeout or
         // abort due to a better solution being found elsewhere
         // currently no good idea on how to include the aborts...
         // we don't want to punish all strategies, including the successful one.
@@ -118,11 +112,10 @@ struct LNSTimeAndSuccessInfo {
             {"satdsatur|cadical", 0.25},
             {"fixed_sat|cadical", 0.25},
             {"fixed_sat|kissat", 0.25},
-            {"inc_sat|cadical", 0.25}
-        };
+            {"inc_sat|cadical", 0.25}};
         double total_weight = 1.0;
         auto& rng = sammy::rng();
-        /* 
+        /*
         // does not really work yet; goes way too hard on increasing weights;
         // the first strategy to win at easy instances is most of the time
         // selected again and again, causing it to be chosen even more often
@@ -130,7 +123,7 @@ struct LNSTimeAndSuccessInfo {
         double time_step = 1.0;
         if (!recent_completions.empty()) {
             const auto& last = recent_completions.back();
-            time_step = (std::max)(time_step, 
+            time_step = (std::max)(time_step,
                                    seconds_between(last.finish_time, now));
         }
         time_step = (std::min)(time_step, 20.0);
@@ -152,10 +145,10 @@ struct LNSTimeAndSuccessInfo {
         double sel = dist(rng);
         double sum = 0.0;
         const std::string* selected;
-        for(const auto& element : strategy_base_weights) {
+        for (const auto& element : strategy_base_weights) {
             sum += element.second;
             selected = &element.first;
-            if(sum >= sel) {
+            if (sum >= sel) {
                 break;
             }
         }
@@ -382,8 +375,7 @@ class PortfolioSolver {
           m_best_spawners(std::move(initial_phase.best_spawners)),
           m_all_spawners(std::move(initial_phase.all_spawners)),
           m_coloring_order(std::move(initial_phase.coloring_order)),
-          m_universe_size(initial_phase.universe_size),
-          m_ticket(clauses),
+          m_universe_size(initial_phase.universe_size), m_ticket(clauses),
           m_global_recorder(global_recorder),
           m_best_mes(std::move(initial_phase.best_mutually_exclusive)),
           m_best_lb_vertex_set(m_best_mes), m_lower_bound(m_best_mes.size()),
@@ -398,28 +390,24 @@ class PortfolioSolver {
      * timing and success information.
      */
     explicit PortfolioSolver(const OutputObject& load_from,
-                             EventRecorder* global_recorder) :
-        m_inf_map(PairInfeasibilityMap::import_bits(
-            load_from.at("infeasibility_map")
-                .get<std::vector<std::vector<bool>>>()
-        )),
-        m_implied_cache(&m_inf_map, load_from.at("implied_cache")),
-        m_best_spawners(
-            load_from.at("best_spawners").get<std::vector<Vertex>>()),
-        m_all_spawners(
-            load_from.at("all_spawners").get<std::vector<Vertex>>()),
-        m_coloring_order(
-            load_from.at("coloring_order").get<std::vector<Vertex>>()),
-        m_universe_size(load_from.at("universe_size").get<std::size_t>()),
-        m_ticket(p_publish_from(load_from)),
-        m_global_recorder(global_recorder),
-        m_best_mes(load_from.at("best_mes").get<std::vector<Vertex>>()),
-        m_best_lb_vertex_set(
-            load_from.at("best_lb_vertex_set").get<std::vector<Vertex>>()
-        ),
-        m_best_solution(p_best_solution_from(load_from)),
-        m_lns_info(this)
-    {}
+                             EventRecorder* global_recorder)
+        : m_inf_map(PairInfeasibilityMap::import_bits(
+              load_from.at("infeasibility_map")
+                  .get<std::vector<std::vector<bool>>>())),
+          m_implied_cache(&m_inf_map, load_from.at("implied_cache")),
+          m_best_spawners(
+              load_from.at("best_spawners").get<std::vector<Vertex>>()),
+          m_all_spawners(
+              load_from.at("all_spawners").get<std::vector<Vertex>>()),
+          m_coloring_order(
+              load_from.at("coloring_order").get<std::vector<Vertex>>()),
+          m_universe_size(load_from.at("universe_size").get<std::size_t>()),
+          m_ticket(p_publish_from(load_from)),
+          m_global_recorder(global_recorder),
+          m_best_mes(load_from.at("best_mes").get<std::vector<Vertex>>()),
+          m_best_lb_vertex_set(
+              load_from.at("best_lb_vertex_set").get<std::vector<Vertex>>()),
+          m_best_solution(p_best_solution_from(load_from)), m_lns_info(this) {}
 
     /**
      * Dump the current state of the portfolio
@@ -431,19 +419,17 @@ class PortfolioSolver {
         std::unique_lock<std::mutex> l{m_mutex};
         ClauseDB& cdb = this->get_clauses();
         auto best_sol = m_best_solution.assignments_as<std::vector<bool>>();
-        return OutputObject{
-            {"n_all", cdb.num_vars()},
-            {"clauses", cdb.export_all_clauses()},
-            {"infeasibility_map", m_inf_map.export_bits()},
-            {"implied_cache", m_implied_cache.dump_cache()},
-            {"best_spawners", m_best_spawners},
-            {"all_spawners", m_all_spawners},
-            {"coloring_order", m_coloring_order},
-            {"universe_size", m_universe_size},
-            {"best_mes", m_best_mes},
-            {"best_lb_vertex_set", m_best_lb_vertex_set},
-            {"best_solution", best_sol}
-        };
+        return OutputObject{{"n_all", cdb.num_vars()},
+                            {"clauses", cdb.export_all_clauses()},
+                            {"infeasibility_map", m_inf_map.export_bits()},
+                            {"implied_cache", m_implied_cache.dump_cache()},
+                            {"best_spawners", m_best_spawners},
+                            {"all_spawners", m_all_spawners},
+                            {"coloring_order", m_coloring_order},
+                            {"universe_size", m_universe_size},
+                            {"best_mes", m_best_mes},
+                            {"best_lb_vertex_set", m_best_lb_vertex_set},
+                            {"best_solution", best_sol}};
     }
 
     void limited_reduce_universe(double time_limit) {
@@ -727,22 +713,19 @@ class PortfolioSolver {
     }
 
     void lns_report_failure(std::size_t num_removed, double time,
-                            const std::string& strategy_name) 
-    {
+                            const std::string& strategy_name) {
         std::unique_lock l{m_mutex};
         m_lns_info.report_failure(num_removed, time, strategy_name);
     }
 
     void lns_report_success(std::size_t num_removed, double time,
-                            const std::string& strategy_name) 
-    {
+                            const std::string& strategy_name) {
         std::unique_lock l{m_mutex};
         m_lns_info.report_success(num_removed, time, strategy_name);
     }
 
     void lns_report_aborted(std::size_t num_removed, double time,
-                            const std::string& strategy_name)
-    {
+                            const std::string& strategy_name) {
         std::unique_lock l{m_mutex};
         m_lns_info.report_aborted(num_removed, time, strategy_name);
     }
@@ -887,12 +870,10 @@ class PortfolioSolver {
     }
 
     PartialSolution p_best_solution_from(const OutputObject& dumped) {
-        auto raw = dumped.at("best_solution")
-            .get<std::vector<std::vector<bool>>>();
-        return PartialSolution(
-            local_clauses(m_ticket).num_vars(), &m_inf_map,
-            raw.begin(), raw.end()
-        );
+        auto raw =
+            dumped.at("best_solution").get<std::vector<std::vector<bool>>>();
+        return PartialSolution(local_clauses(m_ticket).num_vars(), &m_inf_map,
+                               raw.begin(), raw.end());
     }
 
     void p_raise_events(EventMask events) {
@@ -1277,8 +1258,7 @@ ClauseDB& PortfolioElement::get_clauses() const {
 LNSTimeAndSuccessInfo::LNSTimeAndSuccessInfo(PortfolioSolver* solver) noexcept
     : recent_completions(25 * std::thread::hardware_concurrency()),
       recent_successes(25 * std::thread::hardware_concurrency()),
-      universe_size(solver->get_universe_size())
-{}
+      universe_size(solver->get_universe_size()) {}
 
 } // namespace sammy
 

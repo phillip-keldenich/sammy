@@ -4,11 +4,11 @@
 #include "algorithm_ex.h"
 #include "dynamic_bitset.h"
 #include "literals.h"
+#include "output.h"
 #include "pair_infeasibility_map.h"
 #include "range.h"
 #include "shared_db_propagator.h"
 #include "vertex_operations.h"
-#include "output.h"
 
 namespace sammy {
 
@@ -104,16 +104,15 @@ class ImpliedVertexCache {
         : m_pair_inf_map(inf_map), m_universe_size(universe_size) {}
 
     explicit ImpliedVertexCache(const PairInfeasibilityMap* inf_map,
-                                const OutputObject& load_cache) :
-        m_pair_inf_map(inf_map),
-        m_universe_size(load_cache.at("universe_size").get<std::size_t>())
-    {
-        auto implied_by = load_cache.at("implied_by").
-            get<std::vector<std::pair<Vertex, Vertex>>>();
-        m_reduced_universe = load_cache.at("reduced_universe").
-            get<std::vector<Vertex>>();
-        m_implied_by = VertexMapTo<Vertex>(implied_by.begin(), 
-                                           implied_by.end());
+                                const OutputObject& load_cache)
+        : m_pair_inf_map(inf_map),
+          m_universe_size(load_cache.at("universe_size").get<std::size_t>()) {
+        auto implied_by = load_cache.at("implied_by")
+                              .get<std::vector<std::pair<Vertex, Vertex>>>();
+        m_reduced_universe =
+            load_cache.at("reduced_universe").get<std::vector<Vertex>>();
+        m_implied_by =
+            VertexMapTo<Vertex>(implied_by.begin(), implied_by.end());
     }
 
     /**
@@ -240,14 +239,11 @@ class ImpliedVertexCache {
     }
 
     OutputObject dump_cache() const {
-        std::vector<std::pair<Vertex, Vertex>> implied_by(
-            m_implied_by.begin(), m_implied_by.end()
-        );
-        return OutputObject{
-            {"universe_size", original_universe_size()},
-            {"reduced_universe", m_reduced_universe},
-            {"implied_by", std::move(implied_by)}
-        };
+        std::vector<std::pair<Vertex, Vertex>> implied_by(m_implied_by.begin(),
+                                                          m_implied_by.end());
+        return OutputObject{{"universe_size", original_universe_size()},
+                            {"reduced_universe", m_reduced_universe},
+                            {"implied_by", std::move(implied_by)}};
     }
 
   private:
@@ -270,13 +266,13 @@ class ImpliedVertexCache {
         inline void
         compute_impliers_handle_trail_literal(Lit trail_literal,
                                               std::size_t pushed_index);
-        inline std::size_t mark_and_merge_two_sorted_lists(Lit implier, 
+        inline std::size_t mark_and_merge_two_sorted_lists(Lit implier,
                                                            Lit implied);
         inline void compute_literal_partners_of();
         inline bool handle_level_zero();
         inline bool handle_level_zero_both();
         inline void compute_impliers();
-        inline void ensure_pushed(Lit &prev_first, Vertex vertex);
+        inline void ensure_pushed(Lit& prev_first, Vertex vertex);
         inline void limited_compute_impliers_const_per_literal(
             std::size_t num_per_literal = 20);
         inline void limited_compute_impliers(double time_limit);
@@ -355,9 +351,9 @@ void ImpliedVertexCache::EliminationAlgorithm::compute_literal_partners_of() {
     std::for_each(partners_of.begin(), partners_of.end(), sort_partners_list);
 }
 
-std::size_t ImpliedVertexCache::EliminationAlgorithm::
-    mark_and_merge_two_sorted_lists(Lit implier, Lit implied) 
-{
+std::size_t
+ImpliedVertexCache::EliminationAlgorithm::mark_and_merge_two_sorted_lists(
+    Lit implier, Lit implied) {
     auto& left_list = partners_of[implier];
     auto& right_list = partners_of[implied];
     std::size_t implier_implied_index = std::numeric_limits<std::size_t>::max();
@@ -369,18 +365,18 @@ std::size_t ImpliedVertexCache::EliminationAlgorithm::
     auto right_in = right_list.begin(), right_out = right_list.begin(),
          right_end = right_list.end();
 
-    auto left_skip_implied = [&] () {
+    auto left_skip_implied = [&]() {
         while (is_implied(left_in->second)) {
             if (++left_in == left_end)
                 return false;
         }
-        if(left_in->first == implied) {
+        if (left_in->first == implied) {
             implier_implied_index = left_in->second;
         }
         return true;
     };
 
-    auto right_skip_implied = [&] () {
+    auto right_skip_implied = [&]() {
         while (is_implied(right_in->second)) {
             if (++right_in == right_end)
                 return false;
@@ -388,7 +384,7 @@ std::size_t ImpliedVertexCache::EliminationAlgorithm::
         return true;
     };
 
-    auto advance_left = [&] () {
+    auto advance_left = [&]() {
         *left_out++ = *left_in;
         if (++left_in == left_end) {
             return false;
@@ -396,7 +392,7 @@ std::size_t ImpliedVertexCache::EliminationAlgorithm::
         return left_skip_implied();
     };
 
-    auto advance_right = [&] () {
+    auto advance_right = [&]() {
         *right_out++ = *right_in;
         if (++right_in == right_end) {
             return false;
@@ -404,7 +400,7 @@ std::size_t ImpliedVertexCache::EliminationAlgorithm::
         return right_skip_implied();
     };
 
-    auto advance_both = [&] () {
+    auto advance_both = [&]() {
         *left_out++ = *left_in;
         ++left_in, ++right_in;
         if (left_in != left_end) {
@@ -491,18 +487,19 @@ void ImpliedVertexCache::EliminationAlgorithm::
             // mark (l2,x) for x for which (l,x) is present,
             // stripping both lists of implied elements as we go.
             std::size_t l_l2_index = mark_and_merge_two_sorted_lists(l, l2);
-            if(l_l2_index != std::numeric_limits<std::size_t>::max() &&
-               !is_implied(l_l2_index)) 
+            if (l_l2_index != std::numeric_limits<std::size_t>::max() &&
+                !is_implied(l_l2_index))
             {
                 // also, (l, l2) is implied by any other (l, y).
-                if(p_of_l.size() > 1) {
+                if (p_of_l.size() > 1) {
                     auto e_ly = p_of_l[0];
-                    if(e_ly.first == l2) e_ly = p_of_l[1];
+                    if (e_ly.first == l2)
+                        e_ly = p_of_l[1];
                     std::size_t implier_index = e_ly.second;
-                    while(is_implied(implier_index)) {
+                    while (is_implied(implier_index)) {
                         implier_index = implier_of[implier_index];
                     }
-                    if(implier_index != l_l2_index) {
+                    if (implier_index != l_l2_index) {
                         implier_of[l_l2_index] = implier_index;
                     }
                 }
@@ -542,11 +539,12 @@ bool ImpliedVertexCache::EliminationAlgorithm::handle_level_zero_both() {
     const auto& trail = propagator.get_trail();
     Lit nconc = that->m_pair_inf_map->get_n_concrete();
     std::vector<std::size_t> implied_pairs;
-    for(Lit l1 : trail) {
-        if(l1 >= nconc) continue;
-        auto is_implied_pair = [&] (std::pair<Lit, std::size_t> entry) {
-            if(propagator.is_true(entry.first)) {
-                if(entry.first > l1) {
+    for (Lit l1 : trail) {
+        if (l1 >= nconc)
+            continue;
+        auto is_implied_pair = [&](std::pair<Lit, std::size_t> entry) {
+            if (propagator.is_true(entry.first)) {
+                if (entry.first > l1) {
                     implied_pairs.push_back(entry.second);
                 }
                 return true;
@@ -554,30 +552,30 @@ bool ImpliedVertexCache::EliminationAlgorithm::handle_level_zero_both() {
             return false;
         };
         auto& p_of_l = partners_of[l1];
-        auto new_end = std::remove_if(p_of_l.begin(), p_of_l.end(), 
-                                      is_implied_pair);
+        auto new_end =
+            std::remove_if(p_of_l.begin(), p_of_l.end(), is_implied_pair);
         p_of_l.erase(new_end, p_of_l.end());
     }
-    if(implied_pairs.size() == universe.size()) {
+    if (implied_pairs.size() == universe.size()) {
         // all pairs are implied by any configuration;
         // keep only one pair; also allows us to skip the rest
-        for(std::size_t i = 1, s = universe.size(); i < s; ++i) {
+        for (std::size_t i = 1, s = universe.size(); i < s; ++i) {
             implier_of[i] = 0;
         }
         return true;
     }
-    if(implied_pairs.empty()) {
+    if (implied_pairs.empty()) {
         return false;
     }
     std::sort(implied_pairs.begin(), implied_pairs.end());
     std::size_t last = 0;
     --last;
-    for(std::size_t implied : implied_pairs) {
-        if(implied != ++last) {
+    for (std::size_t implied : implied_pairs) {
+        if (implied != ++last) {
             break;
         }
     }
-    for(std::size_t implied : implied_pairs) {
+    for (std::size_t implied : implied_pairs) {
         implier_of[implied] = last;
     }
     return false;
@@ -585,7 +583,7 @@ bool ImpliedVertexCache::EliminationAlgorithm::handle_level_zero_both() {
 
 bool ImpliedVertexCache::EliminationAlgorithm::handle_level_zero() {
     // first: handle pairs both in level 0 (i.e., in ANY configuration)
-    if(handle_level_zero_both()) {
+    if (handle_level_zero_both()) {
         // if that is all pairs, every interaction except one is
         // marked as implied and we can skip the rest
         return true;
@@ -594,70 +592,71 @@ bool ImpliedVertexCache::EliminationAlgorithm::handle_level_zero() {
     // then handle individual literals true in every configuration
     const auto& trail = propagator.get_trail();
     Lit nconc = 2 * that->m_pair_inf_map->get_n_concrete();
-    auto is_concrete = [nconc] (Lit l) { return l < nconc; };
-    if(!std::any_of(trail.begin(), trail.end(), is_concrete)) {
+    auto is_concrete = [nconc](Lit l) { return l < nconc; };
+    if (!std::any_of(trail.begin(), trail.end(), is_concrete)) {
         // no concrete literals in the trail
         return false;
     }
-    std::vector<std::pair<Lit, std::size_t>> nontrue_partner_of(nconc, {NIL, 0});
-    for(Lit l = 0; l < nconc; ++l) {
+    std::vector<std::pair<Lit, std::size_t>> nontrue_partner_of(nconc,
+                                                                {NIL, 0});
+    for (Lit l = 0; l < nconc; ++l) {
         auto& p_of_l = partners_of[l];
-        for(std::pair<Lit, std::size_t> entry : p_of_l) {
-            if(!propagator.is_true(entry.first)) {
+        for (std::pair<Lit, std::size_t> entry : p_of_l) {
+            if (!propagator.is_true(entry.first)) {
                 nontrue_partner_of[l] = entry;
                 break;
             }
         }
     }
-    for(Lit l : trail) {
-        if(l >= nconc) continue;
-        auto is_implied_pair = [&] (std::pair<Lit, std::size_t> entry) {
-            if(is_implied(entry.second)) {
+    for (Lit l : trail) {
+        if (l >= nconc)
+            continue;
+        auto is_implied_pair = [&](std::pair<Lit, std::size_t> entry) {
+            if (is_implied(entry.second)) {
                 return true;
             }
             auto nontrue_partner = nontrue_partner_of[entry.first];
-            if(nontrue_partner.first == NIL) {
+            if (nontrue_partner.first == NIL) {
                 return false;
             }
             implier_of[entry.second] = nontrue_partner.second;
             return true;
         };
         auto& p_of_l = partners_of[l];
-        auto new_end = std::remove_if(p_of_l.begin(), p_of_l.end(),
-                                      is_implied_pair);
+        auto new_end =
+            std::remove_if(p_of_l.begin(), p_of_l.end(), is_implied_pair);
         p_of_l.erase(new_end, p_of_l.end());
     }
     return false;
 }
 
-void ImpliedVertexCache::EliminationAlgorithm::
-    ensure_pushed(Lit &previous_first, Vertex v)
-{
+void ImpliedVertexCache::EliminationAlgorithm::ensure_pushed(
+    Lit& previous_first, Vertex v) {
     // it suffices to check the level 2 part of the trail,
     // since we handle implied-by-single-literal cases earlier.
     // if the previous vertex had the same first literal,
     // we can skip the reset and thus usually the first decision level
-    if(previous_first != v.first) {
+    if (previous_first != v.first) {
         previous_first = v.first;
         reset_and_push_noresolve(propagator, v);
     } else {
-        auto push_2nd_if_necessary = [&] () {
-            if(!propagator.is_true(v.second) && 
-                !propagator.push_level(v.second)) 
+        auto push_2nd_if_necessary = [&]() {
+            if (!propagator.is_true(v.second) &&
+                !propagator.push_level(v.second))
             {
                 throw std::logic_error("Infeasible interaction in universe!");
             }
         };
 
-        if(propagator.get_current_level() == 2) {
+        if (propagator.get_current_level() == 2) {
             // in this case, we have v.first and the first old
             // literal pushed; push v.second
             propagator.pop_level();
             push_2nd_if_necessary();
-        } else if(propagator.get_current_level() == 1) {
+        } else if (propagator.get_current_level() == 1) {
             // in this case, we have either v.first pushed or
             // v.second pushed (if v.first is fixed at level 0)
-            if(*propagator.current_level_begin() != v.first) {
+            if (*propagator.current_level_begin() != v.first) {
                 // v.second is pushed
                 propagator.pop_level();
             }
@@ -675,12 +674,10 @@ void ImpliedVertexCache::EliminationAlgorithm::compute_impliers() {
             continue;
         Vertex v = universe[i];
         ensure_pushed(previous_first, v);
-        if(propagator.get_current_level() < 2)
+        if (propagator.get_current_level() < 2)
             continue;
-        auto deepest_level = IteratorRange{
-            propagator.current_level_begin(),
-            propagator.get_trail().end()
-        };
+        auto deepest_level = IteratorRange{propagator.current_level_begin(),
+                                           propagator.get_trail().end()};
         for (Lit l : deepest_level) {
             compute_impliers_handle_trail_literal(l, i);
         }
@@ -688,12 +685,11 @@ void ImpliedVertexCache::EliminationAlgorithm::compute_impliers() {
 }
 
 void ImpliedVertexCache::EliminationAlgorithm::
-    limited_compute_impliers_const_per_literal(std::size_t num_per_literal)
-{
+    limited_compute_impliers_const_per_literal(std::size_t num_per_literal) {
     const Lit nconc = 2 * that->m_pair_inf_map->get_n_concrete();
     std::vector<std::pair<Lit, std::size_t>> random_partners;
     auto& rng = sammy::rng();
-    for(Lit l = 0; l < nconc; ++l) {
+    for (Lit l = 0; l < nconc; ++l) {
         auto& p_of_l = partners_of[l];
         auto new_end = std::remove_if(p_of_l.begin(), p_of_l.end(),
                                       [&](std::pair<Lit, std::size_t> entry) {
@@ -702,28 +698,26 @@ void ImpliedVertexCache::EliminationAlgorithm::
         p_of_l.erase(new_end, p_of_l.end());
         random_partners.clear();
         sample_from_range(p_of_l, random_partners, num_per_literal, rng);
-        if(random_partners.empty()) {
+        if (random_partners.empty()) {
             continue;
         }
         propagator.reset_or_throw();
-        if(!propagator.is_open(l)) {
+        if (!propagator.is_open(l)) {
             continue;
         }
-        if(!propagator.push_level(l)) {
+        if (!propagator.push_level(l)) {
             throw std::logic_error("Infeasible interaction in universe!");
         }
-        for(auto&& e : random_partners) {
-            if(is_implied(e.second) || !propagator.is_open(e.first)) {
+        for (auto&& e : random_partners) {
+            if (is_implied(e.second) || !propagator.is_open(e.first)) {
                 continue;
             }
-            if(!propagator.push_level(e.first)) {
+            if (!propagator.push_level(e.first)) {
                 throw std::logic_error("Infeasible interaction in universe!");
             }
-            IteratorRange deepest_level{
-                propagator.current_level_begin(),
-                propagator.get_trail().end()
-            };
-            for(Lit l2 : deepest_level) {
+            IteratorRange deepest_level{propagator.current_level_begin(),
+                                        propagator.get_trail().end()};
+            for (Lit l2 : deepest_level) {
                 compute_impliers_handle_trail_literal(l2, e.second);
             }
             propagator.pop_level();
@@ -732,15 +726,14 @@ void ImpliedVertexCache::EliminationAlgorithm::
     propagator.reset_or_throw();
 }
 
-void ImpliedVertexCache::EliminationAlgorithm::
-    limited_compute_impliers(double time_limit) 
-{
+void ImpliedVertexCache::EliminationAlgorithm::limited_compute_impliers(
+    double time_limit) {
     limited_compute_impliers_const_per_literal();
     auto begin_time = std::chrono::steady_clock::now();
     std::size_t check_count = 0;
     Lit prev_first = NIL;
-    for (std::size_t vertex_index = 0, us = universe.size();
-         vertex_index < us; ++vertex_index) 
+    for (std::size_t vertex_index = 0, us = universe.size(); vertex_index < us;
+         ++vertex_index)
     {
         if (is_implied(vertex_index))
             continue;
@@ -754,13 +747,11 @@ void ImpliedVertexCache::EliminationAlgorithm::
                 break;
             }
         }
-        if(propagator.get_current_level() < 2)
+        if (propagator.get_current_level() < 2)
             continue;
         assert(propagator.get_current_level() == 2);
-        IteratorRange deepest_level{
-            propagator.current_level_begin(),
-            propagator.get_trail().end()
-        };
+        IteratorRange deepest_level{propagator.current_level_begin(),
+                                    propagator.get_trail().end()};
         for (Lit l : deepest_level) {
             compute_impliers_handle_trail_literal(l, vertex_index);
         }
@@ -809,7 +800,7 @@ void ImpliedVertexCache::EliminationAlgorithm::export_to_cache() {
 void ImpliedVertexCache::reduce_universe(ClauseDB& clause_db) {
     EliminationAlgorithm algorithm(clause_db, this);
     algorithm.compute_literal_partners_of();
-    if(!algorithm.handle_level_zero()) {
+    if (!algorithm.handle_level_zero()) {
         algorithm.compute_impliers_single_literal();
         algorithm.compute_impliers();
         algorithm.compress_paths();
@@ -826,9 +817,10 @@ void ImpliedVertexCache::limited_reduce_universe(ClauseDB& clause_db,
     auto begin_time = std::chrono::steady_clock::now();
     EliminationAlgorithm algorithm(clause_db, this);
     algorithm.compute_literal_partners_of();
-    if(!algorithm.handle_level_zero()) {
+    if (!algorithm.handle_level_zero()) {
         algorithm.compute_impliers_single_literal();
-        double trem = time_limit - 
+        double trem =
+            time_limit -
             seconds_between(begin_time, std::chrono::steady_clock::now());
         if (trem > 0.0) {
             algorithm.limited_compute_impliers(trem);

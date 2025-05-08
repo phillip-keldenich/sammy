@@ -17,6 +17,11 @@ static constexpr double RANDOM_DESTRUCTION_PROB = 0.3;
 static constexpr double RANDOM_WITH_TABLE_PROB = 0.2;
 static constexpr double RANDOM_AND_LEAST_UNIQUE_DESTRUCTION_PROB = 0.5;
 
+/**
+ * LNS solver core that wraps different subproblem solvers
+ * with unified mechanisms for destroying and reporting improvements,
+ * aborting/timeouts.
+ */
 template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
   public:
     using SubproblemSolver = SubproblemSolverType;
@@ -91,10 +96,8 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
             LNSSubproblem tmp = m_solver->move_out_subproblem();
             if (!res) {
                 m_portfolio->lns_report_aborted(
-                    tmp.removed_configurations.size(),
-                    time_taken,
-                    m_solver->strategy_name()
-                );
+                    tmp.removed_configurations.size(), time_taken,
+                    m_solver->strategy_name());
                 m_destroy.return_subproblem_on_abort(std::move(tmp));
                 continue;
             }
@@ -107,8 +110,7 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
                 }
                 m_portfolio->lns_report_failure(
                     tmp.removed_configurations.size(), time_taken,
-                    m_solver->strategy_name()
-                );
+                    m_solver->strategy_name());
                 m_destroy.improvement_impossible(std::move(tmp),
                                                  m_solver->mes_vertices());
             } else {

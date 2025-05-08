@@ -12,11 +12,11 @@
 #include <sammy/output.h>
 #include <sammy/partial_solution.h>
 #include <sammy/run_initial.h>
-#include <sammy/sat_lns.h>
 #include <sammy/sat_dsatur.h>
-#include <sammy/variant_subproblem_solver.h>
+#include <sammy/sat_lns.h>
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
+#include <sammy/variant_subproblem_solver.h>
 
 using namespace sammy;
 namespace po = boost::program_options;
@@ -107,17 +107,17 @@ using ExactElementCoreSAT = FixedSatExactSolverCore;
 using ExactElementSAT = PortfolioElementWithCore<ExactElementCoreSAT>;
 
 /**
- * LNS subproblem solver that uses the mechanism in 
+ * LNS subproblem solver that uses the mechanism in
  * PortfolioSolver to select for each subproblem the
  * solver approach and backend SAT solver to use.
  */
 using LNSInner = VariantSubproblemSolver;
 
 // This would fix the LNS solver to a fixed strategy/backend solver
-//using LNSInner = FixedMESSATImprovementSolver<KissatSolver>;
-//using LNSInner = FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
+// using LNSInner = FixedMESSATImprovementSolver<KissatSolver>;
+// using LNSInner = FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
 
-/** 
+/**
  * Wrapping a fixed-MES solver with a relatively low number of iterations
  * of improvements to the initially found MES.
  */
@@ -188,8 +188,8 @@ class Main {
                 "If set, the portfolio solver parts print their events to "
                 "stdout.")("print-global-stats",
                            bool_switch(print_global_stats),
-                           "Print global statistics after solving.")
-                ("print-initial-progress", bool_switch(print_initial_progress),
+                           "Print global statistics after solving.")(
+                "print-initial-progress", bool_switch(print_initial_progress),
                 "Print progress information during the initial heuristic.")(
                 "dont-simplify", bool_switch(dont_simplify),
                 "Do not apply simplification.")(
@@ -211,9 +211,9 @@ class Main {
                 "Time to spend on the initial heuristic at least.")(
                 "initial-iteration-goal",
                 value_with_default(initial_goal_iterations),
-                "Iterations of the initial heuristic to run at least.")
-                ("exact-solver-type", value_with_default(exact_solver_type),
-                 "Type of exact solver to use; can be 'satdsatur' or 'sat'.");
+                "Iterations of the initial heuristic to run at least.")(
+                "exact-solver-type", value_with_default(exact_solver_type),
+                "Type of exact solver to use; can be 'satdsatur' or 'sat'.");
         }
 
         static Config parse_options(int argc, char** argv) {
@@ -337,7 +337,7 @@ class Main {
         const auto& implied = portfolio->implied_cache();
         if (implied.get_reduced_universe().size() < config.exact_limit) {
             have_exact = true;
-            if(config.exact_solver_type == "sat") {
+            if (config.exact_solver_type == "sat") {
                 auto& exact = portfolio->emplace_element<ExactElementSAT>(
                     &*portfolio, &ExactElementCoreSAT::factory,
                     "Exact Solver SAT");
