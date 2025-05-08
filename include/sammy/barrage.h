@@ -589,16 +589,25 @@ class PortfolioSolver {
      * Returns true if the reported solution is better than the
      * current best and was stored in the portfolio solver.
      */
-    bool report_solution(const PartialSolution& solution, const char* source) {
+    bool report_solution(const PartialSolution& solution, const char* source,
+                         const char* strategy_name = nullptr) {
         std::unique_lock l{m_mutex};
         if (m_best_solution.size() <= solution.size())
             return false;
         m_best_solution = solution;
-        m_global_recorder->store_event("IMPROVED_SOLUTION",
-                                       {{"size", m_best_solution.size()},
-                                        {"source", source},
-                                        {"lb", m_lower_bound}},
-                                       "size", "lb", "source");
+        OutputObject evt_data{{"size", m_best_solution.size()},
+                              {"source", source},
+                              {"lb", m_lower_bound}};
+        if (strategy_name) {
+            evt_data["strategy"] = strategy_name;
+            m_global_recorder->store_event("IMPROVED_SOLUTION",
+                                           std::move(evt_data), "size",
+                                           "source", "lb", "strategy");
+        } else {
+            m_global_recorder->store_event("IMPROVED_SOLUTION",
+                                           std::move(evt_data), "size",
+                                           "source", "lb");
+        }
         EventMask events =
             static_cast<EventMask>(PortfolioEvent::BETTER_UPPER_BOUND);
         if (m_best_solution.size() <= m_lower_bound) {
@@ -614,18 +623,25 @@ class PortfolioSolver {
      */
     void report_lower_bound(std::size_t lower_bound,
                             const std::vector<Vertex>& subgraph,
-                            const char* source) {
+                            const char* source,
+                            const char* strategy_name = nullptr) {
         std::unique_lock l{m_mutex};
         if (lower_bound <= m_lower_bound)
             return;
         m_best_lb_vertex_set = subgraph;
         m_lower_bound = lower_bound;
-        m_global_recorder->store_event("IMPROVED_LB",
-                                       {{"lb", m_lower_bound},
-                                        {"source", source},
-                                        {"vertices", m_best_lb_vertex_set},
-                                        {"ub", m_best_solution.size()}},
-                                       "lb", "source", "ub");
+        OutputObject evt_data{{"lb", m_lower_bound},
+                              {"source", source},
+                              {"vertices", m_best_lb_vertex_set},
+                              {"ub", m_best_solution.size()}};
+        if (strategy_name) {
+            evt_data["strategy"] = strategy_name;
+            m_global_recorder->store_event("IMPROVED_LB", std::move(evt_data),
+                                           "lb", "source", "ub", "strategy");
+        } else {
+            m_global_recorder->store_event("IMPROVED_LB", std::move(evt_data),
+                                           "lb", "source", "ub");
+        }
         EventMask events =
             static_cast<EventMask>(PortfolioEvent::BETTER_LOWER_BOUND);
         if (m_best_solution.size() <= m_lower_bound) {

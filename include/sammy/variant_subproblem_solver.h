@@ -32,7 +32,7 @@ class VariantSubproblemSolver {
 
   public:
     static std::string name() {
-        return "var[fixed_sat,incremental_sat,sat_dsatur]";
+        return "Variant";
     }
 
     std::string strategy_name() const { return m_strategy; }

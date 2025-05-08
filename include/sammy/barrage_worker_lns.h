@@ -106,7 +106,8 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
                 if (old_lb < tmp.removed_configurations.size()) {
                     m_portfolio->report_lower_bound(
                         tmp.removed_configurations.size(),
-                        tmp.uncovered_universe, m_source.c_str());
+                        tmp.uncovered_universe, m_source.c_str(),
+                        m_solver->strategy_name().c_str());
                 }
                 m_portfolio->lns_report_failure(
                     tmp.removed_configurations.size(), time_taken,
@@ -120,7 +121,10 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
                 const auto& improvement = m_solver->get_solution();
                 PartialSolution improved =
                     m_destroy.improve_destroyed(improvement);
-                if (m_portfolio->report_solution(improved, m_source.c_str())) {
+                if (m_portfolio->report_solution(
+                        improved, m_source.c_str(),
+                        m_solver->strategy_name().c_str()))
+                {
                     m_destroy.return_subproblem_on_success(std::move(tmp),
                                                            std::move(improved));
                     std::size_t new_size = m_destroy.total_num_configs();
