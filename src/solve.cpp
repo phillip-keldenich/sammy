@@ -92,30 +92,51 @@ using CNPElement = PortfolioElementWithCore<CutAndPricePortfolioCore>;
 
 /**
  * Exact solver (Sat + Clique + DSatur incremental) portfolio element type.
+ * Implements the (default) --exact-solver-type=satdsatur option.
+ * Added only for sufficiently small universes.
  */
 using ExactElementCoreSDS = CliqueSatDSaturExactSolverCore;
-using ExactElementCoreSAT = FixedSatExactSolverCore;
 using ExactElementSDS = PortfolioElementWithCore<ExactElementCoreSDS>;
+
+/**
+ * Fixed SAT exact solver portfolio element type.
+ * Implements the --exact-solver-type=sat option.
+ * Added only for sufficiently small universes.
+ */
+using ExactElementCoreSAT = FixedSatExactSolverCore;
 using ExactElementSAT = PortfolioElementWithCore<ExactElementCoreSAT>;
 
 /**
- * Actual SAT solver to use.
+ * LNS subproblem solver that uses the mechanism in 
+ * PortfolioSolver to select for each subproblem the
+ * solver approach and backend SAT solver to use.
  */
-// using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
-using SatSolver = KissatSolver;
-// using SatSolver = CadicalSolver;
+using LNSInner = VariantSubproblemSolver;
+
+// This would fix the LNS solver to a fixed strategy/backend solver
+//using LNSInner = FixedMESSATImprovementSolver<KissatSolver>;
+//using LNSInner = FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
+
+/** 
+ * Wrapping a fixed-MES solver with a relatively low number of iterations
+ * of improvements to the initially found MES.
+ */
+using LNSOuter = SubproblemSolverWithMES<LNSInner>;
 
 /**
- * MES + SAT as LNS elements.
+ * LNS worker core wrapping LNSOuter.
  */
-using LNSInner = sammy::VariantSubproblemSolver;
-//using LNSInner = sammy::FixedMESSATImprovementSolver<SatSolver>;
-//using LNSInner = sammy::FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
-using LNSOuter = sammy::SubproblemSolverWithMES<LNSInner>;
 using LNSCore = sammy::SubproblemLNSSolverCore<LNSOuter>;
-using LNSElement = PortfolioElementWithCore<LNSCore>;
-using OldLNSElement = CliqueSatDSaturLNSElement<CMSAT5Solver>;
 
+/**
+ * LNS worker type using LNSCore/LNSOuter/LNSInner.
+ */
+using LNSElement = PortfolioElementWithCore<LNSCore>;
+
+/**
+ * Class handling command line parameters,
+ * running the initial phase and starting the LNS portfolio.
+ */
 class Main {
   public:
     struct Config {
