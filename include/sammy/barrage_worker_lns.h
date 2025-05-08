@@ -88,12 +88,16 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
             auto res = m_solver->solve();
             double time_taken =
                 seconds_between(before, std::chrono::steady_clock::now());
+            LNSSubproblem tmp = m_solver->move_out_subproblem();
             if (!res) {
-                m_destroy.return_subproblem_on_abort(
-                    m_solver->move_out_subproblem());
+                m_portfolio->lns_report_aborted(
+                    tmp.removed_configurations.size(),
+                    time_taken,
+                    m_solver->strategy_name()
+                );
+                m_destroy.return_subproblem_on_abort(std::move(tmp));
                 continue;
             }
-            LNSSubproblem tmp = m_solver->move_out_subproblem();
             if (!*res) {
                 auto old_lb = m_portfolio->get_best_lower_bound();
                 if (old_lb < tmp.removed_configurations.size()) {
@@ -102,12 +106,15 @@ template <typename SubproblemSolverType> class SubproblemLNSSolverCore {
                         tmp.uncovered_universe, m_source.c_str());
                 }
                 m_portfolio->lns_report_failure(
-                    tmp.removed_configurations.size(), time_taken);
+                    tmp.removed_configurations.size(), time_taken,
+                    m_solver->strategy_name()
+                );
                 m_destroy.improvement_impossible(std::move(tmp),
                                                  m_solver->mes_vertices());
             } else {
                 m_portfolio->lns_report_success(
-                    tmp.removed_configurations.size(), time_taken);
+                    tmp.removed_configurations.size(), time_taken,
+                    m_solver->strategy_name());
                 const auto& improvement = m_solver->get_solution();
                 PartialSolution improved =
                     m_destroy.improve_destroyed(improvement);
@@ -236,6 +243,11 @@ class CliqueSatDSaturLNSElement : public PortfolioElement {
   public:
     using IncrementalSolver = IncrementalSolverType;
     using CSDSSolver = CliqueSatDSaturSolver<IncrementalSolver>;
+
+    std::string strategy_name() {
+        return std::string("CliqueSatDSaturLNS<") + 
+               IncrementalSolver::name() + ">";
+    }
 
     CliqueSatDSaturLNSElement(PortfolioSolver* solver, std::size_t upper_bound,
                               std::size_t worker_index)
@@ -724,7 +736,10 @@ class CliqueSatDSaturLNSElement : public PortfolioElement {
      */
     void p_solve_cover() {
         auto state = m_solver->solve();
+        double time_taken = seconds_between(m_last_start_time, Clock::now());
         if (state == CSDSSolver::SolveResult::ABORTED) {
+            solver->lns_report_aborted(m_currently_removed.size(),
+                                       time_taken, strategy_name());
             m_local_recorder.store_event("ABORTED_SUBPROBLEM_SOLVE");
             return;
         }
@@ -737,9 +752,9 @@ class CliqueSatDSaturLNSElement : public PortfolioElement {
         if (m_solver->improved_mes()) {
             solver->report_mes(m_solver->get_best_mes(), "C&P/SATDSatur LNS");
         }
-        double time_taken = seconds_between(m_last_start_time, Clock::now());
         if (state == CSDSSolver::SolveResult::SOLUTION_WAS_OPTIMAL) {
-            solver->lns_report_failure(m_currently_removed.size(), time_taken);
+            solver->lns_report_failure(m_currently_removed.size(), time_taken,
+                                       strategy_name());
         } else {
             PartialSolution subgraph_solution =
                 m_solver->get_partial_solution();
@@ -747,7 +762,8 @@ class CliqueSatDSaturLNSElement : public PortfolioElement {
                 m_current_subproblem.add_assignment(assignment);
             }
             solver->report_solution(m_current_subproblem, "C&P/SATDSatur LNS");
-            solver->lns_report_success(m_currently_removed.size(), time_taken);
+            solver->lns_report_success(m_currently_removed.size(), time_taken,
+                                       strategy_name());
         }
     }
 

@@ -103,6 +103,19 @@ class ImpliedVertexCache {
                                 std::size_t universe_size) noexcept
         : m_pair_inf_map(inf_map), m_universe_size(universe_size) {}
 
+    explicit ImpliedVertexCache(const PairInfeasibilityMap* inf_map,
+                                const OutputObject& load_cache) :
+        m_pair_inf_map(inf_map),
+        m_universe_size(load_cache.at("universe_size").get<std::size_t>())
+    {
+        auto implied_by = load_cache.at("implied_by").
+            get<std::vector<std::pair<Vertex, Vertex>>>();
+        m_reduced_universe = load_cache.at("reduced_universe").
+            get<std::vector<Vertex>>();
+        m_implied_by = VertexMapTo<Vertex>(implied_by.begin(), 
+                                           implied_by.end());
+    }
+
     /**
      * Compute and cache a reduced version of the universe.
      */
@@ -224,6 +237,17 @@ class ImpliedVertexCache {
             return;
         std::transform(vertices.begin(), vertices.end(), vertices.begin(),
                        [&](Vertex v) { return implying_or_self(v); });
+    }
+
+    OutputObject dump_cache() const {
+        std::vector<std::pair<Vertex, Vertex>> implied_by(
+            m_implied_by.begin(), m_implied_by.end()
+        );
+        return OutputObject{
+            {"universe_size", original_universe_size()},
+            {"reduced_universe", m_reduced_universe},
+            {"implied_by", std::move(implied_by)}
+        };
     }
 
   private:

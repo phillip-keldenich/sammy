@@ -11,6 +11,7 @@ namespace sammy {
 constexpr std::size_t MAX_CUT_ROUNDS_WITHOUT_PRICING = 5;
 constexpr std::size_t SUB_MES_SOLVER_FULL_GRAPH_THRESHOLD = 200;
 constexpr std::size_t PRICING_SAMPLE_SIZE_THRESHOLD = 10'000;
+constexpr std::size_t DEFAULT_ITERATIONS_LIMIT = 10;
 
 /**
  * Solver for finding good MESs in a subproblem
@@ -21,7 +22,8 @@ class SubproblemMESSolver {
     SubproblemMESSolver(PortfolioSolver* portfolio, LNSSubproblem&& subproblem,
                         SharedDBPropagator prop, EventRecorder* recorder,
                         std::size_t worker_id,
-                        std::size_t iterations_without_improvement = 30)
+                        std::size_t iterations_without_improvement = 30,
+                        std::size_t iterations_limit = DEFAULT_ITERATIONS_LIMIT)
         : m_portfolio(portfolio), m_recorder(recorder), m_worker_id(worker_id),
           m_initial_best_global_mes_size(m_portfolio->get_best_mes_size()),
           m_single_thread(0), m_clauses(&portfolio->get_clauses()),
@@ -32,7 +34,9 @@ class SubproblemMESSolver {
                         m_subproblem.removed_configurations,
                         m_subproblem.mutually_exclusive_set, p_get_config()),
           m_iterations_without_improvement_limit(
-              iterations_without_improvement) {
+              iterations_without_improvement),
+          m_iterations_limit(iterations_limit)
+    {
         m_base_solver.make_abortable();
     }
 
@@ -112,6 +116,7 @@ class SubproblemMESSolver {
     }
 
     std::optional<bool> solve() {
+        m_iterations = 0;
         try {
             for (;;) {
                 if (get_and_clear_interrupt_flag()) {
@@ -184,6 +189,12 @@ class SubproblemMESSolver {
      * subproblem solver MES computation.
      */
     bool p_should_continue() {
+        if(m_iterations >= m_iterations_limit) {
+            m_recorder->store_event(
+                "LNS_MES_STOPPING_DUE_TO_MAX_ITERATIONS",
+                {{"worker_id", m_worker_id}}, "worker_id");
+            return false;
+        }
         if (m_iterations_without_improvement >=
             m_iterations_without_improvement_limit)
         {
@@ -325,6 +336,7 @@ class SubproblemMESSolver {
         std::size_t old_mes_size = m_base_solver.get_best_mes().size();
         IterationResult result{false, false};
         ++m_iterations_without_improvement;
+        ++m_iterations;
         auto before_solve_full = std::chrono::steady_clock::now();
         auto sfr_result = m_base_solver.solve_full_relaxation();
         auto after_solve_full = std::chrono::steady_clock::now();
@@ -402,7 +414,9 @@ class SubproblemMESSolver {
     GurobiCliqueSolverG2 m_base_solver;
     std::size_t m_cut_rounds_without_pricing = 0;
     std::size_t m_iterations_without_improvement = 0;
+    std::size_t m_iterations = 0;
     std::size_t m_iterations_without_improvement_limit;
+    std::size_t m_iterations_limit;
     bool m_last_was_cutting{false};
     bool m_last_was_pricing{false};
 };
@@ -412,6 +426,14 @@ template <typename WrappedSubproblemSolver> class SubproblemSolverWithMES {
     static std::string name() {
         return std::string("MESImprovement<") +
                WrappedSubproblemSolver::name() + ">";
+    }
+
+    std::string strategy_name() const {
+        if(!m_sub_solver) {
+            return "mes_only";
+        } else {
+            return m_sub_solver->strategy_name();
+        }
     }
 
     SubproblemSolverWithMES(PortfolioSolver* portfolio,

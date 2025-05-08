@@ -13,6 +13,8 @@
 #include <sammy/partial_solution.h>
 #include <sammy/run_initial.h>
 #include <sammy/sat_lns.h>
+#include <sammy/sat_dsatur.h>
+#include <sammy/variant_subproblem_solver.h>
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
 
@@ -91,7 +93,10 @@ using CNPElement = PortfolioElementWithCore<CutAndPricePortfolioCore>;
 /**
  * Exact solver (Sat + Clique + DSatur incremental) portfolio element type.
  */
-using ExactElement = PortfolioElementWithCore<CliqueSatDSaturExactSolverCore>;
+using ExactElementCoreSDS = CliqueSatDSaturExactSolverCore;
+using ExactElementCoreSAT = FixedSatExactSolverCore;
+using ExactElementSDS = PortfolioElementWithCore<ExactElementCoreSDS>;
+using ExactElementSAT = PortfolioElementWithCore<ExactElementCoreSAT>;
 
 /**
  * Actual SAT solver to use.
@@ -103,9 +108,9 @@ using SatSolver = KissatSolver;
 /**
  * MES + SAT as LNS elements.
  */
-using LNSInner = sammy::FixedMESSATImprovementSolver<SatSolver>;
-// using LNSInner =
-// sammy::FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
+using LNSInner = sammy::VariantSubproblemSolver;
+//using LNSInner = sammy::FixedMESSATImprovementSolver<SatSolver>;
+//using LNSInner = sammy::FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
 using LNSOuter = sammy::SubproblemSolverWithMES<LNSInner>;
 using LNSCore = sammy::SubproblemLNSSolverCore<LNSOuter>;
 using LNSElement = PortfolioElementWithCore<LNSCore>;
@@ -118,6 +123,7 @@ class Main {
         std::string output_file;
         std::string dump_initial_phase_file;
         std::string subproblem_report_dir;
+        std::string exact_solver_type = "satdsatur";
         bool all_concrete = false;
         bool print_events = false;
         bool print_portfolio_events = false;
@@ -161,8 +167,8 @@ class Main {
                 "If set, the portfolio solver parts print their events to "
                 "stdout.")("print-global-stats",
                            bool_switch(print_global_stats),
-                           "Print global statistics after solving.")(
-                "print-initial-progress", bool_switch(print_initial_progress),
+                           "Print global statistics after solving.")
+                ("print-initial-progress", bool_switch(print_initial_progress),
                 "Print progress information during the initial heuristic.")(
                 "dont-simplify", bool_switch(dont_simplify),
                 "Do not apply simplification.")(
@@ -184,7 +190,9 @@ class Main {
                 "Time to spend on the initial heuristic at least.")(
                 "initial-iteration-goal",
                 value_with_default(initial_goal_iterations),
-                "Iterations of the initial heuristic to run at least.");
+                "Iterations of the initial heuristic to run at least.")
+                ("exact-solver-type", value_with_default(exact_solver_type),
+                 "Type of exact solver to use; can be 'satdsatur' or 'sat'.");
         }
 
         static Config parse_options(int argc, char** argv) {
@@ -308,10 +316,17 @@ class Main {
         const auto& implied = portfolio->implied_cache();
         if (implied.get_reduced_universe().size() < config.exact_limit) {
             have_exact = true;
-            ExactElement& exact = portfolio->emplace_element<ExactElement>(
-                &*portfolio, &CliqueSatDSaturExactSolverCore::factory,
-                "Exact Clique & SatDSatur");
-            setup_element(exact);
+            if(config.exact_solver_type == "sat") {
+                auto& exact = portfolio->emplace_element<ExactElementSAT>(
+                    &*portfolio, &ExactElementCoreSAT::factory,
+                    "Exact Solver SAT");
+                setup_element(exact);
+            } else {
+                auto& exact = portfolio->emplace_element<ExactElementSDS>(
+                    &*portfolio, &ExactElementCoreSDS::factory,
+                    "Exact Solver SatDSatur");
+                setup_element(exact);
+            }
         }
     }
 
@@ -329,7 +344,7 @@ class Main {
         for (std::size_t i : range(remaining_threads)) {
             static_cast<void>(i); // not used
             setup_element(portfolio->emplace_element<LNSElement>(
-                &*portfolio, &LNSCore::factory, "Non-Incremental SAT LNS"));
+                &*portfolio, &LNSCore::factory, "Variant LNS"));
         }
     }
 

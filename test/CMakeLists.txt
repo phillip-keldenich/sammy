@@ -22,6 +22,7 @@ add_executable(
     test_cryptominisat_binding.cpp
     test_subproblem_solver_with_mes.cpp
     test_external_sat.cpp
+    test_lns_subproblem_solvers.cpp
 )
 
 if(UNIX)

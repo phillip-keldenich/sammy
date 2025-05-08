@@ -60,6 +60,10 @@ inline ThreadLocalManager<ClauseDB>& get_tl_clause_manager() {
 
 using ClausesTicket = ThreadLocalManager<ClauseDB>::Ticket;
 
+inline ClausesTicket publish_clauses(ClauseDB&& clause_db) {
+    return detail::get_tl_clause_manager().new_ticket(std::move(clause_db));
+}
+
 inline ClausesTicket publish_clauses(const ClauseDB& clause_db) {
     return detail::get_tl_clause_manager().new_ticket(clause_db);
 }

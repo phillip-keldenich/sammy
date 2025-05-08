@@ -26,6 +26,10 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
         return std::string("SAT<") + BasicSatSolver::name() + ">";
     }
 
+    std::string strategy_name() const {
+        return name();
+    }
+
     /**
      * Estimate the total size of the formula (in bytes)
      * that would be created for a given subproblem.
@@ -572,26 +576,32 @@ template <typename BasicSatSolver> class FixedMESSATImprovementSolver {
 };
 
 /**
- * Non-incremental use of a SAT solver for improvement-by-one search.
+ * Non-incremental use of a SAT solver.
  */
-template <typename BaseSolver> class ImprovementSolver {
+template <typename BaseSolver> class FixedBoundSATSolver {
   public:
     using Lit = typename BaseSolver::Lit;
     using SLit = sammy::Lit;
 
-    ImprovementSolver(SharedDBPropagator* propagator,
-                      std::vector<Vertex> vertices,
-                      std::vector<std::size_t> clique_indices, std::size_t k)
-        : m_base_solver(), m_propagator(propagator),
-          m_all_vertices(std::move(vertices)),
-          m_clique_indices(std::move(clique_indices)), m_class_vars(k),
-          m_vertex_vars(m_all_vertices.size()) {
-        for (std::size_t i = 0; i < k; ++i) {
-            if (i <= m_clique_indices.size())
+    FixedBoundSATSolver(SharedDBPropagator* propagator,
+                        const std::vector<Vertex>* universe,
+                        std::vector<Vertex> clique,
+                        std::size_t max_num_configs) :
+        m_base_solver(),
+        m_propagator(propagator),
+        m_all_vertices(*universe),
+        m_class_vars(max_num_configs),
+        m_vertex_vars(universe->size())
+    {
+        if(clique.size() > max_num_configs) {
+            m_construction_infeasible = true;
+            return;
+        }
+        for(std::size_t i = 0; i < max_num_configs; ++i) {
+            if (i <= clique.size())
                 m_propagator->reset_or_throw();
-            if (i < m_clique_indices.size()) {
-                p_make_class_with_clique_vertex(
-                    i, m_all_vertices[m_clique_indices[i]]);
+            if (i < clique.size()) {
+                p_make_class_with_clique_vertex(i, clique[i]);
             } else {
                 p_make_unconstrained_class(i);
             }
@@ -613,9 +623,15 @@ template <typename BaseSolver> class ImprovementSolver {
         }
     }
 
-    std::optional<bool>
-    solve(double time_limit = std::numeric_limits<double>::infinity()) {
-        return m_base_solver.solve(time_limit);
+    std::optional<bool> solve() {
+        if(m_construction_infeasible) {
+            return false;
+        }
+        return m_base_solver.solve();
+    }
+
+    void abort() {
+        m_base_solver.terminate();
     }
 
     std::vector<std::vector<bool>> get_solution() const {
@@ -631,6 +647,13 @@ template <typename BaseSolver> class ImprovementSolver {
             }
             result[class_index] = std::move(config);
         }
+        return result;
+    }
+
+    PartialSolution get_partial(const PairInfeasibilityMap* inf_map) const {
+        auto solution = get_solution();
+        PartialSolution result(m_propagator->db().num_vars(),
+                               inf_map, solution.begin(), solution.end());
         return result;
     }
 
@@ -841,8 +864,7 @@ template <typename BaseSolver> class ImprovementSolver {
 
     BaseSolver m_base_solver;
     SharedDBPropagator* m_propagator;
-    std::vector<Vertex> m_all_vertices;
-    std::vector<std::size_t> m_clique_indices;
+    const std::vector<Vertex>& m_all_vertices;
     // m_class_vars[c][v] -> variable (or fixed value) for class c and basic
     // variable v
     std::vector<std::vector<std::variant<Lit, bool>>> m_class_vars;

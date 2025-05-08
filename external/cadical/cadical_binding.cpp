@@ -84,7 +84,9 @@ void CadicalSolver::reset_terminate() {
     m_terminator->reset_terminate();
 }
 
-static void cdc_add_assumptions(CaDiCaL::Solver& solver, const std::vector<int>& assumptions) {
+static void cdc_add_assumptions(CaDiCaL::Solver& solver, 
+                                const std::vector<int>& assumptions) 
+{
     for(int l : assumptions) {
         solver.assume(l);
     }

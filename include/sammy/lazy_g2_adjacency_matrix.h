@@ -22,6 +22,7 @@ class LazyG2AdjacencyMatrix {
     using Indices = std::vector<std::size_t>;
     using VertexMap = VertexMapTo<std::size_t>;
 
+    inline
     LazyG2AdjacencyMatrix(std::vector<Vertex> considered_vertices,
                           ClauseDB& clause_db, std::size_t n_concrete);
 
@@ -157,9 +158,9 @@ class LazyG2AdjacencyMatrix {
     }
 
   private:
-    void p_initialize_vertices_implying_literal();
-    void p_initialize_vertices_containing_concrete_literal();
-    void p_initialize_matrix_from_implied_literals();
+    inline void p_initialize_vertices_implying_literal();
+    inline void p_initialize_vertices_containing_concrete_literal();
+    inline void p_initialize_matrix_from_implied_literals();
 
     /**
      * The number of all literals.
