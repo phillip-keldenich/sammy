@@ -4,6 +4,7 @@ import sys
 
 output_dir = "02_output"
 generate_binary = "../../build/Release/src/generate_subproblem_mes_entry_points"
+time_limit = 5 * 60
 
 for f in os.listdir(output_dir):
     path = os.path.join(output_dir, f)
@@ -25,4 +26,4 @@ for f in os.listdir(output_dir):
         print("Generating for", subproblem_path)
         subprocess.run([generate_binary, "--formula", formula_file,
                         "--subproblem", subproblem_path,
-                        "--output", output_path], check=True)
+                        "--output", output_path, "--time-limit", str(time_limit)], check=True)
