@@ -31,9 +31,7 @@ class VariantSubproblemSolver {
     LNSSubproblem m_subproblem;
 
   public:
-    static std::string name() {
-        return "Variant";
-    }
+    static std::string name() { return "Variant"; }
 
     std::string strategy_name() const { return m_strategy; }
 

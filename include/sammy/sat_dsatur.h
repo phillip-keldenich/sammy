@@ -174,12 +174,26 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
                 m_infeasible_by_construction = true;
                 return;
             }
+            p_store_event(
+                "SAT_DSATUR_CONSTRUCTION_BEGIN",
+                {{"num_uncovered", m_subproblem.uncovered_universe.size()},
+                 {"mes_size", m_subproblem.mutually_exclusive_set.size()},
+                 {"num_configs_allowed", m_num_configs_allowed},
+                 {"removal_size", m_subproblem.removed_configurations.size()},
+                 {"solver_name", m_solver.name()}});
             p_init_vertices_implying_literal();
             p_init_vertices_containing_concrete();
             p_init_vertex_info();
             p_init_color_classes();
             p_assign_mes_to_color_classes();
             p_init_tiers();
+            p_store_event(
+                "SAT_DSATUR_CONSTRUCTION_DONE",
+                {{"num_uncovered", m_subproblem.uncovered_universe.size()},
+                 {"mes_size", m_subproblem.mutually_exclusive_set.size()},
+                 {"num_configs_allowed", m_num_configs_allowed},
+                 {"removal_size", m_subproblem.removed_configurations.size()},
+                 {"solver_name", m_solver.name()}});
         } catch (...) {
             subproblem = std::move(m_subproblem);
             throw;
@@ -208,6 +222,7 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
     }
 
     std::optional<bool> solve() {
+        p_store_event("SAT_DSATUR_SOLVE_BEGIN");
         if (m_infeasible_by_construction) {
             return false;
         }
@@ -218,10 +233,13 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
             for (;;) {
                 int res = p_continue();
                 if (res == 0) {
+                    p_store_event("SAT_DSATUR_SOLVE_IMPROVEMENT_IMPOSSIBLE");
                     return false;
                 } else if (res == 1) {
+                    p_store_event("SAT_DSATUR_SOLVE_IMPROVEMENT_FOUND");
                     return true;
                 } else if (res == -1) {
+                    p_store_event("SAT_DSATUR_SOLVE_ABORTED");
                     return std::nullopt;
                 }
             }
@@ -246,6 +264,19 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
     }
 
   private:
+    template <typename... Args>
+    void p_store_event(const char* name, OutputObject data, Args&&... keys) {
+        if (!m_recorder)
+            return;
+        data["worker_id"] = m_worker_id;
+        m_recorder->store_event(name, std::move(data),
+                                std::forward<Args>(keys)...);
+    }
+
+    void p_store_event(const char* name) {
+        p_store_event(name, {{"worker_id", m_worker_id}});
+    }
+
     std::size_t p_num_classes(std::size_t max_allowed) {
         if (max_allowed == std::numeric_limits<std::size_t>::max()) {
             return m_subproblem.removed_configurations.size() - 1;
@@ -748,6 +779,7 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
             [&](std::size_t vi) { return vertex_info[vi].in_some_class; }));
         constexpr std::size_t tiers =
             sizeof(m_low_class_tiers) / sizeof(m_low_class_tiers[0]);
+        std::size_t no_extra_explicitized = m_explicitized.size();
         std::size_t prev_sat_explicitized = m_covered_in_class.size();
         if (prev_sat_explicitized == 0) {
             assert(m_config_vars.empty());
@@ -791,7 +823,30 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
         if (!p_sat_extend_covered_in_class()) {
             return 0;
         }
-        return p_sat_solve(vertex_info);
+        p_store_event("SAT_DSATUR_SAT_SOLVE_BEGIN",
+                      {{"explicitized_before", no_extra_explicitized},
+                       {"explicitized_after", m_explicitized.size()},
+                       {"previous_sat_explicitized", prev_sat_explicitized}});
+        auto res = p_sat_solve(vertex_info);
+        const char* result;
+        switch (res) {
+        case -1:
+            result = "aborted";
+            break;
+        case 0:
+            result = "unsat";
+            break;
+        case 1:
+            result = "sat_all_covered";
+            break;
+        case 2:
+            result = "sat";
+            break;
+        default:
+            throw std::logic_error("Invalid SAT solver result!");
+        }
+        p_store_event("SAT_DSATUR_SAT_SOLVE_DONE", {{"result", result}});
+        return res;
     }
 
     template <typename VertexInfosType>
@@ -1242,6 +1297,9 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
             // have not previously used the SAT solver
             p_sat_first_setup();
         }
+        p_store_event("SAT_DSATUR_COMPLETE_CLASSES_BEGIN",
+                      {{"num_explicit", m_explicitized.size()},
+                       {"num_sat_explicit", m_covered_in_class.size()}});
         std::vector<Lit> assumptions;
         for (std::size_t class_index : range(m_num_configs_allowed)) {
             const auto& prop = m_color_classes[class_index];
@@ -1273,16 +1331,22 @@ template <typename IncrementalSatSolver> class FixedMESSatDSaturSolver {
         auto res = m_solver.solve(assumptions);
         if (!res) {
             // SAT solver was interrupted
+            p_store_event("SAT_DSATUR_COMPLETE_CLASSES_DONE",
+                          {{"result", "aborted"}});
             return -1;
         }
         if (!*res) {
             // we could not improve, but that's no proof due to our assumptions;
             // invoke the SAT solver to find a working way of covering all
             // interactions that are currently explicitized
+            p_store_event("SAT_DSATUR_COMPLETE_CLASSES_DONE",
+                          {{"result", "completion_failed"}});
             p_sat_extend_covered_in_class();
             return p_sat_solve(vertex_info);
         }
         // SAT solver found a solution
+        p_store_event("SAT_DSATUR_COMPLETE_CLASSES_DONE",
+                      {{"result", "improvement_found"}});
         p_sat_solution_to_final_solution();
         return 1;
     }

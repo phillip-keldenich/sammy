@@ -8,6 +8,7 @@
 #include <sammy/kissat_solver.h>
 #include <sammy/lingeling_solver.h>
 #include <sammy/output.h>
+#include <sammy/sat_dsatur.h>
 #include <sammy/sat_lns.h>
 #include <sammy/subproblem_solver_with_mes.h>
 
@@ -235,13 +236,22 @@ int main(int argc, char** argv) {
         using Solver = FixedMESSATImprovementSolver<SolverType>;               \
         run_solver_type(static_cast<Solver*>(nullptr));                        \
     }
+
 #define INCRE_SOLVER(SolverType)                                               \
     [&]() {                                                                    \
         using Solver = FixedMESIncrementalSATImprovementSolver<SolverType>;    \
         run_solver_type(static_cast<Solver*>(nullptr));                        \
     }
+
 #define CNPSD_SOLVER(SolverType)                                               \
     [&]() { run_cnpsatdsatur(static_cast<SolverType*>(nullptr)); }
+
+#define NSDS_SOLVER(SolverType)                                                \
+    [&]() {                                                                    \
+        using Solver = FixedMESSatDSaturSolver<SolverType>;                    \
+        run_solver_type(static_cast<Solver*>(nullptr));                        \
+    }
+
     std::unordered_map<std::string, std::function<void()>> solvers{
         {"fixed_sat[kissat]", FIXED_SOLVER(KissatSolver)},
         {"fixed_sat[cadical]", FIXED_SOLVER(CadicalSolver)},
@@ -252,7 +262,11 @@ int main(int argc, char** argv) {
         {"incremental_sat[lingeling]", INCRE_SOLVER(LingelingSolver)},
         {"satdsatur[cadical]", CNPSD_SOLVER(CadicalSolver)},
         {"satdsatur[cryptominisat]", CNPSD_SOLVER(CMSAT5Solver)},
-        {"satdsatur[lingeling]", CNPSD_SOLVER(LingelingSolver)}};
+        {"satdsatur[lingeling]", CNPSD_SOLVER(LingelingSolver)},
+        {"newsatdsatur[cadical]", NSDS_SOLVER(CadicalSolver)},
+        {"newsatdsatur[cryptominisat]", NSDS_SOLVER(CMSAT5Solver)},
+        {"newsatdsatur[lingeling]", NSDS_SOLVER(LingelingSolver)}};
+#undef NSDS_SOLVER
 #undef CNPSD_SOLVER
 #undef INCRE_SOLVER
 #undef FIXED_SOLVER
