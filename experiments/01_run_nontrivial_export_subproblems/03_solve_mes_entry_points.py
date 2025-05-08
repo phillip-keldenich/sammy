@@ -23,6 +23,9 @@ IMPORTANT_SOLVERS = [
     "satdsatur[cadical]",
     "satdsatur[cryptominisat]",
     "satdsatur[lingeling]",
+    "newsatdsatur[cadical]",
+    "newsatdsatur[cryptominisat]",
+    "newsatdsatur[lingeling]",
 ]
 RUNS_PER_SOLVER = 3
 EXECUTABLE = "../../build/Release/src/solve_subproblems_mes_entry_point"
@@ -201,7 +204,7 @@ if __name__ == "__main__":
     ur = []
     for mef, sf, ms, sol, nr in unresolved_mes_solver_pairs():
         ur.append((str(mef), str(sf), ms, sol, nr))
-        if len(ur) >= 200:
+        if len(ur) >= 1000:
             run_mes_solver_pairs.distribute(ur)
             ur = []
     if ur:
