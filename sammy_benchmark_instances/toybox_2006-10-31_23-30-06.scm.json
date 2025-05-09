@@ -1,0 +1,79 @@
+{
+  "type": "software configuration model",
+  "name": "/Users/me/sammy/sammy_benchmark_instances/toybox_2006-10-31_23-30-06.dimacs",
+  "meta": {},
+  "num_variables": 16,
+  "num_concrete_features": 16,
+  "labels": {
+    "CONFIG_CONFIG_TOYSH_TTY": 1,
+    "CONFIG_CONFIG_TOYSH_ENVVARS": 2,
+    "CONFIG_CONFIG_TOYSH_WILDCARDS": 3,
+    "CONFIG_CONFIG_TOYSH_FLOWCTL": 4,
+    "CONFIG_CONFIG_TOYSH_JOBCTL": 5,
+    "CONFIG_CONFIG_TOYS_FREE": 6,
+    "CONFIG_CONFIG_TOYSH_ARRAYS": 7,
+    "CONFIG_CONFIG_TOYSH_PIPES": 8,
+    "CONFIG_CONFIG_TOYSH_BUILTINS": 9,
+    "CONFIG_CONFIG_TOYSH_PROCARGS": 10,
+    "CONFIG_CONFIG_DF": 11,
+    "CONFIG_CONFIG_TOYSH_QUOTES": 12,
+    "CONFIG_CONFIG_TOYSH_PROFILE": 13,
+    "CONFIG_CONFIG_TOYSH": 14,
+    "CONFIG_CONFIG_DF_PEDANTIC": 15,
+    "CONFIG_CONFIG_TOYSH_LOCALS": 16
+  },
+  "cnf_clauses": [
+    [
+      11,
+      -15
+    ],
+    [
+      1,
+      -13
+    ],
+    [
+      2,
+      -16
+    ],
+    [
+      -9,
+      14
+    ],
+    [
+      1,
+      -5
+    ],
+    [
+      -7,
+      16
+    ],
+    [
+      -8,
+      14
+    ],
+    [
+      -1,
+      14
+    ],
+    [
+      -2,
+      12
+    ],
+    [
+      -3,
+      12
+    ],
+    [
+      -12,
+      14
+    ],
+    [
+      -10,
+      12
+    ],
+    [
+      -4,
+      14
+    ]
+  ]
+}

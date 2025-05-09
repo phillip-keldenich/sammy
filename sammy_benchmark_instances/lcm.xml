@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+    <properties/>
+    <struct>
+        <or abstract="true" mandatory="true" name="root">
+            <and abstract="true" name="__SELECTED_FEATURE_line_7">
+                <feature mandatory="true" name="__SELECTED_FEATURE_mutant_5"/>
+            </and>
+            <alt abstract="true" name="__SELECTED_FEATURE_line_10">
+                <feature name="__SELECTED_FEATURE_mutant_4"/>
+                <feature name="__SELECTED_FEATURE_mutant_1"/>
+                <feature name="__SELECTED_FEATURE_mutant_3"/>
+            </alt>
+            <and abstract="true" name="__SELECTED_FEATURE_line_8">
+                <feature mandatory="true" name="__SELECTED_FEATURE_mutant_2"/>
+            </and>
+        </or>
+    </struct>
+    <constraints/>
+    <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+    <comments/>
+    <featureOrder userDefined="false"/>
+</featureModel>
