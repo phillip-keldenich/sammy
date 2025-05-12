@@ -14,11 +14,10 @@ inline std::mt19937_64& rng() noexcept {
     return res;
 }
 
-template<typename ContainerIn, typename ContainerOut, typename RNG>
+template <typename ContainerIn, typename ContainerOut, typename RNG>
 inline void sample_from_range(const ContainerIn& container_in,
                               ContainerOut& container_out,
-                              std::size_t goal_size, RNG& rng) 
-{
+                              std::size_t goal_size, RNG& rng) {
     using IndexDist = std::uniform_int_distribution<std::size_t>;
     using Value = typename ContainerIn::value_type;
     if (container_in.empty()) {

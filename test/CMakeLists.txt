@@ -26,7 +26,9 @@ if(NOT SAMMY_SKIP_TESTS)
         test_cryptominisat_binding.cpp
         test_subproblem_solver_with_mes.cpp
         test_external_sat.cpp
+        test_lns_subproblem_solvers.cpp
     )
+
 
     if(UNIX)
         target_sources(sammy_test PRIVATE "../src/process_unix.cpp")

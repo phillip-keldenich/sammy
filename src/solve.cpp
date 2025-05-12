@@ -12,9 +12,11 @@
 #include <sammy/output.h>
 #include <sammy/partial_solution.h>
 #include <sammy/run_initial.h>
+#include <sammy/sat_dsatur.h>
 #include <sammy/sat_lns.h>
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
+#include <sammy/variant_subproblem_solver.h>
 
 using namespace sammy;
 namespace po = boost::program_options;
@@ -90,27 +92,51 @@ using CNPElement = PortfolioElementWithCore<CutAndPricePortfolioCore>;
 
 /**
  * Exact solver (Sat + Clique + DSatur incremental) portfolio element type.
+ * Implements the (default) --exact-solver-type=satdsatur option.
+ * Added only for sufficiently small universes.
  */
-using ExactElement = PortfolioElementWithCore<CliqueSatDSaturExactSolverCore>;
+using ExactElementCoreSDS = CliqueSatDSaturExactSolverCore;
+using ExactElementSDS = PortfolioElementWithCore<ExactElementCoreSDS>;
 
 /**
- * Actual SAT solver to use.
+ * Fixed SAT exact solver portfolio element type.
+ * Implements the --exact-solver-type=sat option.
+ * Added only for sufficiently small universes.
  */
-// using SatSolver = ExternalNonIncrementalSAT<ExternalSolverType::KISSAT>;
-using SatSolver = KissatSolver;
-// using SatSolver = CadicalSolver;
+using ExactElementCoreSAT = FixedSatExactSolverCore;
+using ExactElementSAT = PortfolioElementWithCore<ExactElementCoreSAT>;
 
 /**
- * MES + SAT as LNS elements.
+ * LNS subproblem solver that uses the mechanism in
+ * PortfolioSolver to select for each subproblem the
+ * solver approach and backend SAT solver to use.
  */
-using LNSInner = sammy::FixedMESSATImprovementSolver<SatSolver>;
-// using LNSInner =
-// sammy::FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
-using LNSOuter = sammy::SubproblemSolverWithMES<LNSInner>;
+using LNSInner = VariantSubproblemSolver;
+
+// This would fix the LNS solver to a fixed strategy/backend solver
+// using LNSInner = FixedMESSATImprovementSolver<KissatSolver>;
+// using LNSInner = FixedMESIncrementalSATImprovementSolver<CadicalSolver>;
+
+/**
+ * Wrapping a fixed-MES solver with a relatively low number of iterations
+ * of improvements to the initially found MES.
+ */
+using LNSOuter = SubproblemSolverWithMES<LNSInner>;
+
+/**
+ * LNS worker core wrapping LNSOuter.
+ */
 using LNSCore = sammy::SubproblemLNSSolverCore<LNSOuter>;
-using LNSElement = PortfolioElementWithCore<LNSCore>;
-using OldLNSElement = CliqueSatDSaturLNSElement<CMSAT5Solver>;
 
+/**
+ * LNS worker type using LNSCore/LNSOuter/LNSInner.
+ */
+using LNSElement = PortfolioElementWithCore<LNSCore>;
+
+/**
+ * Class handling command line parameters,
+ * running the initial phase and starting the LNS portfolio.
+ */
 class Main {
   public:
     struct Config {
@@ -118,6 +144,7 @@ class Main {
         std::string output_file;
         std::string dump_initial_phase_file;
         std::string subproblem_report_dir;
+        std::string exact_solver_type = "satdsatur";
         bool all_concrete = false;
         bool print_events = false;
         bool print_portfolio_events = false;
@@ -184,7 +211,9 @@ class Main {
                 "Time to spend on the initial heuristic at least.")(
                 "initial-iteration-goal",
                 value_with_default(initial_goal_iterations),
-                "Iterations of the initial heuristic to run at least.");
+                "Iterations of the initial heuristic to run at least.")(
+                "exact-solver-type", value_with_default(exact_solver_type),
+                "Type of exact solver to use; can be 'satdsatur' or 'sat'.");
         }
 
         static Config parse_options(int argc, char** argv) {
@@ -308,10 +337,17 @@ class Main {
         const auto& implied = portfolio->implied_cache();
         if (implied.get_reduced_universe().size() < config.exact_limit) {
             have_exact = true;
-            ExactElement& exact = portfolio->emplace_element<ExactElement>(
-                &*portfolio, &CliqueSatDSaturExactSolverCore::factory,
-                "Exact Clique & SatDSatur");
-            setup_element(exact);
+            if (config.exact_solver_type == "sat") {
+                auto& exact = portfolio->emplace_element<ExactElementSAT>(
+                    &*portfolio, &ExactElementCoreSAT::factory,
+                    "Exact Solver SAT");
+                setup_element(exact);
+            } else {
+                auto& exact = portfolio->emplace_element<ExactElementSDS>(
+                    &*portfolio, &ExactElementCoreSDS::factory,
+                    "Exact Solver SatDSatur");
+                setup_element(exact);
+            }
         }
     }
 
@@ -329,7 +365,7 @@ class Main {
         for (std::size_t i : range(remaining_threads)) {
             static_cast<void>(i); // not used
             setup_element(portfolio->emplace_element<LNSElement>(
-                &*portfolio, &LNSCore::factory, "Non-Incremental SAT LNS"));
+                &*portfolio, &LNSCore::factory, "Variant LNS"));
         }
     }
 

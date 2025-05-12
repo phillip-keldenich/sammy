@@ -21,6 +21,7 @@ class BinaryClauseCompressor {
           m_remove(2 * simplify_ds->original_num_vars()) {}
 
     void compute_binary_clause_graph() {
+        // Compute a graph which has an edge for every binary clause
         for (const auto& cl : simplify_ds->clauses()) {
             if (cl.size() != 2)
                 continue;
@@ -131,7 +132,7 @@ class BinaryClauseCompressor {
     using Matrix = std::vector<Row>;
     SimplifyDatastructure* simplify_ds;
     ClauseDB m_clauses;
-    std::vector<std::vector<Lit>> m_out_edges;
+    std::vector<std::vector<Lit>> m_out_edges;  // every edge will be a binary clause
     std::vector<Lit> m_dfs_stack;
     StampSet<Lit, std::uint16_t> m_visited;
     StampSet<Lit, std::uint16_t> m_children;

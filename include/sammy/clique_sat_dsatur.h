@@ -3007,10 +3007,11 @@ bool CliqueSatDSaturSolver<IncrementalSATSolver>::
 template <typename IncrementalSATSolver>
 bool CliqueSatDSaturSolver<IncrementalSATSolver>::p_limited_price_vertices(
     const std::vector<std::size_t>& vertices) {
-    std::size_t goal_vertices = (std::min)(
-        vertices.size(),
-        (std::max)(std::size_t(10),
-                   std::size_t(0.2 * m_existing_clique_vars.size())));
+    std::size_t goal_vertices =
+        (std::min)(vertices.size(),
+                   (std::max)(std::size_t(10),
+                              std::size_t(0.2 *
+                                          m_existing_clique_vars.size())));
     if (m_aborted.load())
         return false;
     if (!p_price_collect_good_and_possible(vertices))

@@ -33,6 +33,8 @@ class FixedMESIncrementalSATImprovementSolver {
         return std::string("IncrementalSAT<") + SatSolver::name() + ">";
     }
 
+    std::string strategy_name() const { return name(); }
+
   private:
     // basic incremental SAT-solver backend
     SatSolver m_solver;
