@@ -22,6 +22,9 @@ namespace sammy {
  * calls to `std::numeric_limits<StampType>::max()`, but this is usually not a
  * problem in practice.
  * 
+ * This data structure is commonly used in SAT-solvers, CSP solvers, and graph
+ * algorithms, but not very common in other domains.
+ * 
  * @tparam ValueType An integral type representing the elements in the set.
  * @tparam StampType An unsigned integral type used for stamps. It must be large
  * enough to safely handle the number of expected `clear` calls.
