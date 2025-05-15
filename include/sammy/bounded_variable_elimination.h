@@ -7,6 +7,47 @@
 namespace sammy {
 
 /**
+ * @brief A simple class to track eliminated clauses.
+ * 
+ */
+class EliminatedClausesTracker {
+    public:
+        EliminatedClausesTracker(SimplifyDatastructure* simplify_ds)
+            : simplify_ds(simplify_ds) {}
+
+        void mark_eliminated(CRef c) {
+            p_ensure_clause_eliminated_size();
+            is_clause_eliminated[c] = true;
+        }
+
+        template <typename Range>
+        void mark_eliminated(Range&& range) {
+            static_assert(std::is_same_v<decltype(std::begin(range)), decltype(std::end(range))>, 
+                            "Range must be iterable with begin() and end() methods.");
+            for (const CRef& c : range) {
+                mark_eliminated(c);
+            };
+        }
+
+        bool is_eliminated(CRef c) const {
+            return c < is_clause_eliminated.size() && is_clause_eliminated[c];
+        }
+
+    private:
+        void p_ensure_clause_eliminated_size() {
+            std::size_t nc = simplify_ds->clauses().size();
+            if (is_clause_eliminated.size() < nc) {
+                is_clause_eliminated.reserve(std::max(2 * is_clause_eliminated.size(), nc + 32));
+                is_clause_eliminated.resize(nc, false);
+            }
+        }
+
+        std::vector<bool> is_clause_eliminated;
+        SimplifyDatastructure* simplify_ds; // Ensure this matches the actual class name
+};
+
+
+/**
  * Can we use BVE (bounded variable elimination) on non-concrete features?
  *  - Let (l1,l2) be a feasible interaction.
  *  - Assume we eliminate some non-concrete y by VE.
@@ -33,32 +74,13 @@ class BoundedVariableEliminator {
   public:
     explicit BoundedVariableEliminator(SimplifyDatastructure* simplify_ds)
         : simplify_ds(simplify_ds),
+            clause_tracker(simplify_ds),
           clauses_with_literal(2 * simplify_ds->original_num_vars()),
           stats(&stats_buffer) {
         p_init_cl_with_lit();
     }
 
     void set_stats(SimplificationStats* stats) noexcept { this->stats = stats; }
-
-    bool is_clause_eliminated(CRef c) {
-        std::size_t nc = simplify_ds->clauses().size();
-        std::size_t nec = clause_eliminated.size();
-        if (nec < nc) {
-            clause_eliminated.reserve(std::max(2 * nec, nc + 32));
-            clause_eliminated.resize(nc, false);
-        }
-        return clause_eliminated[c];
-    }
-
-    void set_clause_eliminated(CRef c) {
-        std::size_t nc = simplify_ds->clauses().size();
-        std::size_t nec = clause_eliminated.size();
-        if (nec < nc) {
-            clause_eliminated.reserve(std::max(2 * nec, nc + 32));
-            clause_eliminated.resize(nc, false);
-        }
-        clause_eliminated[c] = true;
-    }
 
     bool run_elimination(std::size_t max_gap) {
         bool changed = false, once_changed = false;
@@ -68,15 +90,8 @@ class BoundedVariableEliminator {
             changed = p_score_and_eliminate_pure(best_scores);
             if (!changed) {
                 p_compress_scored(best_scores);
-                bool eliminated_pure = false;
                 for (const auto& e : best_scores) {
-                    if (e.second == 0) {
-                        changed = eliminated_pure = true;
-                        p_eliminate_pure(e.first);
-                        continue;
-                    }
-                    if (eliminated_pure)
-                        break;
+                    assert(e.second > 0); // pure variables should have been eliminated
                     auto [score, baseline] = p_actual_score(e.first);
                     if (score <= baseline + max_gap) {
                         p_eliminate_variable(e.first);
@@ -102,6 +117,10 @@ class BoundedVariableEliminator {
             const auto& plist = clauses_with_literal[p];
             const auto& nlist = clauses_with_literal[n];
             if (plist.empty() || nlist.empty()) {
+                // v is pure, i.e., it only appears in one polarity and can trivially
+                // be set to that polarity. This will trivially satisfy all clauses
+                // containing v, as well as v itself. Only allowed for non-concrete
+                // variables, as otherwise we may loose coverage.
                 p_eliminate_pure(v);
                 changed = true;
                 continue;
@@ -117,28 +136,35 @@ class BoundedVariableEliminator {
         const auto& plist = clauses_with_literal[p];
         const auto& nlist = clauses_with_literal[n];
         auto& clauses = simplify_ds->clauses();
+        // Eliminate the clauses with p and n
+        // and add them to the reconstruction stack
         for (CRef c1 : plist) {
             p_push_reconstruct(clauses[c1], p);
-            set_clause_eliminated(c1);
+            clause_tracker.mark_eliminated(c1);
         }
         for (CRef c2 : nlist) {
             p_push_reconstruct(clauses[c2], n);
-            set_clause_eliminated(c2);
+            clause_tracker.mark_eliminated(c2);
         }
+        // Now we need to add the resolvents of all clauses with p and n
         auto not_p = [=](Lit l) { return l != p; };
         auto not_n = [=](Lit l) { return l != n; };
         for (CRef c1 : plist) {
             for (CRef c2 : nlist) {
-                SCVec buffer;
+                SCVec buffer;  // resolvent
                 std::copy_if(clauses[c1].begin(), clauses[c1].end(),
                              std::back_inserter(buffer), not_p);
                 std::copy_if(clauses[c2].begin(), clauses[c2].end(),
                              std::back_inserter(buffer), not_n);
                 if (buffer.empty())
                     throw UNSATError();
+                // the resolved is likely to have duplicates which we need to
+                // remove
                 std::sort(buffer.begin(), buffer.end());
                 buffer.erase(std::unique(buffer.begin(), buffer.end()),
                              buffer.end());
+                // frequently, the resolvent is a tautology, i.e., contain
+                // a OR -a, and can be removed
                 if (find_pair_if(buffer.begin(), buffer.end(),
                                  [](Lit pr, Lit c) {
                                      return pr == lit::negate(c);
@@ -153,6 +179,7 @@ class BoundedVariableEliminator {
                 clauses.emplace_back(std::move(buffer));
             }
         }
+        // Finally, we can eliminate the variable
         simplify_ds->mark_eliminated(v);
         stats->variables_eliminated_by_resolution += 1;
     }
@@ -236,9 +263,7 @@ class BoundedVariableEliminator {
         simplify_ds->push_reconstruction_clause(SCVec(1, nelit));
         simplify_ds->mark_eliminated(v);
         stats->pure_literals_eliminated += 1;
-        for (CRef c : nelist) {
-            set_clause_eliminated(c);
-        }
+        clause_tracker.mark_eliminated(nelist);
     }
 
     void p_init_cl_with_lit() {
@@ -260,14 +285,15 @@ class BoundedVariableEliminator {
     }
 
     void p_compress_list(Lit l) {
-        auto is_eliminated = [&](CRef c) { return is_clause_eliminated(c); };
+        // Will remove eliminated clauses from the clause list for literal l.
+        auto is_eliminated = [&](CRef c) { return clause_tracker.is_eliminated(c); };
         auto& list = clauses_with_literal[l];
         list.erase(std::remove_if(list.begin(), list.end(), is_eliminated),
                    list.end());
     }
 
     SimplifyDatastructure* simplify_ds;
-    std::vector<bool> clause_eliminated;
+    EliminatedClausesTracker clause_tracker;
     std::vector<std::vector<CRef>> clauses_with_literal;
     SimplificationStats stats_buffer;
     SimplificationStats* stats;
