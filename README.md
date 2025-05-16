@@ -16,8 +16,9 @@ conan install . -pr:b default -pr:h default --build=missing
 cmake --preset conan-release
 # Build the project
 cmake --build --preset conan-release
-# Run the program
-./build/Release/test/sammy_test    
+# Run the tests
+./build/Release/test/sammy_test --success
+# Run the main program
 ./build/Release/src/sammy_solve
 ```
 
@@ -25,6 +26,27 @@ If you get issues with building the test cases, you can run the following comman
 
 ```bash
 cmake --preset conan-release -DSAMMY_SKIP_TESTS=ON && cmake --build --preset conan-release     
+```
+
+### Debugging
+
+```bash
+# set up conan for release and debug
+# you may need to delete CMakeUserPresets.json if you have issues
+uv run conan install . -s build_type=Release --build=missing
+uv run conan install . -s build_type=Debug --build=missing   
+
+# DEBUG
+# Configure the project with CMake
+cmake --preset=conan-debug 
+# Build the project
+cmake --build --preset=conan-debug
+
+# RELEASE
+# Configure the project with CMake
+cmake --preset=conan-release
+# Build the project
+cmake --build --preset=conan-release
 ```
 
 ### Using `uv` on Arch to run conan

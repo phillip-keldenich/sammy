@@ -13,7 +13,19 @@ namespace sammy {
 class EliminatedClausesTracker {
     public:
         EliminatedClausesTracker(SimplifyDatastructure* simplify_ds)
-            : simplify_ds(simplify_ds) {}
+            : simplify_ds(simplify_ds),
+             clauses_with_literal(2 * simplify_ds->original_num_vars()) // num literals = 2 * num vars
+            {
+                // initialize the clauses_with_literal vector
+                const auto& clauses = simplify_ds->clauses();
+                for (CRef ci = 0, cn = clauses.size(); ci < cn; ++ci) {
+                    const auto& clause = clauses[ci];
+                    for (Lit l : clause) {
+                        clauses_with_literal[l].push_back(ci);
+                    }
+                }
+
+            }
 
         void mark_eliminated(CRef c) {
             p_ensure_clause_eliminated_size();
@@ -21,7 +33,7 @@ class EliminatedClausesTracker {
         }
 
         template <typename Range>
-        void mark_eliminated(Range&& range) {
+        void mark_eliminated_in_batch(Range&& range) {
             static_assert(std::is_same_v<decltype(std::begin(range)), decltype(std::end(range))>, 
                             "Range must be iterable with begin() and end() methods.");
             for (const CRef& c : range) {
@@ -33,6 +45,37 @@ class EliminatedClausesTracker {
             return c < is_clause_eliminated.size() && is_clause_eliminated[c];
         }
 
+        void add_clause_with_literal(Lit l, CRef c) {
+            clauses_with_literal[l].push_back(c);
+        }
+
+        std::vector<CRef>& get_clauses_with_literal(Lit l) {
+            return clauses_with_literal[l];
+        }
+
+    /**
+     * @brief Will calculate an upper bound on the number of resolvents.
+     * The upper bound will be the product of the number of clauses with
+     * the positive literal and the number of clauses with the negative
+     * literal. This is a very rough estimate as usually we can eliminate
+     * clauses, but it is a good starting point. If the result is zero,
+     * the variable is guaranteed to be pure.
+     * 
+     * @param v The variable which we think about eliminating.
+     * @param remove_eliminated As we are removing clauses, we may want to
+     * remove eliminated clauses before calculating the number of resolvents.
+     * @return std::size_t An upper bound on the number of resolvents.
+     */
+    std::size_t estimate_max_resolvents(Var v, bool remove_eliminated = true) {
+        Lit p = lit::positive_lit(v);
+        Lit n = lit::negative_lit(v);
+        if (remove_eliminated) {
+            p_remove_eliminated_clauses_for(p);
+            p_remove_eliminated_clauses_for(n);
+        }
+        return clauses_with_literal[p].size() * clauses_with_literal[n].size();
+    }
+
     private:
         void p_ensure_clause_eliminated_size() {
             std::size_t nc = simplify_ds->clauses().size();
@@ -42,8 +85,17 @@ class EliminatedClausesTracker {
             }
         }
 
+        void p_remove_eliminated_clauses_for(Lit l) {
+            // Will remove eliminated clauses from the clause list for literal l.
+            auto is_eliminated_ = [&](CRef c) { return is_eliminated(c); };
+            auto& list = clauses_with_literal[l];
+            list.erase(std::remove_if(list.begin(), list.end(), is_eliminated_),
+                    list.end());
+        }
+
         std::vector<bool> is_clause_eliminated;
         SimplifyDatastructure* simplify_ds; // Ensure this matches the actual class name
+        std::vector<std::vector<CRef>> clauses_with_literal;
 };
 
 
@@ -70,14 +122,37 @@ class EliminatedClausesTracker {
  * Do we introduce another dummy? Or some other way to represent elimination?
  */
 
+using ScoredVar = std::pair<Var, std::size_t>;
+
+class CappedScoreList: public std::vector<ScoredVar> {
+  public:
+    CappedScoreList(std::size_t max_size) : max_size(max_size) {}
+
+    void add(ScoredVar e) {
+        // Add the element into the list, expecting it to be sorted
+        // in increasing order by the second element.
+        // Insert the new element in the right place
+        auto it = std::lower_bound(this->begin(), this->end(), e,
+                                   [](const ScoredVar& a, const ScoredVar& b) {
+                                       return a.second < b.second;
+                                   });
+        insert(it, e);
+        // If the list is too long, remove the last element
+        if (this->size() > max_size) {
+            pop_back();
+        }
+    }
+
+  private:
+    std::size_t max_size;
+};
+
 class BoundedVariableEliminator {
   public:
     explicit BoundedVariableEliminator(SimplifyDatastructure* simplify_ds)
         : simplify_ds(simplify_ds),
             clause_tracker(simplify_ds),
-          clauses_with_literal(2 * simplify_ds->original_num_vars()),
           stats(&stats_buffer) {
-        p_init_cl_with_lit();
     }
 
     void set_stats(SimplificationStats* stats) noexcept { this->stats = stats; }
@@ -86,18 +161,15 @@ class BoundedVariableEliminator {
         bool changed = false, once_changed = false;
         do {
             changed = false;
-            std::vector<std::pair<Var, std::size_t>> best_scores;
-            changed = p_score_and_eliminate_pure(best_scores);
-            if (!changed) {
-                p_compress_scored(best_scores);
-                for (const auto& e : best_scores) {
-                    assert(e.second > 0); // pure variables should have been eliminated
-                    auto [score, baseline] = p_actual_score(e.first);
-                    if (score <= baseline + max_gap) {
-                        p_eliminate_variable(e.first);
-                        changed = true;
-                        break;
-                    }
+            auto [best_scores, eliminated_pure] = p_score_and_eliminate_pure();
+            once_changed |= eliminated_pure;
+            for (const auto& e : best_scores) {
+                assert(e.second > 0); // pure variables should have been eliminated
+                Var var = e.first;
+                if (p_elimination_cost(var) <= static_cast<int>(max_gap)) {
+                    p_eliminate_variable(var);
+                    changed = true;
+                    break;
                 }
             }
             once_changed |= changed;
@@ -106,35 +178,42 @@ class BoundedVariableEliminator {
     }
 
   private:
-    bool p_score_and_eliminate_pure(
-        std::vector<std::pair<Var, std::size_t>>& best_scores) {
-        bool changed = false;
-        const Var nv = simplify_ds->original_num_vars();
-        for (Var v = 0; v < nv; ++v) {
-            if (simplify_ds->is_eliminated(v) || simplify_ds->is_concrete(v))
-                continue;
-            Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
-            const auto& plist = clauses_with_literal[p];
-            const auto& nlist = clauses_with_literal[n];
-            if (plist.empty() || nlist.empty()) {
-                // v is pure, i.e., it only appears in one polarity and can trivially
-                // be set to that polarity. This will trivially satisfy all clauses
-                // containing v, as well as v itself. Only allowed for non-concrete
-                // variables, as otherwise we may loose coverage.
-                p_eliminate_pure(v);
-                changed = true;
-                continue;
+    // This function will provide a scored list of variables to eliminate.
+    // If it finds pure variables during this, it will eliminate them directly.
+    std::pair<CappedScoreList, bool> p_score_and_eliminate_pure() {
+        // whether we eliminated a pure variable in any round
+        bool eliminated_pure = false;
+        // whether we eliminated a pure variable in the latest round
+        bool eliminated_pure_in_round = false;
+        CappedScoreList best_scores(20);
+        do {
+            // reset for the next round
+            eliminated_pure_in_round = false;
+            best_scores.clear();
+            const auto num_vars = simplify_ds->original_num_vars();
+            for (Var v = 0; v < num_vars; ++v) {
+                if (simplify_ds->is_eliminated(v) || simplify_ds->is_concrete(v))
+                    continue;
+                auto num_resolvents = clause_tracker.estimate_max_resolvents(v);
+                if (num_resolvents == 0) {
+                    // if `num_resolvents` is zero, the variable is pure
+                    p_eliminate_pure(v);
+                    eliminated_pure_in_round = true;
+                    eliminated_pure = true;
+                    continue; // there may be some new pure variables in the already checked variables
+                    // now, but it is faster to first continue and then do a second pass later.
+                }
+                // If we eliminated pure variables in this round, we will do a second pass
+                if (!eliminated_pure_in_round){ best_scores.add(ScoredVar{v, num_resolvents}); }
             }
-            if (!changed)
-                p_add_score(best_scores, v, plist.size() * nlist.size(), 20);
-        }
-        return changed;
+        } while(eliminated_pure_in_round);
+        return {best_scores, eliminated_pure};
     }
 
     void p_eliminate_variable(Var v) {
         Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
-        const auto& plist = clauses_with_literal[p];
-        const auto& nlist = clauses_with_literal[n];
+        const auto& plist = clause_tracker.get_clauses_with_literal(p);
+        const auto& nlist = clause_tracker.get_clauses_with_literal(n);
         auto& clauses = simplify_ds->clauses();
         // Eliminate the clauses with p and n
         // and add them to the reconstruction stack
@@ -174,7 +253,7 @@ class BoundedVariableEliminator {
                 }
                 CRef nclause = clauses.size();
                 for (Lit l : buffer) {
-                    clauses_with_literal[l].push_back(nclause);
+                    clause_tracker.add_clause_with_literal(l, nclause);
                 }
                 clauses.emplace_back(std::move(buffer));
             }
@@ -184,22 +263,28 @@ class BoundedVariableEliminator {
         stats->variables_eliminated_by_resolution += 1;
     }
 
-    std::pair<std::size_t, std::size_t> p_actual_score(Var v) {
+    // Calculate the cost of eliminating a variable. This is the number of
+    // resolvents that will be added to the clause database minus the number
+    // of clauses that will be removed. On badly chosen variables, the number
+    // of resolvents can be very large, so we need to be careful as this optimization
+    // will only have a positive impact if the number of resolvents is small.
+    int p_elimination_cost(Var v) {
         Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
-        std::size_t actual_score = 0;
-        const auto& plist = clauses_with_literal[p];
-        const auto& nlist = clauses_with_literal[n];
+        int actual_score = 0;
+        const auto& plist = clause_tracker.get_clauses_with_literal(p);
+        const auto& nlist = clause_tracker.get_clauses_with_literal(n);
         const auto& clauses = simplify_ds->clauses();
         for (CRef c1 : plist) {
             for (CRef c2 : nlist) {
-                actual_score +=
-                    (p_resolvent_is_tautology(clauses[c1], clauses[c2], v) ? 0
-                                                                           : 1);
+                if(!p_resolvent_is_tautology(clauses[c1], clauses[c2], v)) {
+                    actual_score += 1;
+                }
             }
         }
-        return {actual_score, plist.size() + nlist.size()};
+        return actual_score - (plist.size() + nlist.size());
     }
 
+    // A quick check to see if the resolvent will be a tautology
     bool p_resolvent_is_tautology(const SCVec& cpos, const SCVec& cneg,
                                   Var v) const {
         Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
@@ -217,36 +302,6 @@ class BoundedVariableEliminator {
         return false;
     }
 
-    void p_compress_scored(std::vector<std::pair<Var, std::size_t>>& scores) {
-        for (auto& e : scores) {
-            e.second = p_compress_lists(e.first);
-        }
-        auto compare = [](const std::pair<Var, std::size_t>& v1,
-                          const std::pair<Var, std::size_t>& v2) {
-            return v1.second < v2.second;
-        };
-        std::sort(scores.begin(), scores.end(), compare);
-    }
-
-    void p_add_score(std::vector<std::pair<Var, std::size_t>>& scores, Var v,
-                     std::size_t score, std::size_t size_cap) {
-        if (scores.size() < size_cap) {
-            scores.emplace_back(v, score);
-            return;
-        }
-        if (scores.back().second <= score)
-            return;
-        std::pair<Var, std::size_t> val{v, score};
-        auto compare = [](const std::pair<Var, std::size_t>& v1,
-                          const std::pair<Var, std::size_t>& v2) {
-            return v1.second < v2.second;
-        };
-        auto insert_pos =
-            std::lower_bound(scores.begin(), scores.end(), val, compare);
-        std::move_backward(insert_pos, scores.end() - 1, scores.end());
-        *insert_pos = std::pair<Var, std::size_t>{v, score};
-    }
-
     void p_push_reconstruct(const SCVec& clause, Lit nelit) {
         SCVec buffer(clause);
         std::swap(*std::find(buffer.begin(), buffer.end(), nelit),
@@ -256,45 +311,18 @@ class BoundedVariableEliminator {
 
     void p_eliminate_pure(Var v) {
         Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
-        const auto& plist = clauses_with_literal[p];
-        const auto& nlist = clauses_with_literal[n];
+        const auto& plist = clause_tracker.get_clauses_with_literal(p);
+        const auto& nlist = clause_tracker.get_clauses_with_literal(n);
         const auto& nelist = (plist.empty() ? nlist : plist);
         Lit nelit = (plist.empty() ? n : p);
         simplify_ds->push_reconstruction_clause(SCVec(1, nelit));
         simplify_ds->mark_eliminated(v);
         stats->pure_literals_eliminated += 1;
-        clause_tracker.mark_eliminated(nelist);
-    }
-
-    void p_init_cl_with_lit() {
-        const auto& clauses = simplify_ds->clauses();
-        for (CRef ci = 0, cn = clauses.size(); ci < cn; ++ci) {
-            const auto& clause = clauses[ci];
-            for (Lit l : clause) {
-                clauses_with_literal[l].push_back(ci);
-            }
-        }
-    }
-
-    std::size_t p_compress_lists(Var v) {
-        Lit p = lit::positive_lit(v);
-        Lit n = lit::negative_lit(v);
-        p_compress_list(p);
-        p_compress_list(n);
-        return clauses_with_literal[p].size() * clauses_with_literal[n].size();
-    }
-
-    void p_compress_list(Lit l) {
-        // Will remove eliminated clauses from the clause list for literal l.
-        auto is_eliminated = [&](CRef c) { return clause_tracker.is_eliminated(c); };
-        auto& list = clauses_with_literal[l];
-        list.erase(std::remove_if(list.begin(), list.end(), is_eliminated),
-                   list.end());
+        clause_tracker.mark_eliminated_in_batch(nelist);
     }
 
     SimplifyDatastructure* simplify_ds;
     EliminatedClausesTracker clause_tracker;
-    std::vector<std::vector<CRef>> clauses_with_literal;
     SimplificationStats stats_buffer;
     SimplificationStats* stats;
 };

@@ -19,6 +19,8 @@ template <typename ClauseType> class SubsumptionChecker {
     void set_stats(SimplificationStats* stats) noexcept { this->stats = stats; }
 
     void remove_subsumed() {
+        // Will empty subsumed clauses and in a second step remove
+        // all empty clauses.
         for (CRef c = 0, n = m_clauses.size(); c < n; ++c) {
             p_empty_if_subsumed(c);
         }
@@ -30,50 +32,72 @@ template <typename ClauseType> class SubsumptionChecker {
     }
 
   private:
+    /**
+     *  Walk the watch-list for literal `l` and:
+     *    * detect if any watched clause D subsumes the current clause C,
+     *      in which case we stop and return true;
+     *    * otherwise, shift each watched clause D to a new watch literal
+     *      (one not in C) or drop it if D is already empty.
+     *
+     *  This keeps each D/l pair visited exactly once across the entire
+     *  elimination pass, giving near-linear overall behavior.
+     */
     bool p_walk_watch_list(CRef index, Lit l) {
-        auto& watch_list = m_watching_clauses[l];
-        auto end = watch_list.end();
-        auto out = watch_list.begin();
-        bool subsumed = false;
-        for (auto in = watch_list.begin(); in != end; ++in) {
-            CRef cother = *in;
-            // we cannot subsume ourself. stay in the watch list.
-            if (cother == index) {
-                *out++ = cother;
+        auto& watch_list    = m_watching_clauses[l];
+        auto  write_it      = watch_list.begin();
+        const auto read_end = watch_list.end();
+        bool  subsumed      = false;
+
+        // 1) Scan every watcher D of literal l
+        for (auto read_it = watch_list.begin(); read_it != read_end; ++read_it) {
+            CRef watcher = *read_it;
+
+            // 1a) never drop our own watch
+            if (watcher == index) {
+                *write_it++ = watcher;
                 continue;
             }
-            const ClauseType& other_lits = m_clauses[cother];
-            // subsumed clauses do not participate in subsumption anymore;
-            // they are dropped from watch lists without replacement when we
-            // encounter them here.
-            if (other_lits.empty()) {
+
+            const auto& clauseD = m_clauses[watcher];
+            // 1b) already-eliminated clauses vanish
+            if (clauseD.empty())
                 continue;
-            }
-            // find replacement watch (must not be in the current clause).
-            auto replacement =
-                std::find_if(other_lits.begin(), other_lits.end(),
-                             [&](Lit l) { return !m_in_clause.count(l); });
-            if (replacement == other_lits.end()) {
-                // cother subsumes us.
+
+            // 1c) find a new literal in D that's not in the current clause
+            auto replacement_it = std::find_if(
+                clauseD.begin(), clauseD.end(),
+                [&](Lit lit) { return !m_in_clause.count(lit); }
+            );
+
+            if (replacement_it == clauseD.end()) {
+                // 1d) no replacement => D subset-of C => D subsumes C
                 subsumed = true;
-                // copy remaining watching clauses.
-                out = std::copy(in, end, out);
+                // copy remaining watchers to the write position
+                // this will overwrite all shifted or eliminated clauses
+                // and leave the rest unchanged
+                write_it = std::copy(read_it, read_end, write_it);
                 break;
             } else {
-                // cother does not subsume us.
-                m_watching_clauses[*replacement].push_back(cother);
+                // 1e) shift D to watch the new literal
+                m_watching_clauses[*replacement_it].push_back(watcher);
             }
         }
-        // trim watch list
-        watch_list.erase(out, end);
+
+        // 2) erase everything we didn't rewrite
+        watch_list.erase(write_it, read_end);
         return subsumed;
     }
 
     void p_empty_if_subsumed(CRef index) {
         ClauseType& clause = m_clauses[index];
+        // this is super fast thanks to the stamp set.
         m_in_clause.assign(clause.begin(), clause.end());
         for (Lit l : clause) {
-            if (p_walk_watch_list(index, l)) {
+            const auto is_subsumed = p_walk_watch_list(index, l);
+            if (is_subsumed) {
+                // Normally, an empty clause indicates infeasibility, but here
+                // we just use it to indicate that the clause has been subsumed
+                // and will delete it later.
                 clause.clear();
                 return;
             }
@@ -83,6 +107,12 @@ template <typename ClauseType> class SubsumptionChecker {
     void p_init_watches() {
         for (std::size_t ci = 0, cn = m_clauses.size(); ci < cn; ++ci) {
             const auto& cl = m_clauses[ci];
+            if (cl.empty()) {
+                // An empty clause indicates a bad formula. We would not want to
+                // continue, though it is likely that this would have already been
+                // detected previously.
+                throw std::logic_error("Empty clause in formula for subsumption.");
+            }
             m_watching_clauses[cl[0]].push_back(CRef(ci));
         }
     }

@@ -4,6 +4,24 @@
 
 using namespace sammy;
 
+int v(int i) { return i-1; // vars are 0 indexed, while the literals are 1 indexed
+}
+
+
+TEST_CASE("[bounded_variable_elimination] EliminatedClausesTracker") {
+    ClauseDB formula{4, std::vector<ExternalClause>{{1, 2, 3},
+                                                    {1, -2, -3},
+                                                    {-1, 2, -3},
+                                                    {-1, -2, -3}}};
+    SimplifyDatastructure simplifier{formula, 1};
+    EliminatedClausesTracker tracker{&simplifier};
+    tracker.mark_eliminated(0);
+    CHECK(tracker.is_eliminated(0));
+    CHECK(!tracker.is_eliminated(1));
+    CHECK(!tracker.is_eliminated(2));
+    CHECK(!tracker.is_eliminated(3));
+}
+
 TEST_CASE("[bounded_variable_elimination] Pure variable elimination case 1") {
     ClauseDB formula{9, std::vector<ExternalClause>{{1, 2, 3},
                                                     {-1, 2, 3},
@@ -85,4 +103,68 @@ TEST_CASE(
     SimplifiedInstance simp2 = simplifier.compress();
     reconstructed = simplifier.reconstruct_solution(simp2, std::vector<bool>{});
     CHECK(verify_solution(formula, reconstructed));
+}
+
+TEST_CASE("[bounded_variable_elimination] Pure-variable chain elimination") {
+    // 1,2,3 all pure in turn:
+    //   (1 v 2), (2 v 3), (3)
+    ClauseDB formula{3, std::vector<ExternalClause>{
+        {1, 2}, {2, 3}, {3}
+    }};
+    // Prohibit no variables => all can be eliminated except of 1
+    // (1 is concrete)
+    SimplifyDatastructure s{formula, /*num_concrete=*/1};
+    CHECK(bounded_variable_elimination(s, /*max_gap=*/0));
+    // all should be marked eliminated
+    CHECK(!s.is_eliminated(v(1)));  // concrete
+    CHECK(s.is_eliminated(v(2)));
+    CHECK(s.is_eliminated(v(3)));
+}
+
+TEST_CASE("[bounded_variable_elimination] Pure-variable chain elimination 2") {
+    // 1,2,3 all pure in turn:
+    //   (1 v 2), (2 v 3), (3)
+    ClauseDB formula{3, std::vector<ExternalClause>{
+        {1, 2}, {2, 3}, {3}
+    }};
+    // Prohibit no variables => all can be eliminated
+    SimplifyDatastructure s{formula, /*num_concrete=*/0};
+    CHECK(bounded_variable_elimination(s, /*max_gap=*/0));
+    // all should be marked eliminated
+    CHECK(s.is_eliminated(v(1)));
+    CHECK(s.is_eliminated(v(2)));
+    CHECK(s.is_eliminated(v(3)));
+}
+
+
+TEST_CASE("[bounded_variable_elimination] Too expensive") {
+    // We will have only one non-concrete variable which could
+    // be eliminated but we will have it in many clauses such
+    // that it would be too expensive to eliminate it.
+    ClauseDB formula{7, std::vector<ExternalClause>{
+        {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}, {6, 7},
+        {-1, -2, -7}, {-1, -3, -7}, {-1, -4, -7}, {-1, -5, -7},
+        {-1, -6, -7}, {-2, -3, -7}, {-2, -4, -7}, {-2, -5, -7},
+        {-2, -6, -7}, {-3, -4, -7}, {-3, -5, -7}, {-3, -6, -7},
+        {-4, -5, -7}, {-4, -6, -7}, {-5, -6, -7}
+    }};
+    // Prohibit no variables => all can be eliminated
+    SimplifyDatastructure s{formula, /*num_concrete=*/6};
+    CHECK(!bounded_variable_elimination(s, /*max_gap=*/10));
+}
+
+TEST_CASE("[bounded_variable_elimination] Expensive but large budget") {
+    // We will have only one non-concrete variable which could
+    // be eliminated. This time, we increase the budget to allow
+    // for the elimination.
+    ClauseDB formula{7, std::vector<ExternalClause>{
+        {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}, {6, 7},
+        {-1, -2, -7}, {-1, -3, -7}, {-1, -4, -7}, {-1, -5, -7},
+        {-1, -6, -7}, {-2, -3, -7}, {-2, -4, -7}, {-2, -5, -7},
+        {-2, -6, -7}, {-3, -4, -7}, {-3, -5, -7}, {-3, -6, -7},
+        {-4, -5, -7}, {-4, -6, -7}, {-5, -6, -7}
+    }};
+    // Prohibit no variables => all can be eliminated
+    SimplifyDatastructure s{formula, /*num_concrete=*/6};
+    CHECK(bounded_variable_elimination(s, /*max_gap=*/100));
 }

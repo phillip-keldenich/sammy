@@ -222,15 +222,19 @@ class ImplicationGraphBuilder {
 
     bool p_push_var(Var v) {
         Lit p = lit::positive_lit(v), n = lit::negative_lit(v);
-        if (!p_push_lit(p))
+        // check what happens if we push p
+        if (!p_push_lit(p)) // if it fails, v is automatically fixed to false
             return true;
         p_implications_to_reachable();
         p_analyze_trail(p);
+        // undo the push
         propagator.pop_level();
-        if (!p_push_lit(n))
+        // check what happens if we push n
+        if (!p_push_lit(n)) // if it fails, v is automatically fixed to true
             return true;
         p_analyze_trail(n);
         bool result = p_infer_fixed_from_doubly_implied();
+        // undo the push
         propagator.pop_level();
         if (result)
             propagator.incorporate_or_throw();

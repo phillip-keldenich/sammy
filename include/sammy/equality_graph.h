@@ -77,6 +77,24 @@ class EqualityGraph {
 
     bool make_false(Lit l) { return make_equal(l, lit::negative_lit(dummy())); }
 
+    /**
+     * @brief Computes a mapping from old literals to new literals based on equivalence classes.
+     * 
+     * This function generates a mapping (`old_to_new`) that translates each literal in the current
+     * context to its corresponding representative literal or a fixed literal, depending on the 
+     * equivalence class it belongs to. The mapping is represented as a vector where:
+     * - `old_to_new[p]` gives the new literal corresponding to the positive literal `p`.
+     * - `old_to_new[~p]` gives the new literal corresponding to the negated literal `~p`.
+     * 
+     * The interpretation of the map is as follows:
+     * - If a literal maps to `simplify::fixed_positive()` or `simplify::fixed_negative()`, it means
+     *   the literal is fixed to a specific truth value.
+     * - Otherwise, the literal maps to its representative in the equivalence class, as determined
+     *   by the `find()` function.
+     * 
+     * @return A vector of literals (`old_to_new`) where each literal is mapped to its new value
+     *         based on the equivalence relations or fixed assignments.
+     */
     std::vector<Lit> compute_old_to_new_map() {
         Var nv = m_component_root.size() - 1;
         std::vector<Lit> old_to_new(2 * nv, NIL);

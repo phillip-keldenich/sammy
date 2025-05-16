@@ -43,6 +43,10 @@ if(NOT SAMMY_SKIP_TESTS)
     endif()
 
     target_link_libraries(sammy_test PRIVATE sammy doctest::doctest sammy_test_instances)
+    target_compile_options(sammy_test PRIVATE
+        $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall -Wsign-compare>
+        $<$<CXX_COMPILER_ID:MSVC>:/W4>
+    )
 
     if(LTO_SUPPORTED)
         set_property(TARGET sammy_test PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)

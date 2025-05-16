@@ -10,9 +10,9 @@
 namespace sammy {
 
 struct SimplifiedInstance {
-    std::vector<Var> new_to_old;
-    ClauseDB formula;
-    Var num_concrete;
+    std::vector<Var> new_to_old; // used for mapping new variables to old ones
+    ClauseDB formula; // simplified formula
+    Var num_concrete; // number of concrete variables in the simplified formula
 };
 
 class SimplifyDatastructure {
@@ -21,6 +21,7 @@ class SimplifyDatastructure {
         : m_variable_eliminated(formula.num_vars(), false),
           m_variable_concrete(formula.num_vars(), false),
           m_var_presence(formula.num_vars()) {
+        // mark the first num_concrete variables as concrete
         std::fill_n(m_variable_concrete.begin(), num_concrete, true);
         for (Lit u : formula.unary_literals()) {
             m_clauses.emplace_back(1, u);
@@ -122,18 +123,27 @@ class SimplifyDatastructure {
     }
 
     bool apply_fixes_and_equalities(const std::vector<Lit>& old_to_new) {
+        // old_to_new should not be interpreted as a list, but as a map
+        // from old to new literals. old_to_new[lit] -> new literal.
+        // If a literal is fixed, there will be a special value (of type Lit)
+        // in the map.
         bool result = false;
         for (Var v = 0, nv = old_to_new.size() / 2; v < nv; ++v) {
             if (m_variable_eliminated[v])
+                // already eliminated
                 continue;
             Lit p = lit::positive_lit(v);
             Lit m = old_to_new[p];
             if (m == simplify::fixed_positive() ||
                 m == simplify::fixed_negative())
             {
+                // m is a special value that indicates that the variable
+                // should be fixed.
                 p_apply_fix(v, m);
                 result = true;
             } else if (m != p) {
+                // m is a common literal, but different from p, i.e.,
+                // we are to remap p to m.
                 p_apply_remap(v, m);
                 result = true;
             }
@@ -222,6 +232,21 @@ class SimplifyDatastructure {
                                   new_num_concrete};
     }
 
+    /**
+     * @brief Reconstructs the assignment to the original instance from a assignment
+     * to the simplified instance.
+     * 
+     * Also check `reconstruct_sample` for reconstructing a full sample, which is the
+     * actual solution for our use case.
+     * 
+     * @param simp The simplified instance, used to map variables back to the
+     * original instance.
+     * @param simp_sol An assignment to the simplified instance, represented as a
+     * vector of booleans indicating the truth values of the variables.
+     * @return std::vector<bool> An assignment to the original instance, represented
+     * as a vector of booleans with truth values for all variables in the original
+     * instance.
+     */
     std::vector<bool>
     reconstruct_solution(const SimplifiedInstance& simp,
                          const std::vector<bool>& simp_sol) const {
@@ -276,6 +301,17 @@ class SimplifyDatastructure {
         return result;
     }
 
+    /**
+     * @brief Will convert an assignment for the full instance to an assignment
+     * for the simplified instance.
+     * 
+     * @param simp The simplified instance for which the assignment should be.
+     * @param full_sol An assignment to the full instance, represented as a vector of
+     * booleans indicating the truth values of the variables.
+     * @return std::vector<bool> An assignment to the simplified instance,
+     * represented as a vector of booleans with truth values for all variables in the
+     * simplified instance.
+     */
     std::vector<bool> reduce_solution(const SimplifiedInstance& simp,
                                       const std::vector<bool>& full_sol) const {
         Var nnew = simp.formula.num_vars();
@@ -384,8 +420,8 @@ class SimplifyDatastructure {
 
     std::vector<SCVec> m_clauses;
     std::vector<SCVec> m_reconstruction_stack;
-    std::vector<bool> m_variable_eliminated;
-    std::vector<bool> m_variable_concrete;
+    std::vector<bool> m_variable_eliminated;  // m_variable_eliminated[v]==true <=> v is eliminated
+    std::vector<bool> m_variable_concrete;  //  m_variable_eliminated[v]==true <=> v is concrete variable
     StampSet<Var, std::uint16_t> m_var_presence;
 };
 
