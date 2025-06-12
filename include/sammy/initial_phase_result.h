@@ -23,6 +23,17 @@ struct InitialPhaseResult {
     std::vector<Vertex> coloring_order;
     std::size_t universe_size;
 
+    std::size_t get_memory_size() const noexcept {
+        std::size_t result = inf_map.get_memory_size();
+        result += depth1_memory_estimate(best_solution);
+        result += shallow_memory_estimate(best_spawners);
+        result += shallow_memory_estimate(best_mutually_exclusive);
+        result += shallow_memory_estimate(all_spawners);
+        result += shallow_memory_estimate(coloring_order);
+        result += sizeof(InitialPhaseResult);
+        return result;
+    }
+
     static InitialPhaseResult import_from_output(const OutputObject& obj) {
         auto internalize = [](const auto& obj, const char* key) {
             return lit::internalize(

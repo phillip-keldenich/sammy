@@ -70,11 +70,6 @@ InitialPhaseResult run_initial_phase(EventRecorder& rec,
     std::size_t universe_size = initial.infeasibility_map().count_vertices();
     std::vector<Vertex> coloring_order =
         initial.primal_solver().extract_coloring_order();
-    rec.store_event("INITIAL_PHASE_DONE",
-                    {{"ub", initial.get_solution().size()},
-                     {"lb", initial.get_bound().size()},
-                     {"num_interactions", universe_size}},
-                    "lb", "ub", "num_interactions");
     InitialPhaseResult result{std::move(initial.infeasibility_map()),
                               initial.get_solution(),
                               initial.get_best_spawners(),
@@ -82,6 +77,12 @@ InitialPhaseResult run_initial_phase(EventRecorder& rec,
                               initial.get_all_spawners(),
                               std::move(coloring_order),
                               universe_size};
+    rec.store_event("INITIAL_PHASE_DONE",
+                    {{"ub", initial.get_solution().size()},
+                     {"lb", initial.get_bound().size()},
+                     {"num_interactions", universe_size},
+                     {"initial_result_bytes", result.get_memory_size()}},
+                    "lb", "ub", "num_interactions", "initial_result_bytes");
     return result;
 }
 

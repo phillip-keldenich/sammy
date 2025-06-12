@@ -8,6 +8,7 @@
 #include "rng.h"
 #include "shared_db_propagator.h"
 #include "thread_group.h"
+#include "shallow_mem_estimate.h"
 
 #include <algorithm>
 #include <cassert>
@@ -107,6 +108,20 @@ class PairInfeasibilityMap {
     }
 
   public:
+    std::size_t get_memory_size() const noexcept {
+        std::size_t result = sizeof(PairInfeasibilityMap) +
+            shallow_memory_estimate(m_matrix) +
+            shallow_memory_estimate(m_def_feasible) +
+            shallow_memory_estimate(m_incorporate_buffer);
+        if(!m_matrix.empty()) {
+            result += m_matrix.size() * shallow_memory_estimate(m_matrix[0]);
+        }
+        if(!m_def_feasible.empty()) {
+            result += m_def_feasible.size() * shallow_memory_estimate(m_def_feasible[0]);
+        }
+        return result;
+    }
+
     std::size_t get_n_concrete() const noexcept { return num_vars; }
 
     explicit PairInfeasibilityMap(std::size_t n_concrete)
