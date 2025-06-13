@@ -84,8 +84,10 @@ InitialPhaseResult run_initial_phase(EventRecorder& rec,
                     {{"ub", initial.get_solution().size()},
                      {"lb", initial.get_bound().size()},
                      {"num_interactions", universe_size},
-                     {"initial_result_bytes", result.get_memory_size()}},
-                    "lb", "ub", "num_interactions", "initial_result_bytes");
+                     {"initial_result_bytes", result.get_memory_size()},
+                     {"initial_formula_bytes", formula.total_memory_usage()}},
+                    "lb", "ub", "num_interactions", "initial_result_bytes",
+                    "initial_formula_bytes");
     return result;
 }
 
