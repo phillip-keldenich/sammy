@@ -5,7 +5,21 @@
 #include <cstdint>
 #include <cstdlib>
 
+#if defined(__has_include) && defined(__linux__) && defined(__GNUC__)
+#if __has_include(<malloc.h>)
+#include <malloc.h>
+#endif
+#endif
+
 namespace sammy {
+
+inline void return_memory_to_os() {
+#if defined(__has_include) && defined(__linux__) && defined(__GNUC__)
+#if __has_include(<malloc.h>)
+    ::malloc_trim(0);
+#endif
+#endif
+}
 
 /**
  * @brief Get the current peak resident set size (RSS) in bytes,

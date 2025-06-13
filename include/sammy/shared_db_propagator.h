@@ -5,6 +5,7 @@
 #include "error.h"
 #include "literals.h"
 #include <boost/circular_buffer.hpp>
+#include <boost/container/small_vector.hpp>
 #include <cassert>
 #include <exception>
 #include <iostream>
@@ -147,6 +148,8 @@ class LevelInfo {
 class SharedDBPropagator {
     friend class ClauseDBView;
 
+    using WatcherList = boost::container::small_vector<Watcher, 1>;
+
     // View that manages the part of the clauses
     // in the database that we have already 'seen'.
     // A clause that we have seen is incorporated
@@ -169,7 +172,7 @@ class SharedDBPropagator {
     // The state of our variables.
     std::vector<VariableState> variables;
     // For each literal, a list of watchers.
-    std::vector<std::vector<Watcher>> watchers;
+    std::vector<WatcherList> watchers;
     // For each pair of watchers, we have a watch_info
     // structure with the watched literals, since we
     // cannot do the typical MiniSat trick and reorder clauses.
@@ -389,7 +392,7 @@ class SharedDBPropagator {
     bool p_propagate_through_longer(Lit ltrue) {
         Lit lfalse = lit::negate(ltrue);
         auto level = std::int32_t(levels.size() - 1);
-        std::vector<Watcher>& ws = watchers[lfalse];
+        WatcherList& ws = watchers[lfalse];
         auto watcher_in = ws.begin(), watcher_out = ws.begin(),
              watcher_end = ws.end();
         while (watcher_in != watcher_end) {

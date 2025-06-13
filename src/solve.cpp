@@ -1,3 +1,4 @@
+#include <boost/config.hpp>
 #include <sammy/barrage.h>
 #include <sammy/barrage_worker_cnp.h>
 #include <sammy/barrage_worker_exact.h>
@@ -21,6 +22,7 @@
 using namespace sammy;
 namespace po = boost::program_options;
 
+BOOST_NOINLINE
 void run_simplification(EventRecorder& rec, const InputData& original,
                         std::optional<SimplifyDatastructure>& simplifier,
                         std::optional<SimplifiedInstance>& simplified) {
@@ -35,6 +37,7 @@ void run_simplification(EventRecorder& rec, const InputData& original,
     rec.store_event("DONE_SIMPLIFICATION", simp_data);
 }
 
+BOOST_NOINLINE
 InitialPhaseResult run_initial_phase(EventRecorder& rec,
                                      const RunInitialConfig& config,
                                      ClauseDB& formula, Var num_concrete) {
@@ -294,6 +297,7 @@ class Main {
         std::exit(0);
     }
 
+    BOOST_NOINLINE
     bool initial_phase() {
         try {
             RunInitialConfig initial_config{
@@ -302,6 +306,7 @@ class Main {
             initial_result =
                 run_initial_phase(recorder, initial_config, *actual_clause_db,
                                   actual_num_concrete);
+            return_memory_to_os();
             if (!config.dump_initial_phase_file.empty()) {
                 dump_initial_phase_result();
             }
