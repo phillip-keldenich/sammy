@@ -29,6 +29,7 @@ if __name__ == "__main__":
     output_dir = "02_output"
     command_path = "../../build/Release/src/sammy_solve"
     os.makedirs(output_dir, exist_ok=True)
+    commands = []
 
     if sys.argv[1] == 'small_instances':
         # small instances that can be run regularly via slurm and don't risk OOM killing
@@ -62,7 +63,7 @@ if __name__ == "__main__":
             output_file = os.path.join(output_dir, f"{instance_name}.out.json")
             if os.path.exists(output_file):
                 continue
-            commands.append([command_path, instance_path, "-o", output_file, '--max-lns-workers', 1])
+            commands.append([command_path, instance_path, "-o", output_file, '--max-lns-workers', "1", "--print-events"])
             for command in commands:
                 run_command(command)
     else:
