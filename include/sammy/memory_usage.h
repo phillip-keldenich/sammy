@@ -13,10 +13,21 @@
 
 namespace sammy {
 
+/**
+ * @brief Attempt to return memory allocated and freed by the process
+ *        to the operating system.
+ *
+ * Currently, this function only does something on Linux with
+ * `malloc_trim(0)` available, which can help reduce out-of-memory (OOM)
+ * errors because malloc seems to very eagerly hold on to memory for
+ * small allocations (which mostly occur during the initial phase),
+ * resulting in huge amounts of memory being allocated uselessly,
+ * triggering OOM kills after the initial phase.
+ */
 inline void return_memory_to_os() {
 #if defined(__has_include) && defined(__linux__) && defined(__GNUC__)
 #if __has_include(<malloc.h>)
-    ::malloc_trim(0);
+    ::malloc_trim(0); // really helps with OOM errors on Linux
 #endif
 #endif
 }

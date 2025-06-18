@@ -18,6 +18,7 @@
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
 #include <sammy/variant_subproblem_solver.h>
+#include <sammy/io.h>
 
 using namespace sammy;
 namespace po = boost::program_options;
@@ -290,12 +291,14 @@ class Main {
         }
     }
 
+    BOOST_NORETURN
     void dump_initial_phase_result() {
         OutputObject data_dump =
             export_initial_phase_result(*actual_clause_db, *initial_result);
+        data_dump["events"] = OutputObject{};
+        export_events(data_dump, recorder);
         std::filesystem::path dump_path(config.dump_initial_phase_file);
-        std::ofstream dump_file(dump_path, std::ios::out | std::ios::trunc);
-        dump_file << data_dump;
+        write_json_path(dump_path, data_dump);
         std::exit(0);
     }
 
