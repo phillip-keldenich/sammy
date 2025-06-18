@@ -32,7 +32,8 @@ if __name__ == "__main__":
     commands = []
 
     if sys.argv[1] == 'small_instances':
-        # small instances that can be run regularly via slurm and don't risk OOM killing
+        # small instances that can be run regularly via slurm 
+        # and don't risk OOM killing
         for f in os.listdir(instances_dir):
             if not f.endswith(".scm.json"):
                 continue
