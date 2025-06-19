@@ -4,6 +4,3 @@
 [submodule "external/kissat/kissat"]
 	path = external/kissat/kissat
 	url = https://github.com/arminbiere/kissat
-[submodule "external/samplns"]
-	path = external/samplns
-	url = git@github.com:tubs-alg/SampLNS.git

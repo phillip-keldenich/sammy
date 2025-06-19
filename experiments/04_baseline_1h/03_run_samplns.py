@@ -1,3 +1,5 @@
+import itertools
+import json
 import logging
 from pathlib import Path
 
@@ -9,6 +11,7 @@ from samplns.lns.lns import LnsObserver
 from samplns.lns.neighborhood import Neighborhood, RandomNeighborhood
 from samplns.simple import SampLns
 from samplns.utils import Timer
+
 from solver.instance import get_instance_from_path
 import tempfile
 
@@ -19,10 +22,10 @@ instances = [
     # "DMIE",
     # "E-Shop",
     "Automotive01",
-    "Automotive02_V1",
-    "Automotive02_V2",
-    "Automotive02_V3",
-    "Automotive02_V4",
+    # "Automotive02_V1",
+    # "Automotive02_V2",
+    # "Automotive02_V3",
+    # "Automotive02_V4",
     "financial-services-2018-04-23",
     "linux_2_6_28_6",
     "linux_2_6_33_3"
@@ -126,6 +129,8 @@ def run_samplns(
         _yasa_time_used = timer.time()
         assert sample
 
+        print(f"Sample size from YASA: {len(sample)}")
+
         remaining_time = time_limit - _yasa_time_used
         solver = None
         logger = MyLnsLogger()
@@ -137,6 +142,8 @@ def run_samplns(
                 neighborhood_selector=RandomNeighborhood(),
                 observer=logger,
             )
+
+            print(solver)
 
             solver.optimize(
                 iterations=iterations,
