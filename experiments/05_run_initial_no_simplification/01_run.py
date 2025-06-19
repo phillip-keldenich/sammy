@@ -83,6 +83,6 @@ if __name__ == "__main__":
             commands.append([command_path, instance_path, 
                              "--dump-initial-phase", output_file,
                              "--dont-simplify", "--print-events"])
-            for command in commands:
-                run_command(command)
+        for command in commands:
+            run_command(command)
  
