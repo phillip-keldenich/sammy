@@ -251,12 +251,21 @@ class GenericJSONInstance:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Expecting two parameters: [input file] [output file]")
+    if len(sys.argv) == 2:
+        input_file = sys.argv[1]
+        if input_file.endswith(".xml"):
+            output_file = input_file[:-4] + ".scm.json"
+        elif input_file.endswith(".dimacs"):
+            output_file = input_file[:-7] + ".scm.json"
+        else:
+            print("Expected either XML or DIMACS file!")
+            exit(1)
+    elif len(sys.argv) != 3:
+        print("Expecting at least one and at most two parameters: <input file> [output file]")
         exit(1)
-
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    else:
+        input_file = sys.argv[1]
+        output_file = sys.argv[2]
     if input_file.endswith("xml"):
         instance = GenericJSONInstance(input_file)
         instance.from_xml_model(input_file)
