@@ -7,6 +7,7 @@
 #include <sammy/experiment_flags.h>
 #include <sammy/external_sat_solver.h>
 #include <sammy/incremental_sat_lns.h>
+#include <sammy/io.h>
 #include <sammy/kissat_solver.h>
 #include <sammy/lingeling_solver.h>
 #include <sammy/memory_usage.h>
@@ -18,7 +19,6 @@
 #include <sammy/subproblem_solver_with_mes.h>
 #include <sammy/thread_clauses.h>
 #include <sammy/variant_subproblem_solver.h>
-#include <sammy/io.h>
 
 using namespace sammy;
 namespace po = boost::program_options;
