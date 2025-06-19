@@ -277,10 +277,11 @@ class PairInfeasibilityMap {
     }
 
     std::size_t count_vertices() const noexcept {
-        auto res = std::transform_reduce(
-            m_def_feasible.begin(), m_def_feasible.end(), std::size_t(0),
-            std::plus<>{}, [](const Row& r) { return r.count(); });
-        res /= 2;
+        std::size_t res = 0;
+        for (std::size_t i = 0, nclit = m_def_feasible.size(); i < nclit; ++i) {
+            const Row& r = m_def_feasible[i];
+            res += r.count_from(i + 1);
+        }
         return res;
     }
 

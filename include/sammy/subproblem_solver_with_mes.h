@@ -214,9 +214,10 @@ class SubproblemMESSolver {
             return p_price_all();
         }
         std::size_t sample_goal_size = 1000;
-        sample_goal_size = (std::max)(
-            sample_goal_size,
-            std::size_t(0.1 * m_subproblem.uncovered_universe.size()));
+        sample_goal_size =
+            (std::max)(sample_goal_size,
+                       std::size_t(0.1 *
+                                   m_subproblem.uncovered_universe.size()));
         if (sample_goal_size >= m_subproblem.uncovered_universe.size()) {
             return p_price_all();
         }

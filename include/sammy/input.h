@@ -2,6 +2,7 @@
 #define SAMMY_INPUT_H_INCLUDED_
 
 #include "clause_db.h"
+#include "io.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -17,11 +18,7 @@ struct InputData {
 };
 
 inline InputData read_input(const std::filesystem::path& path) {
-    std::ifstream input;
-    input.exceptions(std::ios::badbit | std::ios::failbit);
-    input.open(path, std::ios::in);
-    nlohmann::json json_data;
-    input >> json_data;
+    nlohmann::json json_data = read_json_path(path);
     if (json_data.at("type") != "software configuration model") {
         throw std::runtime_error(
             "JSON data missing the 'software configuration model' type flag!");
