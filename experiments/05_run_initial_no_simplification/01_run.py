@@ -50,11 +50,11 @@ if __name__ == "__main__":
         # small instances that can be run regularly via slurm 
         # and don't risk OOM killing
         for f in os.listdir(instances_dir):
-            if not f.endswith(".scm.json"):
+            if not f.endswith(".scm.json.xz"):
                 continue
             if "Automotive02" in f:
                 continue
-            instance_name = f[:-9]
+            instance_name = f[:-12]
             instance_path = os.path.join(instances_dir, f)
             output_file = os.path.join(output_dir, f"{instance_name}-initial-nosimp.out.json")
             if os.path.exists(output_file):
@@ -71,11 +71,11 @@ if __name__ == "__main__":
             print("Run 'huge_instances' directly on an algra after reserving it with sleep")
             sys.exit(1)
         for f in os.listdir(instances_dir):
-            if not f.endswith(".scm.json"):
+            if not f.endswith(".scm.json.xz"):
                 continue
             if "Automotive02" not in f:
                 continue
-            instance_name = f[:-9]
+            instance_name = f[:-12]
             instance_path = os.path.join(instances_dir, f)
             output_file = os.path.join(output_dir, f"{instance_name}-initial-nosimp.out.json")
             if os.path.exists(output_file):
