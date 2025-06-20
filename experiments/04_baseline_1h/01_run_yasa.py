@@ -121,12 +121,12 @@ if __name__ == "__main__":
             msg
         )
 
-    with slurminade.JobBundling(max_size=5):  # automatically bundles up to 2 tasks
+    for i in range(5):
         for instance in instances:
             solve_yasa.distribute(instance_name=instance, alg_params={
                 "algorithm": "yasa",
                 "time_limit": time_limit,
-                "seed": 42  # Fixed seed for reproducibility
+                "seed": i
             })
 
     slurminade.join()
