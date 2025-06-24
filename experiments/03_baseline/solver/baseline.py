@@ -58,6 +58,8 @@ class BaselineAlgorithm:
             self._configuration["algorithm"] = "YA5"
         elif algorithm == "YASA10":
             self._configuration["algorithm"] = "YA10"
+        elif algorithm in ["IC", "CH", "IL", "IPOG_FT", "IPOG_CSP", "IPOF_FT", "IPOF_CSP"]:
+            self._configuration["algorithm"] = algorithm
         else:
             msg = "Unknown algorithm"
             raise ValueError(msg)
