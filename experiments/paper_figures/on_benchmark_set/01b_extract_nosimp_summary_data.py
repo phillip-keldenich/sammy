@@ -97,5 +97,5 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     extend_list_measure(instance_data[instance], "initial_time")
     extend_list_measure(instance_data[instance], "first_sol_time")
 
-with open(summary_data_archive, "wt") as output:
+with lzma.open(summary_data_archive, "wt") as output:
     json.dump(instance_data, output, indent=2)
