@@ -123,6 +123,8 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     lb_optimalities = []
     simp_measures = {}
     instance_size_data = {}
+    lb_histories = []
+    ub_histories = []
     for file, repeat in repeats:
         with lzma.open(file, "rt") as input:
             js_data = json.load(input)
@@ -143,6 +145,8 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
         solve_times.append(js_data["events"][-1]["time"])
         optimalities.append(js_data["lb"] >= js_data["ub"])
         lb_optimalities.append(optimalities[-1] or extra_data["lb_is_optimal"])
+        lb_histories.append(extra_data["lb_history"])
+        ub_histories.append(extra_data["ub_history"])
         feature_count_reduced.append(extra_data["reduced_num_interactions"])
         if not simp_measures:
             for m_name, measure in extra_data.items():
@@ -161,6 +165,8 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     out_data["one_optimal"] = (best_lb == best_ub)
     out_data["all_optimal"] = all(optimalities)
     out_data["optimalities"] = optimalities
+    out_data["lb_histories"] = lb_histories
+    out_data["ub_histories"] = ub_histories
     store_list_measure(out_data, "ub", ubs)
     store_list_measure(out_data, "lb", lbs)
     store_list_measure(out_data, "initial_lb", initial_lbs)
