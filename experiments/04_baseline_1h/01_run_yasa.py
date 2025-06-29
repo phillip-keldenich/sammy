@@ -168,13 +168,14 @@ if __name__ == "__main__":
             msg
         )
 
-    for i in range(n_repeats):
-        for instance in instances:
-            solve_yasa.distribute(instance_name=instance, alg_params={
-                "algorithm": "yasa",
-                "time_limit": time_limit,
-                "seed": i
-            })
+    with slurminade.JobBundling(max_size=10):
+        for i in range(n_repeats):
+            for instance in instances:
+                solve_yasa.distribute(instance_name=instance, alg_params={
+                    "algorithm": "yasa",
+                    "time_limit": time_limit,
+                    "seed": i
+                })
 
     slurminade.join()
     compress.distribute()
