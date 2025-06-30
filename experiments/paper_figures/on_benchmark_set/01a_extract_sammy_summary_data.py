@@ -60,6 +60,8 @@ def scan_events(events):
                 key = "size"
             if key not in e:
                 raise RuntimeError("NO UB FOR "+str(e))
+            if 'first_sample_size' not in extra_data:
+                extra_data['first_sample_size'] = e[key]
             if source is None:
                 raise RuntimeError("NO SOURCE FOR " + str(e))
             extra_data["ub_history"].append({"time": e["time"], "ub": e[key], "source": source})
@@ -119,6 +121,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     initial_ubs = []
     initial_times = []
     first_sol_times = []
+    first_sol_sizes = []
     optimalities = []
     lb_optimalities = []
     simp_measures = {}
@@ -138,6 +141,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
                 raise RuntimeError(f"Mismatch between interaction counts: {file}")
         ubs.append(js_data["ub"])
         lbs.append(js_data["lb"])
+        first_sol_sizes.append(extra_data['first_sample_size'])
         initial_lbs.append(extra_data["initial_phase_lb"])
         initial_ubs.append(extra_data["initial_phase_ub"])
         initial_times.append(extra_data["initial_phase_time"])
@@ -174,6 +178,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     store_list_measure(out_data, "solve_time", solve_times)
     store_list_measure(out_data, "initial_time", initial_times)
     store_list_measure(out_data, "first_sol_time", first_sol_times)
+    store_list_measure(out_data, "first_sol_size", first_sol_sizes)
     out_data["interactions_nonreduced"] = feature_count_nonreduced
     store_list_measure(out_data, "interactions_reduced", feature_count_reduced)
     out_data.update(simp_measures)

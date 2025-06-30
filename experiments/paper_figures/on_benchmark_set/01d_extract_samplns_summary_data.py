@@ -59,6 +59,8 @@ for row in data.itertuples():
     entry = instance_data.setdefault(row.instance, {
         "lower_bounds": [],
         "upper_bounds": [],
+        "lb_histories": [],
+        "ub_histories": [],
         "solve_times": [],
         "runs": 0,
         "solved": 0
@@ -72,6 +74,8 @@ for row in data.itertuples():
             entry["lower_bounds"].append(0.0)
         entry["upper_bounds"].append(row.upper_bound)
         entry["solve_times"].append(row.runtime)
-    
+        entry["ub_histories"].append(row.ub_history)
+        entry["lb_histories"].append(row.lb_history)
+
 with lzma.open(summary_data_archive, "wt") as archive_out:
     json.dump(instance_data, archive_out, indent=2)
