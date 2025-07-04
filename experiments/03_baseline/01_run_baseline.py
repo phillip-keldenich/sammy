@@ -117,13 +117,11 @@ def compress():
     benchmark.compress()
 
 if __name__ == "__main__":
-
     all_alg_params = [
         {
             "algorithm": algo,
             "time_limit": time_limit,
         }
-
         for algo in algorithms
     ]
 

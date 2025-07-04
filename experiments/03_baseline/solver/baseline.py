@@ -115,42 +115,39 @@ class BaselineAlgorithm:
         )
         return samples
 
+    def optimize_with_dir(self, tdir, timelimit):
+        self._configuration["timeout"] = (
+                timelimit * 1000
+        )  # convert seconds to milliseconds
+        self._prepare(tdir)
+        runner = subprocess.run(
+            [
+                "java",
+                "-jar",
+                os.path.join(
+                    self._jars_dir,
+                    "evaluation-sampling-algorithms-0.1.0-SNAPSHOT-all.jar",
+                ),
+                "twise-sampler",
+                self._configuration_dir,
+            ],
+            cwd=tdir,
+            capture_output=True,
+            text=True,
+        )
+        self._log.info(runner.stdout)
+        self._log.error(runner.stderr)
+        self._log.info("Finished running baseline. Parsing result...")
+        samples = self._parse_result(tdir)
+        if samples:
+            self._log.info("Found a valid sample.")
+        return samples
+
     def optimize(self, timelimit):
         """
         Uses some FeatJAR baseline algorithm to solve the given instance.
         @param timelimit Time limit in seconds
         """
-        self._configuration["timeout"] = (
-                timelimit * 1000
-        )  # convert seconds to milliseconds
-
         with tempfile.TemporaryDirectory() as tmp_dir:
             self._log.info(f"Created temporary directory {tmp_dir}")
-            self._prepare(tmp_dir)
-
-            runner = subprocess.run(
-                [
-                    "java",
-                    "-jar",
-                    os.path.join(
-                        self._jars_dir,
-                        "evaluation-sampling-algorithms-0.1.0-SNAPSHOT-all.jar",
-                    ),
-                    "twise-sampler",
-                    self._configuration_dir,
-                ],
-                cwd=tmp_dir,
-                capture_output=True,
-                text=True,
-            )
-            self._log.info(runner.stdout)
-            self._log.error(runner.stderr)
-
-            self._log.info("Finished running baseline. Parsing result...")
-
-            samples = self._parse_result(tmp_dir)
-
-            if samples:
-                self._log.info("Found a valid sample.")
-
-        return samples
+            return self.optimize_with_dir(tmp_dir, timelimit)

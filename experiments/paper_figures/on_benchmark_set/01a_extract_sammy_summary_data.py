@@ -128,6 +128,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     instance_size_data = {}
     lb_histories = []
     ub_histories = []
+    best_mes_sizes = []
     for file, repeat in repeats:
         with lzma.open(file, "rt") as input:
             js_data = json.load(input)
@@ -139,6 +140,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
         else:
             if feature_count_nonreduced != extra_data["initial_num_interactions"]:
                 raise RuntimeError(f"Mismatch between interaction counts: {file}")
+        best_mes_sizes.append(len(js_data['mutually_exclusive_set']))
         ubs.append(js_data["ub"])
         lbs.append(js_data["lb"])
         first_sol_sizes.append(extra_data['first_sample_size'])
@@ -169,6 +171,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     out_data["one_optimal"] = (best_lb == best_ub)
     out_data["all_optimal"] = all(optimalities)
     out_data["optimalities"] = optimalities
+    out_data['lb_optimalities'] = lb_optimalities
     out_data["lb_histories"] = lb_histories
     out_data["ub_histories"] = ub_histories
     store_list_measure(out_data, "ub", ubs)
@@ -179,6 +182,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     store_list_measure(out_data, "initial_time", initial_times)
     store_list_measure(out_data, "first_sol_time", first_sol_times)
     store_list_measure(out_data, "first_sol_size", first_sol_sizes)
+    store_list_measure(out_data, "best_mes_size", best_mes_sizes)
     out_data["interactions_nonreduced"] = feature_count_nonreduced
     store_list_measure(out_data, "interactions_reduced", feature_count_reduced)
     out_data.update(simp_measures)
