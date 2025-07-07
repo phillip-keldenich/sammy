@@ -16,8 +16,8 @@ int main(int argc, char** argv) {
      * Parse command line arguments.
      */
     boost::program_options::options_description desc("Barrage options");
-    desc.add_options()("formula", required_value(formula_file),
-                       "Path to the formula file.")(
+    desc.add_options()("universe-and-clauses", required_value(formula_file),
+                       "Path to the universe-and-clauses file.")(
         "subproblem", required_value(subproblem_file),
         "Path to the subproblem file.")("output", required_value(output_file),
                                         "Path to the output file.")(
