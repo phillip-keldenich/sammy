@@ -8,7 +8,8 @@ import sys
 
 
 def scan_events(events):
-    extra_data = {"lb_history": [], "ub_history": [], "lb_is_optimal": False}
+    extra_data = {"lb_history": [], "ub_history": [],
+                  "lb_is_optimal": False, "mes_is_optimal": False}
     for e in events:
         t = e["type"]
         if t == "INPUT_READ":
@@ -67,6 +68,7 @@ def scan_events(events):
             extra_data["ub_history"].append({"time": e["time"], "ub": e[key], "source": source})
         elif t == "PRICING_FOUND_OPTIMALITY":
             extra_data["lb_is_optimal"] = True
+            extra_data["mes_is_optimal"] = True
     return extra_data
 
 
@@ -124,6 +126,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     first_sol_sizes = []
     optimalities = []
     lb_optimalities = []
+    mes_optimalities = []
     simp_measures = {}
     instance_size_data = {}
     lb_histories = []
@@ -135,6 +138,8 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
         extra_data = scan_events(js_data["events"])
         if js_data["lb"] == js_data["ub"]:
             extra_data["lb_is_optimal"] = True
+        if len(js_data['mutually_exclusive_set']) == js_data["ub"]:
+            extra_data["mes_is_optimal"] = True
         if feature_count_nonreduced is None:
             feature_count_nonreduced = extra_data["initial_num_interactions"]
         else:
@@ -151,6 +156,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
         solve_times.append(js_data["events"][-1]["time"])
         optimalities.append(js_data["lb"] >= js_data["ub"])
         lb_optimalities.append(optimalities[-1] or extra_data["lb_is_optimal"])
+        mes_optimalities.append(extra_data["mes_is_optimal"])
         lb_histories.append(extra_data["lb_history"])
         ub_histories.append(extra_data["ub_history"])
         feature_count_reduced.append(extra_data["reduced_num_interactions"])
@@ -174,6 +180,7 @@ for instance, repeats in tqdm.tqdm(instances_and_files.items()):
     out_data['lb_optimalities'] = lb_optimalities
     out_data["lb_histories"] = lb_histories
     out_data["ub_histories"] = ub_histories
+    out_data["mes_optimalities"] = mes_optimalities
     store_list_measure(out_data, "ub", ubs)
     store_list_measure(out_data, "lb", lbs)
     store_list_measure(out_data, "initial_lb", initial_lbs)
