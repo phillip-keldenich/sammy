@@ -5,6 +5,7 @@ from algbench import Benchmark
 from solver import BaselineAlgorithm, get_instance_from_path
 import slurminade
 import tempfile
+import random as rd
 
 slurminade.update_default_configuration(
     partition="alg",
@@ -65,7 +66,7 @@ instances = [
     "fs_2017-05-22",
     "gpl",
     "integrator_arm7",
-    "lcm"
+    "lcm",
     # 8 new instances of larger size
     "Automotive01",
     "Automotive02_V1",
@@ -77,9 +78,9 @@ instances = [
     "linux_2_6_33_3"
 ]
 time_limit =  3600 # seconds
-n_repeats = 1  # number of repeats for each instance and algorithm
+n_repeats = 5  # number of repeats for each instance and algorithm
 
-benchmark = Benchmark(output_dir)
+benchmark = Benchmark(output_dir, hide_output=False)
 benchmark.capture_logger("baseline")
 
 
@@ -132,7 +133,9 @@ if __name__ == "__main__":
         for algo in algorithms
     ]
 
-    with slurminade.JobBundling(max_size=5):  # automatically bundles up to 2 tasks
+    rd.shuffle(instances)
+
+    with slurminade.JobBundling(max_size=10):  # automatically bundles up to 2 tasks
         for i in range(n_repeats):
             for instance in instances:
                 for alg_params in all_alg_params:
