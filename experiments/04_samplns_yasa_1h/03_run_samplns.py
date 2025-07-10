@@ -12,6 +12,8 @@ from samplns.utils import Timer
 from solver.instance import get_instance_from_path
 import tempfile
 
+slurminade.set_dispatch_limit(300)
+
 instances_path = "../../sammy_benchmark_instances"
 output_dir = "samplns_1h"
 instances = [
@@ -226,8 +228,9 @@ def pack_after_finish():
 
 
 if __name__ == "__main__":
-    for rep in range(n_repeats):
-        for instance in instances:
-            run_distributed.distribute(instance, rep)
+    with slurminade.JobBundling(max_size=5):
+        for rep in range(n_repeats):
+            for instance in instances:
+                run_distributed.distribute(instance, rep)
     slurminade.join()
     pack_after_finish.distribute()
