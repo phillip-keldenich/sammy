@@ -120,7 +120,7 @@ def _sort_structure(node: FeatureNode):
 
 class DIMACSParser:
     _p_line = re.compile(r"^p\s+cnf\s+([0-9]+)\s+([0-9]+)\s*$")
-    _c_line = re.compile(r"^c\s+([0-9]+)(\$?)\s+([A-Za-z0-9_-]+)$")
+    _c_line = re.compile(r"^c\s+([0-9]+)(\$?)\s+([()'A-Za-z0-9_.,-]+)$")
 
     def __init__(self, file_path):
         with open(file_path, "r") as fstream:
