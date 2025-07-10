@@ -20,7 +20,8 @@ class SimplifyDatastructure {
     explicit SimplifyDatastructure(const ClauseDB& formula, Var num_concrete)
         : m_variable_eliminated(formula.num_vars(), false),
           m_variable_concrete(formula.num_vars(), false),
-          m_var_presence(formula.num_vars()) {
+          m_var_presence(formula.num_vars()),
+          m_original_concrete(num_concrete) {
         std::fill_n(m_variable_concrete.begin(), num_concrete, true);
         for (Lit u : formula.unary_literals()) {
             m_clauses.emplace_back(1, u);
@@ -177,6 +178,10 @@ class SimplifyDatastructure {
         return Var(m_variable_eliminated.size());
     }
 
+    Var original_num_concrete() const noexcept {
+        return m_original_concrete;
+    }
+
     void sort_clauses() {
         auto sort_clause = [](SCVec& clause) {
             std::sort(clause.begin(), clause.end());
@@ -260,6 +265,13 @@ class SimplifyDatastructure {
         };
         std::transform(simp_lb.begin(), simp_lb.end(),
                        std::back_inserter(result), transform_vertex);
+        const auto old_nclit = 2 * original_num_concrete();
+        if(std::any_of(result.begin(), result.end(),
+            [&](const Vertex& v) { return v.first >= old_nclit ||
+                                          v.second >= old_nclit;}))
+        {
+            p_fix_nonconcrete_in_lb(result);
+        }
         return result;
     }
 
@@ -309,6 +321,22 @@ class SimplifyDatastructure {
     }
 
   private:
+    void p_fix_nonconcrete_in_lb(std::vector<Vertex>& lb) const {
+        Lit bound = 2 * original_num_concrete();
+        auto process = [&] (Lit& l) {
+            if(l < bound) {
+                return;
+            }
+            Var v = lit::var(l);
+            Lit lender = m_concreteness_lender.at(v);
+            l = lit::negative(l) ? lit::negate(lender) : lender;
+        };
+        for(Vertex& v : lb) {
+            process(v.first);
+            process(v.second);
+        }
+    }
+
     ClauseDB p_compress_clauses(Var new_count,
                                 const std::vector<Lit>& old_to_new) {
         ClauseDB result{new_count};
@@ -371,7 +399,28 @@ class SimplifyDatastructure {
 
     void p_apply_remap(Var v, Lit m) {
         if (m_variable_concrete[v]) {
-            m_variable_concrete[lit::var(m)] = true;
+            Var mvar = lit::var(m);
+            if(!m_variable_concrete[mvar]) {
+                m_variable_concrete[mvar] = true;
+                bool flip_vm = lit::negative(m);
+                Var lender_var = v;
+                if (v >= m_original_concrete) {
+                    Lit cl = m_concreteness_lender.at(v);
+                    Var c = lit::var(cl);
+                    if(c >= m_original_concrete) {
+                        throw std::logic_error(
+                            "Lender variable is not concrete");
+                    }
+                    bool flip_vc = lit::negative(cl);
+                    // if v = c, then c = m and c is lender of m
+                    // if v = -c, then c = -m and -c is lender of m
+                    flip_vm ^= flip_vc;
+                    lender_var = c;
+                }
+                m_concreteness_lender[mvar] = flip_vm ? 
+                    lit::negative_lit(lender_var) :
+                    lit::positive_lit(lender_var);
+            }
         }
         Lit p = lit::positive_lit(v);
         Lit n = lit::negative_lit(v);
@@ -386,7 +435,9 @@ class SimplifyDatastructure {
     std::vector<SCVec> m_reconstruction_stack;
     std::vector<bool> m_variable_eliminated;
     std::vector<bool> m_variable_concrete;
+    HashMap<Var, Lit> m_concreteness_lender;
     StampSet<Var, std::uint16_t> m_var_presence;
+    Var m_original_concrete = 0;
 };
 
 } // namespace sammy

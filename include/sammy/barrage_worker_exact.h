@@ -155,7 +155,8 @@ class CliqueSatDSaturExactSolverCore {
                   &solver->get_infeasibility_map(), solver->get_clauses(),
                   solver->get_best_mes(), solver->get_best_mes().size(),
                   solver->get_best_lower_bound(),
-                  solver->get_best_solution().assignments()) {
+                  solver->get_best_solution().assignments()) 
+    {
         m_exact.set_clique_candidate_callback([this]() -> std::vector<Vertex> {
             return m_solver->get_best_mes();
         });
@@ -168,7 +169,7 @@ class CliqueSatDSaturExactSolverCore {
                     m_solver->report_lower_bound(lb, subgraph,
                                                  "C&P/SATDSatur Exact Solver");
                 }
-            });
+        });
         m_exact.set_event_recorder(&m_local_recorder);
     }
 

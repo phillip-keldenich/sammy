@@ -546,6 +546,17 @@ class PortfolioSolver {
      * @brief Report a new mutually exclusive set.
      */
     void report_mes(const std::vector<Vertex>& vertices, const char* source) {
+        const auto nclit = 2 * get_infeasibility_map().get_n_concrete();
+        for(Vertex v : vertices) {
+            if(v.first >= nclit || v.second >= nclit) {
+                std::ostringstream msg;
+                msg << "Invalid non-concrete vertex in MES: "
+                    << v.first << ", " << v.second
+                    << " (concrete literals = " << nclit << ")";
+                throw std::logic_error(msg.str());
+            }
+        }
+
         std::unique_lock l{m_mutex};
         if (m_best_mes.size() >= vertices.size())
             return;
@@ -561,6 +572,16 @@ class PortfolioSolver {
                     "MES size changed during implied vertex elimination!");
             }
         }
+        for(Vertex v : m_best_mes) {
+            if(v.first >= nclit || v.second >= nclit) {
+                std::ostringstream msg;
+                msg << "Invalid non-concrete vertex in MES after substitution: "
+                    << v.first << ", " << v.second
+                    << " (concrete literals = " << nclit << ")";
+                throw std::logic_error(msg.str());
+            }
+        }
+
         EventMask event = static_cast<EventMask>(PortfolioEvent::BETTER_MES);
         m_global_recorder->store_event("IMPROVED_MES",
                                        {{"size", m_best_mes.size()},

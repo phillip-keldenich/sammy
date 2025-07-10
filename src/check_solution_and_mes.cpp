@@ -63,11 +63,15 @@ struct InstanceData {
                 for (std::int32_t var2 = var + 1; var2 <= num_concrete; ++var2)
                 {
                     std::int32_t lit2 = assignment[var2 - 1] ? var2 : -var2;
-                    covered_interactions.emplace(lit1, lit2);
+                    std::int32_t l1 = (std::min)(lit1, lit2);
+                    std::int32_t l2 = (std::max)(lit1, lit2);
+                    covered_interactions.emplace(l1, l2);
                 }
             }
         }
         for (auto v : mes) {
+            v = std::make_pair((std::min)(v.first, v.second),
+                               (std::max)(v.first, v.second));
             if (!covered_interactions.count(v)) {
                 throw std::runtime_error(
                     "Mutually exclusive set contains uncovered interaction: " +
@@ -208,53 +212,74 @@ int main(int argc, char** argv) {
     }
 
     // read solution and instance
-    auto solution_data = read_json_path(argv[1]);
     InstanceData instance(read_json_path(argv[2]));
     using SolType = std::vector<std::vector<bool>>;
     using MesType = std::vector<std::pair<std::int32_t, std::int32_t>>;
-    auto solution = solution_data.at("best_solution").get<SolType>();
-    auto mes = solution_data.at("mutually_exclusive_set").get<MesType>();
+    SolType solution;
+    MesType mes;
 
-    // validate the optimality flag
-    if (solution_data.at("optimal").get<bool>()) {
-        if(solution_data.at("lb").get<std::size_t>() !=
-           solution_data.at("ub").get<std::size_t>()) 
-        {
-            std::cerr << "Error: Solution is marked as optimal, but lower "
-                         "bound does not match upper bound!"
-                      << std::endl;
-            return EXIT_FAILURE;
-        }
-    } else {
-        if (solution_data.at("lb").get<std::size_t>() ==
-            solution_data.at("ub").get<std::size_t>()) {
-            std::cerr << "Error: Solution is not optimal, but lower bound "
-                         "matches upper bound!"
-                      << std::endl;
-            return EXIT_FAILURE;
-        }
-    }
-
-    // validate the bounds
-    if(solution_data.at("lb").get<std::size_t>() >
-       solution_data.at("ub").get<std::size_t>()) 
     {
-        std::cerr << "Error: Lower bound is greater than upper bound!" 
-                  << std::endl;
-        return EXIT_FAILURE;
+        auto solution_data = read_json_path(argv[1]);
+        solution = solution_data.at("best_solution").get<SolType>();
+        mes = solution_data.at("mutually_exclusive_set").get<MesType>();
+        
+        // validate the optimality flag
+        if (solution_data.at("optimal").get<bool>()) {
+            if(solution_data.at("lb").get<std::size_t>() !=
+            solution_data.at("ub").get<std::size_t>()) 
+            {
+                std::cerr << "Error: Solution is marked as optimal, but lower "
+                            "bound does not match upper bound!"
+                        << std::endl;
+                return EXIT_FAILURE;
+            }
+        } else {
+            if (solution_data.at("lb").get<std::size_t>() ==
+                solution_data.at("ub").get<std::size_t>()) {
+                std::cerr << "Error: Solution is not optimal, but lower bound "
+                            "matches upper bound!"
+                        << std::endl;
+                return EXIT_FAILURE;
+            }
+        }
+
+        // validate the bounds
+        if(solution_data.at("lb").get<std::size_t>() >
+        solution_data.at("ub").get<std::size_t>()) 
+        {
+            std::cerr << "Error: Lower bound is greater than upper bound!" 
+                    << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        // validate the solution size against the upper bound
+        if (solution.size() != solution_data.at("ub").get<std::size_t>()) {
+            std::cerr << "Error: Solution size does "
+                        "not match upper bound!"
+                    << std::endl;
+            return EXIT_FAILURE;
+        }
     }
 
-    // validate the solution size against the upper bound
-    if (solution.size() != solution_data.at("ub").get<std::size_t>()) {
-        std::cerr << "Error: Solution size does "
-                     "not match upper bound!"
-                  << std::endl;
-        return EXIT_FAILURE;
+    // validate that mes entries are on concrete features
+    for(auto mes_entry : mes) {
+        std::int32_t var1 = (std::abs)(mes_entry.first);
+        std::int32_t var2 = (std::abs)(mes_entry.second);
+        if(var1 <= 0 || var1 > instance.num_concrete ||
+           var2 <= 0 || var2 > instance.num_concrete) 
+        {
+            std::cerr << "Error: MES entry (" << mes_entry.first << ", "
+                      << mes_entry.second
+                      << ") is not on concrete features!" << std::endl;
+            std::cerr << "Concrete features: " << instance.num_concrete
+                      << std::endl;
+            return EXIT_FAILURE;
+        }
     }
 
     // validate the size of individual configurations
     auto check_config_size = [&](const std::vector<bool>& config) {
-        return config.size() == std::size_t(instance.num_concrete);
+        return config.size() == std::size_t(instance.num_variables);
     };
     if (!std::all_of(solution.begin(), solution.end(), check_config_size)) {
         std::cerr << "Error: Not all configurations "

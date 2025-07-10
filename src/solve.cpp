@@ -391,7 +391,16 @@ class Main {
 
     std::vector<Vertex> reconstruct_mes(const std::vector<Vertex>& mes) {
         if (simplifier && simplified) {
-            return simplifier->reconstruct_lb(*simplified, mes);
+            auto r = simplifier->reconstruct_lb(*simplified, mes);
+            auto original_nclit = 2 * simplifier->original_num_concrete();
+            for(Vertex v : r) {
+                if(v.first >= original_nclit ||
+                   v.second >= original_nclit) {
+                    throw std::runtime_error(
+                        "Reconstructed MES contains non-concrete literal!");
+                }
+            }
+            return r;
         } else {
             return mes;
         }
