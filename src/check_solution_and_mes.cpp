@@ -59,19 +59,41 @@ struct InstanceData {
     template <typename Assignments>
     std::size_t count_covered_interactions(const Assignments& asmts,
                                            const MES& mes) const {
-        HashSet<std::pair<std::int32_t, std::int32_t>> covered_interactions;
-        for (const auto& assignment : asmts) {
-            for (std::int32_t var = 1; var <= num_concrete; ++var) {
-                std::int32_t lit1 = assignment[var - 1] ? var : -var;
-                for (std::int32_t var2 = var + 1; var2 <= num_concrete; ++var2)
+        std::size_t num_threads = std::thread::hardware_concurrency() / 2;
+        std::vector<HashSet<std::pair<std::int32_t, std::int32_t>>> 
+            thread_interaction_sets(num_threads);
+        std::vector<std::thread> threads(num_threads);
+        for(std::size_t i = 0; i < num_threads; ++i) {
+            threads[i] = std::thread([&] (std::size_t thread_index) {
+                auto& out_set = thread_interaction_sets[thread_index];
+                for(std::size_t ass_i = thread_index; 
+                    ass_i < asmts.size(); ass_i += num_threads)
                 {
-                    std::int32_t lit2 = assignment[var2 - 1] ? var2 : -var2;
-                    std::int32_t l1 = (std::min)(lit1, lit2);
-                    std::int32_t l2 = (std::max)(lit1, lit2);
-                    covered_interactions.emplace(l1, l2);
+                    const auto& assignment = asmts[ass_i];
+                    for (std::int32_t var = 1; var <= num_concrete; ++var) {
+                        std::int32_t lit1 = assignment[var - 1] ? var : -var;
+                        for (std::int32_t var2 = var + 1; var2 <= num_concrete; ++var2)
+                        {
+                            std::int32_t lit2 = assignment[var2 - 1] ? var2 : -var2;
+                            std::int32_t l1 = (std::min)(lit1, lit2);
+                            std::int32_t l2 = (std::max)(lit1, lit2);
+                            std::pair<std::int32_t, std::int32_t> v(l1, l2);
+                            if(!out_set.count(v)) {
+                                out_set.emplace(v);
+                            }
+                        }
+                    }
                 }
-            }
+            }, i);
         }
+        std::for_each(threads.begin(), threads.end(), [] (auto& t) {t.join();});
+        HashSet<std::pair<std::int32_t, std::int32_t>> covered_interactions;
+        std::for_each(thread_interaction_sets.begin(), thread_interaction_sets.end(),
+            [&covered_interactions] (auto& set) {
+                covered_interactions.insert(set.begin(), set.end());
+                set.clear();
+            }
+        );
         for (auto v : mes) {
             v = std::make_pair((std::min)(v.first, v.second),
                                (std::max)(v.first, v.second));
