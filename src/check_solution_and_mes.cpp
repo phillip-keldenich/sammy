@@ -3,6 +3,7 @@
 #include <thread>
 #include <mutex>
 #include <limits>
+#include <atomic>
 
 using namespace sammy;
 
@@ -54,46 +55,77 @@ struct InstanceData {
         return std::nullopt;
     }
 
-    using MES = std::vector<std::pair<std::int32_t, std::int32_t>>;
+    using Interaction = std::pair<std::int32_t, std::int32_t>;
+    using MES = std::vector<Interaction>;
+    using InteractionSet = HashSet<Interaction>;
 
-    template <typename Assignments>
-    std::size_t count_covered_interactions(const Assignments& asmts,
-                                           const MES& mes) const {
-        std::size_t num_threads = std::thread::hardware_concurrency() / 2;
-        std::vector<HashSet<std::pair<std::int32_t, std::int32_t>>> 
-            thread_interaction_sets(num_threads);
+    template<typename Assignments> 
+    InteractionSet get_interaction_set(const Assignments& asmts) const {
+        std::size_t num_concrete = std::size_t(this->num_concrete);
+        std::size_t num_threads = std::thread::hardware_concurrency();
+        std::atomic<std::size_t> current_var1(0);
+        std::vector<std::vector<Interaction>> thread_interactions(num_threads);
         std::vector<std::thread> threads(num_threads);
         for(std::size_t i = 0; i < num_threads; ++i) {
             threads[i] = std::thread([&] (std::size_t thread_index) {
-                auto& out_set = thread_interaction_sets[thread_index];
-                for(std::size_t ass_i = thread_index; 
-                    ass_i < asmts.size(); ass_i += num_threads)
-                {
-                    const auto& assignment = asmts[ass_i];
-                    for (std::int32_t var = 1; var <= num_concrete; ++var) {
-                        std::int32_t lit1 = assignment[var - 1] ? var : -var;
-                        for (std::int32_t var2 = var + 1; var2 <= num_concrete; ++var2)
-                        {
-                            std::int32_t lit2 = assignment[var2 - 1] ? var2 : -var2;
-                            std::int32_t l1 = (std::min)(lit1, lit2);
-                            std::int32_t l2 = (std::max)(lit1, lit2);
-                            std::pair<std::int32_t, std::int32_t> v(l1, l2);
-                            if(!out_set.count(v)) {
-                                out_set.emplace(v);
-                            }
+                auto& interactions = thread_interactions[thread_index];
+                std::vector<bool> positive_partners(2 * num_concrete, false);
+                std::vector<bool> negative_partners(2 * num_concrete, false);
+                for(;;) {
+                    std::size_t var1 = current_var1++;
+                    if(var1 >= num_concrete) {
+                        return; // no more variables to process
+                    }
+                    positive_partners.assign(2 * num_concrete, false);
+                    negative_partners.assign(2 * num_concrete, false);
+                    for(const auto& assignment : asmts) {
+                        auto& out_partners = assignment[var1] ? 
+                            positive_partners : negative_partners;
+                        for(std::size_t var2 = var1 + 1; var2 < num_concrete; ++var2) {
+                            std::size_t op_index = 2 * var2 + 1 - assignment[var2];
+                            out_partners[op_index] = true;
+                        }
+                    }
+                    std::int32_t plit1 = std::int32_t(var1 + 1);
+                    std::int32_t nlit1 = -plit1;
+                    for(std::size_t var2 = var1 + 1; var2 < num_concrete; ++var2) {
+                        std::int32_t plit2 = std::int32_t(var2 + 1);
+                        std::int32_t nlit2 = -plit2;
+                        if(positive_partners[2 * var2]) {
+                            interactions.emplace_back(plit1, plit2);
+                        }
+                        if(positive_partners[2 * var2 + 1]) {
+                            interactions.emplace_back(nlit2, plit1);
+                        }
+                        if(negative_partners[2 * var2]) {
+                            interactions.emplace_back(nlit1, plit2);
+                        }
+                        if(negative_partners[2 * var2 + 1]) {
+                            interactions.emplace_back(nlit2, nlit1);
                         }
                     }
                 }
             }, i);
         }
         std::for_each(threads.begin(), threads.end(), [] (auto& t) {t.join();});
-        HashSet<std::pair<std::int32_t, std::int32_t>> covered_interactions;
-        std::for_each(thread_interaction_sets.begin(), thread_interaction_sets.end(),
-            [&covered_interactions] (auto& set) {
-                covered_interactions.insert(set.begin(), set.end());
-                set.clear();
+        std::size_t num_interactions = 0;
+        for(const auto& interactions : thread_interactions) {
+            num_interactions += interactions.size();
+        }
+        InteractionSet interaction_set;
+        interaction_set.reserve(num_interactions);
+        for(const auto& interactions : thread_interactions) {
+            for(const auto interaction : interactions) {
+                interaction_set.emplace(interaction);
             }
-        );
+        }
+        return interaction_set;
+    }
+
+    template <typename Assignments>
+    std::size_t count_covered_interactions(const Assignments& asmts,
+                                           const MES& mes) const {
+        InteractionSet covered_interactions = get_interaction_set(asmts);
         for (auto v : mes) {
             v = std::make_pair((std::min)(v.first, v.second),
                                (std::max)(v.first, v.second));
