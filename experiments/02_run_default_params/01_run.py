@@ -82,7 +82,7 @@ if __name__ == "__main__":
             instance_filter=lambda f: ("Automotive02" not in f)
         )
         random.shuffle(commands)
-        with slurminade.JobBundling(max_size=5):
+        with slurminade.JobBundling(max_size=3):
             for command in commands:
                 run_command.distribute(command)
     elif sys.argv[1] == 'huge_instances':

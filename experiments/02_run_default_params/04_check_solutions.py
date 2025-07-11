@@ -11,12 +11,13 @@ import json
 import sys
 
 
+thispath = Path(__file__).absolute()
 instance_re = re.compile(r"^([^.]+)_repeat[0-9]+\.out\.json\.xz$")
-checker_path = Path(__file__).parent.parent.parent / "build" / "Release" /\
+checker_path = thispath.parent.parent.parent / "build" / "Release" /\
                "src" / "check_solution_and_mes"
-instances_dir = Path(__file__).parent.parent.parent /\
+instances_dir = thispath.parent.parent.parent /\
                 "sammy_benchmark_instances"
-output_path = Path(__file__).parent / "02_output"
+output_path = thispath.parent / "02_output"
 if not output_path.is_dir():
     raise FileNotFoundError(f"Output directory {output_path} does not exist!")
 if not instances_dir.is_dir():
