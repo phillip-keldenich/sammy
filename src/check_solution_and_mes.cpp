@@ -115,9 +115,7 @@ struct InstanceData {
         InteractionSet interaction_set;
         interaction_set.reserve(num_interactions);
         for(const auto& interactions : thread_interactions) {
-            for(const auto interaction : interactions) {
-                interaction_set.emplace(interaction);
-            }
+            interaction_set.insert(interactions.begin(), interactions.end());
         }
         return interaction_set;
     }
