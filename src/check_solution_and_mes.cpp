@@ -1,5 +1,8 @@
 #include <sammy/cadical_solver.h>
 #include <sammy/io.h>
+#include <thread>
+#include <mutex>
+#include <limits>
 
 using namespace sammy;
 
@@ -94,16 +97,130 @@ class MESExclusivityChecker {
     using MES = std::vector<std::pair<std::int32_t, std::int32_t>>;
 
     MESExclusivityChecker(const InstanceData& instance, const MES& mes)
-        : instance(&instance), solver(), mes(mes) {
+        : instance(&instance), solver(), mes(mes),
+          locally_excluded(mes.size(), false) 
+    {
         p_create_main_vars();
         p_add_main_clauses();
         p_add_mes_clauses();
-        p_add_two_interaction_clauses();
+        // incremental mode needed for Automotive02 checks
+        //p_add_two_interaction_clauses(); // for non-incremental mode
     }
 
     /**
-     * Check the mutual exclusivity of the interactions.
+     * Check the mutual exclusivity of the interactions,
+     * using parallel threads and the incremental mode.
      */
+    void check_exclusivity() {
+        std::size_t nthreads = std::thread::hardware_concurrency() / 2;
+        if(nthreads <= 2) nthreads = 2;
+
+        std::vector<std::unique_ptr<MESExclusivityChecker>> mes_checkers;
+        std::mutex glob_excl_mutex;
+        std::vector<bool> globally_excluded(mes.size(), false);
+        std::size_t current_unchecked = 0;
+        std::optional<std::string> error;
+        mes_checkers.reserve(nthreads);
+        for(std::size_t i = 0; i < nthreads; ++i) {
+            mes_checkers.emplace_back(std::make_unique<MESExclusivityChecker>(*instance, mes));
+        }
+        std::vector<std::thread> threads(nthreads);
+        for(std::size_t i = 0; i < nthreads; ++i) {
+            threads[i] = std::thread([&] (std::size_t thread_index) {
+                auto& mes_checker = *mes_checkers[thread_index];
+                for(;;) {
+                    std::size_t our_check;
+                    {
+                        std::unique_lock<std::mutex> lock(glob_excl_mutex);
+                        if(error || current_unchecked >= mes.size()) {
+                            return; // stop if an error has occurred
+                        }
+                        our_check = current_unchecked++;
+                        mes_checker.exclude_interactions(globally_excluded);
+                    }
+                    auto cres = mes_checker
+                            .check_exclusivity_of_interaction(our_check);
+                    if(!cres) {
+                        // we should have an error stored
+                        return;
+                    }
+                    {
+                        std::unique_lock<std::mutex> lock(glob_excl_mutex);
+                        if(cres->empty()) {
+                            // no error
+                            globally_excluded[our_check] = true;
+                        } else {
+                            // error: store it and stop everyone
+                            if(!error) {
+                                error = *cres;
+                                for(std::size_t i = 0; i < mes_checkers.size(); ++i) {
+                                    mes_checkers[i]->solver.terminate();
+                                }
+                            }
+                            return;
+                        }
+                    }
+                }
+            }, i);
+        }
+        std::for_each(threads.begin(), threads.end(),
+                      [] (std::thread& t) { t.join(); });
+        if(error) {
+            throw std::runtime_error(*error);
+        }
+    }
+
+    std::optional<std::string> 
+        check_exclusivity_of_interaction(std::size_t interaction_index) 
+    {
+        std::vector<CadicalSolver::Lit> assumption;
+        assumption.push_back(mes_vars[interaction_index]);
+        std::vector<CadicalSolver::Lit> clause;
+        for(std::size_t i = 0; i < mes.size(); ++i) {
+            if(i == interaction_index) {
+                clause.push_back(-mes_vars[i]);
+            } else {
+                clause.push_back(mes_vars[i]);
+            }
+        }
+        solver.add_clause(clause.begin(), clause.end());
+        auto result = solver.solve(assumption);
+        if(!result) {
+            return std::nullopt; // timeout means another solver found an error
+        }
+        if(!*result) {
+            return std::string{}; // no error, interaction is exclusive
+        }
+        std::vector<std::pair<std::int32_t, std::int32_t>> simultaneous;
+        auto model = solver.get_model();
+        for (std::size_t i = 0; i < mes.size(); ++i) {
+            if (model[mes_vars[i]]) {
+                simultaneous.push_back(mes[i]);
+            }
+        }
+        std::ostringstream msg;
+        msg << "Mutually exclusive set contains simultaneously feasible "
+               "interactions: ";
+        for (const auto& interaction : simultaneous) {
+            msg << "(" << interaction.first << ", " << interaction.second
+                << ") ";
+        }
+        msg << std::endl;
+        return msg.str();
+    }
+
+    void exclude_interactions(const std::vector<bool>& excludable) {
+        for(std::size_t i = 0; i < mes.size(); ++i) {
+            if(excludable[i]) {
+                 if(!locally_excluded[i]) {
+                    locally_excluded[i] = true;
+                    solver.fix(-mes_vars[i]);
+                 }
+            }
+        }
+    }
+
+    /* // nonincremental version
     void check_exclusivity() {
         auto result = solver.solve();
         if (!result) {
@@ -127,14 +244,14 @@ class MESExclusivityChecker {
                 << ") ";
         }
         throw std::runtime_error(msg.str());
-    }
+    }*/
 
   private:
     using SatVar = CadicalSolver::Lit;
 
     /**
      * Add clauses to enforce that two of the MES interactions
-     * are simultaneously true.
+     * are simultaneously true; non-incremental version.
      */
     void p_add_two_interaction_clauses() {
         for (std::size_t mes_index = 0; mes_index < mes.size(); ++mes_index) {
@@ -201,6 +318,7 @@ class MESExclusivityChecker {
     std::vector<SatVar> main_vars;
     std::vector<SatVar> mes_vars;
     MES mes;
+    std::vector<bool> locally_excluded; // for incremental mode
 };
 
 
