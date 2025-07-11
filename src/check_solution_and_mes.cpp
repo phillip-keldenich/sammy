@@ -59,12 +59,12 @@ struct InstanceData {
     using MES = std::vector<Interaction>;
     using InteractionSet = HashSet<Interaction>;
 
-    template<typename Assignments> 
-    InteractionSet get_interaction_set(const Assignments& asmts) const {
-        std::size_t num_concrete = std::size_t(this->num_concrete);
+    template <typename Assignments>
+    std::size_t count_covered_interactions(const Assignments& asmts,
+                                           const MES& mes) const {
         std::size_t num_threads = std::thread::hardware_concurrency();
-        std::atomic<std::size_t> current_var1(0);
-        std::vector<std::vector<Interaction>> thread_interactions(num_threads);
+        std::vector<HashSet<std::pair<std::int32_t, std::int32_t>>> 
+            thread_interaction_sets(num_threads);
         std::vector<std::thread> threads(num_threads);
         for(std::size_t i = 0; i < num_threads; ++i) {
             threads[i] = std::thread([&] (std::size_t thread_index) {
