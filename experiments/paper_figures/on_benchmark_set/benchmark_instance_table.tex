@@ -7,7 +7,7 @@ fixed-exponent = 0,
 \centering
 \begin{tiny}
 % instance | features | concrete | clauses | interactions | interactions (red) |  Sammy LB (min/med/max) | Sammy UB (min/med/max)
-\resizebox{\textwidth}{!}{
+\resizebox{\textwidth}{!}{\rotatebox{90}{%
 \begin{tabular}{lrrrrrrrrrr}
 Instance & $|\mathcal{F}|$ & $|\mathcal{C}|$ & Clauses & $|\mathcal{I}|$  & LB        & UB    & LB      & UB       & Time  & Time\\
          &                 &                 &         & (frac.\ rem.)    & Sammy     & Sammy & SampLNS & SampLNS  & Sammy & SampLNS\\
@@ -69,14 +69,16 @@ Automotive02\_V2 & \num[text-series-to-math=true]{15883} & \num[text-series-to-m
 Automotive02\_V3 & \num[text-series-to-math=true]{16607} & \num[text-series-to-math=true]{16224} & \num[text-series-to-math=true]{343538} & \num[text-series-to-math=true]{525717328} (\num[text-series-to-math=true]{0.30}) & \textbf{\num[text-series-to-math=true]{38115}} & \textbf{\num[text-series-to-math=true]{38115}} & --- & --- & 2213.3 & ---\\
 Automotive02\_V4 & \num[text-series-to-math=true]{16809} & \num[text-series-to-math=true]{16376} & \num[text-series-to-math=true]{346172} & \num[text-series-to-math=true]{535654597} (\num[text-series-to-math=true]{0.30}) & \textbf{\num[text-series-to-math=true]{38577}} & \textbf{\num[text-series-to-math=true]{38577}} & --- & --- & 2272.8 & ---\\
 \hline\ \\
-\end{tabular}}
+\end{tabular}}}
 \end{tiny}
-\caption{Table of the instances of the benchmark set and the outcomes of sammy and SampLNS.
+\caption{Table of the instances of the benchmark set and the outcomes of \texttt{Sammy} and SampLNS.
 Bold numbers indicate optimal solutions.
 The bound columns give minimum, median and maximum values achieved by the \num{5} repeat runs we performed per instance and algorithm, unless all three numbers are the same.
 The runtime shown is the median runtime across repeat runs.
-For sammy, we ran the initial heuristic for a minimum of \qty{5}{s}, therefore the runtime, even for very small instances,
-is never below \qty{5}{s} since the initial lower bound was never sufficient to prove optimality.}
+For \texttt{Sammy}, we ran the initial heuristic for a minimum of \qty{5}{s}, therefore the runtime, even for very small instances,
+is never below \qty{5}{s} since the initial lower bound was never sufficient to prove optimality.
+The number of feasible interactions given is before simplification and reduction;
+the fraction remaining after simplification and reduction is given in parentheses.}
 \label{tab:instance_summary}
 \end{table*}
       
