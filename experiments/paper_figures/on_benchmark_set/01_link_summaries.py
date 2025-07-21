@@ -13,7 +13,8 @@ exp_05_dir = this_path.parent.parent / "05_run_initial_no_simplification"
 exp_05_summary_archive = exp_05_dir / "04_nosimp_summary_data.json.xz"
 
 
-for file in [exp_02_summary_archive, exp_03_baselines_archive, exp_03_samplns_archive, exp_05_summary_archive]:
+for file in [exp_02_summary_archive, exp_03_baselines_archive, 
+             exp_03_samplns_archive, exp_05_summary_archive]:
     if not file.exists():
         print(f"Expected summary archive {file} does not exist!")
         print("Please run the experiment or extract the authors' experiment data.")
@@ -35,5 +36,3 @@ if not summary_03_baselines_target.exists():
 summary_05_target = this_path / "02_nosimp_summary_data.json.xz"
 if not summary_05_target.exists():
     os.symlink(exp_05_summary_archive, summary_05_target)
-
-
