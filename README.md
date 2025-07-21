@@ -136,5 +136,12 @@ The subdirectories `06_identify_nontrivial` and
 `07_run_nontrivial_export_subproblems` contain scripts and notebooks
 to produce the data for the figures in the appendix.
 
+## Extracting our raw outputs
 To emplace the raw output files from our experiments as we ran them,
 you can run the script `./experiments/extract_author_experiment_outputs.py`.
+This essentially replaces the running of the experiments
+`02_run_default_params`, `03_baselines`, `05_run_initial_no_simplification`,
+`06_identify_nontrivial`, and `07_run_nontrivial_export_subproblems`,
+and places the raw output data as well as summary files into those directories.
+Afterwards, the `paper_figures` scripts can be run to produce the figures and
+tables in the paper.
