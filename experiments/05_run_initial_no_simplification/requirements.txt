@@ -1,0 +1,4 @@
+algbench
+numpy
+tqdm
+slurminade

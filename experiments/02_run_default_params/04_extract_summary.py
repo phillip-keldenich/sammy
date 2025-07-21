@@ -84,9 +84,8 @@ if __name__ != "__main__":
     raise ImportError("This script is not meant to be imported.")
 
 
-sammy_data_dir = Path(__file__).parent.parent.parent / \
-                 "02_run_default_params" / "02_output"
-summary_data_archive = Path(__file__).parent / "02_sammy_summary_data.json.xz"
+sammy_data_dir = Path(__file__).parent / "02_output"
+summary_data_archive = Path(__file__).parent / "05_sammy_summary_data.json.xz"
 
 if summary_data_archive.exists():
     print("Summary data archive already exists - skipping!")

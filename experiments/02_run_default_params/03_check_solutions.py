@@ -20,8 +20,7 @@ instances_dir = thispath.parent.parent.parent /\
 output_path = thispath.parent / "02_output"
 if not output_path.is_dir():
     print("Output directory does not exist; either run the experiment "
-          "or extract the raw data archive '../sammy-data/raw_outputs/02_run_default_params.zip' "
-          "and move its 02_output directory into this folder.")
+          "or run the extraction script from the experiment directory.")
     raise FileNotFoundError(f"Output directory {output_path} does not exist!")
 if not instances_dir.is_dir():
     raise FileNotFoundError(f"Instances directory {instances_dir} not found!")
