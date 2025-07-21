@@ -27,4 +27,4 @@ zip -9r sammy_package.zip custom_deps \
   -x "experiments/sammy-data/analyze/src/sample_analyzer/verify/*.so" \
   -x '**/.*' \
   -x '**/CMakeUserPresets.json' \
-  -x "*/sammy-data/README"
+  -x "*/sammy-data/README*"
