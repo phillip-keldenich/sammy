@@ -145,3 +145,4 @@ This essentially replaces the running of the experiments
 and places the raw output data as well as summary files into those directories.
 Afterwards, the `paper_figures` scripts can be run to produce the figures and
 tables in the paper.
+Note that this can take quite a while and produces a large number of files.
