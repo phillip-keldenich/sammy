@@ -3,7 +3,10 @@ This repository contains the source code for Sammy,
 our software for computing minimum samples with pairwise interaction coverage.
 It also contains the data from our experiments as well as scripts to re-run
 the experiments (though the experiment scripts are somewhat specialized to our
-cluster's scheduler).
+cluster's scheduler, they should be runnable but will consume very significant
+time and memory).
+Some python packages have to be installed to run the experiments,
+but they are all available on PyPI.
 
 # Setup Instructions
 To build Sammy, which is a C++ program, 
@@ -115,3 +118,23 @@ It will produce a list of mappings, one for each configuration in the sample,
 that assigns a Boolean value to each concrete feature.
 
 # Experiment Scripts
+There are several experiments in the `./experiments/` directory.
+Each experiment has its own subdirectory; each subdirectory contains
+a list of files with some name prefixed with some number.
+The python scripts should be executed in the order indicated by the numbers
+to rerun our experiments.
+For instance, `experiments/02_run_default_params` contains the script
+`01_run.py`, which will produce outputs in the `02_output` directory,
+which can then be checked by running the `03_check_solutions.py` script.
+
+To reproduce the figures and tables in our paper on other computers,
+the subdirectory `paper_figures` can be used.
+It contains scripts/instructions to extract the data from the experiment
+outputs and a notebook to visualize the data and save plots as PDF files.
+
+The subdirectories `06_identify_nontrivial` and 
+`07_run_nontrivial_export_subproblems` contain scripts and notebooks
+to produce the data for the figures in the appendix.
+
+To emplace the raw output files from our experiments as we ran them,
+you can run the script `./experiments/extract_author_experiment_outputs.py`.
