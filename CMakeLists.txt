@@ -12,7 +12,7 @@ endif()
 project(sammy C CXX)
 
 # options
-option(SAMMY_NO_ORTOOLS "Do not use ortools" OFF)
+option(SAMMY_NO_ORTOOLS "Do not use ortools" ON)
 option(SAMMY_NO_CUDA "Disable CUDA support; only relevant on CUDA platforms" OFF)
 option(SAMMY_NO_LTO "Do not attempt link-time optimization" Off)
 

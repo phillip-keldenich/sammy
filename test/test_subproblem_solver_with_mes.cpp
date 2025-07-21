@@ -59,8 +59,9 @@ TEST_CASE("[SubproblemSolverWithMES] MES solver soletta_17_03_09") {
                                    std::move(subproblem),
                                    SharedDBPropagator(&clauses),
                                    &recorder,
-                                   42,
-                                   1000};
+                                   /*worker_id=*/42, 
+                                   /*iterations_without_improvement_lim=*/1000,
+                                   /*iterations_limit=*/10000};
     auto result = mes_solver.solve();
     CHECK(result);
     CHECK(*result);
@@ -106,9 +107,10 @@ TEST_CASE("[SubproblemSolverWithMES] MES solver soletta_17_03_09 larger") {
     SubproblemMESSolver mes_solver{&solver,
                                    std::move(subproblem),
                                    SharedDBPropagator(&clauses),
-                                   &recorder,
-                                   42,
-                                   1000};
+                                   &recorder, 
+                                   /*worker_id=*/42, 
+                                   /*iterations_without_improvement_lim=*/1000,
+                                   /*iterations_limit=*/10000};
     auto result = mes_solver.solve();
     CHECK(result);
     CHECK(*result);
