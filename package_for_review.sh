@@ -1,7 +1,7 @@
 #!/bin/sh
 
 zip -9r sammy_package.zip custom_deps \
-  experiments/02_run_default experiments/03_baselines experiments/05_run_initial_no_simplification \
+  experiments/02_run_default_params experiments/03_baselines experiments/05_run_initial_no_simplification \
   experiments/06_identify_nontrivial experiments/07_run_nontrivial_export_subproblems experiments/paper_figures experiments/extract_author_experiment_outputs.py \
   external include src test scripts CMakeLists.txt conanfile.txt \
   full_instances sammy_benchmark_instances \
