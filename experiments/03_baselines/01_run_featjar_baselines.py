@@ -15,7 +15,7 @@ slurminade.update_default_configuration(
 )  # global options for slurm
 
 instances_path = "../../sammy_benchmark_instances"
-output_dir = "baseline_1h"
+output_dir = "../sammy-data/baselines/baseline_1h"
 algorithms = ["YASA", "YASA3", "YASA5", "YASA10", "IC", "CH", "IL", "IPOG_FT", "IPOG_CSP", "IPOF_FT", "IPOF_CSP"]
 
 instances = [

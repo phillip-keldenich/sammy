@@ -18,7 +18,7 @@ slurminade.update_default_configuration(
 slurminade.set_dispatch_limit(300)
 
 instances_path = "../../sammy_benchmark_instances"
-output_dir = "yasa_1h"
+output_dir = "../sammy-data/baselines/yasa_1h"
 instances = [
     # 46 instances from SampLNS paper
     "busybox-1_29_2",

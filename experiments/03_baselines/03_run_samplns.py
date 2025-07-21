@@ -15,7 +15,7 @@ import tempfile
 slurminade.set_dispatch_limit(300)
 
 instances_path = "../../sammy_benchmark_instances"
-output_dir = "samplns_1h"
+output_dir = "../sammy-data/samplns/samplns_1h"
 instances = [
     # 46 instances from SampLNS paper
     "busybox-1_29_2",
