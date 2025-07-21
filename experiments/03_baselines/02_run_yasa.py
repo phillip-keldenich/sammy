@@ -83,7 +83,7 @@ n_repeats = 5
 
 # number of yasa iterations. -1 = inf.
 m_values = [
-    1, 3, 5, 10
+    1, 3, 5, 10, -1
 ]
 
 benchmark = Benchmark(output_dir, hide_output=False)
