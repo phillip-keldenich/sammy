@@ -1,0 +1,6 @@
+build/
+CMakeCache.txt
+CMakeUserPresets.json
+experiments/
+full_instances/
+sammy_benchmark_instances/
