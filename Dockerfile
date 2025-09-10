@@ -40,8 +40,8 @@ RUN conan install ./conanfile.docker.txt -pr:b default -pr:h default --build=mis
 # Configure the project with CMake
 RUN cmake --preset conan-release
 
-# Build the project (with -j1 to keep memory usage low)
-RUN cmake --build --preset conan-release -- -j1
+# Build the project (only 2 threads to keep memory usage low)
+RUN cmake --build --preset conan-release --parallel 2
 
 # Run tests (optional, can be commented out)
 # RUN ./build/Release/test/sammy_test --success

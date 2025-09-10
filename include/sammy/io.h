@@ -1,12 +1,22 @@
 #ifndef SAMMY_JSON_IO_H_INCLUDED_
 #define SAMMY_JSON_IO_H_INCLUDED_
 
+#include <iostream>
+#include <exception>
+#include <stdexcept>
+#include <filesystem>
+#include <fstream>
+#include <utility>
+#include <algorithm>
+#include <string>
+#include <tuple>
+#include <cstdlib>
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/iostreams/filter/bzip2.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
 #include <boost/iostreams/filter/lzma.hpp>
 #include <boost/iostreams/filtering_stream.hpp>
-#include <sammy/output.h>
+#include <nlohmann/json.hpp>
 
 namespace sammy {
 

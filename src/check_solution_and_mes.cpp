@@ -1,5 +1,6 @@
 #include <sammy/cadical_solver.h>
 #include <sammy/io.h>
+#include <sammy/output.h>
 #include <thread>
 #include <mutex>
 #include <limits>

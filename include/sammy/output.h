@@ -5,6 +5,7 @@
 #include "literals.h"
 #include "simplification_stats.h"
 #include "simplify_datastructure.h"
+#include "io.h"
 
 #include <chrono>
 #include <cstdio>
@@ -275,13 +276,19 @@ inline std::string tolower(const std::string& mixed) {
 
 inline bool recognized_output_extension(const std::filesystem::path& path) {
     auto lowext = tolower(path.extension().string());
-    return lowext == ".json" || lowext == ".jsonl";
+    return lowext == ".json" || lowext == ".jsonl" || lowext == ".xz" ||
+           lowext == ".gz" || lowext == ".gzip" || lowext == ".bz2" ||
+           lowext == ".bzip2";
 }
 
 inline void output_data(const OutputObject& output,
                         const std::filesystem::path& path) {
     auto lowext = tolower(path.extension().string());
-    if (lowext == ".json") {
+    if (lowext == ".xz" || lowext == ".gz" || lowext == ".gzip" ||
+        lowext == ".bz2" || lowext == ".bzip2") 
+    {
+        write_json_path(path, output);
+    } else if (lowext == ".json") {
         std::ofstream output_stream;
         output_stream.exceptions(std::ios::failbit | std::ios::badbit);
         output_stream.open(path, std::ios::out | std::ios::trunc);
