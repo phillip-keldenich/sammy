@@ -27,6 +27,7 @@ echo "Running YASA baselines"
 echo "Running SampLNS baseline"
 (cd experiments/03_baselines && python 03_run_samplns.py 1>/dev/null) || die 'error running SampLNS baselines'
 echo "Extracting benchmark summary data"
+# TODO: these scripts are currently only in the IBR sammy-data repository...
 (cd experiments/sammy-data/baselines && python 01_extract_baseline_summary_data.py) || die 'error extracting baseline data'
 (cd experiments/sammy-data/samplns && python 01_extract_samplns_summary_data.py) || die 'error extracting SampLNS data'
 
