@@ -1,3 +1,10 @@
+"""
+This script converts a feature model instance in either XML format or dimacs format
+into a JSON format that is compatible with the sammy solver.
+
+Usage:
+    python scripts/instance_to_generic_json.py <input file> [output file]
+"""
 import itertools, json, re, sys
 from samplns.instances import (
     parse as parse_xml_instance,
