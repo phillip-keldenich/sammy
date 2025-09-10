@@ -8,6 +8,33 @@ time and memory).
 Some python packages have to be installed to run the experiments,
 but they are all available on PyPI.
 
+# Simple Docker Usage
+
+We provide a simplified procedure for running **Sammy** using Docker.  
+To proceed, ensure that **Docker** is installed on your system and that you have a Docker-compatible Gurobi license file.  
+
+If your problem instances are in FeatureIDE’s XML format or the DIMACS format, convert them to the `.scm.json` format using the script  
+`scripts/instance_to_generic_json.py`. Place all `.scm.json` files in a directory named `instances/` located in the same directory as this `README.md`.  
+
+Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
+
+Build the Docker image by executing the following command in this directory:  
+
+```bash
+docker build --platform linux/amd64 -t sammy-app .
+```
+
+After building the image, run:
+
+```bash
+./solve_instances.sh
+```
+
+This script solves all instances in the `instances/` directory and stores the results in the `results/` directory.
+
+You may edit `solve_instances.sh` to adjust the arguments passed to Sammy or to change the locations of the instances, results, or license file.
+By default, the script enforces a time limit of 60 seconds per instance. This is primarily intended for testing and will be too short for larger instances.
+
 # Setup Instructions
 To build Sammy, which is a C++ program, 
 we use `CMake` and `conan` (version 2) as a package manager;
