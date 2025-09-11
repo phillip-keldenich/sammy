@@ -67,10 +67,10 @@ instances = [
     "lcm",
     # 8 new instances of larger size
     "Automotive01",
-    # "Automotive02_V1",
-    # "Automotive02_V2",
-    # "Automotive02_V3",
-    # "Automotive02_V4",
+    "Automotive02_V1",
+    "Automotive02_V2",
+    "Automotive02_V3",
+    "Automotive02_V4",
     "financial-services-2018-04-23",
     "linux_2_6_28_6",
     "linux_2_6_33_3"

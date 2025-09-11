@@ -1,0 +1,20 @@
+[build-system]
+requires = [
+    "conan>=2.0.0",
+    "setuptools",
+    "scikit-build>=0.17.3",
+    "skbuild-conan",
+    "cmake>=3.23",
+    "ninja"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = ["error"]
+log_cli_level = "info"
+testpaths = ["tests"]
+
+
