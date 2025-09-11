@@ -15,8 +15,7 @@ echo "Running Sammy on test instance to check for licenses and other issues"
 # now the fun part: run the experiments; that will take quite long (expect weeks?);
 # some instances require ~93 GiB of RAM
 echo "Running Sammy on benchmark instances"
-(cd experiments/02_run_default_params && python 01a_run_small.py) || die 'error running small instance experiments'
-(cd experiments/02_run_default_params && python 01b_run_large.py) || die 'error running large instance experiments'
+(cd experiments/02_run_default_params && python 01_run.py) || die 'error running small instance experiments'
 (cd experiments/02_run_default_params && python 03_check_solutions.py) || die 'error checking solutions'
 (cd experiments/02_run_default_params && python 04_extract_summary.py) || die 'error extracting summary data'
 
@@ -31,8 +30,7 @@ echo "Extracting benchmark summary data"
 (cd experiments/sammy-data/samplns && python 01_extract_samplns_summary_data.py) || die 'error extracting SampLNS data'
 
 echo "Running sammy without initial simplification"
-(cd experiments/05_run_initial_no_simplification && python 01a_run_small.py) || die 'error running small instances without simplification'
-(cd experiments/05_run_initial_no_simplification && python 01b_run_large.py) || die 'error running large instances without simplification'
+(cd experiments/05_run_initial_no_simplification && python 01_run.py) || die 'error running instances without simplification'
 (cd experiments/05_run_initial_no_simplification && python 03_extract_summary.py) || die 'error extracting summary data without simplification'
 
 echo "Running sammy on full instance set"

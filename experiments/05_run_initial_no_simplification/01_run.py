@@ -62,43 +62,29 @@ def generate_commands(instances_dir, output_dir, command_path,
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Run either with command 'small_instances' (via slurm) or 'huge_instances' (directly on an algra)")
-        sys.exit(0)
-    
     instances_dir = "../../sammy_benchmark_instances"
     output_dir = "02_output"
     command_path = "../../build/Release/src/sammy_solve"
     os.makedirs(output_dir, exist_ok=True)
-
-    if sys.argv[1] == 'small_instances':
-        # small instances that can be run regularly via slurm 
-        # and don't risk OOM killing at 88 GiB by slurm
-        commands = generate_commands(
-            instances_dir=instances_dir,
-            output_dir=output_dir,
-            command_path=command_path,
-            instance_filter=lambda f: ("Automotive02" not in f)
-        )
-        random.shuffle(commands)
-        with slurminade.JobBundling(max_size=5):
-            for command in commands:
-                run_command.distribute(command)
-    elif sys.argv[1] == 'huge_instances':
-        # huge instances that may risk OOM killing
-        if not socket.gethostname().startswith("algra"):
-            print("Run 'huge_instances' directly on an algra after reserving it with sleep")
-            sys.exit(1)
-        commands = generate_commands(
-            instances_dir=instances_dir,
-            output_dir=output_dir,
-            command_path=command_path,
-            instance_filter=lambda f: ("Automotive02" in f),
-        )
+    # small instances that can be run regularly via slurm 
+    # and don't risk OOM killing at 88 GiB by slurm
+    commands = generate_commands(
+        instances_dir=instances_dir,
+        output_dir=output_dir,
+        command_path=command_path,
+        instance_filter=lambda f: ("Automotive02" not in f)
+    )
+    # these run into memory issues; it may be necessary to
+    # run them manually, allowing swap or at least the full
+    # 96 GiB instead of only 88 GiB that our SLURM allows
+    commands += generate_commands(
+        instances_dir=instances_dir,
+        output_dir=output_dir,
+        command_path=command_path,
+        instance_filter=lambda f: ("Automotive02" in f),
+    )
+    random.shuffle(commands)
+    with slurminade.JobBundling(max_size=5):
         for command in commands:
-            print(f"Running command: {command}")
-            # run directly on algra, no slurmification needed
-            run_command(command)
-    else:
-        print("Run either with command 'small_instances' (via slurm) or 'huge instances' (directly on an algra)")
-        sys.exit(1)
+            run_command.distribute(command)
+
