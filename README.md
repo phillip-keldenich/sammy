@@ -60,7 +60,7 @@ Also place your Gurobi license file as `gurobi.lic` in the same directory as thi
 Build the Docker image by executing the following command in this directory:  
 
 ```bash
-docker build --platform linux/amd64 -t sammy-app .
+docker build --platform linux/amd64 -t sammy .
 ```
 
 After building the image, run:
