@@ -1,0 +1,8 @@
+git+https://github.com/tubs-alg/SampLNS.git@main
+numpy
+pandas
+algbench
+slurminade
+colorcet
+tqdm
+openpyxl

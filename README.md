@@ -4,12 +4,51 @@ our software for computing minimum samples with pairwise interaction coverage.
 It also contains the data from our experiments as well as scripts to re-run
 the experiments (though the experiment scripts are somewhat specialized to our
 cluster's scheduler, they should be runnable but will consume very significant
-time and memory).
+time and memory on a single machine).
 Some python packages have to be installed to run the experiments,
 but they are all available on PyPI.
 
-# Simple Docker Usage
+# Reproduction of Experiments
+We offer several possibilities to reproduce our experiments to varying degrees.
+There are essentially three levels of reproducibility that should work on sufficiently
+recent Linux or MacOS systems.
 
+1. Either using Docker (follow `Simple Docker Usage` below for setup instructions) 
+   or using the `Direct Setup Instructions` below, you can build **Sammy**.
+   Depending on which option you choose, you can then either execute `run_level1_reproduction_direct.sh` or `run_level1_reproduction_docker.sh` to run **Sammy** five times on each of the
+   benchmark instances from the benchmark set (in the `sammy_benchmark_instances/` directory)
+   used in our paper.
+   This allows you to reproduce most parts of Table E.1 in the paper.
+
+   Note that either option requires you to have a valid Gurobi license file.
+   In case of the Docker option, this needs to be a Docker-compatible license file,
+   which has to be placed as `gurobi.lic` in the same directory as this `README.md`.
+   In case of the direct setup option, any valid Gurobi license file will do,
+   as long as the `GRB_LICENSE_FILE` environment variable is properly set up.
+
+   Either way, running this script will produce an Excel table with the results of the runs on your machine,
+   as well as a subdirectory containing the raw output files from each run.
+   Note that this will take a few days on a single machine, but the time should still
+   be relatively reasonable.
+
+2. To reproduce more experiments from our paper, including the baselines,
+   and reproduce most of the figures and tables in the paper,
+   after following the `Direct Setup Instructions` below and running `pip install -r requirements.txt`,
+   you can run the `run_level2_reproduction.sh` script.
+   This will take a significant amount of time on a single machine,
+   and relies on enough memory being available; in our experiment
+   environment, the scripts distribute the work across 6 identical machines,
+   which still may take 1-2 days to complete the experiments.
+
+3. To reproduce almost all the experiments from our paper, including the 
+   identification of non-trivial instances in the full instance set,
+   as well as exporting and solving the individual LNS repair subproblems,
+   you can run the `run_level3_reproduction.sh` script.
+   This will probably be infeasible on a single machine;
+   again, in our experiment environment, the scripts distribute the work
+   across 6 identical machines, where this can still take 2 weeks.
+
+# Simple Docker Usage
 We provide a simplified procedure for running **Sammy** using Docker.
 To proceed, ensure that **Docker** is installed on your system and that you have a Docker-compatible Gurobi license file.  
 
@@ -33,9 +72,9 @@ After building the image, run:
 This script solves all instances in the `instances/` directory and stores the results in the `results/` directory.
 
 You may edit `solve_instances.sh` to adjust the arguments passed to Sammy or to change the locations of the instances, results, or license file.
-By default, the script enforces a time limit of 60 seconds per instance. This is primarily intended for testing and will be too short for larger instances.
+By default, the script enforces a time limit of 3600 seconds per instance.
 
-# Setup Instructions
+# Direct Setup Instructions
 To build Sammy, which is a C++ program, 
 we use `CMake` and `conan` (version 2) as a package manager;
 you will have to install both of these first (as well as a C++ compiler),
