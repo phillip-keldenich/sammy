@@ -21,7 +21,7 @@ set -euo pipefail # Exit on error, undefined vars, pipe failures
 INSTANCE_FOLDER="./instances"
 RESULTS_FOLDER="./results"
 GUROBI_LICENSE="./gurobi.lic"
-SAMMY_ARGS="--print-events --time-limit 60"
+SAMMY_ARGS="--print-events --time-limit 3600"
 
 # Create results directory
 mkdir -p "$RESULTS_FOLDER"
