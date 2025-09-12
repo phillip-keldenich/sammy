@@ -8,6 +8,16 @@ time and memory on a single machine).
 Some python packages have to be installed to run the experiments,
 but they are all available on PyPI.
 
+# Long-term availability
+There is a long-term available snapshot of the code,
+as well as all raw experiment data stored at 
+[Zenodo](https://doi.org/10.5281/zenodo.16277857).
+This snapshot contains two archives: one contains a snapshot of the source code
+and instances and everything that should be necessary to reproduce our experiments
+(`sammy_evaluation_package.zip`), while the other contains the source code
+and all the raw data resulting from our experiments (`sammy_package.zip`),
+which is significantly larger and lacks files we added later to ease reproduction.
+
 > [!NOTE]
 > If you downloaded this as a ZIP archive from Zenodo,
 > be aware that there is a GitHub repostory containing
