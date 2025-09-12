@@ -12,6 +12,9 @@ results/
 instances/
 instances
 gurobi.lic
+sammy_evaluation_package.zip
+sammy_evaluation_package/
+experiments/sammy-data-repo/
 
 venv/
 .idea/
