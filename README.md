@@ -8,6 +8,13 @@ time and memory on a single machine).
 Some python packages have to be installed to run the experiments,
 but they are all available on PyPI.
 
+> [!NOTE]
+> If you downloaded this as a ZIP archive from Zenodo,
+> be aware that there is a GitHub repostory containing
+> the source code, which may have been updated since the Zenodo snapshot.
+> The GitHub repository is at:
+> https://github.com/phillip-keldenich/sammy
+
 # Reproduction of Experiments
 We offer several possibilities to reproduce our experiments to varying degrees.
 There are essentially three levels of reproducibility that should work on sufficiently
@@ -39,6 +46,7 @@ recent Linux or MacOS systems.
    and relies on enough memory being available; in our experiment
    environment, the scripts distribute the work across 6 identical machines,
    which still may take 1-2 days to complete the experiments.
+   The figures that are produced can be found in the `experiments/paper_figures` directory.
 
 3. To reproduce almost all the experiments from our paper, including the 
    identification of non-trivial instances in the full instance set,
