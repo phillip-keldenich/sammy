@@ -96,6 +96,21 @@ This script solves all instances in the `instances/` directory and stores the re
 You may edit `solve_instances.sh` to adjust the arguments passed to Sammy or to change the locations of the instances, results, or license file.
 By default, the script enforces a time limit of 3600 seconds per instance.
 
+> [!NOTE]
+>
+> To reproduce the basic experiments from our paper (Table E.1), run:
+> ```bash
+> ./run_level1_reproduction_docker.sh
+> ```  
+> This script executes each instance five times and stores the results in the `level1_docker_results/` directory, including an Excel summary file.
+> Running all experiments may take several days on a single machine.
+> Since some benchmark instances are large, a workstation with sufficient memory is required (tested with 96 GB RAM).
+
+> [!WARNING]
+>
+> Killing the script can be difficult due to Docker's handling of signals.
+> `docker kill $(docker ps -q --filter ancestor=sammy)` seems to work in most cases.
+
 # Direct Setup Instructions
 To build Sammy, which is a C++ program, 
 we use `CMake` and `conan` (version 2) as a package manager;

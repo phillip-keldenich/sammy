@@ -39,14 +39,12 @@ fi
 # create results directory if it does not exist
 mkdir -p ./level1_docker_results 1>/dev/null 2>/dev/null || true
 
-if [ ! -e ./instances ]; then
-  ln -sf ./sammy_benchmark_instances ./instances
-fi
-
 # run each instance 5 times
 for run_index in 1 2 3 4 5; do 
-  ./solve_instances.sh
-  for output_file in ./results/*.json.xz; do
+  # solve all instances, write results to ./level1_docker_results/tmp
+  ./solve_instances.sh -i ./sammy_benchmark_instances -o ./sammy_benchmark_instances/tmp
+  # move the results to ./level1_docker_results, renaming them to include the run index
+  for output_file in ./sammy_benchmark_instances/tmp/*.json.xz; do
     target_name=$(echo $output_file | grep -Eo "[^/]+$" | sed s/.scm.json.xz//g)
     target_name="./level1_docker_results/${target_name}.scm.out${run_index}.json.xz"
     mv "$output_file" "$target_name"
