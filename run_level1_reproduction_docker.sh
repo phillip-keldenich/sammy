@@ -51,7 +51,5 @@ for run_index in 1 2 3 4 5; do
   done
 done
 
-# remove ./instances if it is a symlink
-unlink ./instances 1>/dev/null 2>/dev/null || true
 python ./level1_generate_table.py ./level1_docker_results ./level1_table_E1.xlsx
 echo "✅ Results written to ./level1_table_E1.xlsx"
