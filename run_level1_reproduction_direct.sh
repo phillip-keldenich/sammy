@@ -24,6 +24,13 @@ if [ ! -d ./sammy_benchmark_instances ]; then
   exit 1
 fi
 
+# check if the python packages for table generation are installed
+if ! python -c "import openpyxl; import pandas;"; then
+  echo "❌ Python packages 'pandas' and 'openpyxl' are required to create the summary table produced by this script."
+  echo "❌ Please install them, e.g., via 'pip install pandas openpyxl' or 'pip install -r requirements.txt'."
+  exit 1
+fi
+
 # create results directory if it does not exist
 mkdir -p ./level1_direct_results 1>/dev/null 2>/dev/null || true
 

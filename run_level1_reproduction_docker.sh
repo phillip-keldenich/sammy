@@ -25,9 +25,9 @@ fi
 
 # check if the Gurobi license file is present
 if [ ! -f ./gurobi.lic ]; then
-    echo "❌ Gurobi license file not found at ./gurobi.lic."
-    echo "   Please place your Docker-compatible Gurobi license file (WLS) in the current directory."
-    exit 1
+  echo "❌ Gurobi license file not found at ./gurobi.lic."
+  echo "   Please place your Docker-compatible Gurobi license file (WLS) in the current directory."
+  exit 1
 fi
 
 # check if benchmark instances are in place (they are part of the repo)
@@ -36,11 +36,18 @@ if [ ! -d ./sammy_benchmark_instances ]; then
   exit 1
 fi
 
+# check if the python packages for table generation are installed
+if ! python -c "import openpyxl; import pandas;"; then
+  echo "❌ Python packages 'pandas' and 'openpyxl' are required to create the summary table produced by this script."
+  echo "❌ Please install them, e.g., via 'pip install pandas openpyxl' or 'pip install -r requirements.txt'."
+  exit 1
+fi
+
 # create results directory if it does not exist
 mkdir -p ./level1_docker_results 1>/dev/null 2>/dev/null || true
 
 # run each instance 5 times
-for run_index in 1 2 3 4 5; do 
+for run_index in 1 2 3 4 5; do
   # solve all instances, write results to ./level1_docker_results/tmp
   ./solve_instances.sh -i ./sammy_benchmark_instances -o ./sammy_benchmark_instances/tmp
   # move the results to ./level1_docker_results, renaming them to include the run index
