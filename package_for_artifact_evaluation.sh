@@ -46,6 +46,6 @@ zip -0r sammy_evaluation_package.zip \
 rm -rf sammy_evaluation_package
 mkdir -p sammy_evaluation_package
 mv sammy_evaluation_package.zip sammy_evaluation_package/sammy_evaluation_package.zip
-(cd sammy_evaluation_package && unzip sammy_evaluation_package.zip)
-#zip -9r sammy_evaluation_package.zip sammy_evaluation_package
-#rm -rf sammy_evaluation_package
+(cd sammy_evaluation_package && unzip sammy_evaluation_package.zip && rm sammy_evaluation_package.zip)
+zip -9r sammy_evaluation_package.zip sammy_evaluation_package
+rm -rf sammy_evaluation_package
