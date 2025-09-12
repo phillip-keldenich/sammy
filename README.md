@@ -57,6 +57,28 @@ If your problem instances are in FeatureIDE’s XML format or the DIMACS format,
 
 Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
 
+<details>
+<summary>Gurobi Academic License</summary>
+
+1. Visit the [Gurobi Academic Program](https://www.gurobi.com/academia/academic-program-and-licenses/) and click **Claim Your Free License Now**.  
+2. Sign up with your academic email address.  
+3. In the *Licenses* tab, click **Request**.  
+4. Select **WLS Academic**, which works in Docker containers but requires access to an academic network (e.g., university VPN).  
+   Gurobi describes the WLS Academic license as:  
+   - Runs on multiple machines/containers  
+   - Requires Gurobi v10+  
+   - Needs an internet connection during usage  
+   - Academic network required only for generation; usable anywhere afterwards  
+   - Valid for 90 days, renewable while eligible  
+5. Click **Go to License**.  
+6. On the right, click **Open License within the Web License Manager** (icon).  
+7. Click **Download**.  
+8. Enter any application name (e.g., `sammy`).  
+9. Save the `gurobi.lic` file in the same directory as this `README.md`.  
+
+*Note: The process may change; consult the official Gurobi documentation if you encounter issues.*  
+</details>
+
 Build the Docker image by executing the following command in this directory:  
 
 ```bash
