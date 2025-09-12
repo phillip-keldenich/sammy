@@ -45,7 +45,13 @@ for input_file in ./sammy_benchmark_instances/*.json.xz; do
     
     if ./build/Release/src/sammy_solve "$input_file" -o "$output_file" --print-events --time-limit 3600; then
         echo "✅ Completed: $filename -> $output_file"
-
+        echo "🔍 Checking solution validity ..."
+        if ! ./build/Release/src/check_solution_and_mes "$output_file" "$input_file"; then
+            echo "❌ Solution check failed for $output_file"
+            exit 1
+        else
+            echo "✅ Solution check passed for $output_file"
+        fi
     else
         echo "❌ Failed: $filename -> $output_file"
     fi
