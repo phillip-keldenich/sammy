@@ -104,7 +104,7 @@ By default, the script enforces a time limit of 3600 seconds per instance.
 > ```  
 > This script executes each instance five times and stores the results in the `level1_docker_results/` directory, including an Excel summary file.
 > Running all experiments may take several days on a single machine.
-> Since some benchmark instances are large, a workstation with sufficient memory is required (tested with 96 GB RAM).
+> Since some benchmark instances are large, a workstation with sufficient memory is required (tested with 96 GiB RAM).
 
 > [!WARNING]
 >
@@ -184,7 +184,7 @@ To add it to your `PATH` temporarily, you can use the following command
 You should afterwards be able to run `grbgetkey` from the command line.
 
 If you installed the Gurobi license in a non-standard location,
-you will need to set the `GUROBI_LICENSE_FILE` environment variable
+you will need to set the `GRB_LICENSE_FILE` environment variable
 to point to the license file.
 
 # Running Sammy
@@ -196,7 +196,7 @@ try the following command:
 ```bash
 ./build/Release/src/sammy_solve sammy_benchmark_instances/soletta_2017-03-09_21-02-40.scm.json.xz --print-events
 ```
-Without the `-o filename.json` option, this will not create an output file,
+Without the `-o filename.json[.xz]` option, this will not create an output file,
 but it will print event information to the console.
 
 # Instances
@@ -238,14 +238,3 @@ outputs and a notebook to visualize the data and save plots as PDF files.
 The subdirectories `06_identify_nontrivial` and 
 `07_run_nontrivial_export_subproblems` contain scripts and notebooks
 to produce the data for the figures in the appendix.
-
-## Extracting our raw outputs
-To emplace the raw output files from our experiments as we ran them,
-you can run the script `./experiments/extract_author_experiment_outputs.py`.
-This essentially replaces the running of the experiments
-`02_run_default_params`, `03_baselines`, `05_run_initial_no_simplification`,
-`06_identify_nontrivial`, and `07_run_nontrivial_export_subproblems`,
-and places the raw output data as well as summary files into those directories.
-Afterwards, the `paper_figures` scripts can be run to produce the figures and
-tables in the paper.
-Note that this can take quite a while and produces a large number of files.
