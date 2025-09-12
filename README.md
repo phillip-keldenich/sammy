@@ -52,11 +52,6 @@ recent Linux or MacOS systems.
 We provide a simplified procedure for running **Sammy** using Docker.
 To proceed, ensure that **Docker** is installed on your system and that you have a Docker-compatible Gurobi license file.  
 
-If your problem instances are in FeatureIDE’s XML format or the DIMACS format, convert them to the `.scm.json` format using the script
-`scripts/instance_to_generic_json.py`. Place all `.scm.json` files in a directory named `instances/` located in the same directory as this `README.md`.  
-
-Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
-
 <details>
 <summary>Gurobi Academic License</summary>
 
@@ -78,6 +73,11 @@ Also place your Gurobi license file as `gurobi.lic` in the same directory as thi
 
 *Note: The process may change; consult the official Gurobi documentation if you encounter issues.*  
 </details>
+
+If your problem instances are in FeatureIDE’s XML format or the DIMACS format, convert them to the `.scm.json` format using the script
+`scripts/instance_to_generic_json.py`. Place all `.scm.json` files in a directory named `instances/` located in the same directory as this `README.md`.  
+
+Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
 
 Build the Docker image by executing the following command in this directory:  
 
