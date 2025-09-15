@@ -133,7 +133,7 @@ validate_prerequisites() {
     fi
 
     if [[ ! -d "$INSTANCE_FOLDER" ]]; then
-        echo "❌ Error: Instance directory '$INSTANCE_FOLDER' not found!"
+        echo "❌ Error: Instance directory '$INSTANCE_FOLDER' not found! Create a folder named '$INSTANCE_FOLDER' and move all the instances you want to solve in it. For testing, we recommend to copy the benchmark instance 'full_instances/berkeleyDB1.scm.json.xz'."
         exit 1
     fi
 
