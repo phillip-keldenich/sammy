@@ -127,7 +127,7 @@ By default, the script enforces a time limit of 3600 seconds per instance.
 > [!WARNING]
 >
 > Killing the script can be difficult due to Docker's handling of signals.
-> `docker kill $(docker ps -q --filter ancestor=sammy)` seems to work in most cases.
+> `while docker kill $(docker ps -q --filter ancestor=sammy) 2>/dev/null; do sleep 0.5; done` seems to work in most cases.
 
 # Direct Setup Instructions
 To build Sammy, which is a C++ program, 
