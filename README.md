@@ -93,7 +93,8 @@ To proceed, ensure that **Docker** is installed on your system and that you have
 </details>
 
 If your problem instances are in FeatureIDE’s XML format or the DIMACS format, convert them to the `.scm.json` format using the script
-`scripts/instance_to_generic_json.py`. Place all `.scm.json` files in a directory named `instances/` located in the same directory as this `README.md`.  
+`scripts/instance_to_generic_json.py`. Place all `.scm.json` files you want to solve in a directory named `instances/` located in the same directory as this `README.md`.
+For testing, we recommend to just copy `full_instances/berkeleyDB1.scm.json.xz`.
 
 Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
 
