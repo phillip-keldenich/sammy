@@ -133,7 +133,9 @@ validate_prerequisites() {
     fi
 
     if [[ ! -d "$INSTANCE_FOLDER" ]]; then
-        echo "❌ Error: Instance directory '$INSTANCE_FOLDER' not found! Create a folder named '$INSTANCE_FOLDER' and move all the instances you want to solve in it. For testing, we recommend to copy the benchmark instance 'full_instances/berkeleyDB1.scm.json.xz'."
+        echo "❌ Error: Instance directory '$INSTANCE_FOLDER' not found!"
+        echo "   Create a folder named '$INSTANCE_FOLDER' and move all the instances you want to solve in it."
+        echo "   For testing, we recommend to copy the benchmark instance 'full_instances/berkeleyDB1.scm.json.xz'."
         exit 1
     fi
 
@@ -147,6 +149,7 @@ check_instances() {
     if [[ "$count" -eq 0 ]]; then
         echo "❌ No .json or .json.xz files found in '$INSTANCE_FOLDER'"
         echo "   Use scripts/instance_to_generic_json.py to convert XML/DIMACS files to compatible JSON format."
+        echo "   For testing, we recommend to copy the benchmark instance 'full_instances/berkeleyDB1.scm.json.xz' into '$INSTANCE_FOLDER'."
         exit 1
     fi
 
