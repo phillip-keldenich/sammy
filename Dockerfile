@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 # Ensure submodules are initialized
-RUN git submodule update --init --recursive
+RUN sh attempt_submodule_init.sh
 
 # Create a Python virtual environment for Conan
 RUN python3 -m venv /app/conan-venv
