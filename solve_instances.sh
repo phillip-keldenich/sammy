@@ -24,6 +24,8 @@
 # ./solve_instances.sh --docker sammy:v2.0
 # # Multiple options
 # ./solve_instances.sh -i ./data -t 1800 -a "--verbose --seed 42"
+# # Custom sleep duration
+# ./solve_instances.sh --sleep 10
 # # Help
 # ./solve_instances.sh --help
 
@@ -36,6 +38,7 @@ GUROBI_LICENSE="./gurobi.lic"
 SAMMY_ARGS="--print-events --time-limit 3600"
 DOCKER_IMAGE="sammy"
 DOCKER_PLATFORM="linux/amd64"
+SLEEP_DURATION=5
 
 # Help function
 show_help() {
@@ -52,6 +55,7 @@ OPTIONS:
     -d, --docker IMAGE      Docker image name (default: $DOCKER_IMAGE)
     -p, --platform PLATFORM Docker platform (default: $DOCKER_PLATFORM)
     -t, --time-limit SEC    Time limit in seconds (default: 3600)
+    -s, --sleep SEC         Sleep duration after each solve (default: $SLEEP_DURATION)
     -h, --help             Show this help message
 
 EXAMPLES:
@@ -59,6 +63,7 @@ EXAMPLES:
     $0 -i ./my_instances -o ./my_results        # Custom directories
     $0 -t 1800 -a "--verbose --seed 42"        # Custom time limit and args
     $0 --instances ./data --time-limit 7200     # Long option format
+    $0 --sleep 10                               # Longer sleep between solves
 EOF
 }
 
@@ -94,6 +99,10 @@ parse_arguments() {
                 # Update time limit in SAMMY_ARGS
                 SAMMY_ARGS=$(echo "$SAMMY_ARGS" | sed 's/--time-limit [0-9]\+//')
                 SAMMY_ARGS="$SAMMY_ARGS --time-limit $2"
+                shift 2
+                ;;
+            -s|--sleep)
+                SLEEP_DURATION="$2"
                 shift 2
                 ;;
             -h|--help)
@@ -194,6 +203,9 @@ process_instances() {
             any_failed=1
         fi
 
+        # Sleep after each solve to prevent Gurobi license issues
+        echo "⏳ Sleeping for ${SLEEP_DURATION}s to prevent license conflicts..."
+        sleep "$SLEEP_DURATION"
         echo
     done
 
@@ -221,6 +233,7 @@ main() {
     echo "   License:   $GUROBI_LICENSE"
     echo "   Docker:    $DOCKER_IMAGE ($DOCKER_PLATFORM)"
     echo "   Args:      $SAMMY_ARGS"
+    echo "   Sleep:     ${SLEEP_DURATION}s between solves"
     echo
     
     if process_instances; then
