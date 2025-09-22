@@ -49,8 +49,15 @@ for input_file in ./sammy_benchmark_instances/*.json.xz; do
     fi
 
     echo "Processing $filename -> $output_file ..."
-    
-    if ./build/Release/src/sammy_solve "$input_file" -o "$output_file" --print-events --time-limit 3600; then
+
+    # if the instance name contains "Automotive02_V", it is a huge instance;
+    # only use 1 LNS worker thread in this case to avoid OOM on machines
+    EXTRA_ARG=""
+    if [ "$(echo $filename | grep -o Automotive02_V)" != "" ]; then
+        EXTRA_ARG="--max-lns-workers=1"
+    fi
+
+    if ./build/Release/src/sammy_solve "$input_file" -o "$output_file" --print-events --time-limit 3600 $EXTRA_ARG; then
         echo "✅ Completed: $filename -> $output_file"
         echo "🔍 Checking solution validity ..."
         if ! ./build/Release/src/check_solution_and_mes "$output_file" "$input_file"; then

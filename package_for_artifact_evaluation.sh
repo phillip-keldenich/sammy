@@ -3,6 +3,7 @@
 set -euo pipefail
 
 zip -0r sammy_evaluation_package.zip \
+  attempt_submodule_init.sh \
   custom_deps \
   experiments/02_run_default_params/*.py \
   experiments/03_baselines \
