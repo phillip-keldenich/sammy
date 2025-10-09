@@ -4,5 +4,15 @@ CMakeUserPresets.json
 experiments/
 full_instances/
 sammy_benchmark_instances/
+samplns-run-docker/
 instances/
 cmake/
+level1_direct_results/
+level1_docker_results/
+run_level*.sh
+*.ipynb
+*.pyc
+gurobi.lic
+__pycache__/
+sammy_evaluation_package.zip
+package_for*.sh

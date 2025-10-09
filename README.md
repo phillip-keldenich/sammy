@@ -35,7 +35,11 @@ recent Linux or MacOS systems.
    Depending on which option you choose, you can then either execute `run_level1_reproduction_direct.sh` or `run_level1_reproduction_docker.sh` to run **Sammy** five times on each of the
    benchmark instances from the benchmark set (in the `sammy_benchmark_instances/` directory)
    used in our paper.
-   This allows you to reproduce most parts of Table E.1 in the paper.
+   This allows you to reproduce most parts of Table E.1 in the full version of the paper.
+   Note that the column counting the number of interactions is expected to differ from the paper,
+   since it (in your run) counts the interactions after simplification (but before universe reduction),
+   unlike the table in the paper.
+   To reproduce the number without simplification, edit the script to pass `--dont-simplify` to the invokations of `sammy_solve`.
 
    Note that either option requires you to have a valid Gurobi license file.
    In case of the Docker option, this needs to be a Docker-compatible license file,
@@ -52,6 +56,10 @@ recent Linux or MacOS systems.
    and reproduce most of the figures and tables in the paper,
    after following the `Direct Setup Instructions` below and running `pip install -r requirements.txt`,
    you can run the `run_level2_reproduction.sh` script.
+   Note that by default, this will clone the current version of SampLNS from github.
+   Should the repository of SampLNS become unavailable in the future,
+   we have included a snapshot of the version of SampLNS that we used in the archive,
+   named `SampLNS.tar.xz`.
    This will take a significant amount of time on a single machine,
    and relies on enough memory being available; in our experiment
    environment, the scripts distribute the work across 6 identical machines,
@@ -65,6 +73,19 @@ recent Linux or MacOS systems.
    This will probably be infeasible on a single machine;
    again, in our experiment environment, the scripts distribute the work
    across 6 identical machines, where this can still take 2 weeks.
+
+# Software Versions Used in Experiments
+In our experiments, we used the following software versions:
+- Ubuntu Linux 24.04.2 LTS
+- Compiler: `clang++ 18.1.3 (1ubuntu1)` with flags `-std=c++17 -mavx2 -mpopcnt -mlzcnt` 
+on top of the release mode flags introduced by CMake and our `CMakeLists.txt` file,
+- `cmake 3.28.3`
+- `conan 2.12.1`
+- `gurobi 12.0.2` as installed by the bundled `gurobi_public` conan package,
+- `Boost 1.88.0` installed via conan (from conan-center),
+- `nlohmann_json 3.12.0` installed via conan (from conan-center),
+as well as the versions of the external SAT solvers CaDiCaL, Lingeling, Cryptominisat and Kissat,
+which are included in this archive.
 
 # Simple Docker Usage
 We provide a simplified procedure for running **Sammy** using Docker.
@@ -98,12 +119,19 @@ For testing, we recommend to just copy `full_instances/berkeleyDB1.scm.json.xz`.
 
 Also place your Gurobi license file as `gurobi.lic` in the same directory as this `README.md`.
 
-Build the Docker image by executing the following command in this directory:  
+## Building Docker image
+You need to build the Docker image yourself by executing the following command in this directory:  
 
 ```bash
 docker build --platform linux/amd64 -t sammy .
 ```
 
+Unfortunately, we cannot provide a pre-built Docker image due to licensing restrictions of Gurobi;
+we are not allowed to redistribute the Gurobi shared libraries.
+This holds for SampLNS as well, which is why we opted to include a snapshot of its
+repository for long-term archival purposes.
+
+## Using the Docker image
 After building the image, run:
 
 ```bash
@@ -124,6 +152,8 @@ By default, the script enforces a time limit of 3600 seconds per instance.
 > This script executes each instance five times and stores the results in the `level1_docker_results/` directory, including an Excel summary file.
 > Running all experiments may take several days on a single machine.
 > Since some benchmark instances are large, a workstation with sufficient memory is required (tested with 96 GiB RAM).
+> The column reporting the number of feasible interactions will deviate significantly from the table in the paper,
+> since it counts the number of interactions after simplification (but not universe reduction).
 
 > [!WARNING]
 >
@@ -131,7 +161,8 @@ By default, the script enforces a time limit of 3600 seconds per instance.
 > `while docker kill $(docker ps -q --filter ancestor=sammy) 2>/dev/null; do sleep 0.5; done` seems to work in most cases.
 
 # Direct Setup Instructions
-To build Sammy, which is a C++ program, 
+To build Sammy (which is a C++ program) without using Docker,
+offering more flexible access to individual commands,
 we use `CMake` and `conan` (version 2) as a package manager;
 you will have to install both of these first (as well as a C++ compiler),
 as the following instructions assume they are available in your `PATH`.
@@ -206,7 +237,7 @@ If you installed the Gurobi license in a non-standard location,
 you will need to set the `GRB_LICENSE_FILE` environment variable
 to point to the license file.
 
-# Running Sammy
+## Running Sammy
 After building Sammy, you can solve instances in the `.scm.json` format
 (optionally with `.xz`, `.bz2` or `.gz` compression) 
 using the `sammy_solve` executable.
@@ -218,7 +249,7 @@ try the following command:
 Without the `-o filename.json[.xz]` option, this will not create an output file,
 but it will print event information to the console.
 
-# Instances
+## Instances
 The benchmark instances used in our experiments are in the 
 `./sammy_benchmark_instances/` directory.
 The full instance set is in `./full_instances/`.

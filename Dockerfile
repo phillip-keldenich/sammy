@@ -40,8 +40,11 @@ RUN conan install ./conanfile.docker.txt -pr:b default -pr:h default --build=mis
 # Configure the project with CMake
 RUN cmake --preset conan-release
 
-# Build the project (only 2 threads to keep memory usage low)
-RUN cmake --build --preset conan-release --parallel 2
+# Build the project (only 4 threads to keep memory usage low)
+RUN cmake --build --preset conan-release --parallel 4
+
+# Delete the stuff remaining from the build to save space
+RUN find build | grep -E "\.[oa]$" | xargs rm -f
 
 # Run tests (optional, can be commented out)
 # RUN ./build/Release/test/sammy_test --success

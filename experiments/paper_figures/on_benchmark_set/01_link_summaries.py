@@ -5,8 +5,8 @@ this_path = Path(__file__).absolute().parent
 exp_02_dir = this_path.parent.parent / "02_run_default_params"
 exp_02_summary_archive = exp_02_dir / "05_sammy_summary_data.json.xz"
 
-exp_03_baselines_archive = this_path.parent.parent / "sammy-data" / "baselines" / "02_baseline_summary_data.json.xz"
-exp_03_samplns_archive = this_path.parent.parent / "sammy-data" / "samplns" / "02_samplns_summary_data.json.xz"
+exp_03_baselines_archive = this_path.parent.parent / "sammy-data-repo" / "baselines" / "02_baseline_summary_data.json.xz"
+exp_03_samplns_archive = this_path.parent.parent / "sammy-data-repo" / "samplns" / "02_samplns_summary_data.json.xz"
 
 exp_05_dir = this_path.parent.parent / "05_run_initial_no_simplification"
 exp_05_summary_archive = exp_05_dir / "04_nosimp_summary_data.json.xz"

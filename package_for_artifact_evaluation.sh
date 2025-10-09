@@ -36,6 +36,7 @@ zip -0r sammy_evaluation_package.zip \
   requirements.txt \
   run_level*.sh \
   solve_instances.sh \
+  SampLNS.tar.xz \
   -x 'experiments/03_baselines/requirements.txt' \
   -x "*/.git/*" -x "*/.idea/*" -x "*/.vscode/*" \
   -x '**/__MACOSX' -x "*egg-info*" -x "*/.ipynb_checkpoints/*" \
