@@ -84,7 +84,7 @@ on top of the release mode flags introduced by CMake and our `CMakeLists.txt` fi
 - `gurobi 12.0.2` as installed by the bundled `gurobi_public` conan package,
 - `Boost 1.88.0` installed via conan (from conan-center),
 - `nlohmann_json 3.12.0` installed via conan (from conan-center),
-as well as the versions of the external SAT solvers CaDiCaL, Lingeling, Cryptominisat and Kissat,
+as well as the versions of the external SAT solvers CaDiCaL, Lingeling, Cryptominisat and Kissat
 which are included in this archive.
 
 # Simple Docker Usage
