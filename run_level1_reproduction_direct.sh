@@ -25,9 +25,9 @@ if [ ! -d ./sammy_benchmark_instances ]; then
 fi
 
 # check if the python packages for table generation are installed
-if ! python -c "import openpyxl; import pandas;"; then
-  echo "❌ Python packages 'pandas' and 'openpyxl' are required to create the summary table produced by this script."
-  echo "❌ Please install them, e.g., via 'pip install pandas openpyxl' or 'pip install -r requirements.txt'."
+if ! python -c "import openpyxl; import pandas; import algbench;"; then
+  echo "❌ Python packages 'pandas', 'algbench' and 'openpyxl' are required to create the summary table produced by this script."
+  echo "❌ Please install them, e.g., via 'pip install pandas openpyxl algbench' or 'pip install -r requirements.txt'."
   exit 1
 fi
 
@@ -73,6 +73,8 @@ for input_file in ./sammy_benchmark_instances/*.json.xz; do
   echo
 done
 
+
+echo "✅ All instances processed. Now generating summary table ..."
 # generate table from results; relies on pandas and openpyxl
 python ./level1_generate_table.py ./level1_direct_results ./level1_table_E1.xlsx
 echo "✅ Results written to ./level1_table_E1.xlsx"

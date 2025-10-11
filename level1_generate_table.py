@@ -4,13 +4,26 @@ import json
 import pandas as pd
 import math
 import sys
+import algbench
+
+SAMPLNS_PATH = Path(__file__).parent / "experiments" / "sammy-data" / "samplns" / "samplns_1h"
+
+
+def read_row_samplns(row):
+    return {
+        "lower_bound": row["result"]["lower_bound"],
+        "upper_bound": row["result"]["upper_bound"],
+        "time_used_by_yasa": row["result"]["time_used_by_yasa"],
+        "runtime": row["runtime"],
+        "instance": row["parameters"]["args"]["instance_name"],
+    }
 
 
 def generate_expected_runs(instances_dir: Path):
     expected_runs = set()
     for instance_file in instances_dir.glob("*.json.xz"):
         instance_with_scm = instance_file.name[:-8]  # Remove .json.xz
-        expected_run_names = [f"{instance_with_scm}.out{i}.json.xz" 
+        expected_run_names = [f"{instance_with_scm}.out{i}.json.xz"
                               for i in range(1, 6)]
         expected_runs.update(expected_run_names)
     return expected_runs
@@ -28,13 +41,22 @@ def first_event(events, event_type):
 
 
 def records_to_table(records, output_file: Path):
+    print("Generating table to", output_file)
     records = pd.DataFrame(records)
+
+    samplns_path = Path(SAMPLNS_PATH)
+    samplns_data = None
+
+    if samplns_path.exists():
+        print("Found SampLNS results and reading from", samplns_path)
+        samplns_data = algbench.read_as_pandas(str(samplns_path), read_row_samplns)
+
     instance_data = []
     instances = set(records["instance"])
     for instance in instances:
         instance_records = records[records["instance"] == instance]
         assert len(instance_records) == 5
-        instance_data.append({
+        entry = {
             "instance": instance,
             "successful_runs": sum(instance_records["success"]),
             "total_runs": 5,
@@ -48,8 +70,23 @@ def records_to_table(records, output_file: Path):
             "features": instance_records["features"].min(),
             "concrete": instance_records["concrete"].min(),
             "clauses": instance_records["clauses"].min(),
-            "interactions": instance_records["interactions"].min()
-        })
+            "interactions": instance_records["interactions"].min(),
+        }
+
+        if samplns_data is not None:
+            samplns_records = samplns_data[samplns_data["instance"] == instance]
+            entry.update({
+                "samplns_runs": len(samplns_records),
+                "samplns_min_lb": samplns_records["lower_bound"].min() if len(samplns_records) > 0 else None,
+                "samplns_med_lb": samplns_records["lower_bound"].median() if len(samplns_records) > 0 else None,
+                "samplns_max_lb": samplns_records["lower_bound"].max() if len(samplns_records) > 0 else None,
+                "samplns_min_ub": samplns_records["upper_bound"].min() if len(samplns_records) > 0 else None,
+                "samplns_med_ub": samplns_records["upper_bound"].median() if len(samplns_records) > 0 else None,
+                "samplns_max_ub": samplns_records["upper_bound"].max() if len(samplns_records) > 0 else None,
+                "samplns_median_time": samplns_records["runtime"].median() if len(samplns_records) > 0 else None,
+            })
+
+        instance_data.append(entry)
     instance_data = pd.DataFrame(instance_data)
     instance_data = instance_data.sort_values(by="interactions")
     if output_file.suffix.lower() == ".csv":
@@ -58,6 +95,7 @@ def records_to_table(records, output_file: Path):
     elif output_file.suffix.lower() in [".xlsx", ".xls"]:
         instance_data.to_excel(output_file, sheet_name="Results (Table E.1)",
                                index=False, header=True)
+
 
 def generate_table(instances_dir: Path, results_dir: Path, output_file: Path):
     expected_runs = generate_expected_runs(instances_dir)
@@ -95,7 +133,7 @@ def generate_table(instances_dir: Path, results_dir: Path, output_file: Path):
                     assert (record["features"] == input_event["num_vars"] and
                             record["concrete"] == input_event["num_concrete"] and
                             record["clauses"] == input_event["num_clauses"])
-                initial_phase_event = first_event(data["events"], 
+                initial_phase_event = first_event(data["events"],
                                                   "INITIAL_PHASE_DONE")
                 if record["interactions"] is None and initial_phase_event:
                     record["interactions"] = initial_phase_event["num_interactions"]
@@ -103,9 +141,6 @@ def generate_table(instances_dir: Path, results_dir: Path, output_file: Path):
                     assert record["interactions"] == initial_phase_event["num_interactions"]
         records.append(record)
     records_to_table(records, output_file)
-    
-
-
 
 
 if __name__ == "__main__":
