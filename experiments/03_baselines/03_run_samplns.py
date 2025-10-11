@@ -12,7 +12,6 @@ from samplns.utils import Timer
 from solver.instance import get_instance_from_path
 import tempfile
 
-slurminade.set_dispatch_limit(300)
 
 instances_path = "../../sammy_benchmark_instances"
 output_dir = "../sammy-data/samplns/samplns_1h"
@@ -95,7 +94,7 @@ slurminade.update_default_configuration(
     exclusive=True,
     mail_type="FAIL",
 )
-slurminade.set_dispatch_limit(300)
+slurminade.set_dispatch_limit(10000)
 
 
 class MyLnsLogger(LnsObserver):
